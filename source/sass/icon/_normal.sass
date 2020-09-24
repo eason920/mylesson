@@ -1,0 +1,60 @@
+@import 'compass'
+@import 'normal/dark/*.png'
+$height: dark-sprite-height(arrow_bold) + dark-sprite-height(arrow_light) + dark-sprite-height(arrow_white) + dark-sprite-height(calendar) + dark-sprite-height(edit) + dark-sprite-height(g_mail) + dark-sprite-height(g_member) + dark-sprite-height(g_phone) + dark-sprite-height(g_setting) + dark-sprite-height(gift) + dark-sprite-height(i_active) + dark-sprite-height(i_attend) + dark-sprite-height(i_closure) + dark-sprite-height(i_deal) + dark-sprite-height(i_money) + dark-sprite-height(i_new) + dark-sprite-height(z_new_plus) + dark-sprite-height(pdf) + dark-sprite-height(search) + dark-sprite-height(close) + dark-sprite-height(i2_class) + dark-sprite-height(i2_glass) + dark-sprite-height(i2_lastclass) + dark-sprite-height(i2_login) + dark-sprite-height(calendar_big) + dark-sprite-height(df)
+@mixin BG($path)
+	@include dark-sprite($path)
+	background-size: auto $height
+	width: dark-sprite-width($path)
+	height: dark-sprite-height($path)
+.icon-df
+	@include BG(df)
+.icon-close
+	@include BG(close)
+.icon-bold
+	@include BG(arrow_bold)
+.icon-light
+	@include BG(arrow_light)
+.icon-white
+	@include BG(arrow_white)
+.icon-calendar
+	@include BG(calendar)
+.icon-calendar-big
+	@include BG(calendar_big)
+.icon-edit
+	@include BG(edit)
+.icon-mail
+	@include BG(g_mail)
+.icon-member
+	@include BG(g_member)
+.icon-phone
+	@include BG(g_phone)
+.icon-setting
+	@include BG(g_setting)
+.icon-gift
+	@include BG(gift)
+.icon-active
+	@include BG(i_active)
+.icon-attend
+	@include BG(i_attend)
+.icon-closure
+	@include BG(i_closure)
+.icon-deal
+	@include BG(i_deal)
+.icon-money
+	@include BG(i_money)
+.icon-new
+	@include BG(i_new)
+.icon_glass
+	@include BG(i2_glass)
+.icon_class
+	@include BG(i2_class)
+.icon_lastclass
+	@include BG(i2_lastclass)
+.icon_login
+	@include BG(i2_login)
+.icon-newplus
+	@include BG(z_new_plus)
+.icon-pdf
+	@include BG(pdf)
+.icon-search
+	@include BG(search)
