@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		title My Lesson page1
+		link(href="./css/mylesson_1.css", rel="stylesheet")
+		script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js")
+		script(src="./js/mylesson.js")
+	body
+		#nav
+			.wrapper
+				.box nav
+		#content
+			.wrapper
+				#main
+					#pre-page
+						svg(fill='none')
+							path(d='M19 2L2 23.5L19 45', stroke='white', stroke-width='4')
+					#nex-page
+						svg(fill='none')
+							path(d='M2 2L19 23.5L2 45', stroke='white', stroke-width='4')
+					#member left
+					#right
+						#above
+							#calbox
+								#pre-week
+									svg(fill='none')
+										path(d='M10 22L2 11.7778L10 1.55556', stroke='#DCDCDC', stroke-width='3', stroke-linejoin='round')
+								#nex-week
+									svg(fill='none')
+										path(d='M2 1L10 11.2222L2 21.4444', stroke='#DCDCDC', stroke-width='3', stroke-linejoin='round')
+								include partials/calendar
+							#achive
+						#under
+							#data data
+							#contact contact
+				#runway runway
+		#foo
+			.wrapper
+				.box footer
+		#lbmasker
+		#lb
+			#lb-left
+			#lb-right
+				include partials/calendar

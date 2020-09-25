@@ -1,0 +1,92 @@
+#main
+	height: calc( 100% - #{$h-runway})
+	padding-bottom: $g-main-bottom
+	display: flex
+	position: relative
+
+#pre-page,
+#nex-page
+	position: absolute
+	top: 50%
+	transform: translateY(-50%)
+	cursor: pointer
+	svg
+		width: 21px
+		height: 47px
+
+#pre-page
+	left: -36px
+
+#nex-page
+	right: -36px
+
+// --------------------------------
+#member
+	padding: $padding-inside
+	background:
+		image: linear-gradient(174.5deg, #15264A 4.91%, #2B4171 136.92%)
+	border-radius: $radius
+	height: 100%
+	width: $w-left
+	margin-right: $g-left
+
+// --------------------------------
+#right
+	height: 100%
+	width: calc( 100% - #{$w-left} - #{$g-left} )
+
+#above
+	padding: $padding-inside
+	height: $h-above
+	background:
+		color: #fff
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2)
+	border-radius: $radius
+	display: flex
+
+#pre-week,
+#nex-week
+	position: absolute
+	top: 50%
+	transform: translateY(-50%)
+	cursor: pointer
+	svg
+		width: 12px
+		height: 23px
+
+#pre-week
+	left: 2px
+
+#nex-week
+	right: 2px
+
+// --------------------------------
+#achive
+	width: $w-achive
+
+// --------------------------------
+#under
+	height: calc( 100% - #{$h-above})
+	padding-top: $g-under-top
+	display: flex
+
+#data
+	padding: $padding-inside
+	width: $w-data
+	margin-right: $g-data-right
+	background:
+		image: linear-gradient(140.33deg, #16274C -16.39%, #294682 111.27%)
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2)
+	border-radius: $radius
+
+#contact
+	padding: $padding-inside
+	width: calc( 100% - #{$w-data} - #{$g-data-right} )
+	background:
+		image: linear-gradient(138.82deg, #203066 23.33%, #354E85 102.24%)
+	box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.1)
+	border-radius: $radius
+
+// --------------------------------
+#runway
+	height: $h-runway
