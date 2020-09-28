@@ -1,0 +1,80 @@
+// 週次
+.ui-datepicker-week-col
+	// display: none
+
+// 上一月
+.ui-icon-circle-triangle-w
+	color: green
+
+// 下一月
+.ui-icon-circle-triangle-e
+	color: red
+
+// 年月
+.ui-datepicker-title
+	color: #aaa
+
+.ui-datepicker-year
+	color: greenyellow
+
+.ui-datepicker-month
+	color: pink
+
+// tr
+.ui-datepicker-week-col
+
+// tr 第一排(週文字)
+// .ui-datepicker-week-col:first-child // err
+#datepicker
+	thead
+		background:
+			// color: #aaa
+		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1)
+		box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5)
+		padding: 3px
+		border-radius: 5px
+		th
+			padding: 4px
+			line-height: 1
+			&:nth-child(2)
+				padding-left: 8px
+			&:last-child
+				padding-right: 8px
+		span
+			font-size: .75rem
+			line-height: 1
+
+// --------------------------------
+// - 日結構
+// - td
+// -  a(本月) / span (非本月者) <<<<<<< class here
+// --------------------------------
+// 每日
+.ui-state-default
+	color: #333
+	text-decoration: none
+	font-size: .75rem
+
+// --------------------------------
+// - 今日/選取日/其它月的日結構
+// - td <<<<<<< class here
+// -  a(本月) / span (非本月者)
+// --------------------------------
+// 今日
+.ui-datepicker-today
+	a
+		background:
+			color: $c-blue
+		border-radius: 5px
+		color: #fff
+
+// 選取日
+.ui-datepicker-current-day
+	a
+		background-color: red
+		color: yellow
+
+// 其它月份的日
+.ui-datepicker-other-month
+	span
+		color: brown

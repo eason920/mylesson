@@ -5,8 +5,11 @@ html(lang="en")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		title My Lesson page1
 		link(href="./css/mylesson_1.css", rel="stylesheet")
-		script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js")
+		script(src='./assets/plugins/jquery/jquery.1.12.4.min.js')
+		script(src='./assets/plugins/jquery-ui/1.12.1.js')
+		script(src='./assets/plugins/jquery-ui/i18n/datepicker-zh-TW.js')
 		script(src="./js/mylesson.js")
+
 	body
 		#nav
 			.wrapper
@@ -32,6 +35,7 @@ html(lang="en")
 										path(d='M2 1L10 11.2222L2 21.4444', stroke='#DCDCDC', stroke-width='3', stroke-linejoin='round')
 								include partials/calendar
 							#achive
+								#datepicker
 						#under
 							#data data
 							#contact contact
