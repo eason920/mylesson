@@ -6,8 +6,12 @@ html(lang="en")
 		title My Lesson page1
 		link(href="./css/mylesson_1.css", rel="stylesheet")
 		script(src='./assets/plugins/jquery/jquery.1.12.4.min.js')
+		//- datapicker v
 		script(src='./assets/plugins/jquery-ui/1.12.1.js')
 		script(src='./assets/plugins/jquery-ui/i18n/datepicker-zh-TW.js')
+		//- cookie
+		script(src='https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js')
+		//-
 		script(src="./js/mylesson.js")
 
 	body
@@ -36,6 +40,21 @@ html(lang="en")
 								include partials/calendar
 							#achive
 								#datepicker
+								#passmap
+									//- .passmap-item
+									//- 	div(data-pass='0')
+									//- .passmap-item
+									//- 	div(data-pass='1')
+									//- .passmap-item
+									//- 	div(data-pass='2')
+								
+								svg#month-pre(width='6' height='15' viewBox='0 0 6 15' fill='none' xmlns='http://www.w3.org/2000/svg')
+									path(d='M5.05624 0.963867L0.710449 7.36398L5.05624 13.7641' stroke='#7E7E7E')
+							
+								svg#month-nex(width='6' height='15' viewBox='0 0 6 15' fill='none' xmlns='http://www.w3.org/2000/svg')
+									path(d='M0.756745 13.7641L5.10254 7.36399L0.756746 0.963876' stroke='#7E7E7E')
+
+
 						#under
 							#data data
 							#contact contact

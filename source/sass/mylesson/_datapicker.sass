@@ -1,18 +1,36 @@
+#datepicker
+	position: relative
+
+#datapicker
+	td
+		text-align: center
+	
 // 週次
 .ui-datepicker-week-col
-	// display: none
+	display: none
 
 // 上一月
 .ui-icon-circle-triangle-w
-	color: green
+	display: none
 
 // 下一月
 .ui-icon-circle-triangle-e
-	color: red
+	// color: red
+	// position: absolute
+	// top: 0 
+	// right: 0
+	display: none
 
 // 年月
 .ui-datepicker-title
 	color: #aaa
+	text-align: center
+.ui-datepicker,
+.ui-datepicker-group,
+.ui-datepicker-header,
+.ui-datepicker-title
+	width: 100%!important
+// ^^
 
 .ui-datepicker-year
 	color: greenyellow
@@ -71,10 +89,21 @@
 // 選取日
 .ui-datepicker-current-day
 	a
-		background-color: red
-		color: yellow
+		// background-color: red
+		// color: yellow
 
 // 其它月份的日
 .ui-datepicker-other-month
 	span
 		color: brown
+
+// ====================================
+// == 第二組日曆隱藏 v
+// ====================================
+.ui-datepicker-group-last
+	display: none
+	.ui-datepicker-title,
+	thead,
+	tbody
+		display: none
+		// transform: translateY(20px)

@@ -1,0 +1,51 @@
+@import 'compass'
+@import 'ls1/*.png'
+$height: ls1-sprite-height(green_right) + ls1-sprite-height(green_helf) + ls1-sprite-height(green_wrong) + ls1-sprite-height(red_right) + ls1-sprite-height(red_helf) + ls1-sprite-height(red_wrong) + ls1-sprite-height(default) + ls1-sprite-height(selected) + ls1-sprite-height(day_wrong) + ls1-sprite-height(day_pass)
+@mixin BG($path)
+	@include ls1-sprite($path)
+	background-size: auto $height
+	width: ls1-sprite-width($path)
+	height: ls1-sprite-height($path)
+
+.cal-box
+	.cal-status
+		@include BG(default)
+	.is-selected
+		.cal-status
+			@include BG(selected)
+	.is-s1
+		&.is-right
+			.cal-status
+				@include BG(green_right)
+		&.is-helf
+			.cal-status
+				@include BG(green_helf)
+		&.is-wrong
+			.cal-status
+				@include BG(green_wrong)
+	//
+	.is-s2
+		&.is-right
+			.cal-status
+				@include BG(red_right)
+		&.is-helf
+			.cal-status
+				@include BG(red_helf)
+		&.is-wrong
+			.cal-status
+				@include BG(red_wrong)
+
+	//
+	
+
+
+.passmap-item > div
+	&[data-pass='2']
+		@include BG(day_pass)
+
+	&[data-pass='1']
+		@include BG(day_wrong)
+
+	&[data-pass='0']
+		@include BG(day_wrong)
+		background-image: none
