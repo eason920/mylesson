@@ -1,51 +1,51 @@
-// let passAry = [
-// 	{ id: '202007', list: [
-// 			0,0,1,
-// 			1,2,2,1,2,1,1,
-// 			2,2,1,2,1,1,1,
-// 			2,1,2,2,2,2,2,
-// 			1,1,1,1,2,1,2,
-// 			2,2
-// 		]
-// 	},
-// 	{ id: '202008', list: [
-// 		0,0,0,0,0,1,2,2,1,1,2,2,
-// 		2,1,2,2,2,2,2,
-// 		2,2,2,2,2,2,2,
-// 		1,1,1,1,1,1,1,
-// 		2,1,2
-// 	]},
-// 	{ id: '202009', list: [
-// 		0,1,2,1,1,2,1,
-// 		2,2,2,2,1,1,2,
-// 		1,1,1,1,1,1,1,
-// 		2,2,2,1,1,1,2,
-// 		2
-// 	]}
-// ];
-let passAry = [];
+let faceAry= [
+	{ id: '202007', list: [
+			0,0,1,
+			1,2,2,1,2,1,1,
+			2,2,1,2,1,1,1,
+			2,1,2,2,2,2,2,
+			1,1,1,1,2,1,2,
+			2,2
+		]
+	},
+	{ id: '202008', list: [
+		0,0,0,0,0,1,2,2,1,1,2,2,
+		2,1,2,2,2,2,2,
+		2,2,2,2,2,2,2,
+		1,1,1,1,1,1,1,
+		2,1,2
+	]},
+	{ id: '202009', list: [
+		0,1,2,1,1,2,1,
+		2,2,2,2,1,1,2,
+		1,1,1,1,1,1,1,
+		2,2,2,1,1,1,2,
+		2
+	]}
+];
+// let faceAry= [];
 // by setting ^v by cookie /data;
-// const passAry = JSON.parse( Cookies.get('passAry') );
+// const faceAry= JSON.parse( Cookies.get('faceAry') );
 
-let passString = '';
-let passId = 0;
+let faceString = '';
+let faceId = 0;
 
-const fnPrintPassCalendar = function(){
-	passString = '';
-	$('#passmap').html('');
-	for(a in passAry){
-		if( passAry[a].id === passId ){
-			for( b in passAry[a].list ){
-				passString += '<div class="passmap-item"><div '
-				passString += 'data-pass="' + passAry[a].list[b]
-				passString += '"></div></div>'
+const fnPrintFaceCalendar = function(){
+	faceString = '';
+	$('#facemap').html('');
+	for(a in faceAry){
+		if( faceAry[a].id === faceId ){
+			for( b in faceAry[a].list ){
+				faceString += '<div class="facemap-item"><div '
+				faceString += 'data-face="' + faceAry[a].list[b]
+				faceString += '"></div></div>'
 			};
 		};
 	};
-	$('#passmap').append(passString);
+	$('#facemap').append(faceString);
 };
 
-const fnGetPassId = function(){
+const fnGetfaceId = function(){
 	const year = $('.ui-datepicker-year:eq(0)').text();
 	let month = Number( $('.ui-datepicker-month:eq(0)').text().split(' ')[0] );
 	if( month === 0 ){month = 12}
@@ -53,9 +53,9 @@ const fnGetPassId = function(){
 	return year + month;
 };
 
-const fnSavePassAry = function(){
-	Cookies.set('passAry', JSON.stringify(passAry) );
-	console.log('%cpassAry Saved', 'font-size: 20px;color: yellow');
+const fnSavefaceAry= function(){
+	Cookies.set('faceAry', JSON.stringify(faceAry) );
+	console.log('%cfaceArySaved', 'font-size: 20px;color: yellow');
 };
 
 $(()=>{
@@ -68,20 +68,6 @@ $(()=>{
 	const thisWeek = $('.ui-datepicker-today').siblings().eq(0).text();
 	const nextWeek = Number(thisWeek) + 1;
 
-	// $('#datepicker tbody tr').forEach(function(item){
-	// 	console.log(item);
-	// });
-	const bb = $('#datepicker tbody tr').length;
-	// $.each( $('#datepicker tbody tr'), function( i, item ){
-	// 	let target;
-	// 	console.log( item );
-	// 	// typeof( item ) => object
-	// 	// item.find('ui-datepicker-week-col').text() => err
-	// 	// JSON.stringify(item) object => {}
-	// });
-	// $.each( $('.ui-datepicker-week-col'), function(i, item){
-	// 	console.log( item.attr('class') );
-	// } )
 	let aryThisWeek = [];
 	let aryNextWeek = [];
 	$('#datepicker tbody tr').each(function(){
@@ -101,21 +87,14 @@ $(()=>{
 	aryNextWeek.splice(7);
 	console.log(aryThisWeek, aryNextWeek);
 	
-	
-	// console.log(`
-	// %cthis week is ${thisWeek};
-	// ${bb}
-	// `, 'color:yellow');
-
 	// ==========================================
-	// == GET PASSID v
-	// == PASS ARY CALENDAR v
+	// == GET faceId v
+	// == FACE ARY CALENDAR v
 	// ==========================================
-	passId = fnGetPassId();
+	faceId = fnGetfaceId();
 
 	// 第一次進此服務者, build & 儲存 json v
-	console.log( passAry.length );
-	if( !passAry.length ){
+	if( !faceAry.length ){
 		console.log('no');
 		let empty1 = 0;
 		$('#datepicker tbody tr:eq(0) td').each(function(){
@@ -130,22 +109,21 @@ $(()=>{
 		console.log(empty1, empty2, empty);
 
 		const obj = {
-			id: passId,
+			id: faceId,
 			list: []
 		}
 
 		for(i=0;i<empty;i++){
 			obj.list.push(0);
 		}
-		passAry.push(obj);
-		console.log(passAry);
+		faceAry.push(obj);
+		console.log(faceAry);
 
-		fnSavePassAry();
+		fnSavefaceAry();
 	};
 
 	
-	fnPrintPassCalendar();
-	// console.log(passId);
+	fnPrintFaceCalendar();
 
 	$('#month-pre').click(function(){
 		$('.ui-icon-circle-triangle-w').click();
@@ -156,12 +134,11 @@ $(()=>{
 	});
 
 	$('#month-pre, #month-nex').click(function(){
-		passId = fnGetPassId();
-		// console.log(passId);
-		fnPrintPassCalendar();
+		faceId = fnGetfaceId();
+		fnPrintFaceCalendar();
 	});
 
-	//- PASS ARY CALENDAR v
+	//- FACE ARY CALENDAR v
 	
 	
 
