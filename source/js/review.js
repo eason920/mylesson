@@ -66,3 +66,11 @@ console.log(splice_cuter, ary_splice);
 const str = 'string in review';
 console.log(str.split(''));
 
+// ==========================================
+// == TEST: cookie 
+// ==========================================
+Cookies.set('myCookie', true)
+Cookies.set('eason', '170');
+
+console.log( Cookies.get('myCookie') );
+console.log( '%c'+(Cookies.get('eason')), 'color:yellow');

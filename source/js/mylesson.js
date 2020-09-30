@@ -1,37 +1,52 @@
-let faceAry= [
-	{ id: '202007', list: [
-			0,0,1,
-			1,2,2,1,2,1,1,
-			2,2,1,2,1,1,1,
-			2,1,2,2,2,2,2,
-			1,1,1,1,2,1,2,
-			2,2
-		]
-	},
-	{ id: '202008', list: [
-		0,0,0,0,0,1,2,2,1,1,2,2,
-		2,1,2,2,2,2,2,
-		2,2,2,2,2,2,2,
-		1,1,1,1,1,1,1,
-		2,1,2
-	]},
-	{ id: '202009', list: [
-		0,1,2,1,1,2,1,
-		2,2,2,2,1,1,2,
-		1,1,1,1,1,1,1,
-		2,2,2,1,1,1,2,
-		2
-	]}
-];
-// let faceAry= [];
-// by setting ^v by cookie /data;
-// const faceAry= JSON.parse( Cookies.get('faceAry') );
+// 若改摸擬第一次，除註記上方，且應刪除 application>cookie>faceAry ^
+let thisMonth= 0;
 
-let faceString = '';
+let thisYear = 0;
+
+let thisDate= 0;
+// date = 日期(1~31)
+// day = 星期(monday, tuesday, wednsday, friday, sataday, sunday)
+//
+let faceAry= [];
+
 let faceId = 0;
 
+let faceAryShouldLength = 0;
+
+const fnCountFaceAryShouldLength = function(){
+	// COUNT 1 FROM OTHER MONTH v
+	let count1 = 0;
+	$('#datepicker tbody tr:eq(0) td').each(function(){
+		if( $(this).find('*').text() === '1' ){
+			count1 = $(this).index() - 1;// -1 for hide week td
+		}
+	});
+
+	// COUNT 2 FROM THIS MONTH v
+	const count2 = Number(thisDate) - 1;// -1 for today
+
+	// COUNT v
+	const total = count1 + count2;
+	console.log(count1, count2, total);
+
+	return total;
+}
+
+const fnGetFaceAry = function(){
+	let resFaceAry = Cookies.get('faceAry');
+	if( resFaceAry === undefined ){
+		console.log('%cface data : first', 'color:greenyellow;font-size:15px');
+		resFaceAry = [];
+	}else{
+		console.log('%cface data : had data', 'color:greenyellow;font-size:15px');
+		resFaceAry = JSON.parse( resFaceAry);
+	};
+	faceAry= resFaceAry;
+	console.log( faceAry );
+};
+
 const fnPrintFaceCalendar = function(){
-	faceString = '';
+	let faceString = '';
 	$('#facemap').html('');
 	for(a in faceAry){
 		if( faceAry[a].id === faceId ){
@@ -45,82 +60,141 @@ const fnPrintFaceCalendar = function(){
 	$('#facemap').append(faceString);
 };
 
-const fnGetfaceId = function(){
-	const year = $('.ui-datepicker-year:eq(0)').text();
+const fnGetThisYear = function(){
+	return $('.ui-datepicker-year:eq(0)').text();
+};
+
+const fnGetThisMonth = function(){
 	let month = Number( $('.ui-datepicker-month:eq(0)').text().split(' ')[0] );
 	if( month === 0 ){month = 12}
 	if( String(month).length < 2 ){ month = '0' + month };
-	return year + month;
+	return month;
 };
 
 const fnSavefaceAry= function(){
 	Cookies.set('faceAry', JSON.stringify(faceAry) );
 	console.log('%cfaceArySaved', 'font-size: 20px;color: yellow');
+
 };
 
 $(()=>{
+	fnGetFaceAry();
+
 	$( "#datepicker" ).datepicker({
 		showWeek: true,
 		showOtherMonths: true,
 		numberOfMonths: 2
 	});
-	
-	const thisWeek = $('.ui-datepicker-today').siblings().eq(0).text();
-	const nextWeek = Number(thisWeek) + 1;
 
-	let aryThisWeek = [];
-	let aryNextWeek = [];
-	$('#datepicker tbody tr').each(function(){
-		const week = $(this).find('.ui-datepicker-week-col').text();
-		if( week === String(thisWeek) ){
-			$(this).find('td > *').each(function(){
-				aryThisWeek.push( $(this).text() );
-			});
-		};
-		if( week === String(nextWeek) ){
-			$(this).find('td > *').each(function(){
-				aryNextWeek.push( $(this).text() );
-			});
-		};
-	});
-	aryThisWeek.splice(7);
-	aryNextWeek.splice(7);
-	console.log(aryThisWeek, aryNextWeek);
+	thisDate = $('.ui-datepicker-today:eq(0) > *').text();
+	thisYear = fnGetThisYear();
+	thisMonth = fnGetThisMonth();
+	console.log(thisDate);
 	
+		
 	// ==========================================
 	// == GET faceId v
 	// == FACE ARY CALENDAR v
 	// ==========================================
-	faceId = fnGetfaceId();
+	faceId = fnGetThisYear() + fnGetThisMonth();
+	faceAryShouldLength = fnCountFaceAryShouldLength();
 
+	const faceLength =faceAry.length;
 	// 第一次進此服務者, build & 儲存 json v
-	if( !faceAry.length ){
-		console.log('no');
-		let empty1 = 0;
-		$('#datepicker tbody tr:eq(0) td').each(function(){
-			if( $(this).find('*').text() === '1' ){
-				empty1 = $(this).index() - 1;
-			}
-		});
+	if( !faceLength ){
+		// first time comming v
+		// 1.補本月
+		// 2.補前月,前前月 > 前月&前前月有跨年否?
 
-		const today = $('.ui-datepicker-current-day:eq(0) > *').text();
-		const empty2 = Number(today) - 1;
-		const empty = empty1 + empty2;
-		console.log(empty1, empty2, empty);
+		// --------------------------------
+		// -- 2.補前月,前前月 v
+		// --------------------------------
+		let preYear = thisYear;
+		const list = [];
+		let round = 1;
+		for(i=1;i<=42;i++){list.push(0)};
+		const fnPushPreMonth = function(round){
+			// M
+			let preMonth= String( Number( thisMonth ) - round );
+			if( preMonth === '0' ){preMonth = '12'};
+			if( preMonth === '-1' ){preMonth = '11'}
+			if( preMonth.length < 2){ preMonth = '0' + preMonth };
 
-		const obj = {
+			// Y
+			if( (Number(thisMonth) - Number(preMonth)) < 1 ){
+				preYear = Number(thisYear) - 1;
+			};
+
+			const id = preYear + preMonth;
+			const preMonthObj = {id, list};
+			faceAry.push(preMonthObj);
+		};
+
+		// 「2」為「除本月的前二月」意思 v
+		for(i=1;i<=2;i++){
+			fnPushPreMonth(round);
+			round ++;
+		};
+		
+		// --------------------------------
+		// -- 補本月 v
+		// --------------------------------
+		const thisMonthObj = {
 			id: faceId,
 			list: []
-		}
+		};
 
-		for(i=0;i<empty;i++){
-			obj.list.push(0);
-		}
-		faceAry.push(obj);
+		for (i=0; i < faceAryShouldLength; i++) {
+			thisMonthObj.list.push(0);
+		};
+		
+		faceAry.push(thisMonthObj);
 		console.log(faceAry);
 
-		fnSavefaceAry();
-	};
+		// fnSavefaceAry();
+	}else{
+		// had face ary already v
+		// 1.只缺一日
+		// 2.缺同一月內
+		// 3.缺一個月
+		// 4.缺一個月以上
+		// ---------------------
+		// Limit:
+		// 1.紀錄三個月內的(包含本月&前推二個月)
+		
+		// --------------------------------
+		// -- 「月」為單位 v
+		// --------------------------------
+		
+		console.log(faceLength);
+		// 月滿洩 & 不足3 v
+		if (faceLength > 3) {
+			// 月滿洩 v
+			console.log('月滿洩, delete');
+			// faceAry = faceAry.splice(-3);
+			console.log(faceAry);
+			// fnSavefaceAry();
+		} else if (faceLength < 3) {
+			//小於3要補 v
+			console.log('月少於3要補 v');
+		}
+		// --------------------------------
+		// -- 「日」為單位 v
+		// --------------------------------
+		console.log(faceAryShouldLength);
+		const max = faceAry.length - 1;
+		console.log(max);
+		const currentLength = faceAry[max].list.length;
+		console.log(currentLength);
+		// 應有個補「缺不同月內的」的函式 ****>>重核先前月的紀錄並不論如何都要update，即可補起
+		// 補「缺同個月內」的 v
+		if( currentLength < faceAryShouldLength ){
+			console.log('less , should add');
+			// fnSavefaceAry();
+		}else{
+			console.log('is enough');
+		}
+	}
 
 	
 	fnPrintFaceCalendar();
@@ -134,32 +208,15 @@ $(()=>{
 	});
 
 	$('#month-pre, #month-nex').click(function(){
-		faceId = fnGetfaceId();
+		faceId = fnGetThisYear() + fnGetThisMonth();
 		fnPrintFaceCalendar();
 	});
 
 	//- FACE ARY CALENDAR v
 	
-	
-
-
 	// ==========================================
-	// == TEST: cookie 
+	// == LIGHT BOX v
 	// ==========================================
-	Cookies.set('myCookie', true)
-	Cookies.set('eason', '170');
-	
-	console.log( Cookies.get('myCookie') );
-	console.log( '%c'+(Cookies.get('eason')), 'color:yellow');
-
-	// ==========================================
-	// == TEST: get time v
-	// ==========================================
-	const DATE = new Date();
-	const week = DATE.getDay();
-	const dayList = ['一', '二', '三', '四', '五', '六', '日'];
-	console.log(dayList[week]);
-
 	$('#contact, #lbmasker').click(function(){
 		$('#lbmasker, #lb').toggleClass('open');
 	});
