@@ -9,12 +9,16 @@ html(lang="en")
 		//- datapicker v
 		script(src='./assets/plugins/jquery-ui/1.12.1.js')
 		script(src='./assets/plugins/jquery-ui/i18n/datepicker-zh-TW.js')
-		//- cookie
+		//- cookie v
 		script(src='https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js')
-		//-
-		//- script(src="./js/face_ary.js")
-		//- 若改摸擬第一次，除註記掉上方，且應刪除 application>cookie>faceAry ^
+		//- main v
 		script(src="./js/mylesson.js")
+		//------
+		script(src="./js/face_ary.js")
+		//- 若改摸擬第一次，除註記掉上方，且應刪除 application>cookie>faceAry ^
+		script(src="./js/face_box.js")
+		//------
+		script(src="./js/week_ary.js")
 		script(src="./js/week_box.js")
 		//- script(src="./js/review.js")
 
@@ -41,7 +45,7 @@ html(lang="en")
 								#nex-week
 									svg(fill='none')
 										path(d='M2 1L10 11.2222L2 21.4444', stroke='#DCDCDC', stroke-width='3', stroke-linejoin='round')
-								include partials/calendar
+								include partials/week_box
 							#achive
 								#datepicker
 								#facemap
@@ -57,8 +61,7 @@ html(lang="en")
 							
 								svg#month-nex(width='6' height='15' viewBox='0 0 6 15' fill='none' xmlns='http://www.w3.org/2000/svg')
 									path(d='M0.756745 13.7641L5.10254 7.36399L0.756746 0.963876' stroke='#7E7E7E')
-
-
+								#try-week
 						#under
 							#data data
 							#contact contact
@@ -70,4 +73,4 @@ html(lang="en")
 		#lb
 			#lb-left
 			#lb-right
-				include partials/calendar
+				include partials/week_box

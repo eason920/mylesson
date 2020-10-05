@@ -7,32 +7,32 @@ $height: ls1-sprite-height(green_right) + ls1-sprite-height(green_helf) + ls1-sp
 	width: ls1-sprite-width($path)
 	height: ls1-sprite-height($path)
 
-.cal-box
-	.cal-status
+.week-box
+	.week-status
 		@include BG(default)
 	.is-selected
-		.cal-status
+		.week-status
 			@include BG(selected)
 	.is-s1
 		&.is-right
-			.cal-status
+			.week-status
 				@include BG(green_right)
 		&.is-helf
-			.cal-status
+			.week-status
 				@include BG(green_helf)
 		&.is-wrong
-			.cal-status
+			.week-status
 				@include BG(green_wrong)
 	//
 	.is-s2
 		&.is-right
-			.cal-status
+			.week-status
 				@include BG(red_right)
 		&.is-helf
-			.cal-status
+			.week-status
 				@include BG(red_helf)
 		&.is-wrong
-			.cal-status
+			.week-status
 				@include BG(red_wrong)
 
 	//

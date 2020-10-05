@@ -1,0 +1,374 @@
+<div class="week-date week-tr">
+	<div class="week-td">
+		<div class="week-box">
+			<div class="week-in">
+				<div class="week-item is-s2 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">文章</div>
+				</div>
+				<div class="week-item is-s1 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">實力衝刺</div>
+				</div>
+				<div class="week-item is-s1 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">朗讀練習</div>
+				</div>
+				<div class="week-item is-s2 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">音樂</div>
+				</div>
+				<div class="week-item is-s2 is-wrong">
+					<div class="week-status"></div>
+					<div class="week-category">專欄</div>
+				</div>
+			</div>
+		</div>
+		<div class="week-box">
+			<div class="week-in">
+				<div class="week-item is-s2 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">文章</div>
+				</div>
+				<div class="week-item is-s1 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">實力衝刺</div>
+				</div>
+				<div class="week-item is-s1 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">朗讀練習</div>
+				</div>
+				<div class="week-item is-s2 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">音樂</div>
+				</div>
+				<div class="week-item is-s2 is-wrong">
+					<div class="week-status"></div>
+					<div class="week-category">專欄</div>
+				</div>
+			</div>
+		</div>
+		<div class="week-box">
+			<div class="week-in">
+				<div class="week-item is-s2 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">文章</div>
+				</div>
+				<div class="week-item is-s1 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">實力衝刺</div>
+				</div>
+				<div class="week-item is-s1 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">朗讀練習</div>
+				</div>
+				<div class="week-item is-s2 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">音樂</div>
+				</div>
+				<div class="week-item is-s2 is-wrong">
+					<div class="week-status"></div>
+					<div class="week-category">專欄</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="week-td">
+		<div class="week-box">
+			<div class="week-in">
+				<div class="week-item is-s2 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">文章</div>
+				</div>
+				<div class="week-item is-s1 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">實力衝刺</div>
+				</div>
+				<div class="week-item is-s1 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">朗讀練習</div>
+				</div>
+				<div class="week-item is-s2 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">音樂</div>
+				</div>
+				<div class="week-item is-s2 is-wrong">
+					<div class="week-status"></div>
+					<div class="week-category">專欄</div>
+				</div>
+			</div>
+		</div>
+		<div class="week-box">
+			<div class="week-in">
+				<div class="week-item is-s2 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">文章</div>
+				</div>
+				<div class="week-item is-s1 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">實力衝刺</div>
+				</div>
+				<div class="week-item is-s1 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">朗讀練習</div>
+				</div>
+				<div class="week-item is-s2 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">音樂</div>
+				</div>
+				<div class="week-item is-s2 is-wrong">
+					<div class="week-status"></div>
+					<div class="week-category">專欄</div>
+				</div>
+			</div>
+		</div>
+		<div class="week-box">
+			<div class="week-in">
+				<div class="week-item is-s2 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">文章</div>
+				</div>
+				<div class="week-item is-s1 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">實力衝刺</div>
+				</div>
+				<div class="week-item is-s1 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">朗讀練習</div>
+				</div>
+				<div class="week-item is-s2 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">音樂</div>
+				</div>
+				<div class="week-item is-s2 is-wrong">
+					<div class="week-status"></div>
+					<div class="week-category">專欄</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="week-td">
+		<div class="week-box">
+			<div class="week-in">
+				<div class="week-item is-s2 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">文章</div>
+				</div>
+				<div class="week-item is-s1 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">實力衝刺</div>
+				</div>
+				<div class="week-item is-s1 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">朗讀練習</div>
+				</div>
+				<div class="week-item is-s2 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">音樂</div>
+				</div>
+				<div class="week-item is-s2 is-wrong">
+					<div class="week-status"></div>
+					<div class="week-category">專欄</div>
+				</div>
+			</div>
+		</div>
+		<div class="week-box">
+			<div class="week-in">
+				<div class="week-item is-s2 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">文章</div>
+				</div>
+				<div class="week-item is-s1 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">實力衝刺</div>
+				</div>
+				<div class="week-item is-s1 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">朗讀練習</div>
+				</div>
+				<div class="week-item is-s2 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">音樂</div>
+				</div>
+				<div class="week-item is-s2 is-wrong">
+					<div class="week-status"></div>
+					<div class="week-category">專欄</div>
+				</div>
+			</div>
+		</div>
+		<div class="week-box">
+			<div class="week-in">
+				<div class="week-item is-s2 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">文章</div>
+				</div>
+				<div class="week-item is-s1 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">實力衝刺</div>
+				</div>
+				<div class="week-item is-s1 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">朗讀練習</div>
+				</div>
+				<div class="week-item is-s2 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">音樂</div>
+				</div>
+				<div class="week-item is-s2 is-wrong">
+					<div class="week-status"></div>
+					<div class="week-category">專欄</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="week-td">
+		<div class="week-box">
+			<div class="week-in">
+				<div class="week-item is-s2 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">文章</div>
+				</div>
+				<div class="week-item is-s1 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">實力衝刺</div>
+				</div>
+				<div class="week-item is-s1 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">朗讀練習</div>
+				</div>
+				<div class="week-item is-s2 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">音樂</div>
+				</div>
+				<div class="week-item is-s2 is-wrong">
+					<div class="week-status"></div>
+					<div class="week-category">專欄</div>
+				</div>
+			</div>
+		</div>
+		<div class="week-box">
+			<div class="week-in">
+				<div class="week-item is-s2 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">文章</div>
+				</div>
+				<div class="week-item is-s1 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">實力衝刺</div>
+				</div>
+				<div class="week-item is-s1 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">朗讀練習</div>
+				</div>
+				<div class="week-item is-s2 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">音樂</div>
+				</div>
+				<div class="week-item is-s2 is-wrong">
+					<div class="week-status"></div>
+					<div class="week-category">專欄</div>
+				</div>
+			</div>
+		</div>
+		<div class="week-box">
+			<div class="week-in">
+				<div class="week-item is-s2 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">文章</div>
+				</div>
+				<div class="week-item is-s1 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">實力衝刺</div>
+				</div>
+				<div class="week-item is-s1 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">朗讀練習</div>
+				</div>
+				<div class="week-item is-s2 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">音樂</div>
+				</div>
+				<div class="week-item is-s2 is-wrong">
+					<div class="week-status"></div>
+					<div class="week-category">專欄</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="week-td is-today">
+		<div class="week-box">
+			<div class="week-in">
+				<div class="week-item is-s2 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">文章</div>
+				</div>
+				<div class="week-item is-s1 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">實力衝刺</div>
+				</div>
+				<div class="week-item is-s1 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">朗讀練習</div>
+				</div>
+				<div class="week-item is-s2 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">音樂</div>
+				</div>
+				<div class="week-item is-s2 is-wrong">
+					<div class="week-status"></div>
+					<div class="week-category">專欄</div>
+				</div>
+			</div>
+		</div>
+		<div class="week-box">
+			<div class="week-in">
+				<div class="week-item is-s2 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">文章</div>
+				</div>
+				<div class="week-item is-s1 is-right">
+					<div class="week-status"></div>
+					<div class="week-category">實力衝刺</div>
+				</div>
+				<div class="week-item is-s1 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">朗讀練習</div>
+				</div>
+				<div class="week-item is-s2 is-helf">
+					<div class="week-status"></div>
+					<div class="week-category">音樂</div>
+				</div>
+				<div class="week-item is-s2 is-wrong">
+					<div class="week-status"></div>
+					<div class="week-category">專欄</div>
+				</div>
+			</div>
+		</div>
+		<div class="week-box is-editable"></div>
+	</div>
+	<div class="week-td">
+		<div class="week-box is-editable">
+			<div class="week-in">
+				<div class="week-item is-s2">
+					<div class="week-status"></div>
+					<div class="week-category">文章</div>
+				</div>
+				<div class="week-item is-s2 is-selected">
+					<div class="week-status"></div>
+					<div class="week-category">專欄</div>
+				</div>
+				<div class="week-item is-s1">
+					<div class="week-status"></div>
+					<div class="week-category">朗讀練習</div>
+				</div>
+			</div>
+		</div>
+		<div class="week-box is-editable"></div>
+		<div class="week-box is-editable"></div>
+	</div>
+	<div class="week-td">
+		<div class="week-box is-editable"></div>
+		<div class="week-box is-editable"></div>
+		<div class="week-box is-editable"></div>
+	</div>
+</div>

@@ -80,5 +80,6 @@ const demoFaceAry= [
 		2
 	]}
 ];
+
 Cookies.set('faceAry', JSON.stringify(demoFaceAry));
 // by setting //

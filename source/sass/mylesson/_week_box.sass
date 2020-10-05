@@ -1,10 +1,10 @@
 $g: 9px
 	
-.calendar
+.weekbox
 	height: 100%
 	// background-color: #eee
 
-.cal-title
+.week-title
 	font:
 		size: 1.25rem
 		weight: bold
@@ -14,20 +14,20 @@ $g: 9px
 	height: $h-title
 	color: $c-blue
 
-.cal-main
+.week-main
 	display: flex
 	align-items: stretcn
 	height: calc( 100% - #{$h-title})
 
 // --------------------------------
-.cal-time
+.week-time
 	width: $w-time
 	color: $c-blue
 	padding:
 		top: calc( #{$h-week} + 2px + #{$g})
 		right: $g
 
-.cal-area
+.week-area
 	font-size: .75rem
 	text-align: right
 	height: calc( 33.3% - #{$g} )
@@ -35,7 +35,7 @@ $g: 9px
 	transform: translateY(-#{$g})
 	position: relative
 
-.cal-area-text
+.week-area-text
 	font:
 		size: 1.0625rem
 		weight: bold
@@ -45,43 +45,43 @@ $g: 9px
 	right: 0
 
 // --------------------------------
-.cal-cal
+.week-cal
 	width: calc( 100% - #{$w-time} )
 	border: 1.3px solid rgba(126, 126, 126, 0.1)
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1)
 	border-radius: $radius
 	overflow: hidden
 
-.cal-tr
+.week-tr
 	width: 100%
 	display: flex
 	justify-content: space-around
 
-.cal-td
+.week-td
 	width: calc( 100% / 7 )
 
-.cal-week
+.week-week
 	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05)
 	background-color: #fbfbfb
 	line-height: $h-week
-	.cal-td
+	.week-td
 		text-align: center
 		color: $c-blue
 		font:
 			size: .875rem
 			weight: bold
 
-.cal-day
+.week-day
 	padding-left: 5px
 
 // --------------------------------
-.cal-date
+.week-date
 	height: calc( 100% - #{$h-week} )
 	padding:
 		top: $g
 		left: $g
 
-	.cal-td
+	.week-td
 		padding-right: $g
 		display: flex
 		flex-direction: column
@@ -89,7 +89,7 @@ $g: 9px
 		font:
 			size: .8125rem
 
-.cal-box
+.week-box
 	margin-bottom: $g
 	height: calc( 33.3% - #{$g} )
 	background:
@@ -97,7 +97,7 @@ $g: 9px
 	border-radius: 4px
 	padding: 11px 0
 
-.cal-in
+.week-in
 	width: 75px
 	height: 100%
 	overflow: 
@@ -105,7 +105,7 @@ $g: 9px
 		y: hidden
 	margin: 0 auto
 
-.cal-item
+.week-item
 	display: flex
 	// height: 13px
 	// margin-bottom: calc( (100% - 13px * 5) / 4 )
@@ -118,13 +118,13 @@ $g: 9px
 	&:last-child
 		margin-bottom: 0
 
-.cal-status
+.week-status
 	margin-right: 3px
 
 // --------------------------------
-.cal-week
+.week-week
 	.is-today
-		.cal-day
+		.week-day
 			position: relative
 			&:after
 				content: ""
@@ -140,15 +140,15 @@ $g: 9px
 				transform: translateY(-50%)
 
 @media screen and (max-width: $bp-13)
-	.cal-box
+	.week-box
 		padding: 3px 0
 
-	.cal-in
+	.week-in
 		width: 68px
 
-	.cal-item
+	.week-item
 		margin: 0
 
 @media screen and (max-width: $bp-wide)
-	.cal-item
+	.week-item
 		margin: 3px
