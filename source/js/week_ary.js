@@ -1,19 +1,46 @@
+const todoList_1 = ["文章", "影片", "專欄", "每週測驗", "音樂", "童話故事", "實力衝刺", "寫作練習", "會話練習", "朗讀練習", "研習營"];
+
+const todoList_4 = [
+	["文章", "影片", "專欄", "每週測驗", "音樂", "童話故事"],
+	["實力衝刺", "寫作練習", "會話練習", "朗讀練習", "研習營"]
+]
+
+const todoList_3 = [
+	[
+		{index: 0, title: "文章"},
+		{index: 1, title: "影片"},
+		{index: 2, title: "專欄"},
+		{index: 3, title: "每週測驗"},
+		{index: 4, title: "音樂"},
+		{index: 5, title: "童話故事"},
+	], 
+	[
+		{index: 6, title: "實力衝刺"},
+		{index: 7, title: "寫作練習"},
+		{index: 8, title: "會話練習"},
+		{index: 9, title: "朗讀練習"},
+		{index: 10, title: "研習營"},
+	],
+
+	
+];
+
 const todoList = [
-	{category: 1, index: 1, title: "文章"},
-	{category: 1, index: 2, title: "影片"},
-	{category: 1, index: 3, title: "專欄"},
-	{category: 1, index: 4, title: "每週測驗"},
-	{category: 1, index: 5, title: "音樂"},
-	{category: 1, index: 6, title: "童話故事"},
-	{category: 2, index: 7, title: "實力衝刺"},
-	{category: 2, index: 8, title: "寫作練習"},
-	{category: 2, index: 9, title: "會話練習"},
-	{category: 2, index: 10, title: "朗讀練習"},
-	{category: 2, index: 11, title: "研習營"},
+	{skin: 1, index: 0, title: "文章"},
+	{skin: 1, index: 1, title: "影片"},
+	{skin: 1, index: 2, title: "專欄"},
+	{skin: 1, index: 3, title: "每週測驗"},
+	{skin: 1, index: 4, title: "音樂"},
+	{skin: 1, index: 5, title: "童話故事"},
+
+	{skin: 2, index: 6, title: "實力衝刺"},
+	{skin: 2, index: 7, title: "寫作練習"},
+	{skin: 2, index: 8, title: "會話練習"},
+	{skin: 2, index: 9, title: "朗讀練習"},
+	{skin: 2, index: 10, title: "研習營"},
 ];
 // ["文章", "影片", "專欄", "每週測驗", "音樂", "童話故事"],
 // ["實力衝刺", "寫作練習", "會話練習", "朗讀練習", "研習營"]
-// todoList.index = weekAry['20201001'].m.list[n].sort
 
 // done
 // 0 = default
@@ -21,22 +48,849 @@ const todoList = [
 // 2 = helf
 // 3 = true
 // 4 = ready to delete
+
+// skin 
+// 1 & 2 => for skin
+const demoWeekAry = {
+	202038: [],
+	202039: [],
+	202040: [
+		{
+			date: 28,
+			daily_done: true,
+			hours: {
+				m: {
+					list: [
+						{
+							sort: 0,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: true
+				},
+				a: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				},
+				e: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				}
+			}
+		},
+		{
+			date: 29,
+			daily_done: true,
+			hours: {
+				m: {
+					list: [
+						{
+							sort: 0,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: true
+				},
+				a: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				},
+				e: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				}
+			}
+		},
+		{
+			date: 30,
+			daily_done: true,
+			hours: {
+				m: {
+					list: [
+						{
+							sort: 0,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: true
+				},
+				a: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				},
+				e: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				}
+			}
+		},
+		{
+			date: 1,
+			daily_done: true,
+			hours: {
+				m: {
+					list: [
+						{
+							sort: 0,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: true
+				},
+				a: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				},
+				e: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				}
+			}
+		},
+		{
+			date: 2,
+			daily_done: true,
+			hours: {
+				m: {
+					list: [
+						{
+							sort: 0,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: true
+				},
+				a: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				},
+				e: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				}
+			}
+		},
+		{
+			date: 3,
+			daily_done: true,
+			hours: {
+				m: {
+					list: [
+						{
+							sort: 0,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: true
+				},
+				a: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				},
+				e: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				}
+			}
+		},
+		{
+			date: 4,
+			daily_done: true,
+			hours: {
+				m: {
+					list: [
+						{
+							sort: 0,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 5,
+							done: 2
+						},
+						{
+							sort: 6,
+							done: 2
+						},
+						{
+							sort: 7,
+							done: 2
+						}
+					],
+					hours_done: true
+				},
+				a: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				},
+				e: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				}
+			}
+		},
+	],
+	202041: [
+		{
+			date: 5,
+			daily_done: true,
+			hours: {
+				m: {
+					list: [
+						{
+							sort: 0,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: true
+				},
+				a: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				},
+				e: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				}
+			}
+		},
+		{
+			date: 6,
+			daily_done: true,
+			hours: {
+				m: {
+					list: [
+						{
+							sort: 0,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: true
+				},
+				a: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				},
+				e: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				}
+			}
+		},
+		{
+			date: 7,
+			daily_done: true,
+			hours: {
+				m: {
+					list: [
+						{
+							sort: 0,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: true
+				},
+				a: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				},
+				e: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				}
+			}
+		},
+		{
+			date: 8,
+			daily_done: true,
+			hours: {
+				m: {
+					list: [
+						{
+							sort: 0,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: true
+				},
+				a: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				},
+				e: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				}
+			}
+		},
+		{
+			date: 9,
+			daily_done: true,
+			hours: {
+				m: {
+					list: [
+						{
+							sort: 0,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: true
+				},
+				a: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				},
+				e: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				}
+			}
+		},
+		{
+			date: 10,
+			daily_done: true,
+			hours: {
+				m: {
+					list: [
+						{
+							sort: 0,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: true
+				},
+				a: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				},
+				e: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				}
+			}
+		},
+		{
+			date: 11,
+			daily_done: true,
+			hours: {
+				m: {
+					list: [
+						{
+							sort: 0,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 5,
+							done: 2
+						},
+						{
+							sort: 6,
+							done: 2
+						},
+						{
+							sort: 7,
+							done: 2
+						}
+					],
+					hours_done: true
+				},
+				a: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				},
+				e: {
+					list: [
+						{
+							sort: 8,
+							done: 0
+						},
+						{
+							sort: 1,
+							done: 1
+						},
+						{
+							sort: 6,
+							done: 2
+						}
+					],
+					hours_done: false
+				}
+			}
+		},
+	],
+	// 202042: [],
+	// 202043: []
+};
 const demoWeekAry40 = {
 	20200928: {
 		m: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -46,17 +900,17 @@ const demoWeekAry40 = {
 		a: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -66,17 +920,17 @@ const demoWeekAry40 = {
 		e: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -88,17 +942,17 @@ const demoWeekAry40 = {
 		m: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -108,17 +962,17 @@ const demoWeekAry40 = {
 		a: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -128,17 +982,17 @@ const demoWeekAry40 = {
 		e: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -150,17 +1004,17 @@ const demoWeekAry40 = {
 		m: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -170,17 +1024,17 @@ const demoWeekAry40 = {
 		a: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -190,17 +1044,17 @@ const demoWeekAry40 = {
 		e: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -212,17 +1066,17 @@ const demoWeekAry40 = {
 		m: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -232,17 +1086,17 @@ const demoWeekAry40 = {
 		a: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -252,17 +1106,17 @@ const demoWeekAry40 = {
 		e: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -274,17 +1128,17 @@ const demoWeekAry40 = {
 		m: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -294,17 +1148,17 @@ const demoWeekAry40 = {
 		a: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -314,17 +1168,17 @@ const demoWeekAry40 = {
 		e: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -336,17 +1190,17 @@ const demoWeekAry40 = {
 		m: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -356,17 +1210,17 @@ const demoWeekAry40 = {
 		a: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -376,17 +1230,17 @@ const demoWeekAry40 = {
 		e: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -398,17 +1252,17 @@ const demoWeekAry40 = {
 		m: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -418,17 +1272,17 @@ const demoWeekAry40 = {
 		a: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -438,17 +1292,17 @@ const demoWeekAry40 = {
 		e: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -458,22 +1312,22 @@ const demoWeekAry40 = {
 	}
 };
 
-const demoWeekAry = {
+const demoWeekAry_20201006_obj = {
 	20201005: {
 		m: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -483,17 +1337,17 @@ const demoWeekAry = {
 		a: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -503,17 +1357,17 @@ const demoWeekAry = {
 		e: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -525,17 +1379,17 @@ const demoWeekAry = {
 		m: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -545,17 +1399,17 @@ const demoWeekAry = {
 		a: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -565,17 +1419,17 @@ const demoWeekAry = {
 		e: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -587,17 +1441,17 @@ const demoWeekAry = {
 		m: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -607,17 +1461,17 @@ const demoWeekAry = {
 		a: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -627,17 +1481,17 @@ const demoWeekAry = {
 		e: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -649,17 +1503,17 @@ const demoWeekAry = {
 		m: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -669,17 +1523,17 @@ const demoWeekAry = {
 		a: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -689,17 +1543,17 @@ const demoWeekAry = {
 		e: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -711,17 +1565,17 @@ const demoWeekAry = {
 		m: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -731,17 +1585,17 @@ const demoWeekAry = {
 		a: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -751,17 +1605,17 @@ const demoWeekAry = {
 		e: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -773,17 +1627,17 @@ const demoWeekAry = {
 		m: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -793,17 +1647,17 @@ const demoWeekAry = {
 		a: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -813,17 +1667,17 @@ const demoWeekAry = {
 		e: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -835,17 +1689,17 @@ const demoWeekAry = {
 		m: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -855,17 +1709,17 @@ const demoWeekAry = {
 		a: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -875,17 +1729,17 @@ const demoWeekAry = {
 		e: {
 			list: [
 				{
-					category: 2,
+					skin: 2,
 					sort: 8,
 					done: 0
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 1,
 					done: 1
 				},
 				{
-					category: 1,
+					skin: 1,
 					sort: 6,
 					done: 2
 				}
@@ -895,7 +1749,7 @@ const demoWeekAry = {
 	}
 };
 
-console.log(demoWeekAry);
+// console.log(demoWeekAry);
 
 
 // morning: {},

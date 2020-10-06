@@ -7,36 +7,34 @@ $height: ls1-sprite-height(green_right) + ls1-sprite-height(green_helf) + ls1-sp
 	width: ls1-sprite-width($path)
 	height: ls1-sprite-height($path)
 
-.week-box
-	.week-status
+.weekmap-item
+	.weekmap-status
 		@include BG(default)
-	.is-selected
-		.week-status
+	&.is-selected
+		.weekmap-status
 			@include BG(selected)
-	.is-s1
-		&.is-right
-			.week-status
-				@include BG(green_right)
-		&.is-helf
-			.week-status
-				@include BG(green_helf)
-		&.is-wrong
-			.week-status
-				@include BG(green_wrong)
-	//
-	.is-s2
-		&.is-right
-			.week-status
+	// category 1 v
+	&[data-skin='1']
+		&[data-done='2']
+			.weekmap-status
 				@include BG(red_right)
-		&.is-helf
-			.week-status
+		&[data-done='1']
+			.weekmap-status
 				@include BG(red_helf)
-		&.is-wrong
-			.week-status
+		&[data-done='0']
+			.weekmap-status
 				@include BG(red_wrong)
-
-	//
-	
+	// category 2 v
+	&[data-skin='2']
+		&[data-done='2']
+			.weekmap-status
+				@include BG(green_right)
+		&[data-done='1']
+			.weekmap-status
+				@include BG(green_helf)
+		&[data-done='0']
+			.weekmap-status
+				@include BG(green_wrong)
 
 
 .facemap-item > div

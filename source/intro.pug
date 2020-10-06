@@ -16,11 +16,12 @@ html(lang="en")
 		//------
 		script(src="./js/face_ary.js")
 		//- 若改摸擬第一次，除註記掉上方，且應刪除 application>cookie>faceAry ^
-		script(src="./js/face_box.js")
+		script(src="./js/face_map.js")
 		//------
 		script(src="./js/week_ary.js")
-		script(src="./js/week_box.js")
+		script(src="./js/week_map.js")
 		//- script(src="./js/review.js")
+		//- script(src="./js/review2.js")
 
 	body
 		#nav
@@ -45,7 +46,7 @@ html(lang="en")
 								#nex-week
 									svg(fill='none')
 										path(d='M2 1L10 11.2222L2 21.4444', stroke='#DCDCDC', stroke-width='3', stroke-linejoin='round')
-								include partials/week_box
+								include partials/week_map
 							#achive
 								#datepicker
 								#facemap
@@ -73,4 +74,4 @@ html(lang="en")
 		#lb
 			#lb-left
 			#lb-right
-				include partials/week_box
+				include partials/week_map

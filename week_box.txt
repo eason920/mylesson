@@ -1,374 +1,392 @@
-<div class="week-date week-tr">
-	<div class="week-td">
-		<div class="week-box">
-			<div class="week-in">
-				<div class="week-item is-s2 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">文章</div>
+<div class="weekmap-week weekmap-tr">
+	<div class="weekmap-td">
+		MON<span class="weekmap-day">21 </span>
+	</div>
+	<div class="weekmap-td">TUE<span class="weekmap-day">22</span></div>
+	<div class="weekmap-td">WED<span class="weekmap-day">23</span></div>
+	<div class="weekmap-td">THU<span class="weekmap-day">24</span></div>
+	<div class="weekmap-td is-today">FRI<span class="weekmap-day">25</span></div>
+	<div class="weekmap-td">SAT<span class="weekmap-day">26</span></div>
+	<div class="weekmap-td">SUN<span class="weekmap-day">27</span></div>
+</div>
+
+
+
+
+
+
+
+<div class="weekmap-date weekmap-tr">
+	<div class="weekmap-td">
+		<div class="weekmap-hours" data-edit="false">
+			<div class="weekmap-in">
+				<div class="weekmap-item" data-skin="2" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">文章</div>
 				</div>
-				<div class="week-item is-s1 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">實力衝刺</div>
+				<div class="weekmap-item" data-skin="1" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">實力衝刺</div>
 				</div>
-				<div class="week-item is-s1 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">朗讀練習</div>
+				<div class="weekmap-item" data-skin="1" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">朗讀練習</div>
 				</div>
-				<div class="week-item is-s2 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">音樂</div>
+				<div class="weekmap-item" data-skin="2" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">音樂</div>
 				</div>
-				<div class="week-item is-s2 is-wrong">
-					<div class="week-status"></div>
-					<div class="week-category">專欄</div>
-				</div>
-			</div>
-		</div>
-		<div class="week-box">
-			<div class="week-in">
-				<div class="week-item is-s2 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">文章</div>
-				</div>
-				<div class="week-item is-s1 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">實力衝刺</div>
-				</div>
-				<div class="week-item is-s1 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">朗讀練習</div>
-				</div>
-				<div class="week-item is-s2 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">音樂</div>
-				</div>
-				<div class="week-item is-s2 is-wrong">
-					<div class="week-status"></div>
-					<div class="week-category">專欄</div>
+				<div class="weekmap-item" data-skin="2" data-done="0">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">專欄</div>
 				</div>
 			</div>
 		</div>
-		<div class="week-box">
-			<div class="week-in">
-				<div class="week-item is-s2 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">文章</div>
+		<div class="weekmap-hours" data-edit="false">
+			<div class="weekmap-in">
+				<div class="weekmap-item" data-skin="2" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">文章</div>
 				</div>
-				<div class="week-item is-s1 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">實力衝刺</div>
+				<div class="weekmap-item" data-skin="1" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">實力衝刺</div>
 				</div>
-				<div class="week-item is-s1 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">朗讀練習</div>
+				<div class="weekmap-item" data-skin="1" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">朗讀練習</div>
 				</div>
-				<div class="week-item is-s2 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">音樂</div>
+				<div class="weekmap-item" data-skin="2" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">音樂</div>
 				</div>
-				<div class="week-item is-s2 is-wrong">
-					<div class="week-status"></div>
-					<div class="week-category">專欄</div>
+				<div class="weekmap-item" data-skin="2" data-done="0">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">專欄</div>
+				</div>
+			</div>
+		</div>
+		<div class="weekmap-hours" data-edit="false">
+			<div class="weekmap-in">
+				<div class="weekmap-item" data-skin="2" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">文章</div>
+				</div>
+				<div class="weekmap-item" data-skin="1" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">實力衝刺</div>
+				</div>
+				<div class="weekmap-item" data-skin="1" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">朗讀練習</div>
+				</div>
+				<div class="weekmap-item" data-skin="2" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">音樂</div>
+				</div>
+				<div class="weekmap-item" data-skin="2" data-done="0">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">專欄</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="week-td">
-		<div class="week-box">
-			<div class="week-in">
-				<div class="week-item is-s2 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">文章</div>
+	<div class="weekmap-td">
+		<div class="weekmap-hours" data-edit="false">
+			<div class="weekmap-in">
+				<div class="weekmap-item" data-skin="2" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">文章</div>
 				</div>
-				<div class="week-item is-s1 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">實力衝刺</div>
+				<div class="weekmap-item" data-skin="1" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">實力衝刺</div>
 				</div>
-				<div class="week-item is-s1 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">朗讀練習</div>
+				<div class="weekmap-item" data-skin="1" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">朗讀練習</div>
 				</div>
-				<div class="week-item is-s2 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">音樂</div>
+				<div class="weekmap-item" data-skin="2" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">音樂</div>
 				</div>
-				<div class="week-item is-s2 is-wrong">
-					<div class="week-status"></div>
-					<div class="week-category">專欄</div>
-				</div>
-			</div>
-		</div>
-		<div class="week-box">
-			<div class="week-in">
-				<div class="week-item is-s2 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">文章</div>
-				</div>
-				<div class="week-item is-s1 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">實力衝刺</div>
-				</div>
-				<div class="week-item is-s1 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">朗讀練習</div>
-				</div>
-				<div class="week-item is-s2 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">音樂</div>
-				</div>
-				<div class="week-item is-s2 is-wrong">
-					<div class="week-status"></div>
-					<div class="week-category">專欄</div>
+				<div class="weekmap-item" data-skin="2" data-done="0">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">專欄</div>
 				</div>
 			</div>
 		</div>
-		<div class="week-box">
-			<div class="week-in">
-				<div class="week-item is-s2 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">文章</div>
+		<div class="weekmap-hours" data-edit="false">
+			<div class="weekmap-in">
+				<div class="weekmap-item" data-skin="2" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">文章</div>
 				</div>
-				<div class="week-item is-s1 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">實力衝刺</div>
+				<div class="weekmap-item" data-skin="1" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">實力衝刺</div>
 				</div>
-				<div class="week-item is-s1 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">朗讀練習</div>
+				<div class="weekmap-item" data-skin="1" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">朗讀練習</div>
 				</div>
-				<div class="week-item is-s2 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">音樂</div>
+				<div class="weekmap-item" data-skin="2" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">音樂</div>
 				</div>
-				<div class="week-item is-s2 is-wrong">
-					<div class="week-status"></div>
-					<div class="week-category">專欄</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="week-td">
-		<div class="week-box">
-			<div class="week-in">
-				<div class="week-item is-s2 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">文章</div>
-				</div>
-				<div class="week-item is-s1 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">實力衝刺</div>
-				</div>
-				<div class="week-item is-s1 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">朗讀練習</div>
-				</div>
-				<div class="week-item is-s2 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">音樂</div>
-				</div>
-				<div class="week-item is-s2 is-wrong">
-					<div class="week-status"></div>
-					<div class="week-category">專欄</div>
+				<div class="weekmap-item" data-skin="2" data-done="0">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">專欄</div>
 				</div>
 			</div>
 		</div>
-		<div class="week-box">
-			<div class="week-in">
-				<div class="week-item is-s2 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">文章</div>
+		<div class="weekmap-hours" data-edit="false">
+			<div class="weekmap-in">
+				<div class="weekmap-item" data-skin="2" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">文章</div>
 				</div>
-				<div class="week-item is-s1 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">實力衝刺</div>
+				<div class="weekmap-item" data-skin="1" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">實力衝刺</div>
 				</div>
-				<div class="week-item is-s1 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">朗讀練習</div>
+				<div class="weekmap-item" data-skin="1" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">朗讀練習</div>
 				</div>
-				<div class="week-item is-s2 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">音樂</div>
+				<div class="weekmap-item" data-skin="2" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">音樂</div>
 				</div>
-				<div class="week-item is-s2 is-wrong">
-					<div class="week-status"></div>
-					<div class="week-category">專欄</div>
-				</div>
-			</div>
-		</div>
-		<div class="week-box">
-			<div class="week-in">
-				<div class="week-item is-s2 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">文章</div>
-				</div>
-				<div class="week-item is-s1 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">實力衝刺</div>
-				</div>
-				<div class="week-item is-s1 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">朗讀練習</div>
-				</div>
-				<div class="week-item is-s2 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">音樂</div>
-				</div>
-				<div class="week-item is-s2 is-wrong">
-					<div class="week-status"></div>
-					<div class="week-category">專欄</div>
+				<div class="weekmap-item" data-skin="2" data-done="0">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">專欄</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="week-td">
-		<div class="week-box">
-			<div class="week-in">
-				<div class="week-item is-s2 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">文章</div>
+	<div class="weekmap-td">
+		<div class="weekmap-hours" data-edit="false">
+			<div class="weekmap-in">
+				<div class="weekmap-item" data-skin="2" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">文章</div>
 				</div>
-				<div class="week-item is-s1 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">實力衝刺</div>
+				<div class="weekmap-item" data-skin="1" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">實力衝刺</div>
 				</div>
-				<div class="week-item is-s1 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">朗讀練習</div>
+				<div class="weekmap-item" data-skin="1" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">朗讀練習</div>
 				</div>
-				<div class="week-item is-s2 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">音樂</div>
+				<div class="weekmap-item" data-skin="2" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">音樂</div>
 				</div>
-				<div class="week-item is-s2 is-wrong">
-					<div class="week-status"></div>
-					<div class="week-category">專欄</div>
-				</div>
-			</div>
-		</div>
-		<div class="week-box">
-			<div class="week-in">
-				<div class="week-item is-s2 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">文章</div>
-				</div>
-				<div class="week-item is-s1 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">實力衝刺</div>
-				</div>
-				<div class="week-item is-s1 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">朗讀練習</div>
-				</div>
-				<div class="week-item is-s2 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">音樂</div>
-				</div>
-				<div class="week-item is-s2 is-wrong">
-					<div class="week-status"></div>
-					<div class="week-category">專欄</div>
+				<div class="weekmap-item" data-skin="2" data-done="0">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">專欄</div>
 				</div>
 			</div>
 		</div>
-		<div class="week-box">
-			<div class="week-in">
-				<div class="week-item is-s2 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">文章</div>
+		<div class="weekmap-hours" data-edit="false">
+			<div class="weekmap-in">
+				<div class="weekmap-item" data-skin="2" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">文章</div>
 				</div>
-				<div class="week-item is-s1 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">實力衝刺</div>
+				<div class="weekmap-item" data-skin="1" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">實力衝刺</div>
 				</div>
-				<div class="week-item is-s1 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">朗讀練習</div>
+				<div class="weekmap-item" data-skin="1" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">朗讀練習</div>
 				</div>
-				<div class="week-item is-s2 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">音樂</div>
+				<div class="weekmap-item" data-skin="2" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">音樂</div>
 				</div>
-				<div class="week-item is-s2 is-wrong">
-					<div class="week-status"></div>
-					<div class="week-category">專欄</div>
+				<div class="weekmap-item" data-skin="2" data-done="0">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">專欄</div>
+				</div>
+			</div>
+		</div>
+		<div class="weekmap-hours" data-edit="false">
+			<div class="weekmap-in">
+				<div class="weekmap-item" data-skin="2" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">文章</div>
+				</div>
+				<div class="weekmap-item" data-skin="1" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">實力衝刺</div>
+				</div>
+				<div class="weekmap-item" data-skin="1" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">朗讀練習</div>
+				</div>
+				<div class="weekmap-item" data-skin="2" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">音樂</div>
+				</div>
+				<div class="weekmap-item" data-skin="2" data-done="0">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">專欄</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="week-td is-today">
-		<div class="week-box">
-			<div class="week-in">
-				<div class="week-item is-s2 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">文章</div>
+	<div class="weekmap-td">
+		<div class="weekmap-hours" data-edit="false">
+			<div class="weekmap-in">
+				<div class="weekmap-item" data-skin="2" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">文章</div>
 				</div>
-				<div class="week-item is-s1 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">實力衝刺</div>
+				<div class="weekmap-item" data-skin="1" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">實力衝刺</div>
 				</div>
-				<div class="week-item is-s1 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">朗讀練習</div>
+				<div class="weekmap-item" data-skin="1" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">朗讀練習</div>
 				</div>
-				<div class="week-item is-s2 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">音樂</div>
+				<div class="weekmap-item" data-skin="2" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">音樂</div>
 				</div>
-				<div class="week-item is-s2 is-wrong">
-					<div class="week-status"></div>
-					<div class="week-category">專欄</div>
-				</div>
-			</div>
-		</div>
-		<div class="week-box">
-			<div class="week-in">
-				<div class="week-item is-s2 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">文章</div>
-				</div>
-				<div class="week-item is-s1 is-right">
-					<div class="week-status"></div>
-					<div class="week-category">實力衝刺</div>
-				</div>
-				<div class="week-item is-s1 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">朗讀練習</div>
-				</div>
-				<div class="week-item is-s2 is-helf">
-					<div class="week-status"></div>
-					<div class="week-category">音樂</div>
-				</div>
-				<div class="week-item is-s2 is-wrong">
-					<div class="week-status"></div>
-					<div class="week-category">專欄</div>
+				<div class="weekmap-item" data-skin="2" data-done="0">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">專欄</div>
 				</div>
 			</div>
 		</div>
-		<div class="week-box is-editable"></div>
+		<div class="weekmap-hours" data-edit="false">
+			<div class="weekmap-in">
+				<div class="weekmap-item" data-skin="2" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">文章</div>
+				</div>
+				<div class="weekmap-item" data-skin="1" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">實力衝刺</div>
+				</div>
+				<div class="weekmap-item" data-skin="1" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">朗讀練習</div>
+				</div>
+				<div class="weekmap-item" data-skin="2" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">音樂</div>
+				</div>
+				<div class="weekmap-item" data-skin="2" data-done="0">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">專欄</div>
+				</div>
+			</div>
+		</div>
+		<div class="weekmap-hours" data-edit="false">
+			<div class="weekmap-in">
+				<div class="weekmap-item" data-skin="2" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">文章</div>
+				</div>
+				<div class="weekmap-item" data-skin="1" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">實力衝刺</div>
+				</div>
+				<div class="weekmap-item" data-skin="1" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">朗讀練習</div>
+				</div>
+				<div class="weekmap-item" data-skin="2" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">音樂</div>
+				</div>
+				<div class="weekmap-item" data-skin="2" data-done="0">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">專欄</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class="week-td">
-		<div class="week-box is-editable">
-			<div class="week-in">
-				<div class="week-item is-s2">
-					<div class="week-status"></div>
-					<div class="week-category">文章</div>
+	<div class="weekmap-td is-today">
+		<div class="weekmap-hours" data-edit="false">
+			<div class="weekmap-in">
+				<div class="weekmap-item" data-skin="2" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">文章</div>
 				</div>
-				<div class="week-item is-s2 is-selected">
-					<div class="week-status"></div>
-					<div class="week-category">專欄</div>
+				<div class="weekmap-item" data-skin="1" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">實力衝刺</div>
 				</div>
-				<div class="week-item is-s1">
-					<div class="week-status"></div>
-					<div class="week-category">朗讀練習</div>
+				<div class="weekmap-item" data-skin="1" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">朗讀練習</div>
+				</div>
+				<div class="weekmap-item" data-skin="2" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">音樂</div>
+				</div>
+				<div class="weekmap-item" data-skin="2" data-done="0">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">專欄</div>
 				</div>
 			</div>
 		</div>
-		<div class="week-box is-editable"></div>
-		<div class="week-box is-editable"></div>
+		<div class="weekmap-hours" data-edit="false">
+			<div class="weekmap-in">
+				<div class="weekmap-item" data-skin="2" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">文章</div>
+				</div>
+				<div class="weekmap-item" data-skin="1" data-done="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">實力衝刺</div>
+				</div>
+				<div class="weekmap-item" data-skin="1" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">朗讀練習</div>
+				</div>
+				<div class="weekmap-item" data-skin="2" data-done="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">音樂</div>
+				</div>
+				<div class="weekmap-item" data-skin="2" data-done="0">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">專欄</div>
+				</div>
+			</div>
+		</div>
+		<div class="weekmap-hours" data-edit="true"></div>
 	</div>
-	<div class="week-td">
-		<div class="week-box is-editable"></div>
-		<div class="week-box is-editable"></div>
-		<div class="week-box is-editable"></div>
+	<div class="weekmap-td">
+		<div class="weekmap-hours" data-edit="true">
+			<div class="weekmap-in">
+				<div class="weekmap-item" data-skin="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">文章</div>
+				</div>
+				<div class="weekmap-item is-selected" data-skin="2">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">專欄</div>
+				</div>
+				<div class="weekmap-item" data-skin="1">
+					<div class="weekmap-status"></div>
+					<div class="weekmap-text">朗讀練習</div>
+				</div>
+			</div>
+		</div>
+		<div class="weekmap-hours" data-edit="true"></div>
+		<div class="weekmap-hours" data-edit="true"></div>
+	</div>
+	<div class="weekmap-td">
+		<div class="weekmap-hours" data-edit="true"></div>
+		<div class="weekmap-hours" data-edit="true"></div>
+		<div class="weekmap-hours" data-edit="true"></div>
 	</div>
 </div>
