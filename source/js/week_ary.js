@@ -1,30 +1,3 @@
-const todoList_1 = ["文章", "影片", "專欄", "每週測驗", "音樂", "童話故事", "實力衝刺", "寫作練習", "會話練習", "朗讀練習", "研習營"];
-
-const todoList_4 = [
-	["文章", "影片", "專欄", "每週測驗", "音樂", "童話故事"],
-	["實力衝刺", "寫作練習", "會話練習", "朗讀練習", "研習營"]
-]
-
-const todoList_3 = [
-	[
-		{index: 0, title: "文章"},
-		{index: 1, title: "影片"},
-		{index: 2, title: "專欄"},
-		{index: 3, title: "每週測驗"},
-		{index: 4, title: "音樂"},
-		{index: 5, title: "童話故事"},
-	], 
-	[
-		{index: 6, title: "實力衝刺"},
-		{index: 7, title: "寫作練習"},
-		{index: 8, title: "會話練習"},
-		{index: 9, title: "朗讀練習"},
-		{index: 10, title: "研習營"},
-	],
-
-	
-];
-
 const todoList = [
 	{skin: 1, index: 0, title: "文章"},
 	{skin: 1, index: 1, title: "影片"},
@@ -51,1707 +24,1101 @@ const todoList = [
 
 // skin 
 // 1 & 2 => for skin
-const demoWeekAry = {
-	202038: [],
-	202039: [],
-	202040: [
-		{
-			date: 28,
-			daily_done: true,
-			hours: {
-				m: {
-					list: [
-						{
-							sort: 0,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
+const demoWeekAry = [
+	{
+		id: '202040',
+		week: [
+			{
+				date: '28',
+				daily_done: true,
+				hours: {
+					m: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
 					],
-					hours_done: true
-				},
-				a: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
+					a: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
 					],
-					hours_done: false
-				},
-				e: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
+					e: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					]
+				}				
+			},
+			{
+				date: '29',
+				daily_done: true,
+				hours: {
+					m: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
 					],
-					hours_done: false
-				}
-			}
-		},
-		{
-			date: 29,
-			daily_done: true,
-			hours: {
-				m: {
-					list: [
-						{
-							sort: 0,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
+					a: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
 					],
-					hours_done: true
-				},
-				a: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
+					e: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					]
+				}				
+			},
+			{
+				date: '30',
+				daily_done: true,
+				hours: {
+					m: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
 					],
-					hours_done: false
-				},
-				e: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
+					a: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
 					],
-					hours_done: false
-				}
-			}
-		},
-		{
-			date: 30,
-			daily_done: true,
-			hours: {
-				m: {
-					list: [
-						{
-							sort: 0,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
+					e: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					]
+				}				
+			},
+			{
+				date: '1',
+				daily_done: true,
+				hours: {
+					m: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
 					],
-					hours_done: true
-				},
-				a: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
+					a: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
 					],
-					hours_done: false
-				},
-				e: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
+					e: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					]
+				}				
+			},
+			{
+				date: '2',
+				daily_done: true,
+				hours: {
+					m: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
 					],
-					hours_done: false
-				}
-			}
-		},
-		{
-			date: 1,
-			daily_done: true,
-			hours: {
-				m: {
-					list: [
-						{
-							sort: 0,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
+					a: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
 					],
-					hours_done: true
-				},
-				a: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
+					e: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					]
+				}				
+			},
+			{
+				date: '3',
+				daily_done: true,
+				hours: {
+					m: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
 					],
-					hours_done: false
-				},
-				e: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
+					a: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
 					],
-					hours_done: false
-				}
-			}
-		},
-		{
-			date: 2,
-			daily_done: true,
-			hours: {
-				m: {
-					list: [
-						{
-							sort: 0,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
+					e: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					]
+				}				
+			},
+			{
+				date: '4',
+				daily_done: true,
+				hours: {
+					m: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
 					],
-					hours_done: true
-				},
-				a: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
+					a: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
 					],
-					hours_done: false
-				},
-				e: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				}
-			}
-		},
-		{
-			date: 3,
-			daily_done: true,
-			hours: {
-				m: {
-					list: [
-						{
-							sort: 0,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: true
-				},
-				a: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				},
-				e: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				}
-			}
-		},
-		{
-			date: 4,
-			daily_done: true,
-			hours: {
-				m: {
-					list: [
-						{
-							sort: 0,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 5,
-							done: 2
-						},
-						{
-							sort: 6,
-							done: 2
-						},
-						{
-							sort: 7,
-							done: 2
-						}
-					],
-					hours_done: true
-				},
-				a: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				},
-				e: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				}
-			}
-		},
-	],
-	202041: [
-		{
-			date: 5,
-			daily_done: true,
-			hours: {
-				m: {
-					list: [
-						{
-							sort: 0,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: true
-				},
-				a: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				},
-				e: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				}
-			}
-		},
-		{
-			date: 6,
-			daily_done: true,
-			hours: {
-				m: {
-					list: [
-						{
-							sort: 0,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: true
-				},
-				a: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				},
-				e: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				}
-			}
-		},
-		{
-			date: 7,
-			daily_done: true,
-			hours: {
-				m: {
-					list: [
-						{
-							sort: 0,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: true
-				},
-				a: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				},
-				e: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				}
-			}
-		},
-		{
-			date: 8,
-			daily_done: true,
-			hours: {
-				m: {
-					list: [
-						{
-							sort: 0,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: true
-				},
-				a: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				},
-				e: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				}
-			}
-		},
-		{
-			date: 9,
-			daily_done: true,
-			hours: {
-				m: {
-					list: [
-						{
-							sort: 0,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: true
-				},
-				a: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				},
-				e: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				}
-			}
-		},
-		{
-			date: 10,
-			daily_done: true,
-			hours: {
-				m: {
-					list: [
-						{
-							sort: 0,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: true
-				},
-				a: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				},
-				e: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				}
-			}
-		},
-		{
-			date: 11,
-			daily_done: true,
-			hours: {
-				m: {
-					list: [
-						{
-							sort: 0,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 5,
-							done: 2
-						},
-						{
-							sort: 6,
-							done: 2
-						},
-						{
-							sort: 7,
-							done: 2
-						}
-					],
-					hours_done: true
-				},
-				a: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				},
-				e: {
-					list: [
-						{
-							sort: 8,
-							done: 0
-						},
-						{
-							sort: 1,
-							done: 1
-						},
-						{
-							sort: 6,
-							done: 2
-						}
-					],
-					hours_done: false
-				}
-			}
-		},
-	],
-	// 202042: [],
-	// 202043: []
-};
-const demoWeekAry40 = {
-	20200928: {
-		m: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: true
-		},
-		a: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		},
-		e: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		}
+					e: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					]
+				}				
+			},
+		]
 	},
-	20200929: {
-		m: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: true
-		},
-		a: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		},
-		e: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		}
+	{
+		id: '202041',
+		week: [
+			{
+				date: '5',
+				daily_done: true,
+				hours: {
+					m: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					],
+					a: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					],
+					e: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					]
+				}				
+			},
+			{
+				date: '6',
+				daily_done: true,
+				hours: {
+					m: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					],
+					a: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					],
+					e: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					]
+				}				
+			},
+			{
+				date: '7',
+				daily_done: true,
+				hours: {
+					m: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					],
+					a: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					],
+					e: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					]
+				}				
+			},
+			{
+				date: '8',
+				daily_done: true,
+				hours: {
+					m: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					],
+					a: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					],
+					e: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					]
+				}				
+			},
+			{
+				date: '9',
+				daily_done: true,
+				hours: {
+					m: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					],
+					a: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					],
+					e: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					]
+				}				
+			},
+			{
+				date: '10',
+				daily_done: true,
+				hours: {
+					m: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					],
+					a: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					],
+					e: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					]
+				}				
+			},
+			{
+				date: '11',
+				daily_done: true,
+				hours: {
+					m: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					],
+					a: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					],
+					e: [
+						{sort: 8, done: 0},
+						{sort: 1, done: 1},
+						{sort: 6, done: 2}
+					]
+				}				
+			},
+		]
 	},
-	20200930: {
-		m: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: true
-		},
-		a: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		},
-		e: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		}
-	},
-	20201001: {
-		m: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: true
-		},
-		a: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		},
-		e: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		}
-	},
-	20201002: {
-		m: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: true
-		},
-		a: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		},
-		e: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		}
-	},
-	20201003: {
-		m: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: true
-		},
-		a: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		},
-		e: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		}
-	},
-	20201004: {
-		m: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: true
-		},
-		a: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		},
-		e: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		}
-	}
-};
+]
 
-const demoWeekAry_20201006_obj = {
-	20201005: {
-		m: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: true
+const demoWeekObj_202038 = {
+	id: '202038',
+	year: '2020',
+	month: '9',
+	week: [
+		{
+			date: '14',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 1, done: 0},
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
 		},
-		a: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
+		{
+			date: '15',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
 		},
-		e: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		}
-	},
-	20201006: {
-		m: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: true
+		{
+			date: '16',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
 		},
-		a: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
+		{
+			date: '17',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
 		},
-		e: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		}
-	},
-	20201007: {
-		m: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: true
+		{
+			date: '18',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
 		},
-		a: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
+		{
+			date: '19',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
 		},
-		e: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		}
-	},
-	20201008: {
-		m: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: true
+		{
+			date: '20',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
 		},
-		a: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
+	],
+	pre: false,
+	nex: '202039'
+}
+
+const demoWeekObj_202039 = {
+	id: '202039',
+	year: '2020',
+	week_id: '39',
+	month: '9',
+	week: [
+		{
+			date: '21',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 1, done: 0},
+					{sort: 2, done: 0},
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
 		},
-		e: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		}
-	},
-	20201009: {
-		m: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: true
+		{
+			date: '22',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
 		},
-		a: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
+		{
+			date: '23',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
 		},
-		e: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		}
-	},
-	20201010: {
-		m: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: true
+		{
+			date: '24',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
 		},
-		a: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
+		{
+			date: '25',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
 		},
-		e: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		}
-	},
-	20201011: {
-		m: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: true
+		{
+			date: '26',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
 		},
-		a: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
+		{
+			date: '27',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
 		},
-		e: {
-			list: [
-				{
-					skin: 2,
-					sort: 8,
-					done: 0
-				},
-				{
-					skin: 1,
-					sort: 1,
-					done: 1
-				},
-				{
-					skin: 1,
-					sort: 6,
-					done: 2
-				}
-			],
-			hours_done: false
-		}
-	}
-};
+	],
+	pre: '202038',
+	nex: '202040'
+}
+
+const demoWeekObj_202040 = {
+	id: '202040',
+	year: '2020',
+	week_id: '40',
+	month: '10',
+	week: [
+		{
+			date: '28',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 1, done: 0},
+					{sort: 2, done: 0},
+					{sort: 3, done: 0},
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '29',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '30',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '1',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '2',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '3',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '4',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+	],
+	pre: '202039',
+	nex: '202041'
+}
+
+const demoWeekObj_202041 = {
+	id: '202041',
+	year: '2020',
+	week_id: '41',
+	month: '10',
+	week: [
+		{
+			date: '5',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 1, done: 0},
+					{sort: 2, done: 0},
+					{sort: 3, done: 0},
+					{sort: 4, done: 0},
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '6',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '7',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '8',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '9',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '10',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '11',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+	],
+	pre: '202040',
+	// nex: '202042'
+	nex: false
+}
+
+const demoWeekObj_202042 = {
+	id: '202042',
+	year: '2020',
+	week_id: '42',
+	month: '10',
+	week: [
+		{
+			date: '12',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 1, done: 0},
+					{sort: 2, done: 0},
+					{sort: 3, done: 0},
+					{sort: 4, done: 0},
+					{sort: 5, done: 0},
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '13',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '14',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '15',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '16',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '17',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '18',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+	],
+	pre: '202041',
+	nex: false
+}
 
 // console.log(demoWeekAry);
-
-
-// morning: {},
-// afternoon: {},
-// evening: {}

@@ -1,7 +1,7 @@
 // 若改摸擬第一次，除註記上方，且應刪除 application>cookie>faceAry ^
-let thisMonth= 0;
+let thisWeekMonth= 0;
 
-let thisYear = 0;
+let thisWeekYear = 0;
 
 let thisDate= 0;
 // date = 日期(1~31)
@@ -60,11 +60,11 @@ const fnPrintFaceCalendar = function(){
 	$('#facemap').append(faceString);
 };
 
-const fnGetThisYear = function(){
+const fnGetThisWeekYear = function(){
 	return $('.ui-datepicker-year:eq(0)').text();
 };
 
-const fnGetThisMonth = function(){
+const fnGetThisWeekMonth = function(){
 	let month = Number( $('.ui-datepicker-month:eq(0)').text().split(' ')[0] );
 	if( month === 0 ){month = 12}
 	if( String(month).length < 2 ){ month = '0' + month };
@@ -92,15 +92,15 @@ $(()=>{
 	});
 
 	thisDate = $('.ui-datepicker-today:eq(0) > *').text();
-	thisYear = fnGetThisYear();
-	thisMonth = fnGetThisMonth();
+	thisWeekYear = fnGetThisWeekYear();
+	thisWeekMonth = fnGetThisWeekMonth();
 	// console.log(thisDate);
 	
 		
 	// ==========================================
 	// == FACE 陣列 & 視覺 v
 	// ==========================================
-	faceId = fnGetThisYear() + fnGetThisMonth();
+	faceId = fnGetThisWeekYear() + fnGetThisWeekMonth();
 	dateShouldLength = fnCountDateShouldLength();
 
 	const faceLength = faceAry.length;
@@ -114,20 +114,20 @@ $(()=>{
 		// 2.補前月,前前月 > 前月&前前月有跨年否?
 
 		// 2.補前月,前前月 v
-		let preYear = thisYear;
+		let preYear = thisWeekYear;
 		const list = [];
 		let round = 1;
 		for(i=1;i<=42;i++){list.push(0)};
 		const fnPushPreMonth = function(round){
 			// M
-			let preMonth= String( Number( thisMonth ) - round );
+			let preMonth= String( Number( thisWeekMonth ) - round );
 			if( preMonth === '0' ){preMonth = '12'};
 			if( preMonth === '-1' ){preMonth = '11'}
 			if( preMonth.length < 2){ preMonth = '0' + preMonth };
 
 			// Y
-			if( (Number(thisMonth) - Number(preMonth)) < 1 ){
-				preYear = Number(thisYear) - 1;
+			if( (Number(thisWeekMonth) - Number(preMonth)) < 1 ){
+				preYear = Number(thisWeekYear) - 1;
 			};
 
 			const id = preYear + preMonth;
@@ -141,16 +141,16 @@ $(()=>{
 		};
 		
 		// 1.補本月 v
-		const thisMonthObj = {
+		const thisWeekMonthObj = {
 			id: faceId,
 			list: []
 		};
 
 		for (i=0; i < dateShouldLength; i++) {
-			thisMonthObj.list.push(0);
+			thisWeekMonthObj.list.push(0);
 		};
 		
-		faceAry.push(thisMonthObj);
+		faceAry.push(thisWeekMonthObj);
 		// console.log(faceAry);
 
 		// fnSavefaceAry();
@@ -207,7 +207,7 @@ $(()=>{
 	});
 
 	$('#month-pre, #month-nex').click(function(){
-		faceId = fnGetThisYear() + fnGetThisMonth();
+		faceId = fnGetThisWeekYear() + fnGetThisWeekMonth();
 		fnPrintFaceCalendar();
 	});
 });
