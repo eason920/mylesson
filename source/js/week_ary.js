@@ -957,8 +957,8 @@ const demoWeekObj_202041 = {
 		},
 	],
 	pre: '202040',
-	// nex: '202042'
-	nex: false
+	nex: '202042'
+	// nex: false
 }
 
 const demoWeekObj_202042 = {

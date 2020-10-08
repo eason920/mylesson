@@ -78,8 +78,15 @@ const demoFaceAry= [
 		1,1,1,1,1,1,1,
 		2,2,2,1,1,1,2,
 		2
+	]},
+	{ id: '202010', list: [
+		0,0,0,1,2,1,1,
+		1,1,1
 	]}
 ];
+//- 0 補上用空
+//- 1 沒過(O)
+//- 2 有過( :) )
 
 Cookies.set('faceAry', JSON.stringify(demoFaceAry));
 // by setting //

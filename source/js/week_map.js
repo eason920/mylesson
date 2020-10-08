@@ -1,23 +1,12 @@
-let weekAry = {};
-weekAry = demoWeekAry;
-let weekId = 0;
-//
-let thisWeek = 0;
-let nextWeek = 0;
-//
 let nextWeekYear = 0;
+let nextWeekMonth = 0;
+let nextWeek = 0;
 //
 let thisWeekAry = [];
 let nextWeekAry = [];
 //
 const weeklyAry = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 const monthAry = ["January","February","March","April","May","June","July","August","September","October", "November", "December"];
-console.log(monthAry[Number('01')-1]);
-//
-let thisWeekIndex = 0;
-let weekCount = true;
-let weekAryLength = 0;
-let currentWeekIndex = 0;
 //
 let currentWeekId = '';
 let preWeekId = '';
@@ -31,7 +20,6 @@ const emptyApi = {}
 const fnGetWeekAry = function(week){
 	nextWeekYear = thisWeekYear;
 	nextWeekMonth = thisWeekMonth;
-	
 	
 	const ary1= [];
 	const ary2= [];
@@ -85,6 +73,8 @@ const fnGetWeekAry = function(week){
 };
 
 const fnPrintWeekMap = function(data){
+	// thisDate = 26;
+	// console.log('%cthis week turn to '+thisDate,'font-size: 20px;color: yellow');
 	let week = -1;
 	const ary = data.week;
 	preWeekId = data.pre;
@@ -126,12 +116,64 @@ const fnPrintWeekMap = function(data){
 	// --------------------------------
 	// -- WEEK BODY HTML v
 	// --------------------------------
+	let editStatus = false;
+	let passToday = false;
+	const subtract = Number(data.week_id) - Number(thisWeek);
+	// 「週」為單位的 editStatus v
+	switch(true){
+		case data.week_id >= thisWeek:
+			// 同一年 v
+			editStatus = true; break;
+		case data.week_id < thisWeek && subtract <= -1:
+			// 同一年 v
+			editStatus = false; break;
+		case data.week_id < thisWeek && subtract >= 1:
+			// 跨年 v
+			editStatus = true; break;
+		default:
+	}
+	//
+	const hours = new Date().getHours();
+	console.log(hours);
+	//
 	$('.weekmap-date').html('');
 	let dateStr = '';
 	ary.forEach(function(item){
+		// 「日」為單位的 editStatus v
+		const date = Number(item.date);
+		if( data.week_id === thisWeek ){
+			switch(true){
+				case date < thisDate:
+					editStatus = false;
+					break;
+				case date > thisDate && (date - thisDate) > 1:
+					editStatus = false;
+					break;
+				default:
+					editStatus = true;
+					passToday = true;// for 次月的起始日
+			}
+			if( passToday ){ editStatus = true };
+		};
+		// --------------------------------
+		// --------------------------------
 		dateStr += '<div class="weekmap-td">';
 		for( h in item.hours ){
-			dateStr += '<div class="weekmap-hours" data-edit="true">';
+			// 「時區」為單位的 editStatus v
+			// console.log(item.date, thisDate, item.date === thisDate, h, hours);
+			if( item.date === thisDate ){
+				switch(true){
+					case h === 'm' && hours >= 12:
+						editStatus = false;
+						break;
+					case h === 'a' && hours >= 18:
+						editStatus = false;
+						break;
+					default:
+						editStatus = true;
+				};
+			}
+			dateStr += '<div class="weekmap-hours" data-edit="' + editStatus + '">';
 			dateStr += '<div class="weekmap-in">';
 			item.hours[h].forEach(function(j){
 				dateStr += '<div class="weekmap-item" ';
@@ -151,21 +193,19 @@ const fnPrintWeekMap = function(data){
 	$('.weekmap-date .weekmap-td:eq(' + week + ')').addClass('is-today');
 
 	// --------------------------------
-	// -- WEEK BODY LOSE  不會有 LOSE 情形 v
+	// -- WEEK BODY LOSE  不會有漏「日」情形 v
 	// --------------------------------
 	// console.log();
 	// if ($('#calbox .weekmap-date .weekmap-td').length){
-
 	// }
-
-}
+};
 
 const fnCreateEmptyObj = function(obj, ary, year, month, week, otherYear, otherWeek){
 	obj.id = year + String(week);
 	obj.year = year;
 	obj.week_id = week;
 	obj.month = month;
-	if( weekId === year + String(week) ){
+	if( thisWeekId === year + String(week) ){
 		// for this week
 		obj.pre = false;
 		obj.nex = otherYear + String(otherWeek);
@@ -186,8 +226,7 @@ const fnCreateEmptyObj = function(obj, ary, year, month, week, otherYear, otherW
 }
 
 $(()=>{
-	thisWeek = $('.ui-datepicker-today').siblings().eq(0).text();
-	thisWeekYear = Number($('.ui-datepicker-year:eq(0)').text());
+	
 
 	fnGetWeekAry(thisWeek);
 
@@ -205,18 +244,13 @@ $(()=>{
 		202039: demoWeekObj_202039,
 		202040: demoWeekObj_202040,
 		202041: demoWeekObj_202041,
-		// 202042: demoWeekObj_202042
+		202042: demoWeekObj_202042
 	}
 	// 第一次進入 v^ 非第一次進入
 	// const apiWeek = {};
 
-	
-
-	// 為了準確，刻意從 datapicker 中重組出 v
-	weekId = String(thisWeekYear) + thisWeek;
-
-	console.log(apiWeek[weekId]);
-	if( !apiWeek[weekId] ){
+	console.log(apiWeek[thisWeekId]);
+	if( !apiWeek[thisWeekId] ){
 		console.log('第一次進入 weeek ary');
 		$('#pre-week').hide();
 		//
@@ -227,19 +261,27 @@ $(()=>{
 		console.log(apiWeek);
 	}else{
 		console.log('非第一次進入 week ary');
-		const nexId = apiWeek[weekId].nex;
+		const nexId = apiWeek[thisWeekId].nex;
 		console.log(nexId);
 		if( !nexId ){
 			console.log('非第一次進入、無下週');
 			fnCreateEmptyObj(emptyNextObj, nextWeekAry, nextWeekYear, nextWeekMonth, nextWeek, thisWeekYear, thisWeek);
 			apiWeek[nextWeekYear + String(nextWeek)] = emptyNextObj;
-			apiWeek[weekId].nex = nextWeekYear + String(nextWeek);
-			console.log(apiWeek[weekId], apiWeek[ nextWeekYear + String(nextWeek) ]);
+			apiWeek[thisWeekId].nex = nextWeekYear + String(nextWeek);
+			console.log(apiWeek[thisWeekId], apiWeek[ nextWeekYear + String(nextWeek) ]);
 		}else{
 			console.log('非第一次進入、但己有下週');
 		}
 	}
-	fnPrintWeekMap( apiWeek[weekId] );
+	fnPrintWeekMap( apiWeek[thisWeekId] );
+	
+	// ==========================================
+	// == FACE ARY v
+	// ==========================================
+	console.log(apiWeek[thisWeekId].week);
+	apiWeek[thisWeekId].week.forEach(function(item){
+		console.log(item.daily_done);
+	});
 
 	// ==========================================
 	// == ACTION EVENT v

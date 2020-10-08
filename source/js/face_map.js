@@ -1,9 +1,9 @@
 // 若改摸擬第一次，除註記上方，且應刪除 application>cookie>faceAry ^
-let thisWeekMonth= 0;
 
-let thisWeekYear = 0;
+let dateShouldLength = 0;
 
-let thisDate= 0;
+
+
 // date = 日期(1~31)
 // day = 星期(monday, tuesday, wednsday, friday, sataday, sunday)
 //
@@ -11,7 +11,6 @@ let faceAry= [];
 
 let faceId = 0;
 
-let dateShouldLength = 0;
 
 const fnCountDateShouldLength = function(){
 	// COUNT 1 FROM OTHER MONTH v
@@ -31,6 +30,7 @@ const fnCountDateShouldLength = function(){
 
 	return total;
 }
+
 
 const fnGetFaceAry = function(){
 	let resFaceAry = Cookies.get('faceAry');
@@ -60,16 +60,9 @@ const fnPrintFaceCalendar = function(){
 	$('#facemap').append(faceString);
 };
 
-const fnGetThisWeekYear = function(){
-	return $('.ui-datepicker-year:eq(0)').text();
-};
 
-const fnGetThisWeekMonth = function(){
-	let month = Number( $('.ui-datepicker-month:eq(0)').text().split(' ')[0] );
-	if( month === 0 ){month = 12}
-	if( String(month).length < 2 ){ month = '0' + month };
-	return month;
-};
+
+
 
 const fnSavefaceAry= function(){
 	Cookies.set('faceAry', JSON.stringify(faceAry) );
@@ -83,17 +76,7 @@ $(()=>{
 	// ==========================================
 	fnGetFaceAry();
 
-	$( "#datepicker" ).datepicker({
-		showWeek: true,
-		showOtherMonths: true,
-		numberOfMonths: 2,
-		// defaultDate: "+2m +7d",// < 自定初始己選日期(?)
-		// minDate: -20, maxDate: "+1M +10D" // < 限制可選日期範圍
-	});
-
-	thisDate = $('.ui-datepicker-today:eq(0) > *').text();
-	thisWeekYear = fnGetThisWeekYear();
-	thisWeekMonth = fnGetThisWeekMonth();
+	
 	// console.log(thisDate);
 	
 		
