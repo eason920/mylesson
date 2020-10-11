@@ -1,19 +1,30 @@
 // 若改摸擬第一次，除註記上方，且應刪除 application>cookie>faceAry ^
-
-let dateShouldLength = 0;
-
-
-
 // date = 日期(1~31)
 // day = 星期(monday, tuesday, wednsday, friday, sataday, sunday)
-//
-let faceAry= [];
+let faceAry= {};
+let thisMonthFaceId = 0;
+let thisMonthFaceLength = 0;
+let thisMonthShouldLength = 0;
 
-let faceId = 0;
+const apiFace = {
+	201912: demoFaceObj_201912,
+	202001: demoFaceObj_202001,
+	202002: demoFaceObj_202002,
+	202003: demoFaceObj_202003,
+	202004: demoFaceObj_202004,
+	202005: demoFaceObj_202005,
+	202006: demoFaceObj_202006,
+	202007: demoFaceObj_202007,
+	202008: demoFaceObj_202008,
+	202009: demoFaceObj_202009,
+	// 202010: demoFaceObj_202010,
+	202011: demoFaceObj_202011,
+	202012: demoFaceObj_202012,
+	202101: demoFaceObj_202101,
+};
 
-
-const fnCountDateShouldLength = function(){
-	// COUNT 1 FROM OTHER MONTH v
+const fnCountThisMonthShouldLength = function(){
+	// COUNT 1 : FROM OTHER MONTH v
 	let count1 = 0;
 	$('#datepicker tbody tr:eq(0) td').each(function(){
 		if( $(this).find('*').text() === '1' ){
@@ -21,8 +32,8 @@ const fnCountDateShouldLength = function(){
 		}
 	});
 
-	// COUNT 2 FROM THIS MONTH v
-	const count2 = Number(thisDate) - 1;// -1 for today
+	// COUNT 2 : FROM THIS MONTH v
+	const count2 = Number(thisDate) - 1;// -1 is today
 
 	// COUNT v
 	const total = count1 + count2;
@@ -31,25 +42,37 @@ const fnCountDateShouldLength = function(){
 	return total;
 }
 
+const fnGetFaceAry = function(id){
+	// let resFaceAry = Cookies.get('faceAry');
+	for (a in apiFace){
+		// console.log(a, apiFace[a]);
+		if( a === id ){
+			// console.log( apiFace[a] );
+			faceAry = apiFace[a];
+		}
+	}
 
-const fnGetFaceAry = function(){
-	let resFaceAry = Cookies.get('faceAry');
-	if( resFaceAry === undefined ){
-		// console.log('%cface data : first', 'color:greenyellow;font-size:15px');
-		resFaceAry = [];
-	}else{
-		// console.log('%cface data : had data', 'color:greenyellow;font-size:15px');
-		resFaceAry = JSON.parse( resFaceAry);
-	};
-	faceAry= resFaceAry;
-	// console.log( faceAry );
+	console.log( faceAry.list === undefined );
+	if (faceAry.list === undefined){
+		faceAry.id = id;
+		faceAry.list= [];
+	}
+	// if( resFaceAry === undefined ){
+	// 	// console.log('%cface data : first', 'color:greenyellow;font-size:15px');
+	// 	resFaceAry = [];
+	// }else{
+	// 	// console.log('%cface data : had data', 'color:greenyellow;font-size:15px');
+	// 	resFaceAry = JSON.parse( resFaceAry);
+	// };
+	// faceAry= resFaceAry;
+	console.log( faceAry );
 };
 
-const fnPrintFaceCalendar = function(){
+const fnPrintFaceCalendar = function(id){
 	let faceString = '';
 	$('#facemap').html('');
 	for(a in faceAry){
-		if( faceAry[a].id === faceId ){
+		if( faceAry[a].id === id ){
 			for( b in faceAry[a].list ){
 				faceString += '<div class="facemap-item"><div '
 				faceString += 'data-face="' + faceAry[a].list[b]
@@ -59,39 +82,29 @@ const fnPrintFaceCalendar = function(){
 	};
 	$('#facemap').append(faceString);
 };
-
-
-
-
-
 const fnSavefaceAry= function(){
 	Cookies.set('faceAry', JSON.stringify(faceAry) );
 	// console.log('%cfaceArySaved', 'font-size: 20px;color: yellow');
-
 };
 
 $(()=>{
 	// ==========================================
 	// == INIT v
 	// ==========================================
-	fnGetFaceAry();
+	thisMonthFaceId = fnGetThisWeekYear() + fnGetThisWeekMonth();
+	thisMonthShouldLength = fnCountThisMonthShouldLength();
+	thisMonthFaceLength = faceAry.length;
 
-	
-	// console.log(thisDate);
-	
+	fnGetFaceAry(thisMonthFaceId);
 		
 	// ==========================================
-	// == FACE 陣列 & 視覺 v
+	// == 檢視 FACE ARY v
 	// ==========================================
-	faceId = fnGetThisWeekYear() + fnGetThisWeekMonth();
-	dateShouldLength = fnCountDateShouldLength();
-
-	const faceLength = faceAry.length;
-	// console.log(faceLength, !faceLength);
-	// 第一次進此服務者, build & 儲存 json v
-	if( !faceLength ){
+	// console.log(thisMonthFaceLength, !thisMonthFaceLength);
+	if( !thisMonthFaceLength ){
 		// --------------------------------
 		// -- 第一次使用本功能 v
+		// -- build & 儲存 json v
 		// --------------------------------
 		// 1.補本月
 		// 2.補前月,前前月 > 前月&前前月有跨年否?
@@ -115,7 +128,7 @@ $(()=>{
 
 			const id = preYear + preMonth;
 			const preMonthObj = {id, list};
-			faceAry.push(preMonthObj);
+			// faceAry.push(preMonthObj);
 		};
 		
 		for(i=1;i<=2;i++){ // < 2 為「除本月的前二月」意思
@@ -124,16 +137,16 @@ $(()=>{
 		};
 		
 		// 1.補本月 v
-		const thisWeekMonthObj = {
-			id: faceId,
+		const thisMonthObj = {
+			id: thisMonthFaceId,
 			list: []
 		};
 
-		for (i=0; i < dateShouldLength; i++) {
-			thisWeekMonthObj.list.push(0);
+		for (i=0; i < thisMonthShouldLength; i++) {
+			thisMonthObj.list.push(0);
 		};
 		
-		faceAry.push(thisWeekMonthObj);
+		// faceAry.push(thisMonthObj);
 		// console.log(faceAry);
 
 		// fnSavefaceAry();
@@ -151,15 +164,15 @@ $(()=>{
 		
 		// --------------------------------
 		// 「月」為單位 v
-		if (faceLength > 3) {
+		if (thisMonthFaceLength > 3) {
 			// 月滿洩 v
-			// console.log('月滿洩, delete');
+			console.log('月滿洩, delete');
 			const newAry = faceAry.splice(-3);
 			faceAry = newAry;
 			// fnSavefaceAry();
-		} else if (faceLength < 3) {
+		} else if (thisMonthFaceLength < 3) {
 			//小於3要補 v
-			// console.log('月少於3要補 v');
+			console.log('月少於3要補 v');
 		}
 
 		// --------------------------------
@@ -168,7 +181,7 @@ $(()=>{
 		// console.log(currentLength);
 		// 應有個補「缺不同月內的」的函式 ****>>重核先前月的紀錄並不論如何都要update，即可補起
 		// 補「缺同個月內」的 v
-		if( currentLength < dateShouldLength ){
+		if( currentLength < thisMonthShouldLength ){
 			// console.log('less , should add');
 			// fnSavefaceAry();
 		}else{
@@ -177,9 +190,9 @@ $(()=>{
 	}
 
 	// ==========================================
-	// == 準備工作完成 v
+	// == 打印本月 FACE MAP v
 	// ==========================================
-	fnPrintFaceCalendar();
+	fnPrintFaceCalendar(thisMonthFaceId);
 
 	$('#month-pre').click(function(){
 		$('.ui-icon-circle-triangle-w').click();
@@ -190,7 +203,7 @@ $(()=>{
 	});
 
 	$('#month-pre, #month-nex').click(function(){
-		faceId = fnGetThisWeekYear() + fnGetThisWeekMonth();
-		fnPrintFaceCalendar();
+		const id = fnGetThisWeekYear() + fnGetThisWeekMonth();
+		// fnPrintFaceCalendar(id);
 	});
 });

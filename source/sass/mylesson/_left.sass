@@ -45,7 +45,8 @@
 	display: flex
 
 #pre-week,
-#nex-week
+#nex-week,
+#add-week
 	position: absolute
 	top: 50%
 	transform: translateY(-50%)
@@ -57,8 +58,24 @@
 #pre-week
 	left: 2px
 
-#nex-week
+#nex-week,
+#add-week
 	right: 2px
+
+#add-week
+	background:
+		color: #aaa
+	color: #fff
+	border-radius: 50%
+	height: 15px
+	width: 15px
+	display: flex
+	justify-content: center
+	align-items: center
+
+#nex-week,
+#add-week
+	display: none
 
 // --------------------------------
 #achive

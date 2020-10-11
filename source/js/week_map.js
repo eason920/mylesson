@@ -4,6 +4,8 @@ let nextWeek = 0;
 //
 let thisWeekAry = [];
 let nextWeekAry = [];
+let currentWeekAry = [];
+let currentWeek = 0;
 //
 const weeklyAry = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 const monthAry = ["January","February","March","April","May","June","July","August","September","October", "November", "December"];
@@ -12,75 +14,85 @@ let currentWeekId = '';
 let preWeekId = '';
 let nexWeekId = '';
 //
-const emptyObj = {};
+let emptyObj = {};
 const emptyNextObj = {};
 const emptyApi = {}
 //
+const weekMax53 = [2020, 2026, 2032, 2037, 2043, 2048];
+let thisYearMaxWeek = 0;
+let preYearMaxWeek = 0;
+let nexYearMaxWeek = 0;
+//
+const apiWeek = {
+	// 202038: demoWeekObj_202038,
+	// 202039: demoWeekObj_202039,
+	// 202040: demoWeekObj_202040,
+	// 202041: demoWeekObj_202041,
+	// 202042: demoWeekObj_202042
+}
+// 第一次進入 v^ 非第一次進入
+// const apiWeek = {};
+//
+
+const fnWeekMax = function(year){
+	const y = weekMax53.findIndex(item => item === year);
+	let max = 52;
+	if( y >= 0 ){ max = 53 };
+	return max;
+}
 
 const fnGetWeekAry = function(week){
-	nextWeekYear = thisWeekYear;
-	nextWeekMonth = thisWeekMonth;
-	
-	const ary1= [];
-	const ary2= [];
-
-	// next week v
-	nextWeek = Number(week) + 1;
-	let check = false;
-	$('.ui-datepicker-week-col').each(function(){
-		const week = $(this).text();
-		// console.log(week, week == nextWeek);
-		if (week === String(nextWeek)) {check=true};
-	});
-	// 遇跨年度時，重取 ary2 (新年度第一週必為1)
-	if( !check ){ 
-		nextWeek = 1;
-		nextWeekMonth = 1;
-		nextWeekYear ++;
-		// console.log('ny', nextWeekYear);
-	};
-	console.log('thisWeekMonth', thisWeekMonth);
-	console.log('nextWeekMonth ', nextWeekMonth);
-	// console.log(check, nextWeek);
-	// console.log(thisWeekYear, nextWeekYear);
-	// console.log(week, nextWeek);
+	const ary= [];
 	$('#datepicker tbody tr').each(function(){
 		const text = $(this).find('.ui-datepicker-week-col').text();
-		// console.log(text, text === String(week), text === String(nextWeek));
-		// ary 1 v
 		if( text === String(week) ){
 			$(this).find('td > *').each(function(){
-				ary1.push( $(this).text() );
-			});
-		};
-
-		// ary 2 v
-		if( text === String(nextWeek) ){
-			$(this).find('td > *').each(function(){
-				ary2.push( $(this).text() );
+				ary.push( $(this).text() );
 			});
 		};
 	});
-
-	ary1.splice(7);
-	ary2.splice(7);
-	thisWeekAry = ary1;
-	nextWeekAry = ary2;
-	console.log('thisWeekAry', thisWeekAry); 
-	console.log('nextWeekAry', nextWeekAry);
-	console.log('this', thisWeek, thisWeekYear);
-	console.log('next', nextWeek, nextWeekYear);
+	ary.splice(7);
+	currentWeekAry = ary;
+	// console.log('currentWeekAry', currentWeekAry);
 };
 
+const fnCreateEmptyObj = function(ary, year, month, week, preYear, preWeek){
+	// console.log(ary, year, month, week, preYear, preWeek);
+	emptyObj = {}
+	//
+	if( String(week).length < 2 ){ week = '0' + week }
+	emptyObj.id = year + String(week);
+	//
+	emptyObj.year = year;
+	emptyObj.week_id = week;
+	emptyObj.month = month;
+	if( preYear ){
+		emptyObj.pre = preYear + String(preWeek);
+	}else{
+		emptyObj.pre = false;
+	}
+	emptyObj.nex = false;
+	emptyObj.week = [];
+	for (i=0; i<7;i ++) {
+		const obj = {}
+		obj.date = ary[i];
+		obj.daily_done= false;
+		obj.hours = {m: [], a: [], e: []};
+		emptyObj.week.push(obj);
+	}
+	apiWeek[currentWeekYear + String(currentWeek)] = emptyObj;
+	console.log(emptyObj);
+	// console.log(apiWeek);
+}
+
 const fnPrintWeekMap = function(data){
+	// console.log(data);
 	// thisDate = 26;
 	// console.log('%cthis week turn to '+thisDate,'font-size: 20px;color: yellow');
 	let week = -1;
 	const ary = data.week;
 	preWeekId = data.pre;
 	nexWeekId = data.nex;
-	currentWeekId = data.id;
-	console.log(preWeekId, currentWeekId,nexWeekId);
 	if( !preWeekId ){ $('#pre-week').fadeOut(); }
 	if( !nexWeekId ){ $('#nex-week').fadeOut(); }
 	//
@@ -90,15 +102,18 @@ const fnPrintWeekMap = function(data){
 	// -- WEEK TITLE HTML v
 	// --------------------------------
 	let thisWeekIndex = 0;
+	const isSameYearMonth = data.year === thisWeekYear && data.month === thisWeekMonth;
 	//
 	$('.weekmap-week').html('');
 	let dayStr = '';
 	ary.forEach(function(item){
 		const date = item.date;
 		dayStr += '<div class="weekmap-td';
-		if( date === thisDate ){
-			dayStr += " is-today";
-			week = thisWeekIndex;
+		if( isSameYearMonth ){
+			if( date === thisDate ){
+				dayStr += " is-today";
+				week = thisWeekIndex;
+			}
 		}
 		dayStr += '">'
 		dayStr += weeklyAry[thisWeekIndex];
@@ -134,7 +149,7 @@ const fnPrintWeekMap = function(data){
 	}
 	//
 	const hours = new Date().getHours();
-	console.log(hours);
+	// console.log(hours);
 	//
 	$('.weekmap-date').html('');
 	let dateStr = '';
@@ -199,36 +214,15 @@ const fnPrintWeekMap = function(data){
 	// if ($('#calbox .weekmap-date .weekmap-td').length){
 	// }
 };
-
-const fnCreateEmptyObj = function(obj, ary, year, month, week, otherYear, otherWeek){
-	obj.id = year + String(week);
-	obj.year = year;
-	obj.week_id = week;
-	obj.month = month;
-	if( thisWeekId === year + String(week) ){
-		// for this week
-		obj.pre = false;
-		obj.nex = otherYear + String(otherWeek);
-	}else{
-		// for next week
-		obj.pre = otherYear + String(otherWeek);
-		obj.nex = false;
-	}
-	obj.week = [];
-	for (i=0; i<7;i ++) {
-		const newObj = {}
-		newObj.date = ary[i];
-		newObj.daily_done= false;
-		newObj.hours = {m: [], a: [], e: []};
-		obj.week.push(newObj);
-	}
-	console.log(obj);
-}
-
 $(()=>{
+	preYearMaxWeek =  fnWeekMax( Number(thisWeekYear) - 1 );
+	thisYearMaxWeek = fnWeekMax( Number(thisWeekYear));
+	nexYearMaxWeek =  fnWeekMax( Number(thisWeekYear) + 1 );
+	console.log('pre y-w max ', preYearMaxWeek, ' / this y-w max ', thisYearMaxWeek, ' / nex y-w max ', nexYearMaxWeek);
 	
-
-	fnGetWeekAry(thisWeek);
+	currentWeekId = thisWeekId;
+	currentWeek = thisWeek;
+	fnGetWeekAry(currentWeek);
 
 	$('#try-week').click(function(){
 		const target = $('#datepicker tbody tr:eq(0) .ui-datepicker-week-col').text();
@@ -236,44 +230,49 @@ $(()=>{
 		fnGetWeekAry(target);
 	});
 
+
+	currentWeek = Number(thisWeek);
+	currentWeekYear = thisWeekYear;
+	currentWeekMonth = thisWeekMonth;
+	let currentWeekMax = fnWeekMax(Number(thisWeekYear));
+	let preYear = thisWeekYear;
+	let preWeek = thisWeek;
 	// ==========================================
 	// == INIT v
 	// ==========================================
-	const apiWeek = {
-		202038: demoWeekObj_202038,
-		202039: demoWeekObj_202039,
-		202040: demoWeekObj_202040,
-		202041: demoWeekObj_202041,
-		202042: demoWeekObj_202042
-	}
-	// 第一次進入 v^ 非第一次進入
-	// const apiWeek = {};
 
-	console.log(apiWeek[thisWeekId]);
-	if( !apiWeek[thisWeekId] ){
+
+	console.log(apiWeek[currentWeekId]);
+	if( !apiWeek[currentWeekId] ){
 		console.log('第一次進入 weeek ary');
 		$('#pre-week').hide();
+		// $('#nex-week').show();
+		$('#add-week').css('display', 'flex');
 		//
-		fnCreateEmptyObj(emptyObj, thisWeekAry, thisWeekYear, thisWeekMonth, thisWeek, nextWeekYear, nextWeek);
-		fnCreateEmptyObj(emptyNextObj, nextWeekAry, nextWeekYear, nextWeekMonth, nextWeek, thisWeekYear, thisWeek);
-		apiWeek[thisWeekYear + String(thisWeek)] = emptyObj;
-		apiWeek[nextWeekYear + String(nextWeek)] = emptyNextObj;
-		console.log(apiWeek);
+		fnCreateEmptyObj(currentWeekAry, thisWeekYear, thisWeekMonth, thisWeek, nextWeekYear, nextWeek);
+		// fnCreateEmptyObj(emptyNextObj, nextWeekAry, nextWeekYear, nextWeekMonth, nextWeek, thisWeekYear, thisWeek);
+		
+		// apiWeek[nextWeekYear + String(nextWeek)] = emptyNextObj;
+		// console.log(apiWeek);
 	}else{
 		console.log('非第一次進入 week ary');
 		const nexId = apiWeek[thisWeekId].nex;
 		console.log(nexId);
 		if( !nexId ){
 			console.log('非第一次進入、無下週');
-			fnCreateEmptyObj(emptyNextObj, nextWeekAry, nextWeekYear, nextWeekMonth, nextWeek, thisWeekYear, thisWeek);
-			apiWeek[nextWeekYear + String(nextWeek)] = emptyNextObj;
-			apiWeek[thisWeekId].nex = nextWeekYear + String(nextWeek);
-			console.log(apiWeek[thisWeekId], apiWeek[ nextWeekYear + String(nextWeek) ]);
+			$('#add-week').css('display', 'flex');
+			// fnCreateEmptyObj(emptyNextObj, nextWeekAry, nextWeekYear, nextWeekMonth, nextWeek, thisWeekYear, thisWeek);
+			// apiWeek[nextWeekYear + String(nextWeek)] = emptyNextObj;
+			// apiWeek[thisWeekId].nex = nextWeekYear + String(nextWeek);
+			// console.log(apiWeek[thisWeekId], apiWeek[ nextWeekYear + String(nextWeek) ]);
 		}else{
 			console.log('非第一次進入、但己有下週');
+			$('#nex-week').show();
 		}
 	}
-	fnPrintWeekMap( apiWeek[thisWeekId] );
+
+	// console.log(currentWeekId);
+	fnPrintWeekMap( apiWeek[currentWeekId] );
 	
 	// ==========================================
 	// == FACE ARY v
@@ -288,6 +287,8 @@ $(()=>{
 	// ==========================================
 	$('#pre-week').click(function(){
 		$('#nex-week').fadeIn();
+		$('#add-week').fadeOut();
+		console.log(preWeekId);
 		if( preWeekId ){
 			fnPrintWeekMap(apiWeek[preWeekId]);
 		};
@@ -297,7 +298,52 @@ $(()=>{
 		$('#pre-week').fadeIn();
 		if( nexWeekId ){
 			fnPrintWeekMap(apiWeek[nexWeekId]);
+			if( nexWeekId ){
+				$('#nex-week').fadeIn();
+			}else{
+				$('#add-week').css('display', 'flex');
+			}
 		};
+	});
+
+	
+
+	// currentWeek 
+	let add = 0;
+	$('#add-week').click(function(){
+		$('#pre-week').show();
+		if(add < 99999){
+			apiWeek[currentWeekId].pre = currentWeekId;
+			preYear = currentWeekYear;
+			preWeek = currentWeek;
+			//
+			currentWeek ++;
+			let check = 0;
+			$('tbody:eq(0) .ui-datepicker-week-col').each(function(i){
+				if( $(this).text() == currentWeek ){ check = i};
+			});
+			if( check <= 0 ){
+				$('#month-nex').click();
+				currentWeekMonth ++;
+			}
+			//
+			if (currentWeek > currentWeekMax ){
+				currentWeek = 1;
+				currentWeekMonth = 1;
+				currentWeekYear++;
+				currentWeekMax = fnWeekMax(Number(nextWeekYear));
+			};
+			currentWeekId = currentWeekYear + String(currentWeek);
+			
+			fnGetWeekAry(currentWeek);
+			fnCreateEmptyObj(currentWeekAry, currentWeekYear, currentWeekMonth, currentWeek, preYear, preWeek);
+			fnPrintWeekMap(apiWeek[currentWeekId]);
+			
+			add ++;
+		}else{
+			console.log('cant add more');
+			alert('己逹規劃上限');
+		}
 	});
 
 	// ==========================================
