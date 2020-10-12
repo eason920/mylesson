@@ -13,6 +13,7 @@ const monthAry = ["January","February","March","April","May","June","July","Augu
 let currentWeekId = '';
 let preWeekId = '';
 let nexWeekId = '';
+let currentWeekYear = '';
 //
 let emptyObj = {};
 const emptyNextObj = {};
@@ -24,11 +25,11 @@ let preYearMaxWeek = 0;
 let nexYearMaxWeek = 0;
 //
 const apiWeek = {
-	// 202038: demoWeekObj_202038,
-	// 202039: demoWeekObj_202039,
-	// 202040: demoWeekObj_202040,
-	// 202041: demoWeekObj_202041,
-	// 202042: demoWeekObj_202042
+	202038: demoWeekObj_202038,
+	202039: demoWeekObj_202039,
+	202040: demoWeekObj_202040,
+	202041: demoWeekObj_202041,
+	202042: demoWeekObj_202042
 }
 // 第一次進入 v^ 非第一次進入
 // const apiWeek = {};
@@ -42,10 +43,13 @@ const fnWeekMax = function(year){
 }
 
 const fnGetWeekAry = function(week){
+	// console.log(week);
+	// if( week.length < 2 ){ week = '0' + week};
 	const ary= [];
 	$('#datepicker tbody tr').each(function(){
 		const text = $(this).find('.ui-datepicker-week-col').text();
-		if( text === String(week) ){
+		// console.log(text ,String(week) );
+		if( Number(text) === Number(week) ){
 			$(this).find('td > *').each(function(){
 				ary.push( $(this).text() );
 			});
@@ -56,20 +60,20 @@ const fnGetWeekAry = function(week){
 	// console.log('currentWeekAry', currentWeekAry);
 };
 
-const fnCreateEmptyObj = function(ary, year, month, week, preYear, preWeek){
+const fnCreateEmptyObj = function(ary, year, month, week, preYear, preWeek){	
 	// console.log(ary, year, month, week, preYear, preWeek);
 	emptyObj = {}
 	//
-	if( String(week).length < 2 ){ week = '0' + week }
+	if( String(week).length < 2 ){ week = '0' + week };
 	emptyObj.id = year + String(week);
 	//
-	emptyObj.year = year;
-	emptyObj.week_id = week;
+	emptyObj.year = Number(year);
+	emptyObj.week_id = Number(week);
 	emptyObj.month = month;
-	if( preYear ){
-		emptyObj.pre = preYear + String(preWeek);
+	if( String(preWeek).length < 2 ){
+		emptyObj.pre = preYear + '0' + String(preWeek);
 	}else{
-		emptyObj.pre = false;
+		emptyObj.pre = preYear + String(preWeek);
 	}
 	emptyObj.nex = false;
 	emptyObj.week = [];
@@ -80,12 +84,14 @@ const fnCreateEmptyObj = function(ary, year, month, week, preYear, preWeek){
 		obj.hours = {m: [], a: [], e: []};
 		emptyObj.week.push(obj);
 	}
-	apiWeek[currentWeekYear + String(currentWeek)] = emptyObj;
-	console.log(emptyObj);
+	apiWeek[currentWeekYear + String(week)] = emptyObj;
+	// console.log(emptyObj);
 	// console.log(apiWeek);
 }
 
 const fnPrintWeekMap = function(data){
+	// console.log(data);
+	// console.log(apiWeek);
 	// console.log(data);
 	// thisDate = 26;
 	// console.log('%cthis week turn to '+thisDate,'font-size: 20px;color: yellow');
@@ -102,11 +108,12 @@ const fnPrintWeekMap = function(data){
 	// -- WEEK TITLE HTML v
 	// --------------------------------
 	let thisWeekIndex = 0;
-	const isSameYearMonth = data.year === thisWeekYear && data.month === thisWeekMonth;
+	const isSameYearMonth = data.year == thisWeekYear && data.month == thisWeekMonth;
 	//
 	$('.weekmap-week').html('');
 	let dayStr = '';
 	ary.forEach(function(item){
+		// console.log(item);
 		const date = item.date;
 		dayStr += '<div class="weekmap-td';
 		if( isSameYearMonth ){
@@ -214,6 +221,11 @@ const fnPrintWeekMap = function(data){
 	// if ($('#calbox .weekmap-date .weekmap-td').length){
 	// }
 };
+
+const fnDatepickerJump = function(year, month){
+	$("#datepicker").datepicker("setDate",$.datepicker.parseDate("yy/mm/dd", year + "/" + month +"/01"));
+}
+
 $(()=>{
 	preYearMaxWeek =  fnWeekMax( Number(thisWeekYear) - 1 );
 	thisYearMaxWeek = fnWeekMax( Number(thisWeekYear));
@@ -272,7 +284,13 @@ $(()=>{
 	}
 
 	// console.log(currentWeekId);
-	fnPrintWeekMap( apiWeek[currentWeekId] );
+	fnPrintWeekMap( apiWeek[currentWeekId]);
+
+	// ==========================================
+	// == CHECK FACE DONE LIST v
+	// ==========================================
+	console.log(thisWeek, currentWeekAry);
+	// for(i=0; i<currentWeekAry.length)
 	
 	// ==========================================
 	// == FACE ARY v
@@ -290,6 +308,7 @@ $(()=>{
 		$('#add-week').fadeOut();
 		console.log(preWeekId);
 		if( preWeekId ){
+			fnDatepickerJump(apiWeek[preWeekId].year, apiWeek[preWeekId].month);
 			fnPrintWeekMap(apiWeek[preWeekId]);
 		};
 	});
@@ -297,6 +316,7 @@ $(()=>{
 	$('#nex-week').click(function(){
 		$('#pre-week').fadeIn();
 		if( nexWeekId ){
+			fnDatepickerJump(apiWeek[nexWeekId].year, apiWeek[nexWeekId].month);
 			fnPrintWeekMap(apiWeek[nexWeekId]);
 			if( nexWeekId ){
 				$('#nex-week').fadeIn();
@@ -307,17 +327,22 @@ $(()=>{
 	});
 
 	
-
 	// currentWeek 
-	let add = 0;
+	let addWeek = 0;
+	const addMax = 3;
 	$('#add-week').click(function(){
+		fnDatepickerJump(currentWeekYear, currentWeekMonth);
 		$('#pre-week').show();
-		if(add < 99999){
-			apiWeek[currentWeekId].pre = currentWeekId;
+		if(addWeek < addMax){
+			preId = currentWeekId;
 			preYear = currentWeekYear;
 			preWeek = currentWeek;
-			//
+			// console.log(preYear, preWeek);
+			// 新週前 ^ ------------------
+			// 新週後 v ------------------
 			currentWeek ++;
+
+			// 是否換月，應補 click 以取得次月 date v
 			let check = 0;
 			$('tbody:eq(0) .ui-datepicker-week-col').each(function(i){
 				if( $(this).text() == currentWeek ){ check = i};
@@ -326,29 +351,63 @@ $(()=>{
 				$('#month-nex').click();
 				currentWeekMonth ++;
 			}
+			
 			//
+			// console.log(currentWeek , currentWeekMax, currentWeek > currentWeekMax);
+			currentWeekMax = fnWeekMax(Number(currentWeekYear));
 			if (currentWeek > currentWeekMax ){
 				currentWeek = 1;
 				currentWeekMonth = 1;
 				currentWeekYear++;
-				currentWeekMax = fnWeekMax(Number(nextWeekYear));
 			};
-			currentWeekId = currentWeekYear + String(currentWeek);
+
+			if( String(currentWeek).length < 2 ){
+				currentWeekId = currentWeekYear + '0' +String(currentWeek);
+			}else{
+				currentWeekId = currentWeekYear + String(currentWeek);
+			}
+			
+			apiWeek[preId].nex = currentWeekId
+			preId = currentWeekId;
 			
 			fnGetWeekAry(currentWeek);
 			fnCreateEmptyObj(currentWeekAry, currentWeekYear, currentWeekMonth, currentWeek, preYear, preWeek);
 			fnPrintWeekMap(apiWeek[currentWeekId]);
+
+			// datapicker v
+			// console.log(currentWeekYear, currentWeekMonth);
 			
-			add ++;
+			addWeek ++;
 		}else{
 			console.log('cant add more');
 			alert('己逹規劃上限');
 		}
 	});
 
+	$('#clone-week').click(function(){
+		$('#add-week').click();
+	});
+
+
+
 	// ==========================================
 	// == TEST WEEK v
 	// ==========================================
+	// MAX WEEK 53 v
+	// let ccMax = 0
+	// const cc = function(){
+	// 	$('#add-week').click();
+	// 	ccMax ++;
+	// 	if(ccMax > 330){
+	// 		console.log('STOP');
+	// 		clearInterval(cId);
+	// 		console.log(apiWeek);
+			
+	// 	}
+	// }
+	// let cId = setInterval( cc, 0);
+	
+	// WEEK v
 	// const thisDay = new Date().getDay() - 1;
 	// const dayList = ['一', '二', '三', '四', '五', '六', '日'];
 	// console.log(thisDay, dayList[thisDay]);

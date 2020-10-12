@@ -32,8 +32,8 @@ const lastUpdate = "202031"
 
 const demoWeekObj_202038 = {
 	id: '202038',
-	year: '2020',
-	month: '9',
+	year: 2020,
+	month: 9,
 	week: [
 		{
 			date: '14',
@@ -187,9 +187,9 @@ const demoWeekObj_202038 = {
 
 const demoWeekObj_202039 = {
 	id: '202039',
-	year: '2020',
-	week_id: '39',
-	month: '9',
+	year: 2020,
+	week_id: 39,
+	month: 9,
 	week: [
 		{
 			date: '21',
@@ -344,9 +344,9 @@ const demoWeekObj_202039 = {
 
 const demoWeekObj_202040 = {
 	id: '202040',
-	year: '2020',
-	week_id: '40',
-	month: '10',
+	year: 2020,
+	week_id: 40,
+	month: 10,
 	week: [
 		{
 			date: '28',
@@ -502,9 +502,9 @@ const demoWeekObj_202040 = {
 
 const demoWeekObj_202041 = {
 	id: '202041',
-	year: '2020',
-	week_id: '41',
-	month: '10',
+	year: 2020,
+	week_id: 41,
+	month: 10,
 	week: [
 		{
 			date: '5',
@@ -656,15 +656,15 @@ const demoWeekObj_202041 = {
 		},
 	],
 	pre: '202040',
-	// nex: '202042'
-	nex: false
+	nex: '202042'
+	// nex: false
 }
 
 const demoWeekObj_202042 = {
 	id: '202042',
-	year: '2020',
-	week_id: '42',
-	month: '10',
+	year: 2020,
+	week_id: 42,
+	month: 10,
 	week: [
 		{
 			date: '12',
