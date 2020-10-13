@@ -16,6 +16,7 @@ html(lang="en")
 		//- WEEK v
 		script(src="./js/week_ary.js")
 		script(src="./js/week_map.js")
+		script(src="./js/lb.js")
 		//- FACE v
 		script(src="./js/face_ary.js")
 		//- 若改摸擬第一次，除註記掉上方，且應刪除 application>cookie>faceAry ^
@@ -31,10 +32,10 @@ html(lang="en")
 		#content
 			.wrapper
 				#main
-					#pre-page
+					#prev-page
 						svg(fill='none')
 							path(d='M19 2L2 23.5L19 45', stroke='white', stroke-width='4')
-					#nex-page
+					#next-page
 						svg(fill='none')
 							path(d='M2 2L19 23.5L2 45', stroke='white', stroke-width='4')
 					#member
@@ -44,9 +45,9 @@ html(lang="en")
 						#above
 							#calbox
 								
-								svg#pre-week(fill='none')
+								svg#prev-week(fill='none')
 									path(d='M10 22L2 11.7778L10 1.55556', stroke='#DCDCDC', stroke-width='3', stroke-linejoin='round')
-								svg#nex-week(fill='none')
+								svg#next-week(fill='none')
 										path(d='M2 1L10 11.2222L2 21.4444', stroke='#DCDCDC', stroke-width='3', stroke-linejoin='round')
 								#add-week +
 								svg#clone-week(viewBox='0 0 19 19' fill='none' xmlns='http://www.w3.org/2000/svg')
@@ -87,5 +88,22 @@ html(lang="en")
 		#lbmasker
 		#lb
 			#lb-left
+				.edit-box(data-skin='1')
+					.edit-item(data-index='0') 文章
+					.edit-item(data-index='1') 影片
+					.edit-item(data-index='2') 專欄
+					.edit-item(data-index='3') 每週測驗
+					.edit-item(data-index='4') 音樂
+					.edit-item(data-index='5') 童話故事
+				.edit-box(data-skin='2')
+					.edit-item(data-index='6') 實力衝刺
+					.edit-item(data-index='7') 寫作練習
+					.edit-item(data-index='8') 會話練習
+					.edit-item(data-index='9') 朗讀練習
+					.edit-item(data-index='10') 研習營
+				#edit-unedit 取消編輯
 			#lb-right
-				include partials/week_map
+				#lb-above
+					include partials/week_map
+				#lb-under
+					#edit-send 送出

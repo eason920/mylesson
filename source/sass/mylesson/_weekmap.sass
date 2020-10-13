@@ -20,6 +20,13 @@ $g: 9px
 	align-items: stretcn
 	height: calc( 100% - #{$h-title})
 
+.weekmap-item
+	.weekmap-status
+		// transform: scale(.8) translateX(-5px)
+	
+.weekmap-text
+	@extend %row1
+
 // --------------------------------
 .weekmap-time
 	width: $w-time
@@ -113,9 +120,9 @@ $g: 9px
 	align-items: center
 	margin-bottom: 5px
 	&[data-skin='1']
-		color: #F74769
+		color: $c-red
 	&[data-skin='2']
-		color: #20A0A0
+		color: $c-green
 	&:last-child
 		margin-bottom: 0
 
@@ -152,6 +159,9 @@ $g: 9px
 
 	.weekmap-item
 		margin: 0
+
+	.weekmap-status
+		transform: scale(.8)
 
 @media screen and (max-width: $bp-wide)
 	.weekmap-item

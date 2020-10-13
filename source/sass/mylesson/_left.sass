@@ -4,8 +4,8 @@
 	display: flex
 	position: relative
 
-#pre-page,
-#nex-page
+#prev-page,
+#next-page
 	position: absolute
 	top: 50%
 	transform: translateY(-50%)
@@ -14,10 +14,10 @@
 		width: 21px
 		height: 47px
 
-#pre-page
+#prev-page
 	left: -36px
 
-#nex-page
+#next-page
 	right: -36px
 
 // --------------------------------
@@ -44,25 +44,26 @@
 	border-radius: $radius
 	display: flex
 
-#pre-week,
-#nex-week,
+#prev-week,
+#next-week,
 #add-week
 	position: absolute
 	top: 50%
 	transform: translateY(-50%)
 	cursor: pointer
 
-#pre-week,
-#nex-week
+#prev-week,
+#next-week
 	width: 12px
 	height: 23px
 
-#pre-week
+#prev-week
 	left: 2px
 
-#nex-week,
+#next-week,
 #add-week
 	right: 2px
+	display: none
 
 #add-week
 	background:
@@ -75,7 +76,7 @@
 	justify-content: center
 	align-items: center
 
-#nex-week,
+#next-week,
 #add-week
 	display: none
 // --------------------------------
@@ -116,3 +117,10 @@
 // --------------------------------
 #runway
 	height: $h-runway
+
+// @media screen and (max-width: $bp-13)
+// 	#above
+// 		height: $h-above-13
+
+// 	#under
+// 		height: calc( 100% - #{$h-above-13})

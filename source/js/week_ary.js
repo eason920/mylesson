@@ -18,13 +18,14 @@ const todoList = [
 
 // done
 // 0 = default
-// 1 = false
+// 1 = true
 // 2 = helf
-// 3 = true
+// 3 = false
 // 4 = ready to delete
 
 // skin 
-// 1 & 2 => for skin
+// 1 = red
+// 2 = green
 const hadFile = true;
 const lastUpdate = "202031"
 // hadFile 只要來過就會改作 true (def false)
@@ -181,8 +182,8 @@ const demoWeekObj_202038 = {
 			}				
 		},
 	],
-	pre: false,
-	nex: '202039'
+	prev: false,
+	next: '202039'
 }
 
 const demoWeekObj_202039 = {
@@ -338,8 +339,8 @@ const demoWeekObj_202039 = {
 			}				
 		},
 	],
-	pre: '202038',
-	nex: '202040'
+	prev: '202038',
+	next: '202040'
 }
 
 const demoWeekObj_202040 = {
@@ -496,8 +497,8 @@ const demoWeekObj_202040 = {
 			}				
 		},
 	],
-	pre: '202039',
-	nex: '202041'
+	prev: '202039',
+	next: '202041'
 }
 
 const demoWeekObj_202041 = {
@@ -655,9 +656,9 @@ const demoWeekObj_202041 = {
 			}				
 		},
 	],
-	pre: '202040',
-	nex: '202042'
-	// nex: false
+	prev: '202040',
+	next: '202042'
+	// next: false
 }
 
 const demoWeekObj_202042 = {
@@ -672,10 +673,10 @@ const demoWeekObj_202042 = {
 			hours: {
 				m: [
 					{sort: 1, done: 0},
-					{sort: 2, done: 0},
-					{sort: 3, done: 0},
-					{sort: 4, done: 0},
-					{sort: 5, done: 0},
+					{sort: 2, done: 1},
+					{sort: 3, done: 2},
+					{sort: 4, done: 3},
+					{sort: 5, done: 4},
 				],
 				a: [
 					{sort: 8, done: 0},
@@ -715,19 +716,13 @@ const demoWeekObj_202042 = {
 			daily_done: true,
 			hours: {
 				m: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
+					
 				],
 				a: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
+					
 				],
 				e: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
+					
 				]
 			}				
 		},
@@ -736,19 +731,13 @@ const demoWeekObj_202042 = {
 			daily_done: true,
 			hours: {
 				m: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
+					
 				],
 				a: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
+					
 				],
 				e: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
+					
 				]
 			}				
 		},
@@ -757,9 +746,68 @@ const demoWeekObj_202042 = {
 			daily_done: true,
 			hours: {
 				m: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
+					
+				],
+				a: [
+					
+				],
+				e: [
+					
+				]
+			}				
+		},
+		{
+			date: '17',
+			daily_done: true,
+			hours: {
+				m: [
+					
+				],
+				a: [
+					
+				],
+				e: [
+					
+				]
+			}				
+		},
+		{
+			date: '18',
+			daily_done: true,
+			hours: {
+				m: [
+					
+				],
+				a: [
+					
+				],
+				e: [
+					
+				]
+			}				
+		},
+	],
+	prev: '202041',
+	next: false
+	// next: '202043'
+}
+
+const demoWeekObj_202043 = {
+	id: '202043',
+	year: 2020,
+	week_id: 43,
+	month: 10,
+	week: [
+		{
+			date: '19',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 1, done: 0},
+					{sort: 2, done: 0},
+					{sort: 3, done: 0},
+					{sort: 4, done: 0},
+					{sort: 5, done: 0},
 				],
 				a: [
 					{sort: 8, done: 0},
@@ -774,7 +822,7 @@ const demoWeekObj_202042 = {
 			}				
 		},
 		{
-			date: '17',
+			date: '20',
 			daily_done: true,
 			hours: {
 				m: [
@@ -795,7 +843,91 @@ const demoWeekObj_202042 = {
 			}				
 		},
 		{
-			date: '18',
+			date: '21',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '22',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '23',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '24',
+			daily_done: true,
+			hours: {
+				m: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				a: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				],
+				e: [
+					{sort: 8, done: 0},
+					{sort: 1, done: 1},
+					{sort: 6, done: 2}
+				]
+			}				
+		},
+		{
+			date: '25',
 			daily_done: true,
 			hours: {
 				m: [
@@ -816,8 +948,20 @@ const demoWeekObj_202042 = {
 			}				
 		},
 	],
-	pre: '202041',
-	nex: false
+	prev: '202042',
+	next: false
 }
+
+const apiWeek = {
+	202038: demoWeekObj_202038,
+	202039: demoWeekObj_202039,
+	202040: demoWeekObj_202040,
+	202041: demoWeekObj_202041,
+	202042: demoWeekObj_202042,
+	// 202043: demoWeekObj_202043
+}
+
+let lastUpdateId = '202038';
+// let lastUpdateId;
 
 // console.log(demoWeekAry);

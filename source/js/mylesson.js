@@ -34,10 +34,5 @@ $(()=>{
 	thisWeekId = String(thisWeekYear) + thisWeek;
 	thisDate = $('.ui-datepicker-today:eq(0) > *').text();
 
-	// ==========================================
-	// == LIGHT BOX v
-	// ==========================================
-	$('#contact, #lbmasker').click(function(){
-		$('#lbmasker, #lb').toggleClass('open');
-	});
+
 });
