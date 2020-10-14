@@ -29,7 +29,7 @@ const lastUpdate = "202031"
 // hadFile 只要來過就會改作 true (def false)
 // 只要 hadFile 為 true 者，api 需要能自動補出過去未上線數週的「空缺週」資料
 
-const demoWeekObj_202031 = {
+const demoWeekObj_201952 = {
 	dt_id: '202038',
 	dt_year: 2020,
 	dt_month: 9,
@@ -180,7 +180,9 @@ const demoWeekObj_202031 = {
 				]
 			}				
 		},
-	]
+	],
+	prev: false,
+	next: '202039'
 }
 
 const demoWeekObj_202038 = {
@@ -334,7 +336,9 @@ const demoWeekObj_202038 = {
 				]
 			}				
 		},
-	]
+	],
+	prev: false,
+	next: '202039'
 }
 
 const demoWeekObj_202039 = {
@@ -489,7 +493,9 @@ const demoWeekObj_202039 = {
 				]
 			}				
 		},
-	]
+	],
+	prev: '202038',
+	next: '202040'
 }
 
 const demoWeekObj_202040 = {
@@ -645,7 +651,9 @@ const demoWeekObj_202040 = {
 				]
 			}				
 		},
-	]
+	],
+	prev: '202039',
+	next: '202041'
 }
 
 const demoWeekObj_202041 = {
@@ -802,7 +810,10 @@ const demoWeekObj_202041 = {
 				]
 			}				
 		},
-	]
+	],
+	prev: '202040',
+	next: '202042'
+	// next: false
 }
 
 const demoWeekObj_202042 = {
@@ -930,7 +941,10 @@ const demoWeekObj_202042 = {
 				]
 			}				
 		},
-	]
+	],
+	prev: '202041',
+	next: false
+	// next: '202043'
 }
 
 const demoWeekObj_202043 = {
@@ -1089,11 +1103,13 @@ const demoWeekObj_202043 = {
 				]
 			}				
 		},
-	]
+	],
+	prev: '202042',
+	next: false
 }
 
 const apiWeek = {
-	202031: demoWeekObj_202031,
+	201952: demoWeekObj_201952,
 	202038: demoWeekObj_202038,
 	202039: demoWeekObj_202039,
 	202040: demoWeekObj_202040,

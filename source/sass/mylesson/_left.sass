@@ -46,7 +46,6 @@
 
 #prev-week,
 #next-week,
-#add-week
 	position: absolute
 	top: 50%
 	transform: translateY(-50%)
@@ -60,33 +59,30 @@
 #prev-week
 	left: 2px
 
-#next-week,
-#add-week
+#next-week
 	right: 2px
-	display: none
 
-#add-week
-	background:
-		color: #aaa
-	color: #fff
-	border-radius: 50%
-	height: 15px
-	width: 15px
-	display: flex
-	justify-content: center
-	align-items: center
-
-#next-week,
-#add-week
-	display: none
 // --------------------------------
 #clone-week
+	width: 23px
+	position: absolute
+	top: 0
+	right: 52px
+	cursor: pointer
+
+#edit-week
 	width: 19px
-	height: 19px
 	position: absolute
 	top: 0
 	right: 20px
 	cursor: pointer
+	transition: opacity .3s
+	&.is-unedit
+		opacity: .5
+		cursor: not-allowed
+		pointer-events: none
+		-webkit-pointer-events: none
+	
 // --------------------------------
 #achive
 	width: $w-achive

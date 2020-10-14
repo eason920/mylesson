@@ -6,11 +6,20 @@
 			.weekmap-item
 				cursor: default
 
-	.weekmap-item
-		cursor: pointer
+#lb
+	&[data-edit='0']
+		.weekmap-item
+			cursor: pointer
 
-#lb.is-editable
-	.weekmap-hours.is-hover
-		background:
-			image: none
-			color: #fff
+	&[data-edit='1']
+		.weekmap-hours
+			cursor: not-allowed
+			.weekmap-item
+				cursor: not-allowed
+			&.is-hover
+				background:
+					image: none
+					color: #fff
+				cursor: cell
+				.weekmap-item
+					cursor: default

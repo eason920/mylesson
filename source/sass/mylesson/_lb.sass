@@ -6,16 +6,25 @@
 	left: 0
 	margin: auto
 	display: none
-	&.open
-		display: flex
+	&.is-hide
+		animation: ani-in .3s 0s linear 1 forwards
+
+@keyframes ani-in
+	0%
+		opacity: 0
+		transform: translateY(20px)
+	100%
+		opacity: 1
+		transform: translateY(0)
 
 #lbmasker
 	background:
 		color: rgba(0,0,0,.8)
+	top: -20px
 	
 #lb
 	width: 1280px
-	height: 800px
+	height: 700px
 	// display: flex
 	align-items: stretch
 	overflow: hidden
@@ -37,6 +46,16 @@
 				// background-color: #aaa
 				@extend %cal-box-deco
 				box-shadow: 2px 4px 4px rgba(204, 204, 204, 0.28), -6px -4px 8px #fff
+	
+	.weekmap-title
+		font-size: 2rem
+		height: 60px
+
+	.weekmap-main
+		height: calc( 100% - 60px )
+
+	.weekmap-hours
+		padding-top: 20px
 
 #lb-left
 	background-color: #eee
@@ -45,9 +64,17 @@
 	position: relative
 
 #lb-right
-	padding: 30px
+	padding: 30px 40px
 	background-color: #fafafa
 	width: calc( 100% - #{$w-lb-left})
+
+#lb-close
+	width: 18px
+	height: 19px
+	position: absolute
+	top: 30px
+	right: 40px
+	cursor: pointer
 
 @media screen and (min-width: 1281px)
 	#lb
