@@ -24,19 +24,14 @@ const todoList = [
 // 1 = 自主學習(紅)
 // 2 = 互動學習(綠)
 
-
-const lastUpdate = "202031"
-// hadFile 只要來過就會改作 true (def false)
-// 只要 hadFile 為 true 者，api 需要能自動補出過去未上線數週的「空缺週」資料
-
 const demoWeekObj_202031 = {
-	dt_id: '202038',
+	dt_id: '202031',
 	dt_year: 2020,
 	dt_month: 9,
-	dt_week: 38,
+	dt_week: 31,
 	date_list: [
 		{
-			date: '14',
+			date: '27',
 			daily_done: true,
 			hours: {
 				m: [
@@ -55,8 +50,8 @@ const demoWeekObj_202031 = {
 			}				
 		},
 		{
-			date: '15',
-			daily_done: true,
+			date: '28',
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -76,8 +71,8 @@ const demoWeekObj_202031 = {
 			}				
 		},
 		{
-			date: '16',
-			daily_done: true,
+			date: '29',
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -97,8 +92,8 @@ const demoWeekObj_202031 = {
 			}				
 		},
 		{
-			date: '17',
-			daily_done: true,
+			date: '30',
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -118,8 +113,8 @@ const demoWeekObj_202031 = {
 			}				
 		},
 		{
-			date: '18',
-			daily_done: true,
+			date: '31',
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -139,8 +134,8 @@ const demoWeekObj_202031 = {
 			}				
 		},
 		{
-			date: '19',
-			daily_done: true,
+			date: '1',
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -160,7 +155,7 @@ const demoWeekObj_202031 = {
 			}				
 		},
 		{
-			date: '20',
+			date: '2',
 			daily_done: true,
 			hours: {
 				m: [
@@ -186,8 +181,8 @@ const demoWeekObj_202031 = {
 const demoWeekObj_202038 = {
 	dt_id: '202038',
 	dt_year: 2020,
-	dt_month: 9,
 	dt_week: 38,
+	dt_month: 9,
 	date_list: [
 		{
 			date: '14',
@@ -210,7 +205,7 @@ const demoWeekObj_202038 = {
 		},
 		{
 			date: '15',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -252,7 +247,7 @@ const demoWeekObj_202038 = {
 		},
 		{
 			date: '17',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -315,7 +310,7 @@ const demoWeekObj_202038 = {
 		},
 		{
 			date: '20',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -345,7 +340,7 @@ const demoWeekObj_202039 = {
 	date_list: [
 		{
 			date: '21',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 1, done: 0},
@@ -365,7 +360,7 @@ const demoWeekObj_202039 = {
 		},
 		{
 			date: '22',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -386,7 +381,7 @@ const demoWeekObj_202039 = {
 		},
 		{
 			date: '23',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -407,7 +402,7 @@ const demoWeekObj_202039 = {
 		},
 		{
 			date: '24',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -470,7 +465,7 @@ const demoWeekObj_202039 = {
 		},
 		{
 			date: '27',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -500,7 +495,7 @@ const demoWeekObj_202040 = {
 	date_list: [
 		{
 			date: '28',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 1, done: 0},
@@ -626,7 +621,7 @@ const demoWeekObj_202040 = {
 		},
 		{
 			date: '4',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -656,7 +651,7 @@ const demoWeekObj_202041 = {
 	date_list: [
 		{
 			date: '5',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 1, done: 0},
@@ -678,7 +673,7 @@ const demoWeekObj_202041 = {
 		},
 		{
 			date: '6',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -699,7 +694,7 @@ const demoWeekObj_202041 = {
 		},
 		{
 			date: '7',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -720,7 +715,7 @@ const demoWeekObj_202041 = {
 		},
 		{
 			date: '8',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -741,7 +736,7 @@ const demoWeekObj_202041 = {
 		},
 		{
 			date: '9',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -762,7 +757,7 @@ const demoWeekObj_202041 = {
 		},
 		{
 			date: '10',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -844,20 +839,20 @@ const demoWeekObj_202042 = {
 					{sort: 6, done: 2}
 				],
 				a: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
+					{sort: 7, done: 0},
+					{sort: 7, done: 1},
+					{sort: 7, done: 2}
 				],
 				e: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
+					{sort: 6, done: 0},
+					{sort: 6, done: 1},
 					{sort: 6, done: 2}
 				]
 			}				
 		},
 		{
 			date: '14',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					
@@ -872,7 +867,7 @@ const demoWeekObj_202042 = {
 		},
 		{
 			date: '15',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					
@@ -887,7 +882,7 @@ const demoWeekObj_202042 = {
 		},
 		{
 			date: '16',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					
@@ -917,7 +912,7 @@ const demoWeekObj_202042 = {
 		},
 		{
 			date: '18',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					
@@ -934,7 +929,6 @@ const demoWeekObj_202042 = {
 }
 
 const demoWeekObj_202043 = {
-	last_update_id: '202038',
 	dt_id: '202043',
 	dt_year: 2020,
 	dt_week: 43,
@@ -942,7 +936,7 @@ const demoWeekObj_202043 = {
 	date_list: [
 		{
 			date: '19',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 1, done: 0},
@@ -965,7 +959,7 @@ const demoWeekObj_202043 = {
 		},
 		{
 			date: '20',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -986,7 +980,7 @@ const demoWeekObj_202043 = {
 		},
 		{
 			date: '21',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -1007,7 +1001,7 @@ const demoWeekObj_202043 = {
 		},
 		{
 			date: '22',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -1028,7 +1022,7 @@ const demoWeekObj_202043 = {
 		},
 		{
 			date: '23',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -1049,7 +1043,7 @@ const demoWeekObj_202043 = {
 		},
 		{
 			date: '24',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -1070,7 +1064,7 @@ const demoWeekObj_202043 = {
 		},
 		{
 			date: '25',
-			daily_done: true,
+			daily_done: false,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -1101,8 +1095,3 @@ const apiWeek = {
 	202042: demoWeekObj_202042,
 	// 202043: demoWeekObj_202043
 }
-
-let lastUpdateId = '202038';
-// let lastUpdateId;
-
-// console.log(demoWeekAry);

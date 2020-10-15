@@ -21,6 +21,10 @@ const viewMax = 1;// 僅可見未來一週
 const viewMin = -11; // 往前三個月(12週)內 ( 12 = this x 1 + pre x 11 )
 //
 
+const fnWeekObjUpdate = function(){
+	console.log('%cUpdated!', 'color:greenyellow;font-size:20px;');
+}
+
 const fnWeekMax = function(year){
 	const y = weekMax53.findIndex(item => item === year);
 	let max = 52;
@@ -51,7 +55,7 @@ const fnCreateViewObj = function(ary, year, month, week, id){
 	//
 	newObj.dt_year = Number(year);
 	newObj.dt_week = Number(week);
-	newObj.dt_month = month;
+	newObj.dt_month = Number(month);
 	newObj.date_list = [];
 	for (i=0; i<7;i ++) {
 		const obj = {}
@@ -161,7 +165,7 @@ const fnPrintWeekMap = function(id){
 						editStatus = true;
 				};
 			}
-			dateStr += '<div class="weekmap-hours" data-edit="' + editStatus + '">';
+			dateStr += '<div class="weekmap-hours" data-plan="' + editStatus + '">';
 			dateStr += '<div class="weekmap-in">';
 			item.hours[h].forEach(function(j){
 				dateStr += '<div class="weekmap-item" ';
@@ -186,9 +190,7 @@ const fnPrintWeekMap = function(id){
 	// --------------------------------
 };
 
-const fnDatepickerJump = function(year, month){
-	$("#datepicker").datepicker("setDate",$.datepicker.parseDate("yy/mm/dd", year + "/" + month +"/01"));
-}
+
 
 $(()=>{
 	// ==========================================

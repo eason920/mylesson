@@ -41,12 +41,13 @@ $height: ls1-sprite-height(green_right) + ls1-sprite-height(green_helf) + ls1-sp
 
 
 .facemap-item > div
-	&[data-face='2']
-		@include BG(day_pass)
-
-	&[data-face='1']
-		@include BG(day_wrong)
-
 	&[data-face='0']
 		@include BG(day_wrong)
 		background-image: none
+		
+	&[data-face='1']
+		@include BG(day_pass)
+
+	&[data-face='2']
+		@include BG(day_wrong)
+

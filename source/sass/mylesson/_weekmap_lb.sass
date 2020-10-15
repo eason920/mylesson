@@ -1,21 +1,13 @@
-#lb, #calbox // files target 
-	.weekmap-hours
-		&[data-edit='false']
-			.weekmap-in
-				opacity: .5
-			.weekmap-item
-				cursor: default
-
-#lb
-	&[data-edit='0']
+#lb // files target 
+	&[data-edit='false']
 		.weekmap-item
 			cursor: pointer
 
-	&[data-edit='1']
+	&[data-edit='true']
 		.weekmap-hours
-			cursor: not-allowed
+			cursor: cell
 			.weekmap-item
-				cursor: not-allowed
+				cursor: cell
 			&.is-hover
 				background:
 					image: none
@@ -23,3 +15,9 @@
 				cursor: cell
 				.weekmap-item
 					cursor: default
+
+	.weekmap-hours
+		&[data-plan='false']
+			opacity: .35
+			.weekmap-item
+				cursor: default

@@ -4,7 +4,8 @@ const demoFaceObj_201912 = { id: '201912', list: [
 		1,1,1,1,1,1,1,
 		1,1,1,1,1,1,1,
 		1,1,1,1,1,1,1,
-		1,1
+		1,1,
+		// {date: 15, done: 0}
 	]
 };
 
@@ -126,6 +127,23 @@ const demoFaceObj_202101 = {
 //- 0 補上用空
 //- 1 沒過(O)
 //- 2 有過( :) )
+
+const apiFace = {
+	201912: demoFaceObj_201912,
+	202001: demoFaceObj_202001,
+	202002: demoFaceObj_202002,
+	202003: demoFaceObj_202003,
+	202004: demoFaceObj_202004,
+	202005: demoFaceObj_202005,
+	202006: demoFaceObj_202006,
+	202007: demoFaceObj_202007,
+	202008: demoFaceObj_202008,
+	202009: demoFaceObj_202009,
+	202010: demoFaceObj_202010,
+	202011: demoFaceObj_202011,
+	202012: demoFaceObj_202012,
+	202101: demoFaceObj_202101,
+};
 
 // Cookies.set('faceAry', JSON.stringify(demoFaceAry));
 // by setting //
