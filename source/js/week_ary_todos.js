@@ -43,6 +43,7 @@ const demoWeekObj_202031 = {
 		{
 			date: '27',
 			daily_done: 1,
+			todos: 7,
 			hours: {
 				m: [
 					{sort: 1, done: 0},
@@ -62,6 +63,7 @@ const demoWeekObj_202031 = {
 		{
 			date: '28',
 			daily_done: 3,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -83,6 +85,7 @@ const demoWeekObj_202031 = {
 		{
 			date: '29',
 			daily_done: 1,
+			todos: 8,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -103,6 +106,7 @@ const demoWeekObj_202031 = {
 		{
 			date: '30',
 			daily_done: 1,
+			todos: 11,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -126,6 +130,7 @@ const demoWeekObj_202031 = {
 		{
 			date: '31',
 			daily_done: 3,
+			todos: 12,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -150,6 +155,7 @@ const demoWeekObj_202031 = {
 		{
 			date: '1',
 			daily_done: 3,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -171,6 +177,7 @@ const demoWeekObj_202031 = {
 		{
 			date: '2',
 			daily_done: 1,
+			todos: 6,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -200,6 +207,7 @@ const demoWeekObj_202038 = {
 		{
 			date: '14',
 			daily_done: 1,
+			todos: 7,
 			hours: {
 				m: [
 					{sort: 1, done: 0},
@@ -219,6 +227,7 @@ const demoWeekObj_202038 = {
 		{
 			date: '15',
 			daily_done: 1,
+			todos: 13,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -244,6 +253,7 @@ const demoWeekObj_202038 = {
 		{
 			date: '16',
 			daily_done: 1,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -265,6 +275,7 @@ const demoWeekObj_202038 = {
 		{
 			date: '17',
 			daily_done: 3,
+			todos: 10,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -287,6 +298,7 @@ const demoWeekObj_202038 = {
 		{
 			date: '18',
 			daily_done: 1,
+			todos: 11,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -310,6 +322,7 @@ const demoWeekObj_202038 = {
 		{
 			date: '19',
 			daily_done: 1,
+			todos: 3,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -325,6 +338,7 @@ const demoWeekObj_202038 = {
 		{
 			date: '20',
 			daily_done: 1,
+			todos: 6,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -355,6 +369,7 @@ const demoWeekObj_202039 = {
 		{
 			date: '21',
 			daily_done: 1,
+			todos: 8,
 			hours: {
 				m: [
 					{sort: 1, done: 0},
@@ -375,6 +390,7 @@ const demoWeekObj_202039 = {
 		{
 			date: '22',
 			daily_done: 3,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -396,6 +412,7 @@ const demoWeekObj_202039 = {
 		{
 			date: '23',
 			daily_done: 1,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -417,6 +434,7 @@ const demoWeekObj_202039 = {
 		{
 			date: '24',
 			daily_done: 3,
+			todos: 7,
 			hours: {
 				m: [
 					{sort: 6, done: 2}
@@ -436,6 +454,7 @@ const demoWeekObj_202039 = {
 		{
 			date: '25',
 			daily_done: 1,
+			todos: 5,
 			hours: {
 				m: [
 					{sort: 6, done: 2}
@@ -453,6 +472,7 @@ const demoWeekObj_202039 = {
 		{
 			date: '26',
 			daily_done: 1,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -474,6 +494,7 @@ const demoWeekObj_202039 = {
 		{
 			date: '27',
 			daily_done: 1,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -506,6 +527,7 @@ const demoWeekObj_202040 = {
 		{
 			date: '28',
 			daily_done: 3,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 1, done: 0},
@@ -527,6 +549,7 @@ const demoWeekObj_202040 = {
 		{
 			date: '29',
 			daily_done: 1,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -548,6 +571,7 @@ const demoWeekObj_202040 = {
 		{
 			date: '30',
 			daily_done: 1,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -569,6 +593,7 @@ const demoWeekObj_202040 = {
 		{
 			date: '1',
 			daily_done: 1,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -590,6 +615,7 @@ const demoWeekObj_202040 = {
 		{
 			date: '2',
 			daily_done: 1,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -611,6 +637,7 @@ const demoWeekObj_202040 = {
 		{
 			date: '3',
 			daily_done: 1,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -632,6 +659,7 @@ const demoWeekObj_202040 = {
 		{
 			date: '4',
 			daily_done: 1,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -664,6 +692,7 @@ const demoWeekObj_202041 = {
 		{
 			date: '5',
 			daily_done: 1,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 1, done: 0},
@@ -686,6 +715,7 @@ const demoWeekObj_202041 = {
 		{
 			date: '6',
 			daily_done: 1,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -707,6 +737,7 @@ const demoWeekObj_202041 = {
 		{
 			date: '7',
 			daily_done: 3,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -728,6 +759,7 @@ const demoWeekObj_202041 = {
 		{
 			date: '8',
 			daily_done: 1,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -749,6 +781,7 @@ const demoWeekObj_202041 = {
 		{
 			date: '9',
 			daily_done: 3,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -770,6 +803,7 @@ const demoWeekObj_202041 = {
 		{
 			date: '10',
 			daily_done: 3,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -791,6 +825,7 @@ const demoWeekObj_202041 = {
 		{
 			date: '11',
 			daily_done: 1,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -823,6 +858,7 @@ const demoWeekObj_202042 = {
 		{
 			date: '12',
 			daily_done: 1,
+			todos: 11,
 			hours: {
 				m: [
 					{sort: 1, done: 0},
@@ -846,6 +882,7 @@ const demoWeekObj_202042 = {
 		{
 			date: '13',
 			daily_done: 1,
+			todos: 6,
 			hours: {
 				m: [
 				],
@@ -864,6 +901,7 @@ const demoWeekObj_202042 = {
 		{
 			date: '14',
 			daily_done: 3,
+			todos: 0,
 			hours: {
 				m: [
 					
@@ -879,6 +917,7 @@ const demoWeekObj_202042 = {
 		{
 			date: '15',
 			daily_done: 3,
+			todos: 0,
 			hours: {
 				m: [
 					
@@ -894,6 +933,7 @@ const demoWeekObj_202042 = {
 		{
 			date: '16',
 			daily_done: 3,
+			todos: 0,
 			hours: {
 				m: [
 					
@@ -909,6 +949,7 @@ const demoWeekObj_202042 = {
 		{
 			date: '17',
 			daily_done: 0,
+			todos: 0,
 			hours: {
 				m: [
 					
@@ -924,6 +965,7 @@ const demoWeekObj_202042 = {
 		{
 			date: '18',
 			daily_done: 0,
+			todos: 0,
 			hours: {
 				m: [
 					
@@ -950,6 +992,7 @@ const demoWeekObj_202043 = {
 		{
 			date: '19',
 			daily_done: 0,
+			todos: 11,
 			hours: {
 				m: [
 					{sort: 1, done: 0},
@@ -973,6 +1016,7 @@ const demoWeekObj_202043 = {
 		{
 			date: '20',
 			daily_done: 0,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -994,6 +1038,7 @@ const demoWeekObj_202043 = {
 		{
 			date: '21',
 			daily_done: 0,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -1015,6 +1060,7 @@ const demoWeekObj_202043 = {
 		{
 			date: '22',
 			daily_done: 0,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -1036,6 +1082,7 @@ const demoWeekObj_202043 = {
 		{
 			date: '23',
 			daily_done: 0,
+			todos: 15,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -1063,6 +1110,7 @@ const demoWeekObj_202043 = {
 		{
 			date: '24',
 			daily_done: 0,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
@@ -1084,6 +1132,7 @@ const demoWeekObj_202043 = {
 		{
 			date: '25',
 			daily_done: 0,
+			todos: 9,
 			hours: {
 				m: [
 					{sort: 8, done: 0},

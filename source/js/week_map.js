@@ -18,7 +18,10 @@ let viewWeekId;
 //
 let viewIndex = 0;
 const viewMax = 1;// 僅可見未來一週
-const viewMin = -11; // 往前三個月(12週)內 ( 12 = this x 1 + pre x 11 )
+let viewMin = -15; 
+// ^ 往前三個月(12週)內 ( 12 = this x 1 + pre x 11 ) 
+// ^ 為取得 apiFace 近三月完整 data, 需超出以逹目的，而在「fnFaceDataRecording」函式完成後回歸 -11** 
+const recordIndex = viewMin * -1;
 //
 
 const fnWeekObjUpdate = function(){
@@ -56,11 +59,13 @@ const fnCreateViewObj = function(ary, year, month, week, id){
 	newObj.dt_year = Number(year);
 	newObj.dt_week = Number(week);
 	newObj.dt_month = Number(month);
+	newObj.weekly_complete = 0;
+	// newObj.monthly_complete = 0;
 	newObj.date_list = [];
 	for (i=0; i<7;i ++) {
 		const obj = {}
 		obj.date = ary[i];
-		obj.daily_done= false;
+		obj.daily_done= 0;
 		obj.hours = {m: [], a: [], e: []};
 		newObj.date_list.push(obj);
 	}
@@ -95,6 +100,7 @@ const fnPrintWeekMap = function(id){
 				week = thisWeekIndex;
 			}
 		}
+		
 		dayStr += '">'
 		dayStr += weeklyAry[thisWeekIndex];
 		dayStr += '<span class="weekmap-day">'
@@ -131,7 +137,7 @@ const fnPrintWeekMap = function(id){
 	const hours = new Date().getHours();
 	$('.weekmap-date').html('');
 	let dateStr = '';
-	ary.forEach(function(item){
+	ary.forEach(function(item, i){
 		// 「日」為單位的 editStatus v
 		const date = Number(item.date);
 		if( data.dt_week == thisWeek ){
@@ -150,7 +156,8 @@ const fnPrintWeekMap = function(id){
 		};
 		// --------------------------------
 		// --------------------------------
-		dateStr += '<div class="weekmap-td">';
+		dateStr += '<div class="weekmap-td" ';
+		dateStr += 'data-daily_done="' + ary[i].daily_done + '">';
 		for( h in item.hours ){
 			// 「時區」為單位的 editStatus v
 			if( item.date === thisDate && data.dt_week == thisWeek ){
@@ -183,6 +190,8 @@ const fnPrintWeekMap = function(id){
 	});
 
 	$('.weekmap-date').html(dateStr);
+	$('.weekmap-date').attr('data-weekly_complete', apiWeek[id].weekly_complete);
+	$('.weekmap-date').attr('data-monthly_complete', apiWeek[id].monthly_complete);
 	$('.weekmap-date .weekmap-td:eq(' + week + ')').addClass('is-today');
 
 	// --------------------------------

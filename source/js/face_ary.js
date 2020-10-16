@@ -124,25 +124,64 @@ const demoFaceObj_202101 = {
 	]
 };
 
-//- 0 補上用空
-//- 1 沒過(O)
-//- 2 有過( :) )
+const demo = {
+	id: 202010,
+	week: {
+		40: { 28: 1, 29: 1, 30: 1, 1: 1, 2: 1, 3: 1, 4: 1},
+		41: { 5: 1, 6: 1, 7: 1, 8: 1, 9: 1, 10: 1, 11: 1},
+		42: {	12: 3, 13: 1, 14: 1, 15: 1, 16: 0, 17: 0, 18: 0	}
+	}
+}
+
+const demo2 = {
+	202010: {
+		week_list: {
+			40: {
+				weekly_complete: 25,
+				week_ary: [28, 29, 30, 31, 1, 2, 3],
+				daily_done: [ 1, 1, 1, 1, 0, 0, 0],
+				todos: 75,
+				truth: 23
+			},
+			41: {
+				weekly_complete: 25,
+				week_ary: [28, 29, 30, 31, 1, 2, 3],
+				daily_done: [ 1, 1, 1, 1, 0, 0, 0],
+				todos: 75,
+				truth: 23
+			},
+			42: {
+				weekly_complete: 25,
+				week_ary: [28, 29, 30, 31, 1, 2, 3],
+				daily_done: [ 1, 1, 1, 1, 0, 0, 0],
+				todos: 75,
+				truth: 23
+			}
+		},
+		monthly_truth: 88,
+		monthly_todos: 104
+	}
+}
+
+// 0 = 時間未到 / 非本週數字
+// 1 = 完成
+// 3 = 未完成
 
 const apiFace = {
-	201912: demoFaceObj_201912,
-	202001: demoFaceObj_202001,
-	202002: demoFaceObj_202002,
-	202003: demoFaceObj_202003,
-	202004: demoFaceObj_202004,
-	202005: demoFaceObj_202005,
-	202006: demoFaceObj_202006,
-	202007: demoFaceObj_202007,
-	202008: demoFaceObj_202008,
-	202009: demoFaceObj_202009,
-	202010: demoFaceObj_202010,
-	202011: demoFaceObj_202011,
-	202012: demoFaceObj_202012,
-	202101: demoFaceObj_202101,
+	// 201912: demoFaceObj_201912,
+	// 202001: demoFaceObj_202001,
+	// 202002: demoFaceObj_202002,
+	// 202003: demoFaceObj_202003,
+	// 202004: demoFaceObj_202004,
+	// 202005: demoFaceObj_202005,
+	// 202006: demoFaceObj_202006,
+	// 202007: demoFaceObj_202007,
+	// 202008: demoFaceObj_202008,
+	// 202009: demoFaceObj_202009,
+	// 202010: demoFaceObj_202010,
+	// 202011: demoFaceObj_202011,
+	// 202012: demoFaceObj_202012,
+	// 202101: demoFaceObj_202101,
 };
 
 // Cookies.set('faceAry', JSON.stringify(demoFaceAry));

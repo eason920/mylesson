@@ -35,7 +35,7 @@ const fnGetFaceAry = function(id){
 		}
 	}
 
-	// console.log( faceAry.list === undefined );
+	console.log( faceAry.list === undefined );
 	if (faceAry.list === undefined){
 		faceAry.id = id;
 		faceAry.list= [];
@@ -48,7 +48,7 @@ const fnGetFaceAry = function(id){
 	// 	resFaceAry = JSON.parse( resFaceAry);
 	// };
 	// faceAry= resFaceAry;
-	// console.log( faceAry );
+	console.log( faceAry );
 };
 
 const fnPrintFaceCalendar = function(id){
@@ -84,70 +84,13 @@ $(()=>{
 
 	fnGetFaceAry(thisMonthFaceId);
 
-	let recordIdx = 0;
-	let weekCount = 0;
+	let recordIdx = 0
 	const fnFaceDataRecording = function(){
-		// --------------------------------
-		// -- CURR WEEK v
-		// --------------------------------
-		let id;
-		if( String(viewMonth).length < 2 ){ 
-			id = viewYear + '0' + String(viewMonth);
-		}else{
-			id = viewYear + String(viewMonth);
-		};
-		if( !apiFace[id] ){ apiFace[id] = {} }
-		
-		if( !apiFace[id].week_list ){ apiFace[id].week_list = {}; }
-		
-		if( !apiFace[id].week_list[viewWeek] ){ apiFace[id].week_list[viewWeek] = {} };
-
-		apiFace[id].week_list[viewWeek].week_ary = viewWeekAry;
-
-		if( !apiFace[id].week_list[viewWeek].daily_done ){ apiFace[id].week_list[viewWeek].daily_done = [] }
-
-		const weekFirst = $('.ui-datepicker-group-first tbody .ui-datepicker-week-col:eq(0)').text();
-		// const weekMax = $('.ui-datepicker-group-first tbody .ui-datepicker-week-col').length - 1;
-		// const lastWeek = $('.ui-datepicker-group-first tbody .ui-datepicker-week-col:eq('+weekMax+')').text();
-
-		const firstWeekAry = viewWeekAry;
-		const firstDailyDoneAry = [];
-		const firstWeek = viewWeek;
-		apiWeek[viewWeekId].date_list.forEach(function(item){
-			apiFace[id].week_list[viewWeek].daily_done.push( item.daily_done );
-			firstDailyDoneAry.push( item.daily_done );
-		});
-
-		// ID 退位前，確認是否要在退位後補 obj v
-		let beAdd = false;
-		if( viewWeek == weekFirst ){ beAdd = true};
-		
-		// --------------------------------
-		// -- PREV WEEK v 
-		// --------------------------------
-		weekCount ++;
+		$('#prev-week').click();
+		const ary = [];
+		console.log(apiWeek[viewWeekId]);
 		recordIdx ++;
-		$('#prev-week').click();// < **會執行「viewWeekId 退位」程式**
-		
-		if( beAdd ){
-			let preId;
-			if( String(viewMonth).length < 2 ){ 
-				preId = viewYear + '0' + String(viewMonth);
-			}else{
-				preId = viewYear + String(viewMonth);
-			};
-			//
-			if( !apiFace[preId] ){ apiFace[preId] = {} };
-			apiFace[preId].week_list = {};
-			apiFace[preId].week_list[firstWeek] = {};
-			apiFace[preId].week_list[firstWeek].week_ary = firstWeekAry;
-			apiFace[preId].week_list[firstWeek].daily_done = firstDailyDoneAry;
-		};
-
-		// --------------------------------
-		// -- DONE & INIT v
-		// --------------------------------
-		if(recordIdx > recordIndex){
+		if(recordIdx > 11){
 			clearInterval(rId);
 
 			// DATE-PICKER v
@@ -155,28 +98,22 @@ $(()=>{
 
 			// WEEK MAP v
 			fnPrintWeekMap( thisWeekId );
+			$('#prev-week').fadeIn();
 			viewIndex = 0;
 			viewMonth = thisWeekMonth;
 			viewYear = thisWeekYear;
 			viewWeek = thisWeek;
 			viewWeekId = thisWeekId;
 			viewWeekAry = fnGetViewWeekAry(viewWeek);
-			viewMin = -11;
-			
+
 			// VISION v
-			$('#prev-week').fadeIn();
-			$('#edit-week').removeClass('is-unedit');
 			$('#load-cal').fadeOut();
 			$('#calbox, #achive').fadeIn();
-			console.log(apiFace);
 		}
 	};
 	let rId = setInterval( fnFaceDataRecording, 0);
-
-
-	
-	$('#load-cal').fadeOut();
-	$('#calbox, #achive').fadeIn();
+	// $('#load-cal').fadeOut();
+	// $('#calbox, #achive').fadeIn();
 		
 	// ==========================================
 	// == 檢視 FACE ARY v
