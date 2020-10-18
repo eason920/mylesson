@@ -96,12 +96,16 @@ $(()=>{
 		};
 
 		const hoursAry = ['m', 'a', 'e'];
+		let wTodos = 0;
+		let wTruth = 0
 		$('#lb .weekmap-date .weekmap-td').each(function(t){
 			const $td = $(this);
 			updateObj.date_list[t] = {};
 			updateObj.date_list[t].date = viewWeekAry[t];
 			updateObj.date_list[t].daily_done = false;
 			updateObj.date_list[t].hours = {};
+			let dTodos = 0;
+			let dTruth = 0;
 			$td.find('.weekmap-hours').each(function(h){
 				const $hours = $(this);
 				const hKey = hoursAry[h];
@@ -111,19 +115,33 @@ $(()=>{
 					const sVal = $item.attr('data-sort');
 					const dVal = $item.attr('data-done');
 					if( dVal != 4 ){
+						dTodos ++
+						wTodos ++;
 						updateObj.date_list[t].hours[hKey][i] = {};
 						updateObj.date_list[t].hours[hKey][i].done = dVal;
 						updateObj.date_list[t].hours[hKey][i].sort = sVal;
 					}
-				})
+					if( dVal == 1 ){ 
+						dTruth ++;
+						wTruth ++;
+					};
+				});
+				updateObj.date_list[t].daily_todos = dTodos;
+				updateObj.date_list[t].daily_truth = dTruth;
 			})
 		})
+
+		updateObj.weekly_todos= wTodos;
+		updateObj.weekly_truth= wTruth;
+
+
+		updateObj.weekly_todos = wTodos;
 
 		console.log(updateObj);
 
 		apiWeek[viewWeekId] = updateObj;
 		fnPrintWeekMap( viewWeekId );
-		fnWeekObjUpdate();
+		// fnWeekObjUpdate();
 
 	});
 

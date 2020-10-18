@@ -138,21 +138,21 @@ const demo2 = {
 		week_list: {
 			40: {
 				weekly_complete: 25,
-				week_ary: [28, 29, 30, 31, 1, 2, 3],
+				date: [28, 29, 30, 31, 1, 2, 3],
 				daily_done: [ 1, 1, 1, 1, 0, 0, 0],
 				todos: 75,
 				truth: 23
 			},
 			41: {
 				weekly_complete: 25,
-				week_ary: [28, 29, 30, 31, 1, 2, 3],
+				date: [28, 29, 30, 31, 1, 2, 3],
 				daily_done: [ 1, 1, 1, 1, 0, 0, 0],
 				todos: 75,
 				truth: 23
 			},
 			42: {
 				weekly_complete: 25,
-				week_ary: [28, 29, 30, 31, 1, 2, 3],
+				date: [28, 29, 30, 31, 1, 2, 3],
 				daily_done: [ 1, 1, 1, 1, 0, 0, 0],
 				todos: 75,
 				truth: 23
@@ -163,11 +163,44 @@ const demo2 = {
 	}
 }
 
+const demo3 = {
+	202010: {
+		week_list: [
+			{
+				week: 40,
+				weekly_percent: 25,
+				date: [28, 29, 30, 31, 1, 2, 3],
+				daily_done: [1, 1, 1, 1, 0, 0, 0],
+				todos: 75,
+				truth: 23
+			},
+			{
+				week: 40,
+				weekly_complete: 25,
+				date: [28, 29, 30, 31, 1, 2, 3],
+				daily_done: [1, 1, 1, 1, 0, 0, 0],
+				todos: 75,
+				truth: 23
+			},
+			{
+				week: 40,
+				weekly_complete: 25,
+				date: [28, 29, 30, 31, 1, 2, 3],
+				daily_done: [1, 1, 1, 1, 0, 0, 0],
+				todos: 75,
+				truth: 23
+			}
+		],
+		monthly_truth: 88,
+		monthly_todos: 104
+	}
+}
+
 // 0 = 時間未到 / 非本週數字
 // 1 = 完成
 // 3 = 未完成
 
-const apiFace = {
+// const apiFace = {
 	// 201912: demoFaceObj_201912,
 	// 202001: demoFaceObj_202001,
 	// 202002: demoFaceObj_202002,
@@ -182,7 +215,7 @@ const apiFace = {
 	// 202011: demoFaceObj_202011,
 	// 202012: demoFaceObj_202012,
 	// 202101: demoFaceObj_202101,
-};
+// };
 
 // Cookies.set('faceAry', JSON.stringify(demoFaceAry));
 // by setting //

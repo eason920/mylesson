@@ -15,27 +15,23 @@ let viewMonth;
 let viewYear;
 let viewWeek;
 let viewWeekId;
+let viewWeekAry = [];
 //
 let viewIndex = 0;
 const viewMax = 1;// 僅可見未來一週
 let viewMin = -15; 
 // ^ 往前三個月(12週)內 ( 12 = this x 1 + pre x 11 ) 
 // ^ 為取得 apiFace 近三月完整 data, 需超出以逹目的，而在「fnFaceDataRecording」函式完成後回歸 -11** 
-const recordIndex = viewMin * -1;
+// const recordIndex = viewMin * -1;
+const recordMax = viewMin * -1;
+let recordIndex = 0;
+let wId;
 //
 
 const fnWeekObjUpdate = function(){
 	console.log('%cUpdated!', 'color:greenyellow;font-size:20px;');
 }
 
-const fnWeekMax = function(year){
-	const y = weekMax53.findIndex(item => item === year);
-	let max = 52;
-	if( y >= 0 ){ max = 53 };
-	return max;
-}
-
-let viewWeekAry = [];
 const fnGetViewWeekAry = function(week){
 	const ary= [];
 	$('#datepicker tbody tr').each(function(){
@@ -59,13 +55,15 @@ const fnCreateViewObj = function(ary, year, month, week, id){
 	newObj.dt_year = Number(year);
 	newObj.dt_week = Number(week);
 	newObj.dt_month = Number(month);
-	newObj.weekly_complete = 0;
-	// newObj.monthly_complete = 0;
+	newObj.weekly_todos= 0;
+	newObj.weekly_truth= 0;
 	newObj.date_list = [];
 	for (i=0; i<7;i ++) {
 		const obj = {}
 		obj.date = ary[i];
 		obj.daily_done= 0;
+		obj.daily_todos = 0;
+		obj.daily_truth = 0;
 		obj.hours = {m: [], a: [], e: []};
 		newObj.date_list.push(obj);
 	}
@@ -190,8 +188,6 @@ const fnPrintWeekMap = function(id){
 	});
 
 	$('.weekmap-date').html(dateStr);
-	$('.weekmap-date').attr('data-weekly_complete', apiWeek[id].weekly_complete);
-	$('.weekmap-date').attr('data-monthly_complete', apiWeek[id].monthly_complete);
 	$('.weekmap-date .weekmap-td:eq(' + week + ')').addClass('is-today');
 
 	// --------------------------------
@@ -199,7 +195,29 @@ const fnPrintWeekMap = function(id){
 	// --------------------------------
 };
 
+const fnRecordApiWeek = function () {
+	$('#prev-week').click(); // < ** 連動「viewWeekId 退位」程式**
+	recordIndex++;
+	if (recordIndex >= recordMax) {
+		clearInterval(wId);
 
+		// DATE-PICKER v
+		fnDatepickerJump(thisWeekYear, thisWeekMonth);
+
+		// WEEK MAP v
+		viewIndex = 0;
+		viewMonth = thisWeekMonth;
+		viewYear = thisWeekYear;
+		viewWeek = thisWeek;
+		viewWeekId = thisWeekId;
+		viewWeekAry = fnGetViewWeekAry(viewWeek);
+
+		// NEXT FUNCTION v
+		console.log(apiWeek);
+		recordIndex = 0;
+		fId = setInterval(fnRecolrApiFace, 0);// in face_map
+	}
+}
 
 $(()=>{
 	// ==========================================
@@ -209,9 +227,13 @@ $(()=>{
 	viewYear = thisWeekYear;
 	viewWeek = thisWeek;
 	viewWeekId = thisWeekId;
-	viewWeekAry = fnGetViewWeekAry(viewWeek); 
+	viewWeekAry = fnGetViewWeekAry(viewWeek);
 	//
-	fnPrintWeekMap( viewWeekId );
+	if (!apiWeek[thisWeekId]) {
+		fnCreateViewObj(viewWeekAry, viewYear, viewMonth, viewWeek, viewWeekId);
+	}
+	//
+	wId = setInterval( fnRecordApiWeek, 0);
 
 	// ==========================================
 	// == CHECK FACE DONE LIST v
