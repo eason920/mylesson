@@ -26,16 +26,16 @@ const todoList = [
 // 1 = 完成
 // 3 = 未完成
 
-const demoWeekObj_202031 = {
-	dt_id: '202031',
+const demoWeekObj_202034 = {
+	dt_id: '202034',
 	dt_year: 2020,
 	dt_week: 31,
 	dt_month: 8,
-	weekly_todos: 31,
-	weekly_truth: 31,
+	weekly_todos: 34,
+	weekly_truth: 34,
 	date_list: [
 		{
-			date: '27',
+			date: '17',
 			daily_done: 1,
 			daily_todos: 75,
 			daily_truth: 23,
@@ -56,7 +56,7 @@ const demoWeekObj_202031 = {
 			}			
 		},
 		{
-			date: '28',
+			date: '18',
 			daily_done: 3,
 			daily_todos: 75,
 			daily_truth: 23,
@@ -79,7 +79,7 @@ const demoWeekObj_202031 = {
 			}				
 		},
 		{
-			date: '29',
+			date: '19',
 			daily_done: 1,
 			daily_todos: 75,
 			daily_truth: 23,
@@ -101,7 +101,7 @@ const demoWeekObj_202031 = {
 			}				
 		},
 		{
-			date: '30',
+			date: '20',
 			daily_done: 1,
 			daily_todos: 75,
 			daily_truth: 23,
@@ -126,7 +126,7 @@ const demoWeekObj_202031 = {
 			}				
 		},
 		{
-			date: '31',
+			date: '21',
 			daily_done: 3,
 			daily_todos: 75,
 			daily_truth: 23,
@@ -152,7 +152,7 @@ const demoWeekObj_202031 = {
 			}				
 		},
 		{
-			date: '1',
+			date: '22',
 			daily_done: 3,
 			daily_todos: 75,
 			daily_truth: 23,
@@ -175,7 +175,7 @@ const demoWeekObj_202031 = {
 			}				
 		},
 		{
-			date: '2',
+			date: '23',
 			daily_done: 1,
 			daily_todos: 75,
 			daily_truth: 23,
@@ -982,7 +982,7 @@ const demoWeekObj_202042 = {
 		},
 		{
 			date: '17',
-			daily_done: 0,
+			daily_done: 3,
 			daily_todos: 75,
 			daily_truth: 23,
 			hours: {
@@ -999,7 +999,7 @@ const demoWeekObj_202042 = {
 		},
 		{
 			date: '18',
-			daily_done: 0,
+			daily_done: 3,
 			daily_todos: 75,
 			daily_truth: 23,
 			hours: {
@@ -1022,29 +1022,29 @@ const demoWeekObj_202043 = {
 	dt_year: 2020,
 	dt_week: 43,
 	dt_month: 10,
-	weekly_todos: 16,
-	weekly_truth: 3,
+	weekly_todos: 21,
+	weekly_truth: 2,
 	date_list: [
 		{
 			date: '19',
 			daily_done: 0,
-			daily_todos: 75,
-			daily_truth: 23,
+			daily_todos: 11,
+			daily_truth: 2,
 			hours: {
 				m: [
-					{sort: 1, done: 0},
-					{sort: 2, done: 0},
-					{sort: 3, done: 0},
-					{sort: 4, done: 0},
-					{sort: 5, done: 0},
+					{sort: 1, done: 2},
+					{sort: 2, done: 2},
+					{sort: 3, done: 2},
+					{sort: 4, done: 2},
+					{sort: 5, done: 2},
 				],
 				a: [
-					{sort: 8, done: 0},
+					{sort: 8, done: 2},
 					{sort: 1, done: 1},
 					{sort: 6, done: 2}
 				],
 				e: [
-					{sort: 8, done: 0},
+					{sort: 8, done: 2},
 					{sort: 1, done: 1},
 					{sort: 6, done: 2}
 				]
@@ -1053,152 +1053,89 @@ const demoWeekObj_202043 = {
 		{
 			date: '20',
 			daily_done: 0,
-			daily_todos: 75,
-			daily_truth: 23,
+			daily_todos: 9,
+			daily_truth: 0,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
+					{sort: 1, done: 0},
+					{sort: 6, done: 0}
 				],
 				a: [
 					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
+					{sort: 1, done: 0},
+					{sort: 6, done: 0}
 				],
 				e: [
 					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
+					{sort: 1, done: 0},
+					{sort: 6, done: 0}
 				]
 			}				
 		},
 		{
 			date: '21',
 			daily_done: 0,
-			daily_todos: 75,
-			daily_truth: 23,
+			daily_todos: 0,
+			daily_truth: 0,
 			hours: {
-				m: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
-				],
-				a: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
-				],
-				e: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
-				]
+				m: [],
+				a: [],
+				e: []
 			}				
 		},
 		{
 			date: '22',
 			daily_done: 0,
-			daily_todos: 75,
-			daily_truth: 23,
+			daily_todos: 0,
+			daily_truth: 0,
 			hours: {
-				m: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
-				],
-				a: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
-				],
-				e: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
-				]
+				m: [],
+				a: [],
+				e: []
 			}				
 		},
 		{
 			date: '23',
 			daily_done: 0,
-			daily_todos: 75,
-			daily_truth: 23,
+			daily_todos: 2,
+			daily_truth: 0,
 			hours: {
 				m: [
 					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 1, done: 1},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
+					{sort: 1, done: 0},
 				],
-				a: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 1, done: 1},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
-				],
-				e: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 1, done: 1},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
-				]
+				a: [],
+				e: []
 			}				
 		},
 		{
 			date: '24',
 			daily_done: 0,
-			daily_todos: 75,
-			daily_truth: 23,
+			daily_todos: 0,
+			daily_truth: 0,
 			hours: {
-				m: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
-				],
-				a: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
-				],
-				e: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
-				]
+				m: [],
+				a: [],
+				e: []
 			}				
 		},
 		{
 			date: '25',
 			daily_done: 0,
-			daily_todos: 75,
-			daily_truth: 23,
+			daily_todos: 0,
+			daily_truth: 0,
 			hours: {
-				m: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
-				],
-				a: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
-				],
-				e: [
-					{sort: 8, done: 0},
-					{sort: 1, done: 1},
-					{sort: 6, done: 2}
-				]
+				m: [],
+				a: [],
+				e: []
 			}				
 		},
 	]
 }
 
 const apiWeek = {
-	202031: demoWeekObj_202031,
+	202034: demoWeekObj_202034,
 	202038: demoWeekObj_202038,
 	202039: demoWeekObj_202039,
 	202040: demoWeekObj_202040,

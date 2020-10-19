@@ -1,7 +1,3 @@
-let nextWeekYear;
-let nextWeekMonth;
-let nextWeek;
-//
 const weeklyAry = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 const monthAry = ["January","February","March","April","May","June","July","August","September","October", "November", "December"];
 //
@@ -17,13 +13,13 @@ let viewWeek;
 let viewWeekId;
 let viewWeekAry = [];
 //
-let viewIndex = 0;
-const viewMax = 1;// 僅可見未來一週
-let viewMin = -15; 
+let viewWeekIndex = 0;
+const veiwWeekMax = 1;// 僅可見未來一週
+let viewWeekMin = -15; 
 // ^ 往前三個月(12週)內 ( 12 = this x 1 + pre x 11 ) 
-// ^ 為取得 apiFace 近三月完整 data, 需超出以逹目的，而在「fnFaceDataRecording」函式完成後回歸 -11** 
-// const recordIndex = viewMin * -1;
-const recordMax = viewMin * -1;
+// ^ 為取得 apiFace 近三月完整 data, 需超出以逹目的，而在「face_map.js-fnRecolrApiFace」函式完成後回歸 -11** 
+// const recordIndex = viewWeekMin * -1;
+const recordMax = viewWeekMin * -1;
 let recordIndex = 0;
 let wId;
 //
@@ -48,16 +44,18 @@ const fnGetViewWeekAry = function(week){
 
 const fnCreateViewObj = function(ary, year, month, week, id){	
 	newObj = {}
-	//
+	// ID v
 	if( String(week).length < 2 ){ week = '0' + week };
 	newObj.dt_id = year + String(week);
-	//
+
+	// MUTIPLE v
 	newObj.dt_year = Number(year);
 	newObj.dt_week = Number(week);
 	newObj.dt_month = Number(month);
 	newObj.weekly_todos= 0;
 	newObj.weekly_truth= 0;
 	newObj.date_list = [];
+
 	for (i=0; i<7;i ++) {
 		const obj = {}
 		obj.date = ary[i];
@@ -85,7 +83,7 @@ const fnPrintWeekMap = function(id){
 	// -- WEEK TITLE HTML v
 	// --------------------------------
 	let thisWeekIndex = 0;
-	const isSameYearMonth = data.dt_year == thisWeekYear && data.dt_month == thisWeekMonth;
+	const isSameYearMonth = data.dt_year == currentWeekYear && data.dt_month == currentWeekMonth;
 	//
 	$('.weekmap-week').html('');
 	let dayStr = '';
@@ -93,7 +91,7 @@ const fnPrintWeekMap = function(id){
 		const date = item.date;
 		dayStr += '<div class="weekmap-td';
 		if( isSameYearMonth ){
-			if( date === thisDate ){
+			if( date === currentDate ){
 				dayStr += " is-today";
 				week = thisWeekIndex;
 			}
@@ -117,16 +115,16 @@ const fnPrintWeekMap = function(id){
 	// --------------------------------
 	let editStatus = false;
 	let passToday = false;
-	const subtract = Number(data.dt_week) - Number(thisWeek);
+	const subtract = Number(data.dt_week) - Number(currentWeek);
 	// 「週」為單位的 editStatus v
 	switch(true){
-		case data.dt_week >= thisWeek:
+		case data.dt_week >= currentWeek:
 			// 同一年 v
 			editStatus = true; break;
-		case data.dt_week < thisWeek && subtract <= -1:
+		case data.dt_week < currentWeek && subtract <= -1:
 			// 同一年 v
 			editStatus = false; break;
-		case data.dt_week < thisWeek && subtract >= 1:
+		case data.dt_week < currentWeek && subtract >= 1:
 			// 跨年 v
 			editStatus = true; break;
 		default:
@@ -138,12 +136,12 @@ const fnPrintWeekMap = function(id){
 	ary.forEach(function(item, i){
 		// 「日」為單位的 editStatus v
 		const date = Number(item.date);
-		if( data.dt_week == thisWeek ){
+		if( data.dt_week == currentWeek ){
 			switch(true){
-				case date < thisDate:
+				case date < currentDate:
 					editStatus = false;
 					break;
-				case date > thisDate && (date - thisDate) > 1:
+				case date > currentDate && (date - currentDate) > 1:
 					editStatus = false;
 					break;
 				default:
@@ -158,7 +156,7 @@ const fnPrintWeekMap = function(id){
 		dateStr += 'data-daily_done="' + ary[i].daily_done + '">';
 		for( h in item.hours ){
 			// 「時區」為單位的 editStatus v
-			if( item.date === thisDate && data.dt_week == thisWeek ){
+			if( item.date === currentDate && data.dt_week == currentWeek ){
 				switch(true){
 					case h === 'm' && hours >= 12:
 						editStatus = false;
@@ -202,14 +200,14 @@ const fnRecordApiWeek = function () {
 		clearInterval(wId);
 
 		// DATE-PICKER v
-		fnDatepickerJump(thisWeekYear, thisWeekMonth);
+		fnDatepickerJump(currentWeekYear, currentWeekMonth);
 
 		// WEEK MAP v
-		viewIndex = 0;
-		viewMonth = thisWeekMonth;
-		viewYear = thisWeekYear;
-		viewWeek = thisWeek;
-		viewWeekId = thisWeekId;
+		viewWeekIndex = 0;
+		viewMonth = currentWeekMonth;
+		viewYear = currentWeekYear;
+		viewWeek = currentWeek;
+		viewWeekId = currentWeekId;
 		viewWeekAry = fnGetViewWeekAry(viewWeek);
 
 		// NEXT FUNCTION v
@@ -223,13 +221,13 @@ $(()=>{
 	// ==========================================
 	// == INIT VAR v
 	// ==========================================
-	viewMonth = thisWeekMonth;
-	viewYear = thisWeekYear;
-	viewWeek = thisWeek;
-	viewWeekId = thisWeekId;
+	viewMonth = currentWeekMonth;
+	viewYear = currentWeekYear;
+	viewWeek = currentWeek;
+	viewWeekId = currentWeekId;
 	viewWeekAry = fnGetViewWeekAry(viewWeek);
 	//
-	if (!apiWeek[thisWeekId]) {
+	if (!apiWeek[currentWeekId]) {
 		fnCreateViewObj(viewWeekAry, viewYear, viewMonth, viewWeek, viewWeekId);
 	}
 	//
@@ -244,8 +242,10 @@ $(()=>{
 	// == ACTION EVENT v
 	// ==========================================	
 	$('#prev-week').click(function(){
+		// fnDatepickerJump(fnGetThisYear(), fnGetThisMonth());
+		fnDatepickerJump(viewYear, viewMonth);
 		$('#next-week').fadeIn();
-		if( viewIndex > viewMin ){
+		if( viewWeekIndex > viewWeekMin ){
 			// WEEK  & YEAR v
 			viewWeek = Number(viewWeek) - 1;
 			const viewPreYear = viewYear - 1;
@@ -281,11 +281,11 @@ $(()=>{
 	
 			fnPrintWeekMap( viewWeekId );
 			
-			viewIndex --;
-			if( viewIndex == viewMin ){ $('#prev-week').fadeOut() };
+			viewWeekIndex --;
+			if( viewWeekIndex == viewWeekMin ){ $('#prev-week').fadeOut() };
 			// console.log(viewWeekId, viewYear, viewWeek, viewMonth, preIsMax53, check, viewWeekAry);
-			// console.log(viewIndex);
-			if( viewIndex < 0 ){
+			// console.log(viewWeekIndex);
+			if( viewWeekIndex < 0 ){
 				$('#edit-week').addClass('is-unedit');
 			}else{
 				$('#edit-week').removeClass('is-unedit');
@@ -294,8 +294,10 @@ $(()=>{
 	});
 
 	$('#next-week').click(function(){
+		// fnDatepickerJump(fnGetThisYear(), fnGetThisMonth());
+		fnDatepickerJump(viewYear, viewMonth);
 		$('#prev-week').fadeIn();
-		if( viewIndex < viewMax ){
+		if( viewWeekIndex < veiwWeekMax ){
 			// WEEK  & YEAR v
 			viewWeek = Number(viewWeek) + 1;
 			const nextIsMax53 = weekMax53.findIndex( item => item == viewYear );
@@ -333,18 +335,18 @@ $(()=>{
 
 			fnPrintWeekMap( viewWeekId );
 
-			viewIndex ++;
+			viewWeekIndex ++;
 			// console.log(viewWeekId, viewYear, viewWeek, viewMonth, nextIsMax53, check, viewWeekAry);
-			// console.log(viewIndex);
-			if( viewIndex == viewMax ){ $('#next-week').fadeOut(); }
-			if( viewIndex < 0 ){
+			// console.log(viewWeekIndex);
+			if( viewWeekIndex == veiwWeekMax ){ $('#next-week').fadeOut(); }
+			if( viewWeekIndex < 0 ){
 				$('#edit-week').addClass('is-unedit');
 			}else{
 				$('#edit-week').removeClass('is-unedit');
 			}
 		}
 	});
-	// if( viewIndex <= viewMax && viewIndex > -1 )
+	// if( viewWeekIndex <= veiwWeekMax && viewWeekIndex > -1 )
 	$('#clone-week').click(function(){
 		$('#add-week').click();
 	});
