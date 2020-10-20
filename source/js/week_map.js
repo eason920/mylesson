@@ -25,22 +25,11 @@ let wId;
 //
 
 const fnWeekObjUpdate = function(){
+	console.log(apiWeek);
 	console.log('%cUpdated!', 'color:greenyellow;font-size:20px;');
 }
 
-const fnGetViewWeekAry = function(week){
-	const ary= [];
-	$('#datepicker tbody tr').each(function(){
-		const text = $(this).find('.ui-datepicker-week-col').text();
-		if( Number(text) === Number(week) ){
-			$(this).find('td > *').each(function(){
-				ary.push( $(this).text() );
-			});
-		};
-	});
-	ary.splice(7);
-	return ary;
-};
+
 
 const fnCreateViewObj = function(ary, year, month, week, id){	
 	newObj = {}
@@ -54,6 +43,7 @@ const fnCreateViewObj = function(ary, year, month, week, id){
 	newObj.dt_month = Number(month);
 	newObj.weekly_todos= 0;
 	newObj.weekly_truth= 0;
+	newObj.weekly_rate = 0;
 	newObj.date_list = [];
 
 	for (i=0; i<7;i ++) {
@@ -189,8 +179,11 @@ const fnPrintWeekMap = function(id){
 	$('.weekmap-date .weekmap-td:eq(' + week + ')').addClass('is-today');
 
 	// --------------------------------
-	// -- WEEK BODY LOSE  不會有漏「日」情形 v
+	// -- WEEK CIRCLE ANIMATE v
 	// --------------------------------
+	fnCircle('#completebox-week .completebox-vision', apiWeek[id].weekly_rate/100, color_7, 800);
+	$('#completebox-week .completebox-text').text( apiWeek[id].weekly_rate + '%' );
+
 };
 
 const fnRecordApiWeek = function () {
@@ -229,7 +222,8 @@ $(()=>{
 	//
 	if (!apiWeek[currentWeekId]) {
 		fnCreateViewObj(viewWeekAry, viewYear, viewMonth, viewWeek, viewWeekId);
-	}
+	};
+	console.log(apiWeek[currentWeekId]);
 	//
 	wId = setInterval( fnRecordApiWeek, 0);
 
@@ -294,6 +288,7 @@ $(()=>{
 	});
 
 	$('#next-week').click(function(){
+		
 		// fnDatepickerJump(fnGetThisYear(), fnGetThisMonth());
 		fnDatepickerJump(viewYear, viewMonth);
 		$('#prev-week').fadeIn();

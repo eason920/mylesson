@@ -165,10 +165,11 @@ const demo2 = {
 
 const demo3 = {
 	202010: {
+		week_length: 6,
 		week_list: [
 			{
 				week: 40,
-				weekly_percent: 25,
+				// weekly_percent: 25,
 				date: [28, 29, 30, 31, 1, 2, 3],
 				daily_done: [1, 1, 1, 1, 0, 0, 0],
 				todos: 75,

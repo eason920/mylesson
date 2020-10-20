@@ -24,10 +24,10 @@ const fnRecolrApiFace = function(){
 		apiFace[faceId].week_list = [];
 
 		let weekId;
-		let weekMax = -1;
+		let weekLength = -1;
 		
 		$('.ui-datepicker-group-first tbody tr').each(function (i) {
-			weekMax ++
+			weekLength ++
 			const week = $(this).find('.ui-datepicker-week-col').text();
 			apiFace[faceId].week_list.push({ week });
 			//
@@ -40,8 +40,8 @@ const fnRecolrApiFace = function(){
 				weekId = viewYear + String(week);
 			};
 			if (apiWeek[weekId]) {
-				apiFace[faceId].week_list[i].weekly_todos = apiWeek[weekId].weekly_todos;
-				apiFace[faceId].week_list[i].weekly_truth = apiWeek[weekId].weekly_truth;
+				// apiFace[faceId].week_list[i].weekly_todos = apiWeek[weekId].weekly_todos;
+				// apiFace[faceId].week_list[i].weekly_truth = apiWeek[weekId].weekly_truth;
 
 				for (a in apiWeek[weekId].date_list ){
 					apiFace[faceId].week_list[i].date.push( apiWeek[weekId].date_list[a].date );
@@ -53,8 +53,8 @@ const fnRecolrApiFace = function(){
 				// console.log(i, i == 6, apiWeek[weekId]);
 			};
 
-			// console.log(weekMax);
-			apiFace[faceId].week_max = weekMax;
+			// console.log(weekLength);
+			apiFace[faceId].week_length = weekLength;
 		});
 		
 		console.log('-----');
@@ -106,18 +106,21 @@ const fnRecolrApiFace = function(){
 		viewYear = currentWeekYear;
 		viewWeek = currentWeek;
 		viewWeekId = currentWeekId;
-		viewWeekAry = fnGetViewWeekAry(viewWeek);
+		viewWeekAry = currentWeekAry;
 		viewWeekMin = -11;// 11+1 = 12 = 三個月
 		
 		// DATE-PICKER & FACE MAP v
 		fnDatepickerJump(currentWeekYear, currentWeekMonth);
-		fnPringFaceMap( fnGetThisYear() + fnGetThisMonth() );
+		fnPringFaceMap( currentFaceId );
 
 		// VISION v
 		$('#prev-week').fadeIn();
 		$('#edit-week').removeClass('is-unedit');
 		$('#load-cal').fadeOut();
 		$('#calbox, #achive').fadeIn();
+
+		fnCircle('#completebox-week .completebox-vision', .5, color_7, 800);
+		fnCircle('#completebox-month .completebox-vision', .77, color_30, 1400);
 
 		// CHECK v
 		fnApiFaceCheck();
@@ -157,7 +160,7 @@ const fnApiFaceCheck = function(){
 				}
 	
 				// 3. 最後週的下月 date 改作 0 v
-				if( i == apiFace[id].week_max ){
+				if( i == apiFace[id].week_length ){
 					// console.log('is last', apiFace[id].week_list[i]);
 					for( date in apiFace[id].week_list[i].date ){
 						if( apiFace[id].week_list[i].date[date] < 7 ){
@@ -167,8 +170,13 @@ const fnApiFaceCheck = function(){
 				}
 			} // i
 
-		}// id
-	}
+		}// if
+
+		// 本月 v
+		if ( id = currentFaceId ) {
+			console.log(id);
+		}// if
+	}// id
 
 	// // DAILY DONE : WEEK v
 	// let dd;
@@ -237,22 +245,42 @@ const fnPringFaceMap = function(id){
 	}
 	// console.log(id, str);
 	$('#facemap').append(str);
-}
+};
+
+const fnCircle = function(selector, value, color, duration){
+	$selector = $(selector)
+	$selector.circleProgress({
+		startAngle: 4.7,
+		value,
+		fill: {color},
+		emptyFill: '#E8E9ED',
+		animation: {
+			duration,
+			// easing: 'linear'
+		},
+		animationStartValue: 0.0,
+		size: 65,
+		thickness: '5'
+	});
+
+	// $('#completebox-week .completebox-text').text( apiWeek[id].weekly_rate + '%' );
+	if( selector == '#completebox-week .completebox-vision'  ){
+
+		$selector.find('.completebox-text').text( apiWeek[currentWeekId].weekly_rate + '%' )
+	}
+};
 
 $(()=>{
 	// file:week_map.js-fn:fnRecordApiWeek -> file:face_map.js-fn:fnRecolrApiFace ->fn:fnPringFaceMap
-	// let viewMonth;
-	// let viewYear;
-	// let viewWeek;
-	// let viewWeekId;
-	// let viewWeekAry = [];
-	
 	$('#month-pre').click(function () {
 		$('.ui-icon-circle-triangle-w').click();
+		fnCircle('#completebox-month .completebox-vision', .15, color_30, 800);
 	});
 
 	$('#month-nex').click(function () {
 		$('.ui-icon-circle-triangle-e').click();
+
+		fnCircle('#completebox-month .completebox-vision', .90, color_30, 800);
 	});
 
 	$('#month-pre, #month-nex').click(function () {
@@ -262,7 +290,8 @@ $(()=>{
 			$('#facemap').html('');
 		}else{
 			fnPringFaceMap( fnGetThisYear() + fnGetThisMonth() );
-		}
-	});
+		};
 
+		
+	});
 })

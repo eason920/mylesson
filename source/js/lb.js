@@ -88,11 +88,11 @@ $(()=>{
 
 	$('#edit-send').click(function(){
 		updateObj = {
-			dt_id: viewWeekId,
-			dt_year: viewYear,
-			dt_week: viewWeek,
-			dt_month: viewMonth,
-			date_list: []
+			"dt_id": viewWeekId,
+			"dt_year": viewYear,
+			"dt_week": viewWeek,
+			"dt_month": viewMonth,
+			"date_list": []
 		};
 
 		const hoursAry = ['m', 'a', 'e'];
@@ -140,8 +140,21 @@ $(()=>{
 		console.log(updateObj);
 
 		apiWeek[viewWeekId] = updateObj;
+		console.log('JSON', updateObj);
+		console.log( 'STRING' ,JSON.stringify(updateObj) );
+		$.ajax({
+			type: "post",
+			url: "https://funday.asia/mylesson/2020/api/jsonTest.asp",
+			dataType: "json",
+			// data: JSON.stringify(updateObj),
+			data: updateObj,
+			success: function(){
+				// console.log('got json test', JSON.stringify(updateObj));
+				console.log('got obj', updateObj);
+			}
+		})
 		fnPrintWeekMap( viewWeekId );
-		// fnWeekObjUpdate();
+		fnWeekObjUpdate();
 
 	});
 

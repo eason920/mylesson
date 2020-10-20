@@ -9,6 +9,8 @@ html(lang="en")
 		//- datapicker v
 		script(src='./assets/plugins/jquery-ui/1.12.1.js')
 		script(src='./assets/plugins/jquery-ui/i18n/datepicker-zh-TW.js')
+		//- circle ani v
+		script(src='./assets/plugins/jquery-circle-progress/jquery-circle-progress.js')
 		//- cookie v
 		script(src='https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js')
 		//- main v
@@ -77,6 +79,14 @@ html(lang="en")
 											div
 										.facemap-item(data-face='2')
 											div
+								hr
+								#completebox
+									#completebox-week
+										.completebox-vision
+										.completebox-text
+									#completebox-month
+										.completebox-vision
+										.completebox-text
 								
 								svg#month-pre(width='6' height='15' viewBox='0 0 6 15' fill='none' xmlns='http://www.w3.org/2000/svg')
 									path(d='M5.05624 0.963867L0.710449 7.36398L5.05624 13.7641' stroke='#7E7E7E')
