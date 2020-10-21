@@ -45,6 +45,7 @@ html(lang="en")
 						//- iframe(src='https://funday.asia/track/LessonIndex/intro2.asp')
 					#right
 						#above
+							#facemap-open
 							#load-cal
 							#calbox(style='display: none')
 								svg#prev-week(fill='none')
@@ -81,10 +82,34 @@ html(lang="en")
 									.achive-percent
 								.achive-title 學習建議
 								#achive-msg 建議您多安排幾篇文章，或上互動課程，讓學習更扎實喔!
+								#completebox-7
+									.completebox-vision
+									.completebox-text
+							#facemap-lb
+								#datepicker
+								#facemap
+									//- .facemap-link
+									//- 	.facemap-item(data-face='0')
+									//- 		div
+									//- 	.facemap-item(data-face='1')
+									//- 		div
+									//- 	.facemap-item(data-face='2')
+									//- 		div
+								hr
 								#completebox
-									#completebox-7
+									#completebox-30
 										.completebox-vision
 										.completebox-text
+									#completebox-90
+										.completebox-vision
+										.completebox-text
+								
+								svg#month-pre(width='6' height='15' viewBox='0 0 6 15' fill='none' xmlns='http://www.w3.org/2000/svg')
+									path(d='M5.05624 0.963867L0.710449 7.36398L5.05624 13.7641' stroke='#7E7E7E')
+							
+								svg#month-nex(width='6' height='15' viewBox='0 0 6 15' fill='none' xmlns='http://www.w3.org/2000/svg')
+									path(d='M0.756745 13.7641L5.10254 7.36399L0.756746 0.963876' stroke='#7E7E7E')
+								//- #try-week
 						#under
 							#data data
 							#contact contact
@@ -92,31 +117,6 @@ html(lang="en")
 		#foo
 			.wrapper
 				.box footer
-		#month
-			#datepicker
-			#facemap
-				//- .facemap-link
-				//- 	.facemap-item(data-face='0')
-				//- 		div
-				//- 	.facemap-item(data-face='1')
-				//- 		div
-				//- 	.facemap-item(data-face='2')
-				//- 		div
-			hr
-			#completebox
-				#completebox-30
-					.completebox-vision
-					.completebox-text
-				#completebox-90
-					.completebox-vision
-					.completebox-text
-			
-			svg#month-pre(width='6' height='15' viewBox='0 0 6 15' fill='none' xmlns='http://www.w3.org/2000/svg')
-				path(d='M5.05624 0.963867L0.710449 7.36398L5.05624 13.7641' stroke='#7E7E7E')
-		
-			svg#month-nex(width='6' height='15' viewBox='0 0 6 15' fill='none' xmlns='http://www.w3.org/2000/svg')
-				path(d='M0.756745 13.7641L5.10254 7.36399L0.756746 0.963876' stroke='#7E7E7E')
-			//- #try-week
 		#lbmasker.is-hide
 		#lb.is-hide(data-edit='0')
 			#lb-left

@@ -14,12 +14,13 @@ const completeObj = {
 		202010: 15
 	},
 	// season: [38, 70, 22, 0],
-	season: {
-		'2020s1': 38,
-		'2020s2': 70,
-		'2020s3': 22,
-		'2020s4': 0
-	}
+	season: [12, 55],
+	season_area: [
+		[1,2,3],
+		[4,5,6],
+		[7,8,9],
+		[10,11,12]
+	]
 };
 //
 const fnGetThisMonth = function(){

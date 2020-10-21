@@ -287,7 +287,8 @@ $(()=>{
 		};
 	});
 
-	$('#achive-msg').click(function(){
-		$('#month').toggle();
+	$('#facemap-open').click(function(){
+		$('#facemap-lb').toggle();
+		// $('#facemap-lb').toggleClass('is-show');
 	})
 })
