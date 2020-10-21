@@ -45,10 +45,11 @@
 // ====================================
 #completebox
 	display: flex
-	justify-content: space-between
+	justify-content: space-around
 
-#completebox-week,
-#completebox-month
+#completebox-7,
+#completebox-30,
+#completebox-90
 	width: 65px
 	height: 65px
 	position: relative
@@ -59,12 +60,65 @@
 	bottom: 0
 	right: 0
 	left: 0
+	display: flex
+	justify-content: center
+	align-items: center
 	margin: auto
-	color: $c-circle-7
-	height: 20px
-	line-height: 20px
+	height: 40px
+	width: 40px
+	// line-height: 1px
 	text-align: center
 	font:
 		size: .875rem
 		weight: bold
 	letter-spacing: .5px
+
+#completebox-7
+	.completebox-text
+		color: $c-circle-7
+
+#completebox-30
+	.completebox-text
+		color: $c-circle-30
+
+#completebox-90
+	.completebox-text
+		color: $c-circle-90
+
+
+// ====================================
+// == ACHIVE v
+// ====================================
+
+.achive-bar
+	height: 8px
+	background:
+		image: linear-gradient(90deg, #63BFD2 0%, #2558C8 44.29%, #65378C 77.64%, #D5001D 96.4%)
+	border-radius: 4px
+	border: solid 1px #eee
+	overflow: hidden
+	position: relative
+
+$var: 8%
+.achive-percent
+	height: 100% 
+	width: calc( 100% + #{$var} + 2px )
+	background:
+		image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 8%)
+	position: absolute
+	transform: translateX( -#{$var} )
+.is-bar1
+	.achive-percent
+		left: 0%
+
+
+// ====================================
+// == MONTH BOX v
+// ====================================
+#month
+	display: none
+	position: fixed
+	top: 0
+	// right: 0
+	left: 0
+	background-color: #fff

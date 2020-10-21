@@ -29,8 +29,6 @@ const fnWeekObjUpdate = function(){
 	console.log('%cUpdated!', 'color:greenyellow;font-size:20px;');
 }
 
-
-
 const fnCreateViewObj = function(ary, year, month, week, id){	
 	newObj = {}
 	// ID v
@@ -44,6 +42,10 @@ const fnCreateViewObj = function(ary, year, month, week, id){
 	newObj.weekly_todos= 0;
 	newObj.weekly_truth= 0;
 	newObj.weekly_rate = 0;
+	newObj.weekly_bar1 = 0;
+	newObj.weekly_bar2 = 0;
+	newObj.weekly_level = 0;
+	newObj.weekly_msg = '本週尚未安排學習課程';
 	newObj.date_list = [];
 
 	for (i=0; i<7;i ++) {
@@ -177,13 +179,6 @@ const fnPrintWeekMap = function(id){
 
 	$('.weekmap-date').html(dateStr);
 	$('.weekmap-date .weekmap-td:eq(' + week + ')').addClass('is-today');
-
-	// --------------------------------
-	// -- WEEK CIRCLE ANIMATE v
-	// --------------------------------
-	fnCircle('#completebox-week .completebox-vision', apiWeek[id].weekly_rate/100, color_7, 800);
-	$('#completebox-week .completebox-text').text( apiWeek[id].weekly_rate + '%' );
-
 };
 
 const fnRecordApiWeek = function () {
@@ -226,11 +221,6 @@ $(()=>{
 	console.log(apiWeek[currentWeekId]);
 	//
 	wId = setInterval( fnRecordApiWeek, 0);
-
-	// ==========================================
-	// == CHECK FACE DONE LIST v
-	// == FACE ARY v
-	// ==========================================
 
 	// ==========================================
 	// == ACTION EVENT v
@@ -342,6 +332,11 @@ $(()=>{
 		}
 	});
 	// if( viewWeekIndex <= veiwWeekMax && viewWeekIndex > -1 )
+
+	$('#prev-week, #next-week').click(function(){
+		fnCircle(7, apiWeek[viewWeekId].weekly_rate/100);
+		$('#completebox-7 .completebox-text').text( apiWeek[viewWeekId].weekly_rate + '%' );
+	})
 	$('#clone-week').click(function(){
 		$('#add-week').click();
 	});

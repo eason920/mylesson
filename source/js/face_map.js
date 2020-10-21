@@ -8,6 +8,7 @@ let monthMax = 2;
 let monthLength = 0;
 let monthCutId;
 
+
 const fnRecolrApiFace = function(){
 	// --------------------------------
 	// -- CURR WEEK v
@@ -111,16 +112,23 @@ const fnRecolrApiFace = function(){
 		
 		// DATE-PICKER & FACE MAP v
 		fnDatepickerJump(currentWeekYear, currentWeekMonth);
-		fnPringFaceMap( currentFaceId );
-
+		fnPrintFaceMap( currentFaceId );
+		
 		// VISION v
 		$('#prev-week').fadeIn();
 		$('#edit-week').removeClass('is-unedit');
 		$('#load-cal').fadeOut();
 		$('#calbox, #achive').fadeIn();
 
-		fnCircle('#completebox-week .completebox-vision', .5, color_7, 800);
-		fnCircle('#completebox-month .completebox-vision', .77, color_30, 1400);
+		// CIRCLE ANIMATE v
+		// week
+		fnCircle(7, apiWeek[currentWeekId].weekly_rate/100);
+		$('#completebox-7 .completebox-text').text( apiWeek[currentWeekId].weekly_rate + '%' );
+		// month
+		fnCircle(30, completeObj.monthy[currentFaceId]/100 );
+		$('#completebox-30 .completebox-text').text( completeObj.monthy[currentFaceId] + '%' );
+		// season
+		
 
 		// CHECK v
 		fnApiFaceCheck();
@@ -227,7 +235,7 @@ const fnApiFaceCheck = function(){
 	// }
 }
 
-const fnPringFaceMap = function(id){
+const fnPrintFaceMap = function(id){
 	$('#facemap').html('');
 	const wl = apiFace[id].week_list;
 	// console.log( wl );
@@ -243,55 +251,43 @@ const fnPringFaceMap = function(id){
 		}
 		str += '</div>' // -link
 	}
-	// console.log(id, str);
+	
 	$('#facemap').append(str);
 };
 
-const fnCircle = function(selector, value, color, duration){
-	$selector = $(selector)
-	$selector.circleProgress({
-		startAngle: 4.7,
-		value,
-		fill: {color},
-		emptyFill: '#E8E9ED',
-		animation: {
-			duration,
-			// easing: 'linear'
-		},
-		animationStartValue: 0.0,
-		size: 65,
-		thickness: '5'
-	});
-
-	// $('#completebox-week .completebox-text').text( apiWeek[id].weekly_rate + '%' );
-	if( selector == '#completebox-week .completebox-vision'  ){
-
-		$selector.find('.completebox-text').text( apiWeek[currentWeekId].weekly_rate + '%' )
-	}
-};
-
 $(()=>{
-	// file:week_map.js-fn:fnRecordApiWeek -> file:face_map.js-fn:fnRecolrApiFace ->fn:fnPringFaceMap
+	// file:week_map.js-fn:fnRecordApiWeek -> file:face_map.js-fn:fnRecolrApiFace ->fn:fnPrintFaceMap
 	$('#month-pre').click(function () {
 		$('.ui-icon-circle-triangle-w').click();
-		fnCircle('#completebox-month .completebox-vision', .15, color_30, 800);
 	});
 
 	$('#month-nex').click(function () {
 		$('.ui-icon-circle-triangle-e').click();
-
-		fnCircle('#completebox-month .completebox-vision', .90, color_30, 800);
 	});
 
 	$('#month-pre, #month-nex').click(function () {
 		let id = fnGetThisYear() + fnGetThisMonth();
 		console.log( id );
 		if( !apiFace[id] ){
+			// HTML v
 			$('#facemap').html('');
-		}else{
-			fnPringFaceMap( fnGetThisYear() + fnGetThisMonth() );
-		};
 
-		
+			// CIRCLE ANIMATE v
+			let text;
+			id > currentFaceId? text='尚無紀錄' : text='紀錄過期'
+			fnCircle(30, 0 );
+			$('#completebox-30 .completebox-text').text( text );
+		}else{
+			// HTML v
+			fnPrintFaceMap( fnGetThisYear() + fnGetThisMonth() );
+
+			// CIRCLE ANIMATE v
+			fnCircle(30, completeObj.monthy[id]/100 );
+			$('#completebox-30 .completebox-text').text( completeObj.monthy[id] + '%' );
+		};
 	});
+
+	$('#achive-msg').click(function(){
+		$('#month').toggle();
+	})
 })

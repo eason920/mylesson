@@ -5,11 +5,23 @@ let currentWeekId;
 let currentDate;
 let currentFaceId;
 let currentWeekAry;
+let currentWeekRate;
 //
-const color_7= "#01c3e0";
-const color_30= "#F0854F";
-const color_90= "#D44458";
-
+const completeObj = {
+	monthy: {
+		202008: 50,
+		202009: 89,
+		202010: 15
+	},
+	// season: [38, 70, 22, 0],
+	season: {
+		'2020s1': 38,
+		'2020s2': 70,
+		'2020s3': 22,
+		'2020s4': 0
+	}
+};
+//
 const fnGetThisMonth = function(){
 	let month = Number( $('.ui-datepicker-month:eq(0)').text().split(' ')[0] );
 	if( month === 0 ){month = 12}
@@ -39,6 +51,42 @@ const fnDatepickerJump = function(year, month){
 	$("#datepicker").datepicker("setDate",$.datepicker.parseDate("yy/mm/dd", year + "/" + month +"/01"));
 };
 
+const fnCircle = function(selector, value){
+	let $target = $('#completebox-'+ selector +' .completebox-vision');
+	let color;
+	let duration;
+	switch(true){
+		case selector == 7:
+			color= "#01c3e0";
+			duration = 800;
+			break;
+		case selector == 30:
+			color= "#F0854F";
+			duration = 1400;
+			break;
+		case selector == 90:
+			color= "#D44458";
+			duration = 2000;
+			break;
+		default:
+	};
+
+	$target.circleProgress({
+		startAngle: 4.7,
+		value,
+		fill: {color},
+		emptyFill: '#E8E9ED',
+		animation: {
+			duration,
+			// easing: 'linear'
+		},
+		animationStartValue: 0.0,
+		size: 65,
+		thickness: '5'
+	});
+
+};
+
 $(()=>{
 	// ==========================================
 	// == PLUGIN SETTING v
@@ -63,9 +111,9 @@ $(()=>{
 	}else{
 		currentWeekId = currentWeekYear + String(currentWeek);
 	}
-	currentDate = $('.ui-datepicker-today:eq(0) > *').text();
-
 	// console.log(currentWeekId);
+	currentWeekRate = apiWeek[currentWeekId].weekly_rate;
+	currentDate = $('.ui-datepicker-today:eq(0) > *').text();
 	//
 	if( String(currentWeekMonth).length < 2 ){
 		currentFaceId = currentWeekYear + '0' + currentWeekMonth;

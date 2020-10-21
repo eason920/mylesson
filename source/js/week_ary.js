@@ -34,6 +34,10 @@ const demoWeekObj_202034 = {
 	"weekly_todos": 34,
 	"weekly_truth": 34,
 	"weekly_rate": 23,
+	"weekly_bar1": 30,
+	"weekly_bar2": 25,
+	"weekly_level": 0,
+	"weekly_msg": 'msg202034',
 	"date_list": [
 		{
 			"date": '17',
@@ -206,6 +210,10 @@ const demoWeekObj_202038 = {
 	"weekly_todos": 38,
 	"weekly_truth": 18,
 	"weekly_rate": 13,
+	"weekly_bar1": 33,
+	"weekly_bar2": 15,
+	"weekly_level": 1,
+	"weekly_msg": 'msg202038',
 	"date_list": [
 		{
 			"date": '14',
@@ -376,6 +384,10 @@ const demoWeekObj_202039 = {
 	"weekly_todos": 39,
 	"weekly_truth": 29,
 	"weekly_rate": 75,
+	"weekly_bar1": 33,
+	"weekly_bar2": 12,
+	"weekly_level": 2,
+	"weekly_msg": 'msg202039',
 	"date_list": [
 		{
 			"date": '21',
@@ -542,6 +554,10 @@ const demoWeekObj_202040 = {
 	"weekly_todos": 40,
 	"weekly_truth": 30,
 	"weekly_rate": 30,
+	"weekly_bar1": 5,
+	"weekly_bar2": 2,
+	"weekly_level": 3,
+	"weekly_msg": 'msg202040',
 	"date_list": [
 		{
 			"date": '28',
@@ -715,6 +731,10 @@ const demoWeekObj_202041 = {
 	"weekly_todos": 41,
 	"weekly_truth": 11,
 	"weekly_rate": 44,
+	"weekly_bar1": 33,
+	"weekly_bar2": 28,
+	"weekly_level": 4,
+	"weekly_msg": 'msg 202041',
 	"date_list": [
 		{
 			"date": '5',
@@ -889,6 +909,10 @@ const demoWeekObj_202042 = {
 	"weekly_todos": 42,
 	"weekly_truth": 12,
 	"weekly_rate": 66,
+	"weekly_bar1": 31,
+	"weekly_bar2": 24,
+	"weekly_level": 2,
+	"weekly_msg": 'msg202042',
 	"date_list": [
 		{
 			"date": '12',
@@ -1031,6 +1055,10 @@ const demoWeekObj_202043 = {
 	"weekly_todos": 21,
 	"weekly_truth": 2,
 	"weekly_rate": 89,
+	"weekly_bar1": 17,
+	"weekly_bar2": 62,
+	"weekly_level": 5,
+	"weekly_msg": 'msg 202043',
 	"date_list": [
 		{
 			"date": '19',
