@@ -1,20 +1,13 @@
-#achive
-	position: relative
-	overflow: hidden
-	margin-top: $h-title
-	height: calc( 100% - #{$h-title})
-	border: solid 1px rgba(126, 126, 126, .2)
-	border-radius: 10px
-	padding: 17px
-
+$p: 20px
 #facemap
-	// position: absolute
-	top: 61px
-	left: 0
-	width: 100%
+	position: absolute
+	top: 85px
+	left: $p
+	right: $p
 
 .facemap-link
 	display: flex
+	height: 20px
 
 .facemap-item
 	width: calc( 100% / 7 )
@@ -22,156 +15,26 @@
 	justify-content: center
 	// height: 15px
 	background-color: #fff
+	align-items: center
 
 #month-pre,
 #month-nex
 	background-color: #fafafa
 	cursor: pointer
 	position: absolute
-	top: 0
+	top: $p + 1
+
+#month-pre
+	left: 48px
 
 #month-nex
-	right: 0
-
-// ====================================
-// == TRY TRY TRY v
-// ====================================
-#try-week
-	background-color: red
-	cursor: pointer
-	position: absolute
-	border-radius: 50%
-	width: 30px
-	height: 30px
-	bottom: 0
-	left: 0
-
-// ====================================
-// == COMPLETE BOX v
-// ====================================
-#completebox
-	display: flex
-	justify-content: space-around
-
-#completebox-7,
-#completebox-30,
-#completebox-90
-	width: 65px
-	height: 65px
-	position: relative
-
-.completebox-text
-	position: absolute
-	top: 0
-	bottom: 0
-	right: 0
-	left: 0
-	display: flex
-	justify-content: center
-	align-items: center
-	margin: auto
-	height: 40px
-	width: 40px
-	// line-height: 1px
-	text-align: center
-	font:
-		size: .875rem
-		weight: bold
-	letter-spacing: .5px
-
-#completebox-7
-	position: absolute
-	left: 0
-	right: 0
-	bottom: 25px
-	margin: auto
-	.completebox-text
-		color: $c-circle-7
-
-#completebox-30
-	.completebox-text
-		color: $c-circle-30
-
-#completebox-90
-	.completebox-text
-		color: $c-circle-90
-
-
-// ====================================
-// == ACHIVE v
-// ====================================
-#achive-level
-	display: flex
-	align-items: flex-end
-	color: $c-blue
-	font:
-		size: .875rem
-		weight: bold
-	margin:
-		bottom: 18px
-	span
-		font:
-			size: 1.0725rem
-			weight: bold
-		margin:
-			left: 13px
-
-.achive-title
-	color: #7e7e7e
-	font:
-		size: .875rem
-		weight: bold
-	margin:
-		bottom: 8px
-
-.achive-bar
-	height: 8px
-	background:
-		image: linear-gradient(90deg, #63BFD2 0%, #2558C8 44.29%, #65378C 77.64%, #D5001D 96.4%)
-	border-radius: 4px
-	position: relative
-	margin-bottom: 30px
-	&:before
-		content: ''
-		position: absolute
-		top: 0
-		bottom: 0
-		left: 85%
-		border-right: solid 1px #eee
-		z-index: 1
-	&:after
-		content: ''
-		position: absolute
-		top: 0
-		left: 0
-		bottom: 0
-		right: 0
-		border-radius: 4px
-		border: solid 1px rgba(126, 126, 126, 0.2)
-
-$var: 8%
-.achive-percent
-	height: 100% 
-	width: calc( 100% + #{$var} + 2px )
-	background:
-		image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 8%)
-	position: absolute
-	margin-left: -#{$var}
-
-.is-bar1
-	.achive-percent
-		left: 89%
-
-#achive-msg
-	font:
-		size: .875rem
-	color: #7e7e7e
-	line-height: 1.3
+	right: 48px
 
 // ====================================
 // == FACEMAP LB v
 // ====================================
 #facemap-lb
+	width: 215px
 	display: none
 	position: absolute
 	top: calc( #{$h-title} + #{$padding-inside})
@@ -179,7 +42,7 @@ $var: 8%
 	background-color: #fff
 	height: calc( 100% - #{$h-title} - #{$padding-inside} * 2)
 	box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.1)
-	padding: 20px
+	padding: $p
 	border-radius: 10px
 	opacity: 0
 	transform: translateX(20px)
@@ -198,7 +61,22 @@ $var: 8%
 	position: absolute
 	top: $padding-inside 
 	right: $padding-inside
-	width: 20px
-	height: 17px
+	width: 18px
+	height: 20px
+	cursor: pointer
+	svg
+		width: 100%
+		height: 100%
+
+// ====================================
+// == TRY TRY TRY v
+// ====================================
+#try-week
 	background-color: red
 	cursor: pointer
+	position: absolute
+	border-radius: 50%
+	width: 30px
+	height: 30px
+	bottom: 0
+	left: 0

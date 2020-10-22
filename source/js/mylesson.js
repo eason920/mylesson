@@ -13,8 +13,11 @@ const completeObj = {
 		202009: 89,
 		202010: 15
 	},
-	// season: [38, 70, 22, 0],
-	season: [12, 55],
+	seasons: [
+		{year: 2020, season: 2, rate: 55},
+		{year: 2020, season: 3, rate: 12},
+		// {year: 2021, season: 0, rate: 55}
+	],
 	season_area: [
 		[1,2,3],
 		[4,5,6],
@@ -22,6 +25,14 @@ const completeObj = {
 		[10,11,12]
 	]
 };
+
+// const seasonApi ={
+// 	p: 12,
+// 	c: 55,
+// 	1: c,
+// 	12: p,
+// 	11: p
+// }
 //
 const fnGetThisMonth = function(){
 	let month = Number( $('.ui-datepicker-month:eq(0)').text().split(' ')[0] );
@@ -82,8 +93,8 @@ const fnCircle = function(selector, value){
 			// easing: 'linear'
 		},
 		animationStartValue: 0.0,
-		size: 65,
-		thickness: '5'
+		size: 77,
+		thickness: '4'
 	});
 
 };

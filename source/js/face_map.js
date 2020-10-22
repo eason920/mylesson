@@ -7,7 +7,16 @@ let faceId;
 let monthMax = 2;
 let monthLength = 0;
 let monthCutId;
-
+//
+let preMonth1
+let preMonth2
+//
+let currentSeason;
+let preMonthSeason1;
+let preMonthSeason2;
+//
+let preMonthYear1;
+let preMonthYear2;
 
 const fnRecolrApiFace = function(){
 	// --------------------------------
@@ -41,29 +50,14 @@ const fnRecolrApiFace = function(){
 				weekId = viewYear + String(week);
 			};
 			if (apiWeek[weekId]) {
-				// apiFace[faceId].week_list[i].weekly_todos = apiWeek[weekId].weekly_todos;
-				// apiFace[faceId].week_list[i].weekly_truth = apiWeek[weekId].weekly_truth;
-
 				for (a in apiWeek[weekId].date_list ){
 					apiFace[faceId].week_list[i].date.push( apiWeek[weekId].date_list[a].date );
 					apiFace[faceId].week_list[i].daily_done.push( apiWeek[weekId].date_list[a].daily_done );
 				};
-
-				
-				// console.log(i, i==0, apiWeek[weekId]);
-				// console.log(i, i == 6, apiWeek[weekId]);
 			};
 
-			// console.log(weekLength);
 			apiFace[faceId].week_length = weekLength;
 		});
-		
-		console.log('-----');
-
-		// apiFace[faceId].monthly_todos = mTodos;
-		// apiFace[faceId].monthly_truth = mTruth;
-		// console.log( apiFace[faceId]. );
-
 		doAdd = false;
 	}
 
@@ -72,7 +66,6 @@ const fnRecolrApiFace = function(){
 	// --------------------------------
 	recordIndex++;
 	$('#prev-week').click();// < ** 連動「viewWeekId 退位」程式**
-
 	
 	const prevMonth = viewMonth;
 	if (currMonth != prevMonth) { 
@@ -87,10 +80,6 @@ const fnRecolrApiFace = function(){
 				monthCutId = viewYear + String(viewMonth);
 			};
 		};
-
-		// sum total v
-		mTodos = 0;
-		mTruth = 0;
 	};
 
 	// --------------------------------
@@ -128,7 +117,8 @@ const fnRecolrApiFace = function(){
 		fnCircle(30, completeObj.monthy[currentFaceId]/100 );
 		$('#completebox-30 .completebox-text').text( completeObj.monthy[currentFaceId] + '%' );
 		// season
-		
+		fnCircle(90, completeObj.seasons[1].rate/100 );
+		$('#completebox-90 .completebox-text').text( completeObj.seasons[1].rate + '%' );
 
 		// CHECK v
 		fnApiFaceCheck();
@@ -144,7 +134,7 @@ const fnRecolrApiFace = function(){
 // id = 202040
 const fnApiFaceCheck = function(){
 	// console.log( currentWeekId , id, id < currentWeekId);
-	console.log( currentFaceId );
+	// console.log( currentFaceId );
 	for( id in apiFace ){
 		// console.log(id, id < currentFaceId);
 		// 過去月份 v
@@ -255,8 +245,60 @@ const fnPrintFaceMap = function(id){
 	$('#facemap').append(str);
 };
 
+let viewSeason;
 $(()=>{
-	// file:week_map.js-fn:fnRecordApiWeek -> file:face_map.js-fn:fnRecolrApiFace ->fn:fnPrintFaceMap
+	// ==========================================
+	// == 開頁運作邏輯 v
+	// ==========================================
+	// file:week_map.js-fn:fnRecordApiWeek v
+	// file:face_map.js-fn:fnRecolrApiFace v
+	// 同檔-fn:fnPrintFaceMap
+
+	// ==========================================
+	// == INIT v
+	// ==========================================
+	// 取前二月各自的月數 & 年數 v
+	// currentWeekMonth = 1
+	switch(true){
+		case currentWeekMonth == 2:
+			preMonth1 = 1;
+			preMonthYear1 = currentWeekYear;
+			//
+			preMonth2 = 12;
+			preMonthYear2 = Number(currentWeekYear) - 1
+			break;
+		case currentWeekMonth == 1:
+			preMonth1 = 12;
+			preMonthYear1 = Number(currentWeekYear) - 1
+			//
+			preMonth2 = 11;
+			preMonthYear2 = Number(currentWeekYear) - 1
+			break;
+		default:
+			preMonth1 = currentWeekMonth - 1;
+			preMonthYear1 = currentWeekYear;
+			//
+			preMonth2 = currentWeekMonth - 2;
+			preMonthYear2 = currentWeekYear;
+	};
+	// console.log(currentWeekMonth, preMonth1, preMonth2);
+	// console.log( currentWeekYear, preMonthYear1, preMonthYear2);
+
+	// 取前二月各自的季數 v
+	for( a in completeObj.season_area ){
+		let cur = completeObj.season_area[a].findIndex( item=> item == currentWeekMonth );
+		let pre1 = completeObj.season_area[a].findIndex( item=> item == preMonth1);
+		let pre2 = completeObj.season_area[a].findIndex( item=> item == preMonth2);
+		//
+		if( cur >= 0){ currentSeason = a };
+		if( pre1 >= 0){ preMonthSeason1 = a };
+		if( pre2 >= 0){ preMonthSeason2 = a };
+	};
+	// console.log(currentSeason, preMonthSeason1, preMonthSeason2);
+
+	// ==========================================
+	// == EVENTS v
+	// ==========================================
 	$('#month-pre').click(function () {
 		$('.ui-icon-circle-triangle-w').click();
 	});
@@ -264,10 +306,12 @@ $(()=>{
 	$('#month-nex').click(function () {
 		$('.ui-icon-circle-triangle-e').click();
 	});
-
+	
 	$('#month-pre, #month-nex').click(function () {
 		let id = fnGetThisYear() + fnGetThisMonth();
-		console.log( id );
+		// --------------------------------
+		// -- 處理「月」v 
+		// --------------------------------
 		if( !apiFace[id] ){
 			// HTML v
 			$('#facemap').html('');
@@ -285,10 +329,55 @@ $(()=>{
 			fnCircle(30, completeObj.monthy[id]/100 );
 			$('#completebox-30 .completebox-text').text( completeObj.monthy[id] + '%' );
 		};
+
+		// --------------------------------
+		// -- 處理「季」v
+		// --------------------------------
+		const month = fnGetThisMonth();
+		const fnOnTime = function(){
+			if( completeObj.seasons[a].rate !=  $('#completebox-90 .completebox-text').text().replace('%', '') ){
+				fnCircle(90, completeObj.seasons[a].rate/100 );
+				$('#completebox-90 .completebox-text').text( completeObj.seasons[a].rate + '%' );
+			}
+		};
+
+		switch(true){
+			case month == currentWeekMonth:
+				for( a in completeObj.seasons ){
+					if( completeObj.seasons[a].year ==  currentWeekYear && completeObj.seasons[a].season == currentSeason ){
+						fnOnTime();
+					};
+				};
+				break;
+			case month == preMonth1:
+				for( a in completeObj.seasons ){
+					if( completeObj.seasons[a].year ==  preMonthYear1 && completeObj.seasons[a].season == preMonthSeason1 ){
+						fnOnTime();
+					};
+				};
+				break;
+			case month == preMonth2:
+				for( a in completeObj.seasons ){
+					if( completeObj.seasons[a].year ==  preMonthYear2 && completeObj.seasons[a].season == preMonthSeason2 ){
+						fnOnTime();
+					};
+				};
+				break;
+			case id > currentFaceId:
+				fnCircle(90, 0 );
+				$('#completebox-90 .completebox-text').text( '尚無紀錄' );
+				break;
+			case id < currentFaceId:
+				fnCircle(90, 0 );
+				$('#completebox-90 .completebox-text').text( '紀錄過期' );
+				break;
+			default:
+		};
 	});
 
 	$('#facemap-open').click(function(){
 		$('#facemap-lb').toggle();
 		// $('#facemap-lb').toggleClass('is-show');
-	})
+	});
+	// $('#facemap-open').click();
 })

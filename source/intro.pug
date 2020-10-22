@@ -46,6 +46,8 @@ html(lang="en")
 					#right
 						#above
 							#facemap-open
+								svg(viewBox='0 0 18 20' fill='none' xmlns='http://www.w3.org/2000/svg')
+									path(fill-rule='evenodd' clip-rule='evenodd' d='M12.6667 1.74998V2.66665H5.33333V1.74998C5.33333 1.24581 4.92083 0.833313 4.41667 0.833313C3.9125 0.833313 3.5 1.24581 3.5 1.74998V2.66665H2.58333C1.56583 2.66665 0.759167 3.49165 0.759167 4.49998L0.75 17.3333C0.75 18.3416 1.56583 19.1666 2.58333 19.1666H15.4167C16.425 19.1666 17.25 18.3416 17.25 17.3333V4.49998C17.25 3.49165 16.425 2.66665 15.4167 2.66665H14.5V1.74998C14.5 1.24581 14.0875 0.833313 13.5833 0.833313C13.0792 0.833313 12.6667 1.24581 12.6667 1.74998ZM12.6667 10.9166H9.91667C9.4125 10.9166 9 11.3291 9 11.8333V14.5833C9 15.0875 9.4125 15.5 9.91667 15.5H12.6667C13.1708 15.5 13.5833 15.0875 13.5833 14.5833V11.8333C13.5833 11.3291 13.1708 10.9166 12.6667 10.9166ZM3.5 17.3333H14.5C15.0042 17.3333 15.4167 16.9208 15.4167 16.4166V7.24998H2.58333V16.4166C2.58333 16.9208 2.99583 17.3333 3.5 17.3333Z' fill='#354E85')
 							#load-cal
 							#calbox(style='display: none')
 								svg#prev-week(fill='none')
@@ -85,6 +87,7 @@ html(lang="en")
 								#completebox-7
 									.completebox-vision
 									.completebox-text
+									.completebox-title 週完成率
 							#facemap-lb
 								#datepicker
 								#facemap
@@ -95,14 +98,16 @@ html(lang="en")
 									//- 		div
 									//- 	.facemap-item(data-face='2')
 									//- 		div
-								hr
+								
 								#completebox
 									#completebox-30
 										.completebox-vision
 										.completebox-text
+										.completebox-title 月完成率
 									#completebox-90
 										.completebox-vision
 										.completebox-text
+										.completebox-title 季完成率
 								
 								svg#month-pre(width='6' height='15' viewBox='0 0 6 15' fill='none' xmlns='http://www.w3.org/2000/svg')
 									path(d='M5.05624 0.963867L0.710449 7.36398L5.05624 13.7641' stroke='#7E7E7E')

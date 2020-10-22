@@ -1,14 +1,17 @@
 #datepicker
 	position: relative
 	user-select: none
+	height: 200px
+	border-bottom: solid 1px rgba( 126, 126, 126, .15)
+	margin-bottom: 20px
 	table
-		width: 100px
+		width: 100%
 	td
 		text-align: center
 	
 // 週次
 .ui-datepicker-week-col
-	// display: none
+	display: none
 
 // 上一月
 .ui-icon-circle-triangle-w
@@ -24,8 +27,11 @@
 
 // 年月
 .ui-datepicker-title
-	color: #aaa
+	color: #7e7e7e
 	text-align: center
+	margin:
+		bottom: 16px
+
 .ui-datepicker,
 .ui-datepicker-group,
 .ui-datepicker-header,
@@ -35,11 +41,11 @@
 
 // 年 v
 .ui-datepicker-year
-	color: red
+	// color: red
 
 // 月 v
 .ui-datepicker-month
-	color: blue
+	// color: blue
 
 // tr
 .ui-datepicker-week-col
@@ -51,10 +57,11 @@
 		background:
 			// color: #aaa
 		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1)
-		box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5)
+		// box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5)
 		padding: 3px
 		border-radius: 5px
 		th
+			color: #7e7e7e
 			padding: 4px
 			line-height: 1
 			&:nth-child(2)
@@ -64,6 +71,10 @@
 		span
 			font-size: .75rem
 			line-height: 1
+	tbody
+		transform: translateY(10px)
+		td
+			height: 20px
 
 // --------------------------------
 // - 日結構
@@ -72,7 +83,7 @@
 // --------------------------------
 // 每日
 .ui-state-default
-	color: #333
+	color: #7e7e7e
 	text-decoration: none
 	font-size: .75rem
 
@@ -86,8 +97,12 @@
 	a
 		background:
 			color: $c-blue
-		border-radius: 5px
+		border-radius: 7px
 		color: #fff
+		display: block
+		width: 20px
+		line-height: 17px
+		margin: 0 auto
 
 // 選取日
 .ui-datepicker-current-day
@@ -98,13 +113,14 @@
 // 其它月份的日
 .ui-datepicker-other-month
 	span
-		color: brown
+		color: #7e7e7e
+		opacity: .4
 
 // ====================================
 // == 第二組日曆隱藏 v
 // ====================================
 .ui-datepicker-group-last
-	// display: none
+	display: none
 	.ui-datepicker-title,
 	thead,
 	tbody

@@ -179,6 +179,20 @@ const fnPrintWeekMap = function(id){
 
 	$('.weekmap-date').html(dateStr);
 	$('.weekmap-date .weekmap-td:eq(' + week + ')').addClass('is-today');
+
+	// --------------------------------
+	// -- LEVEL v
+	// --------------------------------
+	$('#achive-level span').text( levelAry[apiWeek[id].weekly_level] );
+	//
+	let ml1 = apiWeek[id].weekly_bar1;
+	let ml2 = apiWeek[id].weekly_bar2;
+	if( ml1 == 0 ){ ml1 = 1 };
+	if( ml2 == 0 ){ ml2 = 1 };
+	$('.achive-bar.is-bar1 .achive-percent').css({left: apiWeek[id].weekly_bar1+'%', marginLeft: 'calc( -8% / '+ ml1 +')'});
+	$('.achive-bar.is-bar2 .achive-percent').css({left: apiWeek[id].weekly_bar2+'%', marginLeft: 'calc( -8% / '+ ml2 +')'});
+	//
+	$('#achive-msg').text( apiWeek[id].weekly_msg );
 };
 
 const fnRecordApiWeek = function () {
@@ -218,7 +232,6 @@ $(()=>{
 	if (!apiWeek[currentWeekId]) {
 		fnCreateViewObj(viewWeekAry, viewYear, viewMonth, viewWeek, viewWeekId);
 	};
-	console.log(apiWeek[currentWeekId]);
 	//
 	wId = setInterval( fnRecordApiWeek, 0);
 

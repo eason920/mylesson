@@ -25,6 +25,7 @@ const todoList = [
 // 0 = 時間未到 / 非本週數字
 // 1 = 完成
 // 3 = 未完成
+const levelAry = ['無', '輕', '中', '重', '極重']
 
 const demoWeekObj_202034 = {
 	"dt_id": '202034',
@@ -1055,14 +1056,14 @@ const demoWeekObj_202043 = {
 	"weekly_todos": 21,
 	"weekly_truth": 2,
 	"weekly_rate": 89,
-	"weekly_bar1": 17,
-	"weekly_bar2": 62,
-	"weekly_level": 5,
-	"weekly_msg": 'msg 202043',
+	"weekly_bar1": 0,
+	"weekly_bar2": 100,
+	"weekly_level": 4,
+	"weekly_msg": '建議您多安排幾篇文章，或上互動課程，讓學習更扎實喔!',
 	"date_list": [
 		{
 			"date": '19',
-			"daily_done": 0,
+			"daily_done": 3,
 			"daily_todos": 11,
 			"daily_truth": 2,
 			"hours": {
@@ -1087,7 +1088,7 @@ const demoWeekObj_202043 = {
 		},
 		{
 			"date": '20',
-			"daily_done": 0,
+			"daily_done": 3,
 			"daily_todos": 9,
 			"daily_truth": 0,
 			"hours": {
@@ -1110,7 +1111,7 @@ const demoWeekObj_202043 = {
 		},
 		{
 			"date": '21',
-			"daily_done": 0,
+			"daily_done": 3,
 			"daily_todos": 0,
 			"daily_truth": 0,
 			"hours": {
