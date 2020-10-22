@@ -1,23 +1,29 @@
 #lb // files target 
 	&[data-edit='false']
-		.weekmap-item
-			cursor: pointer
+		.weekmap-hours
+			&[data-plan='true']
+				.weekmap-item
+					cursor: pointer
 
 	&[data-edit='true']
 		.weekmap-hours
-			cursor: cell
-			.weekmap-item
-				cursor: cell
-			&.is-hover
-				background:
-					image: none
-					color: #fff
+			&[data-plan='false']
+				cursor: not-allowed
+				.weekmap-item
+					cursor: not-allowed
+			&[data-plan='true']
 				cursor: cell
 				.weekmap-item
-					cursor: default
+					cursor: cell
+				&.is-hover
+					background:
+						image: none
+						color: #fff
+					cursor: cell
+					.weekmap-item
+						cursor: cell
 
 	.weekmap-hours
 		&[data-plan='false']
 			opacity: .35
-			.weekmap-item
-				cursor: default
+			

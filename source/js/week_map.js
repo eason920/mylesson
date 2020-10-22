@@ -282,16 +282,10 @@ $(()=>{
 			if( viewWeekIndex == viewWeekMin ){ $('#prev-week').fadeOut() };
 			// console.log(viewWeekId, viewYear, viewWeek, viewMonth, preIsMax53, check, viewWeekAry);
 			// console.log(viewWeekIndex);
-			if( viewWeekIndex < 0 ){
-				$('#edit-week').addClass('is-unedit');
-			}else{
-				$('#edit-week').removeClass('is-unedit');
-			}
 		}
 	});
 
 	$('#next-week').click(function(){
-		
 		// fnDatepickerJump(fnGetThisYear(), fnGetThisMonth());
 		fnDatepickerJump(viewYear, viewMonth);
 		$('#prev-week').fadeIn();
@@ -337,11 +331,6 @@ $(()=>{
 			// console.log(viewWeekId, viewYear, viewWeek, viewMonth, nextIsMax53, check, viewWeekAry);
 			// console.log(viewWeekIndex);
 			if( viewWeekIndex == veiwWeekMax ){ $('#next-week').fadeOut(); }
-			if( viewWeekIndex < 0 ){
-				$('#edit-week').addClass('is-unedit');
-			}else{
-				$('#edit-week').removeClass('is-unedit');
-			}
 		}
 	});
 	// if( viewWeekIndex <= veiwWeekMax && viewWeekIndex > -1 )
@@ -349,9 +338,51 @@ $(()=>{
 	$('#prev-week, #next-week').click(function(){
 		fnCircle(7, apiWeek[viewWeekId].weekly_rate/100);
 		$('#completebox-7 .completebox-text').text( apiWeek[viewWeekId].weekly_rate + '%' );
+		//
+		if( viewWeekIndex < 0 ){
+			$('#edit-week').addClass('is-muted');
+		}else{
+			$('#edit-week').removeClass('is-muted');
+		}
+		if (viewWeekIndex < 1) {
+			$('#clone-week').removeClass('is-muted');
+		}else{
+			$('#clone-week').addClass('is-muted');
+		}
 	})
 	$('#clone-week').click(function(){
-		$('#add-week').click();
+		$('#load-cal').fadeIn();
+		$('#calbox, #achive').fadeOut();
+		console.log('clone');
+		fnMemoUpdateObj('clone');
+		console.log(updateObj);
+		
+		// WEEK MAP v
+		fnPrintWeekMap(currentWeekId);
+		viewWeekIndex = 0;
+		viewMonth = currentWeekMonth;
+		viewYear = currentWeekYear;
+		viewWeek = currentWeek;
+		viewWeekId = currentWeekId;
+		viewWeekAry = currentWeekAry;
+
+		// DATE-PICKER & FACE MAP v
+		fnDatepickerJump(currentWeekYear, currentWeekMonth);
+		fnPrintFaceMap(currentFaceId);
+
+		// GET NEXT v
+		$('#next-week').click();
+		console.log(viewWeekId, viewWeekAry);
+		apiWeek[viewWeekId] = updateObj;
+		apiWeek[viewWeekId].date_list.forEach(function(item, i){
+			console.log(i, item.date, viewWeekAry[i]);
+			item.date = viewWeekAry[i];
+		})
+		fnPrintWeekMap(viewWeekId);
+
+		$('#load-cal').fadeOut();
+		$('#calbox, #achive').fadeIn();
+
 	});
 
 

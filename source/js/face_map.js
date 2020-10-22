@@ -105,7 +105,8 @@ const fnRecolrApiFace = function(){
 		
 		// VISION v
 		$('#prev-week').fadeIn();
-		$('#edit-week').removeClass('is-unedit');
+		$('#edit-week').removeClass('is-muted');
+		$('#week-clone').removeClass('is-muted');
 		$('#load-cal').fadeOut();
 		$('#calbox, #achive').fadeIn();
 

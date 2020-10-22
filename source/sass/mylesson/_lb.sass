@@ -79,3 +79,59 @@
 @media screen and (min-width: 1281px)
 	#lb
 		border-radius: 10px
+	
+
+// =============================
+// == EDIT v
+// =============================
+.edit-box
+	cursor: pointer
+	margin-bottom: 20px
+	overflow: hidden
+	&[data-skin='1']
+		color: $c-red
+		.edit-item.active
+			background-color: $c-red
+			color: #fff
+	&[data-skin='2']
+		color: $c-green
+		.edit-item.active
+			background-color: $c-green
+			color: #fff
+
+.edit-item
+	width: 50%
+	float: left
+	line-height: 2
+	user-select: none
+
+// --------------------------------
+$lb-h: 100px
+$lb-g: 20px
+#lb-above
+	height: calc( 100% - #{$lb-h} - #{$lb-g})
+	margin-bottom: $lb-g
+#lb-under
+	height: $lb-h
+
+#edit-send,
+#edit-clean
+	line-height: 36px
+	width: 120px
+	text-align: center
+	font-size: 1rem
+	float: right
+	cursor: pointer
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1)
+	border-radius: 15px
+
+#edit-send
+	background:
+		color: $c-red
+	color: #fff
+
+#edit-clean
+	background:
+		color: #bbb
+	color: #333
+	margin-right: 12px

@@ -1,5 +1,52 @@
 let updateObj = {};
+const hoursAry = ['m', 'a', 'e'];
+const fnMemoUpdateObj = function(string){
+	console.log(string, string=='clone');
+	updateObj = {
+		"dt_id": viewWeekId,
+		"dt_year": viewYear,
+		"dt_week": viewWeek,
+		"dt_month": viewMonth,
+		"date_list": []
+	};
 
+	$('#lb .weekmap-date .weekmap-td').each(function (t) {
+		const $td = $(this);
+		updateObj.date_list[t] = {};
+		updateObj.date_list[t].date = viewWeekAry[t];
+		updateObj.date_list[t].daily_done = false;
+		updateObj.date_list[t].hours = {};
+		let dTodos = 0;
+		let dTruth = 0;
+		$td.find('.weekmap-hours').each(function (h) {
+			const $hours = $(this);
+			const hKey = hoursAry[h];
+			updateObj.date_list[t].hours[hKey] = [];
+			$hours.find('.weekmap-item').each(function (i) {
+				const $item = $(this);
+				const sVal = $item.attr('data-sort');
+				const dVal = $item.attr('data-done');
+				if (dVal != 4) {
+					dTodos++
+					// wTodos++;
+					updateObj.date_list[t].hours[hKey][i] = {};
+					if( string == 'clone'){
+						updateObj.date_list[t].hours[hKey][i].done = 0;
+					}else{
+						updateObj.date_list[t].hours[hKey][i].done = dVal;
+					}
+					updateObj.date_list[t].hours[hKey][i].sort = sVal;
+				}
+				if (dVal == 1) {
+					dTruth++;
+					// wTruth++;
+				};
+			});
+			updateObj.date_list[t].daily_todos = dTodos;
+			updateObj.date_list[t].daily_truth = dTruth;
+		})
+	})
+}
 $(()=>{
 	let str;
 	$('.edit-item').click(function(){
@@ -32,7 +79,7 @@ $(()=>{
 		$('.edit-item').removeClass('active');
 	});
 
-	// ADD ITEM - VISION v
+	// HOVER ITEM - VISION v
 	$('#lb').on('mouseover', '.weekmap-hours[data-plan="true"]', function(){
 		$('.weekmap-hours').removeClass('is-hover');
 		$(this).addClass('is-hover');
@@ -45,20 +92,26 @@ $(()=>{
 	// ADD ITEM - HTML v
 	$('#lb').on('click', '.weekmap-hours[data-plan="true"]', function(){
 		const $target = $(this).find('.weekmap-in');
-		if( $('#lb').attr('data-edit') == 'true' ){ $target.append(str) };
+		const sum = $(this).find('.weekmap-item').length;
+		if( $('#lb').attr('data-edit') == 'true' ){
+			if (sum < 5) {
+				$target.append(str)
+			}else {
+				alert('每時段規劃上限為5則');
+			};
+		};
 	});
 
 	// DELETE ITEM v
 	$('#lb').on('click', '.weekmap-item', function(){
 		const $this = $(this);
-		if( $('#lb').attr('data-edit') == 'false' ){
+		if ($('#lb').attr('data-edit') == 'false' && $this.parent().parent().attr('data-plan') == 'true' ){
 			if( $this.attr('data-done') == 4 ){
 				$this.attr('data-done', 0);
 			}else{
 				$this.attr('data-done', 4);
 			}
 		}
-		
 	});
 
 	// OPEN v
@@ -67,6 +120,7 @@ $(()=>{
 		const $mk = $('#lbmasker');
 		//
 		if( $lb.is(':hidden') ){
+			fnPrintWeekMap(viewWeekId);
 			$lb.css('display', 'flex');
 			$mk.show();
 			setTimeout(()=>{
@@ -87,58 +141,7 @@ $(()=>{
 	});
 
 	$('#edit-send').click(function(){
-		updateObj = {
-			"dt_id": viewWeekId,
-			"dt_year": viewYear,
-			"dt_week": viewWeek,
-			"dt_month": viewMonth,
-			"date_list": []
-		};
-
-		const hoursAry = ['m', 'a', 'e'];
-		let wTodos = 0;
-		let wTruth = 0
-		$('#lb .weekmap-date .weekmap-td').each(function(t){
-			const $td = $(this);
-			updateObj.date_list[t] = {};
-			updateObj.date_list[t].date = viewWeekAry[t];
-			updateObj.date_list[t].daily_done = false;
-			updateObj.date_list[t].hours = {};
-			let dTodos = 0;
-			let dTruth = 0;
-			$td.find('.weekmap-hours').each(function(h){
-				const $hours = $(this);
-				const hKey = hoursAry[h];
-				updateObj.date_list[t].hours[hKey] = [];
-				$hours.find('.weekmap-item').each(function(i){
-					const $item = $(this);
-					const sVal = $item.attr('data-sort');
-					const dVal = $item.attr('data-done');
-					if( dVal != 4 ){
-						dTodos ++
-						wTodos ++;
-						updateObj.date_list[t].hours[hKey][i] = {};
-						updateObj.date_list[t].hours[hKey][i].done = dVal;
-						updateObj.date_list[t].hours[hKey][i].sort = sVal;
-					}
-					if( dVal == 1 ){ 
-						dTruth ++;
-						wTruth ++;
-					};
-				});
-				updateObj.date_list[t].daily_todos = dTodos;
-				updateObj.date_list[t].daily_truth = dTruth;
-			})
-		})
-
-		updateObj.weekly_todos= wTodos;
-		updateObj.weekly_truth= wTruth;
-
-
-		updateObj.weekly_todos = wTodos;
-
-		console.log(updateObj);
-
+		fnMemoUpdateObj();
 		apiWeek[viewWeekId] = updateObj;
 		console.log('JSON', updateObj);
 		console.log( 'STRING' ,JSON.stringify(updateObj) );
@@ -156,6 +159,12 @@ $(()=>{
 		fnPrintWeekMap( viewWeekId );
 		fnWeekObjUpdate();
 
+	});
+
+	$('#edit-clean').click(function(){
+		console.log('clean');
+		$('.weekmap-hours[data-plan="true"]').find('.weekmap-in').html('');
+		// $('.weekmap-hours[data-plan="true"]').find('.weekmap-in').html() = '';
 	});
 
 	// $('#edit-week').click();
