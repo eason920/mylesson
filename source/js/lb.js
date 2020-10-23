@@ -1,52 +1,3 @@
-let updateObj = {};
-const hoursAry = ['m', 'a', 'e'];
-const fnMemoUpdateObj = function(string){
-	console.log(string, string=='clone');
-	updateObj = {
-		"dt_id": viewWeekId,
-		"dt_year": viewYear,
-		"dt_week": viewWeek,
-		"dt_month": viewMonth,
-		"date_list": []
-	};
-
-	$('#lb .weekmap-date .weekmap-td').each(function (t) {
-		const $td = $(this);
-		updateObj.date_list[t] = {};
-		updateObj.date_list[t].date = viewWeekAry[t];
-		updateObj.date_list[t].daily_done = false;
-		updateObj.date_list[t].hours = {};
-		let dTodos = 0;
-		let dTruth = 0;
-		$td.find('.weekmap-hours').each(function (h) {
-			const $hours = $(this);
-			const hKey = hoursAry[h];
-			updateObj.date_list[t].hours[hKey] = [];
-			$hours.find('.weekmap-item').each(function (i) {
-				const $item = $(this);
-				const sVal = $item.attr('data-sort');
-				const dVal = $item.attr('data-done');
-				if (dVal != 4) {
-					dTodos++
-					// wTodos++;
-					updateObj.date_list[t].hours[hKey][i] = {};
-					if( string == 'clone'){
-						updateObj.date_list[t].hours[hKey][i].done = 0;
-					}else{
-						updateObj.date_list[t].hours[hKey][i].done = dVal;
-					}
-					updateObj.date_list[t].hours[hKey][i].sort = sVal;
-				}
-				if (dVal == 1) {
-					dTruth++;
-					// wTruth++;
-				};
-			});
-			updateObj.date_list[t].daily_todos = dTodos;
-			updateObj.date_list[t].daily_truth = dTruth;
-		})
-	})
-}
 $(()=>{
 	let str;
 	$('.edit-item').click(function(){
@@ -66,7 +17,7 @@ $(()=>{
 		str += 'data-done="0">';
 		str += '<div class="weekmap-status"></div>';
 		str += '<div class="weekmap-text">'
-		str += todoList[sort].title;
+		str += bus.todoList[sort].title;
 		str += '</div>' // -text
 		str += '</div>' // -item
 		// console.log(str);
@@ -141,24 +92,11 @@ $(()=>{
 	});
 
 	$('#edit-send').click(function(){
-		fnMemoUpdateObj();
-		apiWeek[viewWeekId] = updateObj;
-		console.log('JSON', updateObj);
-		console.log( 'STRING' ,JSON.stringify(updateObj) );
-		$.ajax({
-			type: "post",
-			url: "https://funday.asia/mylesson/2020/api/jsonTest.asp",
-			dataType: "json",
-			// data: JSON.stringify(updateObj),
-			data: updateObj,
-			success: function(){
-				// console.log('got json test', JSON.stringify(updateObj));
-				console.log('got obj', updateObj);
-			}
-		})
+		const obj = fnWeekObjMemo();
+		apiWeek[viewWeekId] = obj;
+		//
 		fnPrintWeekMap( viewWeekId );
-		fnWeekObjUpdate();
-
+		fnWeekObjUpdate( obj );
 	});
 
 	$('#edit-clean').click(function(){

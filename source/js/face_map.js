@@ -108,18 +108,18 @@ const fnRecolrApiFace = function(){
 		$('#edit-week').removeClass('is-muted');
 		$('#week-clone').removeClass('is-muted');
 		$('#load-cal').fadeOut();
-		$('#calbox, #achive').fadeIn();
+		$('#calbox, #achive, #facemap-open').fadeIn();
 
 		// CIRCLE ANIMATE v
 		// week
 		fnCircle(7, apiWeek[currentWeekId].weekly_rate/100);
-		$('#completebox-7 .completebox-text').text( apiWeek[currentWeekId].weekly_rate + '%' );
+		$('#completebox-7 .completebox-text').text( apiWeek[currentWeekId].weekly_rate + '%' ).removeClass('is-un');
 		// month
 		fnCircle(30, completeObj.monthy[currentFaceId]/100 );
-		$('#completebox-30 .completebox-text').text( completeObj.monthy[currentFaceId] + '%' );
+		$('#completebox-30 .completebox-text').text( completeObj.monthy[currentFaceId] + '%' ).removeClass('is-un');
 		// season
 		fnCircle(90, completeObj.seasons[1].rate/100 );
-		$('#completebox-90 .completebox-text').text( completeObj.seasons[1].rate + '%' );
+		$('#completebox-90 .completebox-text').text( completeObj.seasons[1].rate + '%' ).removeClass('is-un');
 
 		// CHECK v
 		fnApiFaceCheck();
@@ -246,7 +246,6 @@ const fnPrintFaceMap = function(id){
 	$('#facemap').append(str);
 };
 
-let viewSeason;
 $(()=>{
 	// ==========================================
 	// == 開頁運作邏輯 v
@@ -286,10 +285,10 @@ $(()=>{
 	// console.log( currentWeekYear, preMonthYear1, preMonthYear2);
 
 	// 取前二月各自的季數 v
-	for( a in completeObj.season_area ){
-		let cur = completeObj.season_area[a].findIndex( item=> item == currentWeekMonth );
-		let pre1 = completeObj.season_area[a].findIndex( item=> item == preMonth1);
-		let pre2 = completeObj.season_area[a].findIndex( item=> item == preMonth2);
+	for( a in bus.season_area ){
+		let cur = bus.season_area[a].findIndex( item=> item == currentWeekMonth );
+		let pre1 = bus.season_area[a].findIndex( item=> item == preMonth1);
+		let pre2 = bus.season_area[a].findIndex( item=> item == preMonth2);
 		//
 		if( cur >= 0){ currentSeason = a };
 		if( pre1 >= 0){ preMonthSeason1 = a };
@@ -300,15 +299,15 @@ $(()=>{
 	// ==========================================
 	// == EVENTS v
 	// ==========================================
-	$('#month-pre').click(function () {
+	$('#month-prev').click(function () {
 		$('.ui-icon-circle-triangle-w').click();
 	});
 
-	$('#month-nex').click(function () {
+	$('#month-next').click(function () {
 		$('.ui-icon-circle-triangle-e').click();
 	});
 	
-	$('#month-pre, #month-nex').click(function () {
+	$('#month-prev, #month-next').click(function () {
 		let id = fnGetThisYear() + fnGetThisMonth();
 		// --------------------------------
 		// -- 處理「月」v 
@@ -321,14 +320,14 @@ $(()=>{
 			let text;
 			id > currentFaceId? text='尚無紀錄' : text='紀錄過期'
 			fnCircle(30, 0 );
-			$('#completebox-30 .completebox-text').text( text );
+			$('#completebox-30 .completebox-text').text( text ).addClass('is-un');
 		}else{
 			// HTML v
 			fnPrintFaceMap( fnGetThisYear() + fnGetThisMonth() );
 
 			// CIRCLE ANIMATE v
 			fnCircle(30, completeObj.monthy[id]/100 );
-			$('#completebox-30 .completebox-text').text( completeObj.monthy[id] + '%' );
+			$('#completebox-30 .completebox-text').text( completeObj.monthy[id] + '%' ).removeClass('is-un');
 		};
 
 		// --------------------------------
@@ -338,7 +337,7 @@ $(()=>{
 		const fnOnTime = function(){
 			if( completeObj.seasons[a].rate !=  $('#completebox-90 .completebox-text').text().replace('%', '') ){
 				fnCircle(90, completeObj.seasons[a].rate/100 );
-				$('#completebox-90 .completebox-text').text( completeObj.seasons[a].rate + '%' );
+				$('#completebox-90 .completebox-text').text( completeObj.seasons[a].rate + '%' ).removeClass('is-un');
 			}
 		};
 
@@ -366,11 +365,11 @@ $(()=>{
 				break;
 			case id > currentFaceId:
 				fnCircle(90, 0 );
-				$('#completebox-90 .completebox-text').text( '尚無紀錄' );
+				$('#completebox-90 .completebox-text').text( '尚無紀錄' ).addClass('is-un');
 				break;
 			case id < currentFaceId:
 				fnCircle(90, 0 );
-				$('#completebox-90 .completebox-text').text( '紀錄過期' );
+				$('#completebox-90 .completebox-text').text( '紀錄過期' ).addClass('is-un');
 				break;
 			default:
 		};

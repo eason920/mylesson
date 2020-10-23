@@ -84,10 +84,46 @@
 // =============================
 // == EDIT v
 // =============================
+#edit-out
+	padding: 25px 40px 10px
+	
+#edit-title
+	font:
+		size: 1.1875rem
+		weight: bold
+	color: #5a5a5a
+	margin: 0 auto 23px
+	width: 110px
+
+	svg
+		width: 21px
+		height: 20px
+		margin:
+			right: 5px
+			bottom: -2px
+
+.edit-subtitle
+	border-bottom:
+		style: solid
+		width: 1px
+	font:
+		size: .9375rem
+		weight: bold
+	padding-bottom: 8px
+	margin-bottom: 15px
+
+	&.is-bar1
+		border-bottom-color: $c-red
+		color: $c-red
+
+	&.is-bar2		
+		border-bottom-color: $c-green
+		color: $c-green
+
 .edit-box
+	font-size: 0
 	cursor: pointer
-	margin-bottom: 20px
-	overflow: hidden
+	margin-bottom: 10px
 	&[data-skin='1']
 		color: $c-red
 		.edit-item.active
@@ -99,11 +135,30 @@
 			background-color: $c-green
 			color: #fff
 
-.edit-item
-	width: 50%
-	float: left
+.edit-item,
+#edit-unedit
 	line-height: 2
 	user-select: none
+	font-size: .875rem
+	display: inline-block
+	text-align: center
+	line-height: 30px
+	border-radius: 10px
+	background:
+		color: #eee
+	box-shadow: -4px -3px 9px rgba(255, 255, 255, 0.95), 1px 4px 7px #ddd
+	margin-bottom: 17px
+	width: 45%
+	&:nth-child(odd)
+		margin-right: 10%
+	&.active
+		text-shadow: 0 0 3px rgba(255,255,255, .8)
+
+#edit-unedit
+	cursor: pointer
+	color: #494949
+	background-color: #d3d3d3
+	
 
 // --------------------------------
 $lb-h: 100px
@@ -135,3 +190,37 @@ $lb-g: 20px
 		color: #bbb
 	color: #333
 	margin-right: 12px
+
+// --------------------------------
+#sticky
+	width: image-width('sticky_top.png')
+	margin: 0 auto
+
+#sticky-top
+	background:
+		image: image-url('sticky_top.png')
+		position: 0 0
+	height: image-height('sticky_top.png')
+
+#sticky-middle
+	background:
+		image: image-url('sticky_middle.png')
+		position: 0 0
+		repeat: repeat-y
+	padding: 0 55px
+	color: #5a5a5a
+	font-size: .9375rem
+	b
+		display: inline-block
+		margin-right: 7px
+
+#sticky-msg
+	margin:
+		top: 7px
+	line-height: 1.4
+
+#sticky-bottom
+	background:
+		image: image-url('sticky_bottom.png')	
+		position: 0 0
+	height: image-height('sticky_bottom.png')

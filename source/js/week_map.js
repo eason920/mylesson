@@ -1,9 +1,4 @@
-const weeklyAry = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-const monthAry = ["January","February","March","April","May","June","July","August","September","October", "November", "December"];
-//
 let newObj = {};
-//
-const weekMax53 = [2015, 2020, 2026, 2032, 2037, 2043, 2048];
 //
 let canIAdd = true;
 //
@@ -24,11 +19,6 @@ let recordIndex = 0;
 let wId;
 //
 
-const fnWeekObjUpdate = function(){
-	console.log(apiWeek);
-	console.log('%cUpdated!', 'color:greenyellow;font-size:20px;');
-}
-
 const fnCreateViewObj = function(ary, year, month, week, id){	
 	newObj = {}
 	// ID v
@@ -45,6 +35,7 @@ const fnCreateViewObj = function(ary, year, month, week, id){
 	newObj.weekly_bar1 = 0;
 	newObj.weekly_bar2 = 0;
 	newObj.weekly_level = 0;
+	newObj.weekly_rate = 0;
 	newObj.weekly_msg = '本週尚未安排學習課程';
 	newObj.date_list = [];
 
@@ -69,7 +60,7 @@ const fnPrintWeekMap = function(id){
 	let week = -1;
 	const ary = data.date_list;
 	//
-	$('.weekmap-title').text( monthAry[Number(data.dt_month)-1] + ', ' + data.dt_year );
+	$('.weekmap-title').text( bus.monthAry[Number(data.dt_month)-1] + ', ' + data.dt_year );
 	
 	// --------------------------------
 	// -- WEEK TITLE HTML v
@@ -90,7 +81,7 @@ const fnPrintWeekMap = function(id){
 		}
 		
 		dayStr += '">'
-		dayStr += weeklyAry[thisWeekIndex];
+		dayStr += bus.weeklyAry[thisWeekIndex];
 		dayStr += '<span class="weekmap-day">'
 		if( date.length < 2 ){ dayStr += '0'};
 		dayStr += date
@@ -164,11 +155,11 @@ const fnPrintWeekMap = function(id){
 			dateStr += '<div class="weekmap-in">';
 			item.hours[h].forEach(function(j){
 				dateStr += '<div class="weekmap-item" ';
-				dateStr += 'data-skin="' + todoList[ j.sort ].skin + '" ';
+				dateStr += 'data-skin="' + bus.todoList[ j.sort ].skin + '" ';
 				dateStr += 'data-sort="' + j.sort + '" ';
 				dateStr += 'data-done="' + j.done + '">';
 				dateStr += '<div class="weekmap-status"></div>';
-				dateStr += '<div class="weekmap-text">' + todoList[ j.sort ].title +'</div>'
+				dateStr += '<div class="weekmap-text">' + bus.todoList[ j.sort ].title +'</div>'
 				dateStr += '</div>'// -item
 			});
 			dateStr += '</div>'// -in
@@ -183,7 +174,7 @@ const fnPrintWeekMap = function(id){
 	// --------------------------------
 	// -- LEVEL v
 	// --------------------------------
-	$('#achive-level span').text( levelAry[apiWeek[id].weekly_level] );
+	$('#achive-level span').text( bus.levelAry[apiWeek[id].weekly_level] );
 	//
 	let ml1 = apiWeek[id].weekly_bar1;
 	let ml2 = apiWeek[id].weekly_bar2;
@@ -192,7 +183,7 @@ const fnPrintWeekMap = function(id){
 	$('.achive-bar.is-bar1 .achive-percent').css({left: apiWeek[id].weekly_bar1+'%', marginLeft: 'calc( -8% / '+ ml1 +')'});
 	$('.achive-bar.is-bar2 .achive-percent').css({left: apiWeek[id].weekly_bar2+'%', marginLeft: 'calc( -8% / '+ ml2 +')'});
 	//
-	$('#achive-msg').text( apiWeek[id].weekly_msg );
+	$('#achive-msg, #sticky-msg').text( apiWeek[id].weekly_msg );
 };
 
 const fnRecordApiWeek = function () {
@@ -246,7 +237,7 @@ $(()=>{
 			// WEEK  & YEAR v
 			viewWeek = Number(viewWeek) - 1;
 			const viewPreYear = viewYear - 1;
-			const preIsMax53 = weekMax53.findIndex( item => item == viewPreYear );
+			const preIsMax53 = bus.weekMax53.findIndex( item => item == viewPreYear );
 			if( viewWeek == 0 ){
 				viewYear --;
 				if( preIsMax53 >= 0 ){ 
@@ -269,7 +260,7 @@ $(()=>{
 				// console.log( $(this).text() , viewWeek, $(this).text() == viewWeek );
 				if( $(this).text() == viewWeek ){ check = true }
 			});
-			if( !check ){ $('#month-pre').click() };
+			if( !check ){ $('#month-prev').click() };
 	
 			viewMonth = $('.ui-datepicker-month:eq(0)').text().replace(' 月', '');
 			
@@ -292,7 +283,7 @@ $(()=>{
 		if( viewWeekIndex < veiwWeekMax ){
 			// WEEK  & YEAR v
 			viewWeek = Number(viewWeek) + 1;
-			const nextIsMax53 = weekMax53.findIndex( item => item == viewYear );
+			const nextIsMax53 = bus.weekMax53.findIndex( item => item == viewYear );
 			if( nextIsMax53 >= 0 ){
 				if( viewWeek == 54 ){ 
 					viewWeek = 1;
@@ -318,7 +309,7 @@ $(()=>{
 				// console.log( $(this).text() , viewWeek, $(this).text() == viewWeek );
 				if( $(this).text() == viewWeek ){ check = true }
 			});
-			if( !check ){ $('#month-nex').click() };
+			if( !check ){ $('#month-next').click() };
 
 			viewMonth = $('.ui-datepicker-month:eq(0)').text().replace(' 月', '');
 			
@@ -337,7 +328,7 @@ $(()=>{
 
 	$('#prev-week, #next-week').click(function(){
 		fnCircle(7, apiWeek[viewWeekId].weekly_rate/100);
-		$('#completebox-7 .completebox-text').text( apiWeek[viewWeekId].weekly_rate + '%' );
+		$('#completebox-7 .completebox-text').text( apiWeek[viewWeekId].weekly_rate + '%' ).removeClass('is-un');
 		//
 		if( viewWeekIndex < 0 ){
 			$('#edit-week').addClass('is-muted');
@@ -345,47 +336,61 @@ $(()=>{
 			$('#edit-week').removeClass('is-muted');
 		}
 		if (viewWeekIndex < 1) {
-			$('#clone-week').removeClass('is-muted');
+			$('#week-clone').removeClass('is-muted');
 		}else{
-			$('#clone-week').addClass('is-muted');
+			$('#week-clone').addClass('is-muted');
 		}
-	})
-	$('#clone-week').click(function(){
-		$('#load-cal').fadeIn();
-		$('#calbox, #achive').fadeOut();
-		console.log('clone');
-		fnMemoUpdateObj('clone');
-		console.log(updateObj);
-		
-		// WEEK MAP v
-		fnPrintWeekMap(currentWeekId);
-		viewWeekIndex = 0;
-		viewMonth = currentWeekMonth;
-		viewYear = currentWeekYear;
-		viewWeek = currentWeek;
-		viewWeekId = currentWeekId;
-		viewWeekAry = currentWeekAry;
-
-		// DATE-PICKER & FACE MAP v
-		fnDatepickerJump(currentWeekYear, currentWeekMonth);
-		fnPrintFaceMap(currentFaceId);
-
-		// GET NEXT v
-		$('#next-week').click();
-		console.log(viewWeekId, viewWeekAry);
-		apiWeek[viewWeekId] = updateObj;
-		apiWeek[viewWeekId].date_list.forEach(function(item, i){
-			console.log(i, item.date, viewWeekAry[i]);
-			item.date = viewWeekAry[i];
-		})
-		fnPrintWeekMap(viewWeekId);
-
-		$('#load-cal').fadeOut();
-		$('#calbox, #achive').fadeIn();
-
 	});
 
+	$('#week-clone').click(function(){
+		const delay = 600;
+		const check = confirm('確定要將此週的學習排程\n複製到未來一週嗎?\n*己安排的排程將會被覆蓋');
+		if( check ){
+			$('#load-cal').fadeIn(delay);
+			$('#calbox, #achive, #facemap-open').fadeOut(delay);
+			const obj = fnWeekObjMemo('clone');
+			
+			//--------------------------
+			setTimeout(()=>{
+				// 1. WEEK MAP INIT v
+				fnPrintWeekMap(currentWeekId);
+				viewWeekIndex = 0;
+				viewMonth = currentWeekMonth;
+				viewYear = currentWeekYear;
+				viewWeek = currentWeek;
+				viewWeekId = currentWeekId;
+				viewWeekAry = currentWeekAry;
 
+				// 2. DATE-PICKER & FACE MAP INIT v
+				fnDatepickerJump(currentWeekYear, currentWeekMonth);
+				fnPrintFaceMap(currentFaceId);
+
+				// 3. GET NEXT WEEK & FIX OBJ v
+				$('#next-week').click();
+				apiWeek[viewWeekId] = obj;
+				apiWeek[viewWeekId].date_list.forEach(function(item, i){
+					console.log(i, item.date, viewWeekAry[i]);
+					item.date = viewWeekAry[i];
+				});
+				apiWeek[viewWeekId].dt_year = viewYear;
+				apiWeek[viewWeekId].dt_month = viewMonth;
+				apiWeek[viewWeekId].dt_week = viewWeek
+				apiWeek[viewWeekId].dt_id = viewWeekId;
+				apiWeek[viewWeekId].weekly_bar1 = 0;
+				apiWeek[viewWeekId].weekly_bar2 = 0;
+				apiWeek[viewWeekId].weekly_level = 0;
+				apiWeek[viewWeekId].weekly_msg = '尚待咨詢師分析';
+				apiWeek[viewWeekId].weekly_rate = 0;
+
+				// 4. PRINT & FINISH v
+				fnPrintWeekMap(viewWeekId);
+				$('#load-cal').fadeOut();
+				$('#calbox, #achive, #facemap-open').fadeIn();
+
+				console.log(obj);
+			}, delay);
+		};
+	});
 
 	// ==========================================
 	// == TEST WEEK v

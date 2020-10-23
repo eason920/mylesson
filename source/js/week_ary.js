@@ -1,31 +1,3 @@
-const todoList = [
-	{skin: 1, "sort": 0, title: "文章"},
-	{skin: 1, "sort": 1, title: "影片"},
-	{skin: 1, "sort": 2, title: "專欄"},
-	{skin: 1, "sort": 3, title: "每週測驗"},
-	{skin: 1, "sort": 4, title: "音樂"},
-	{skin: 1, "sort": 5, title: "童話故事"},
-
-	{skin: 2, "sort": 6, title: "實力衝刺"},
-	{skin: 2, "sort": 7, title: "寫作練習"},
-	{skin: 2, "sort": 8, title: "會話練習"},
-	{skin: 2, "sort": 9, title: "朗讀練習"},
-	{skin: 2, "sort": 10, title: "研習營"},
-];
-
-
-// date_list[0].hors.m[0].done v
-// 0 = 時間未到
-// 1 = 完成
-// 2 = 完成一半
-// 3 = 未完成    
-// 4 = 編輯模式下待刪項目
-
-// date_list[0].daily_done v
-// 0 = 時間未到 / 非本週數字
-// 1 = 完成
-// 3 = 未完成
-const levelAry = ['無', '輕', '中', '重', '極重']
 
 const demoWeekObj_202034 = {
 	"dt_id": '202034',
@@ -1170,12 +1142,4 @@ const demoWeekObj_202043 = {
 	]
 }
 
-const apiWeek = {
-	202034: demoWeekObj_202034,
-	202038: demoWeekObj_202038,
-	202039: demoWeekObj_202039,
-	202040: demoWeekObj_202040,
-	202041: demoWeekObj_202041,
-	202042: demoWeekObj_202042,
-	202043: demoWeekObj_202043
-}
+
