@@ -1,4 +1,4 @@
-let apiFace = {};
+let faceData = {};
 let faceAry = {};
 let fId;
 let doAdd = true;
@@ -18,7 +18,7 @@ let preMonthSeason2;
 let preMonthYear1;
 let preMonthYear2;
 
-const fnRecolrApiFace = function(){
+const fnRecolrfaceData = function(){
 	// --------------------------------
 	// -- CURR WEEK v
 	// --------------------------------
@@ -30,8 +30,8 @@ const fnRecolrApiFace = function(){
 			faceId = viewYear + String(viewMonth);
 		};
 
-		apiFace[faceId] = {};
-		apiFace[faceId].week_list = [];
+		faceData[faceId] = {};
+		faceData[faceId].week_list = [];
 
 		let weekId;
 		let weekLength = -1;
@@ -39,24 +39,24 @@ const fnRecolrApiFace = function(){
 		$('#datepicker .ui-datepicker-group-first tbody tr').each(function (i) {
 			weekLength ++
 			const week = $(this).find('.ui-datepicker-week-col').text();
-			apiFace[faceId].week_list.push({ week });
+			faceData[faceId].week_list.push({ week });
 			//
-			apiFace[faceId].week_list[i].date = [];
-			apiFace[faceId].week_list[i].daily_done = [];
+			faceData[faceId].week_list[i].date = [];
+			faceData[faceId].week_list[i].daily_done = [];
 			//
 			if (String(week).length < 2) {
 				weekId = viewYear + '0' + String(week);
 			} else {
 				weekId = viewYear + String(week);
 			};
-			if (apiWeek[weekId]) {
-				for (a in apiWeek[weekId].date_list ){
-					apiFace[faceId].week_list[i].date.push( apiWeek[weekId].date_list[a].date );
-					apiFace[faceId].week_list[i].daily_done.push( apiWeek[weekId].date_list[a].daily_done );
+			if (weekData[weekId]) {
+				for (a in weekData[weekId].date_list ){
+					faceData[faceId].week_list[i].date.push( weekData[weekId].date_list[a].date );
+					faceData[faceId].week_list[i].daily_done.push( weekData[weekId].date_list[a].daily_done );
 				};
 			};
 
-			apiFace[faceId].week_length = weekLength;
+			faceData[faceId].week_length = weekLength;
 		});
 		doAdd = false;
 	}
@@ -87,7 +87,7 @@ const fnRecolrApiFace = function(){
 	// --------------------------------
 	if (recordIndex > recordMax) {
 		clearInterval(fId);
-		delete apiFace[monthCutId];
+		delete faceData[monthCutId];
 
 		// WEEK MAP v
 		fnPrintWeekMap(currentWeekId);
@@ -112,8 +112,8 @@ const fnRecolrApiFace = function(){
 
 		// CIRCLE ANIMATE v
 		// week
-		fnCircle(7, apiWeek[currentWeekId].weekly_rate/100);
-		$('#completebox-7 .completebox-text').text( apiWeek[currentWeekId].weekly_rate + '%' ).removeClass('is-un');
+		fnCircle(7, weekData[currentWeekId].weekly_rate/100);
+		$('#completebox-7 .completebox-text').text( weekData[currentWeekId].weekly_rate + '%' ).removeClass('is-un');
 		// month
 		fnCircle(30, completeObj.monthy[currentFaceId]/100 );
 		$('#completebox-30 .completebox-text').text( completeObj.monthy[currentFaceId] + '%' ).removeClass('is-un');
@@ -122,8 +122,8 @@ const fnRecolrApiFace = function(){
 		$('#completebox-90 .completebox-text').text( completeObj.seasons[1].rate + '%' ).removeClass('is-un');
 
 		// CHECK v
-		fnApiFaceCheck();
-		console.log(apiFace);
+		fnfaceDataCheck();
+		console.log(faceData);
 	}
 };
 
@@ -133,37 +133,37 @@ const fnRecolrApiFace = function(){
 // month = 10
 // week = 40
 // id = 202040
-const fnApiFaceCheck = function(){
+const fnfaceDataCheck = function(){
 	// console.log( currentWeekId , id, id < currentWeekId);
 	// console.log( currentFaceId );
-	for( id in apiFace ){
+	for( id in faceData ){
 		// console.log(id, id < currentFaceId);
 		// 過去月份 v
 		if ( id < currentFaceId ) {
-			for (i in apiFace[id].week_list) {
+			for (i in faceData[id].week_list) {
 				// 1. 補空視覺白 (0 改作 3) v
-				for(done in apiFace[id].week_list[i].daily_done){
-					if( apiFace[id].week_list[i].daily_done[done] == 0 ){
-						apiFace[id].week_list[i].daily_done[done] = 3
+				for(done in faceData[id].week_list[i].daily_done){
+					if( faceData[id].week_list[i].daily_done[done] == 0 ){
+						faceData[id].week_list[i].daily_done[done] = 3
 					} // if
 				} // done
 
 				// 2. 第一週的上月 date 改作 0 v
 				if( i == 0 ){
-					// console.log('is first', apiFace[id].week_list[i]);
-					for( date in apiFace[id].week_list[i].date ){
-						if( apiFace[id].week_list[i].date[date] > 7 ){
-							apiFace[id].week_list[i].daily_done[date] = 0;
+					// console.log('is first', faceData[id].week_list[i]);
+					for( date in faceData[id].week_list[i].date ){
+						if( faceData[id].week_list[i].date[date] > 7 ){
+							faceData[id].week_list[i].daily_done[date] = 0;
 						} // if
 					} // date
 				}
 	
 				// 3. 最後週的下月 date 改作 0 v
-				if( i == apiFace[id].week_length ){
-					// console.log('is last', apiFace[id].week_list[i]);
-					for( date in apiFace[id].week_list[i].date ){
-						if( apiFace[id].week_list[i].date[date] < 7 ){
-							apiFace[id].week_list[i].daily_done[date] = 0;
+				if( i == faceData[id].week_length ){
+					// console.log('is last', faceData[id].week_list[i]);
+					for( date in faceData[id].week_list[i].date ){
+						if( faceData[id].week_list[i].date[date] < 7 ){
+							faceData[id].week_list[i].daily_done[date] = 0;
 						} // if
 					} // date
 				}
@@ -228,7 +228,7 @@ const fnApiFaceCheck = function(){
 
 const fnPrintFaceMap = function(id){
 	$('#facemap').html('');
-	const wl = apiFace[id].week_list;
+	const wl = faceData[id].week_list;
 	// console.log( wl );
 	let str = '';
 	for(w in wl){
@@ -250,8 +250,8 @@ $(()=>{
 	// ==========================================
 	// == 開頁運作邏輯 v
 	// ==========================================
-	// file:week_map.js-fn:fnRecordApiWeek v
-	// file:face_map.js-fn:fnRecolrApiFace v
+	// file:week_map.js-fn:fnRecordweekData v
+	// file:face_map.js-fn:fnRecolrfaceData v
 	// 同檔-fn:fnPrintFaceMap
 
 	// ==========================================
@@ -312,7 +312,7 @@ $(()=>{
 		// --------------------------------
 		// -- 處理「月」v 
 		// --------------------------------
-		if( !apiFace[id] ){
+		if( !faceData[id] ){
 			// HTML v
 			$('#facemap').html('');
 

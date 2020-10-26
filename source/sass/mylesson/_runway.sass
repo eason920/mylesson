@@ -110,9 +110,17 @@
 	background-color: #fff
 	border-radius: 15px
 	margin: auto
-	overflow: hidden
 	z-index: 3
 	display: none
+
+#runway-close
+	position: absolute
+	top: 5px
+	right: 14px
+	color: #fff
+	font-size: 20px
+	line-height: 21px
+	cursor: pointer
 
 #runway-title
 	width: 100%
@@ -120,15 +128,29 @@
 		color: $c-blue
 	color: #fff
 	line-height: 40px
-	text-align: center
+	text:
+		align: center
+		indent: -15px
 	letter-spacing: 1px
 	font:
-		size: 1rem
+		size: 16px
 		weight: bold
+	border-radius: 12px 12px 0 0
 
 #runway-date
 	padding: 20px
 
+#runway-btnbox
+	position: absolute
+	bottom: 20px
+	left: 0
+	right: 0
+	display: flex
+	justify-content: space-between
+	width: 170px
+	margin: 0 auto
+
+#runway-cancel,
 #runway-send
 	background:
 		color: $c-blue
@@ -139,6 +161,10 @@
 	color: #fff
 	margin: 0 auto
 	cursor: pointer
+
+#runway-cancel
+	background:
+		color: #aaa
 
 #runway-masker
 	position: fixed

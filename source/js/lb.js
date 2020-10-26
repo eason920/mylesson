@@ -93,7 +93,7 @@ $(()=>{
 
 	$('#edit-send').click(function(){
 		const obj = fnWeekObjMemo();
-		apiWeek[viewWeekId] = obj;
+		weekData[viewWeekId] = obj;
 		//
 		fnPrintWeekMap( viewWeekId );
 		fnWeekObjUpdate( obj );

@@ -12,7 +12,7 @@ let viewWeekIndex = 0;
 const veiwWeekMax = 1;// 僅可見未來一週
 let viewWeekMin = -15; 
 // ^ 往前三個月(12週)內 ( 12 = this x 1 + pre x 11 ) 
-// ^ 為取得 apiFace 近三月完整 data, 需超出以逹目的，而在「face_map.js-fnRecolrApiFace」函式完成後回歸 -11** 
+// ^ 為取得 faceData 近三月完整 data, 需超出以逹目的，而在「face_map.js-fnRecolrfaceData」函式完成後回歸 -11** 
 // const recordIndex = viewWeekMin * -1;
 const recordMax = viewWeekMin * -1;
 let recordIndex = 0;
@@ -48,15 +48,15 @@ const fnCreateViewObj = function(ary, year, month, week, id){
 		obj.hours = {m: [], a: [], e: []};
 		newObj.date_list.push(obj);
 	}
-	apiWeek[id] = newObj;
+	weekData[id] = newObj;
 }
 
 const fnPrintWeekMap = function(id){
 	let data;
-	if( !apiWeek[id] ){
+	if( !weekData[id] ){
 		fnCreateViewObj(viewWeekAry, viewYear, viewMonth, viewWeek, viewWeekId );
 	}
-	data = apiWeek[id];
+	data = weekData[id];
 	let week = -1;
 	const ary = data.date_list;
 	//
@@ -174,19 +174,19 @@ const fnPrintWeekMap = function(id){
 	// --------------------------------
 	// -- LEVEL v
 	// --------------------------------
-	$('#achive-level span').text( bus.levelAry[apiWeek[id].weekly_level] );
+	$('#achive-level span').text( bus.levelAry[weekData[id].weekly_level] );
 	//
-	let ml1 = apiWeek[id].weekly_bar1;
-	let ml2 = apiWeek[id].weekly_bar2;
+	let ml1 = weekData[id].weekly_bar1;
+	let ml2 = weekData[id].weekly_bar2;
 	if( ml1 == 0 ){ ml1 = 1 };
 	if( ml2 == 0 ){ ml2 = 1 };
-	$('.achive-bar.is-bar1 .achive-percent').css({left: apiWeek[id].weekly_bar1+'%', marginLeft: 'calc( -8% / '+ ml1 +')'});
-	$('.achive-bar.is-bar2 .achive-percent').css({left: apiWeek[id].weekly_bar2+'%', marginLeft: 'calc( -8% / '+ ml2 +')'});
+	$('.achive-bar.is-bar1 .achive-percent').css({left: weekData[id].weekly_bar1+'%', marginLeft: 'calc( -8% / '+ ml1 +')'});
+	$('.achive-bar.is-bar2 .achive-percent').css({left: weekData[id].weekly_bar2+'%', marginLeft: 'calc( -8% / '+ ml2 +')'});
 	//
-	$('#achive-msg, #sticky-msg').text( apiWeek[id].weekly_msg );
+	$('#achive-msg, #sticky-msg').text( weekData[id].weekly_msg );
 };
 
-const fnRecordApiWeek = function () {
+const fnRecordweekData = function () {
 	$('#prev-week').click(); // < ** 連動「viewWeekId 退位」程式**
 	recordIndex++;
 	if (recordIndex >= recordMax) {
@@ -204,9 +204,9 @@ const fnRecordApiWeek = function () {
 		viewWeekAry = fnGetViewWeekAry(viewWeek);
 
 		// NEXT FUNCTION v
-		console.log(apiWeek);
+		console.log(weekData);
 		recordIndex = 0;
-		fId = setInterval(fnRecolrApiFace, 0);// in face_map
+		fId = setInterval(fnRecolrfaceData, 0);// in face_map
 	}
 }
 
@@ -220,11 +220,11 @@ $(()=>{
 	viewWeekId = currentWeekId;
 	viewWeekAry = fnGetViewWeekAry(viewWeek);
 	//
-	if (!apiWeek[currentWeekId]) {
+	if (!weekData[currentWeekId]) {
 		fnCreateViewObj(viewWeekAry, viewYear, viewMonth, viewWeek, viewWeekId);
 	};
 	//
-	wId = setInterval( fnRecordApiWeek, 0);
+	wId = setInterval( fnRecordweekData, 0);
 
 	// ==========================================
 	// == ACTION EVENT v
@@ -327,8 +327,8 @@ $(()=>{
 	// if( viewWeekIndex <= veiwWeekMax && viewWeekIndex > -1 )
 
 	$('#prev-week, #next-week').click(function(){
-		fnCircle(7, apiWeek[viewWeekId].weekly_rate/100);
-		$('#completebox-7 .completebox-text').text( apiWeek[viewWeekId].weekly_rate + '%' ).removeClass('is-un');
+		fnCircle(7, weekData[viewWeekId].weekly_rate/100);
+		$('#completebox-7 .completebox-text').text( weekData[viewWeekId].weekly_rate + '%' ).removeClass('is-un');
 		//
 		if( viewWeekIndex < 0 ){
 			$('#edit-week').addClass('is-muted');
@@ -367,20 +367,20 @@ $(()=>{
 
 				// 3. GET NEXT WEEK & FIX OBJ v
 				$('#next-week').click();
-				apiWeek[viewWeekId] = obj;
-				apiWeek[viewWeekId].date_list.forEach(function(item, i){
+				weekData[viewWeekId] = obj;
+				weekData[viewWeekId].date_list.forEach(function(item, i){
 					console.log(i, item.date, viewWeekAry[i]);
 					item.date = viewWeekAry[i];
 				});
-				apiWeek[viewWeekId].dt_year = viewYear;
-				apiWeek[viewWeekId].dt_month = viewMonth;
-				apiWeek[viewWeekId].dt_week = viewWeek
-				apiWeek[viewWeekId].dt_id = viewWeekId;
-				apiWeek[viewWeekId].weekly_bar1 = 0;
-				apiWeek[viewWeekId].weekly_bar2 = 0;
-				apiWeek[viewWeekId].weekly_level = 0;
-				apiWeek[viewWeekId].weekly_msg = '尚待咨詢師分析';
-				apiWeek[viewWeekId].weekly_rate = 0;
+				weekData[viewWeekId].dt_year = viewYear;
+				weekData[viewWeekId].dt_month = viewMonth;
+				weekData[viewWeekId].dt_week = viewWeek
+				weekData[viewWeekId].dt_id = viewWeekId;
+				weekData[viewWeekId].weekly_bar1 = 0;
+				weekData[viewWeekId].weekly_bar2 = 0;
+				weekData[viewWeekId].weekly_level = 0;
+				weekData[viewWeekId].weekly_msg = '尚待咨詢師分析';
+				weekData[viewWeekId].weekly_rate = 0;
 
 				// 4. PRINT & FINISH v
 				fnPrintWeekMap(viewWeekId);
@@ -405,7 +405,7 @@ $(()=>{
 	// 	if(ccMax > 330){
 	// 		console.log('STOP');
 	// 		clearInterval(cId);
-	// 		console.log(apiWeek);
+	// 		console.log(weekData);
 			
 	// 	}
 	// }

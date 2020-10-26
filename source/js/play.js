@@ -79,5 +79,9 @@ $(()=>{
 		
 	});
 
+	$('#runway-masker, #runway-cancel, #runway-close').click(function(){
+		$('#runway-lb, #runway-masker').fadeOut();
+	});
+
 	// $('#runway-start').click();
 });

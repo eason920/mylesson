@@ -51,7 +51,7 @@ const completeObj = {
 	}
 };
 //
-const apiWeek = {
+const weekData = {
 	202034: demoWeekObj_202034,
 	202038: demoWeekObj_202038,
 	202039: demoWeekObj_202039,
@@ -181,15 +181,15 @@ const fnWeekObjMemo = function(string){
 	});
 
 	// 取回舊有 rate 資料 v
-	if( apiWeek[viewWeekId] ){
-		obj.weekly_rate = apiWeek[viewWeekId].weekly_rate;
+	if( weekData[viewWeekId] ){
+		obj.weekly_rate = weekData[viewWeekId].weekly_rate;
 	};
 
 	return obj;
 };
 
 const fnWeekObjUpdate = function(obj){
-	console.log(apiWeek);
+	console.log(weekData);
 	console.log('JSON', obj);
 	// console.log( 'STRING' ,JSON.stringify(obj) );
 	// $.ajax({
@@ -231,7 +231,7 @@ $(()=>{
 		currentWeekId = currentWeekYear + String(currentWeek);
 	}
 	// console.log(currentWeekId);
-	// currentWeekRate = apiWeek[currentWeekId].weekly_rate;
+	// currentWeekRate = weekData[currentWeekId].weekly_rate;
 	currentDate = $('.ui-datepicker-today:eq(0) > *').text();
 	//
 	if( String(currentWeekMonth).length < 2 ){
