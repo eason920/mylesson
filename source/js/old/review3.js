@@ -6,3 +6,5 @@ $('#edit-send').click(function(){
 	updateObj = {}
 
 });
+
+// animation: ani-moving 2s linear 「infinite」 forwards

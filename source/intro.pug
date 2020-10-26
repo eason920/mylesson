@@ -15,7 +15,6 @@ html(lang="en")
 		script(src='https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js')
 		//- for demo json v
 		script(src="./js/week_ary.js")
-		script(src="./js/face_ary.js")
 		//- main v
 		script(src="./js/mylesson.js")
 		//- WEEK v
@@ -24,6 +23,8 @@ html(lang="en")
 		//- FACE v
 		//- 若改摸擬第一次，除註記掉上方，且應刪除 application>cookie>faceAry ^
 		script(src="./js/face_map.js")
+		//- PLAY v
+		script(src="./js/play.js")
 		//- review v
 		//- script(src="./js/review.js")
 		//- script(src="./js/review2.js")
@@ -123,7 +124,17 @@ html(lang="en")
 						#under
 							#data data
 							#contact contact
-				#runway runway
+				#runway 
+					#runway-way
+					#runway-time 
+						.guest
+					#runway-client
+						.guest
+					#runway-finish
+						b
+					//-
+					#runway-start
+					#runway-extend
 		#foo
 			//- .wrapper
 			//- 	.box footer
@@ -135,7 +146,15 @@ html(lang="en")
 					| 服務時間：週一～週六 10:00~12:30、13:30~17:30、18:30~22:00  |  02-2523-9777 / 0800-023-777 (限市話)
 				span.f2-2
 					| © 2020 Brainstorm Digital Communications Corp. All rights reserved. Privacy Policy
-
+		#runway-masker
+		#runway-lb
+			#runway-title 請選擇計劃升級時間
+			svg#runway-month-prev(width='6' height='15' viewBox='0 0 6 15' fill='none' xmlns='http://www.w3.org/2000/svg')
+				path(d='M5.05624 0.963867L0.710449 7.36398L5.05624 13.7641' stroke='#7E7E7E')
+			svg#runway-month-next(width='6' height='15' viewBox='0 0 6 15' fill='none' xmlns='http://www.w3.org/2000/svg')
+				path(d='M0.756745 13.7641L5.10254 7.36399L0.756746 0.963876' stroke='#7E7E7E')
+			#runway-date
+			#runway-send 開始!
 		#lbmasker.is-hide
 		#lb.is-hide(data-edit='0')
 			#lb-left

@@ -256,13 +256,13 @@ $(()=>{
 			
 			// CHECK DATE-PICKER HAVE DATA ? v
 			let check = false;
-			$('.ui-datepicker-week-col').each(function(){
+			$('#datepicker .ui-datepicker-week-col').each(function(){
 				// console.log( $(this).text() , viewWeek, $(this).text() == viewWeek );
 				if( $(this).text() == viewWeek ){ check = true }
 			});
 			if( !check ){ $('#month-prev').click() };
 	
-			viewMonth = $('.ui-datepicker-month:eq(0)').text().replace(' 月', '');
+			viewMonth = $('#datepicker .ui-datepicker-month:eq(0)').text().replace(' 月', '');
 			
 			// GET VIEW ARY v
 			viewWeekAry = fnGetViewWeekAry(viewWeek);
@@ -305,13 +305,13 @@ $(()=>{
 			
 			// CHECK DATE-PICKER HAVE DATA ? v
 			let check = false;
-			$('.ui-datepicker-calendar:eq(0) .ui-datepicker-week-col').each(function(){
+			$('#datepicker .ui-datepicker-calendar:eq(0) .ui-datepicker-week-col').each(function(){
 				// console.log( $(this).text() , viewWeek, $(this).text() == viewWeek );
 				if( $(this).text() == viewWeek ){ check = true }
 			});
 			if( !check ){ $('#month-next').click() };
 
-			viewMonth = $('.ui-datepicker-month:eq(0)').text().replace(' 月', '');
+			viewMonth = $('#datepicker .ui-datepicker-month:eq(0)').text().replace(' 月', '');
 			
 			// GET VIEW ARY v
 			viewWeekAry = fnGetViewWeekAry(viewWeek);

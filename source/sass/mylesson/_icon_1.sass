@@ -1,6 +1,6 @@
 @import 'compass'
 @import 'ls1/*.png'
-$height: ls1-sprite-height(green_right) + ls1-sprite-height(green_helf) + ls1-sprite-height(green_wrong) + ls1-sprite-height(red_right) + ls1-sprite-height(red_helf) + ls1-sprite-height(red_wrong) + ls1-sprite-height(default) + ls1-sprite-height(selected) + ls1-sprite-height(day_wrong) + ls1-sprite-height(day_pass)
+$height: ls1-sprite-height(green_right) + ls1-sprite-height(green_helf) + ls1-sprite-height(green_wrong) + ls1-sprite-height(red_right) + ls1-sprite-height(red_helf) + ls1-sprite-height(red_wrong) + ls1-sprite-height(default) + ls1-sprite-height(selected) + ls1-sprite-height(day_wrong) + ls1-sprite-height(day_helf) + ls1-sprite-height(day_pass)
 @mixin BG($path)
 	@include ls1-sprite($path)
 	background-size: auto $height
@@ -49,6 +49,10 @@ $height: ls1-sprite-height(green_right) + ls1-sprite-height(green_helf) + ls1-sp
 	&[data-face='1']
 		div
 			@include BG(day_pass)
+	
+	&[data-face='2']
+		div
+			@include BG(day_helf)
 
 	&[data-face='3']
 		div

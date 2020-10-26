@@ -16,7 +16,7 @@ const bus = {
 		{skin: 1, "sort": 3, title: "每週測驗"},
 		{skin: 1, "sort": 4, title: "音樂"},
 		{skin: 1, "sort": 5, title: "童話故事"},
-	
+		//
 		{skin: 2, "sort": 6, title: "實力衝刺"},
 		{skin: 2, "sort": 7, title: "寫作練習"},
 		{skin: 2, "sort": 8, title: "會話練習"},
@@ -44,7 +44,11 @@ const completeObj = {
 		{year: 2020, season: 2, rate: 55},
 		{year: 2020, season: 3, rate: 12},
 		// {year: 2021, season: 0, rate: 55}
-	]
+	],
+	play: {
+		turtle: 0,
+		robbit: 0
+	}
 };
 //
 const apiWeek = {

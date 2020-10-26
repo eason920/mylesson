@@ -36,7 +36,7 @@ const fnRecolrApiFace = function(){
 		let weekId;
 		let weekLength = -1;
 		
-		$('.ui-datepicker-group-first tbody tr').each(function (i) {
+		$('#datepicker .ui-datepicker-group-first tbody tr').each(function (i) {
 			weekLength ++
 			const week = $(this).find('.ui-datepicker-week-col').text();
 			apiFace[faceId].week_list.push({ week });
@@ -300,11 +300,11 @@ $(()=>{
 	// == EVENTS v
 	// ==========================================
 	$('#month-prev').click(function () {
-		$('.ui-icon-circle-triangle-w').click();
+		$('#datepicker .ui-icon-circle-triangle-w').click();
 	});
 
 	$('#month-next').click(function () {
-		$('.ui-icon-circle-triangle-e').click();
+		$('#datepicker .ui-icon-circle-triangle-e').click();
 	});
 	
 	$('#month-prev, #month-next').click(function () {

@@ -1,0 +1,154 @@
+#runway
+	position: relative
+	background: 
+		image: image-url('way.png')
+		repeat: no-repeat
+		position: 0 97px
+
+#runway-time
+	position: relative
+	top: 21px
+	left: 60px
+	width: calc( 100% - 250px )
+	height: 1px
+	z-index: 1
+	.guest
+		background: 
+			image: image-url('turtle.png')
+		height: image-height('turtle.png')
+		width: image-width('turtle.png')
+		// left: 100%
+	
+#runway-client
+	position: relative
+	top: 0px
+	left: 0
+	width: calc( 100% - 180px)
+	height: 1px
+	z-index: 1
+	.guest
+		background: 
+			image: image-url('rabbit_win.png')
+		height: image-height('rabbit_win.png')
+		width: image-width('rabbit_win.png')
+		// left: 100%
+		&.lose-1
+			background:
+				image: image-url('rabbit_lose1.png')
+		&.lose-2
+			background:
+				image: image-url('rabbit_lose2.png')
+
+.guest
+	position: absolute
+
+#runway-finish
+	background:
+		image: image-url('finish.png')
+	width: image-width('finish.png')
+	height: image-width('finish.png')
+	width: 102px
+	height: 122px
+	position: absolute
+	right: 50px
+	top: 3px 
+
+	b
+		position: absolute
+		bottom: 57px
+		right: 9px
+		color: red
+		font:
+			size: 1rem
+			family: arial
+		transform: rotate(-3deg)
+		width: 85px
+		text-align: center
+// --------------------------------
+#runway-start,
+#runway-extend
+	position: absolute
+	z-index: 2
+	display: none
+	animation: ani-moving 2s linear infinite forwards
+	cursor: pointer	
+
+#runway-start
+	background:
+		image: image-url('start.png')
+	width: image-width('start.png')
+	height: image-height('start.png')
+	left: 145px
+	top: 10px
+
+#runway-extend
+	background:
+		image: image-url('extend.png')
+	width: image-width('extend.png')
+	height: image-height('extend.png')
+	right: 160px
+	top: 10px
+
+@keyframes ani-moving
+	50%
+		top: 15px
+	100%
+		top: 10px
+
+
+// ====================================
+// == LB v
+// ====================================
+#runway-lb
+	position: fixed
+	top: 0
+	right: 0
+	bottom: 0
+	left: 0
+	width: 270px
+	height: 305px
+	background-color: #fff
+	border-radius: 15px
+	margin: auto
+	overflow: hidden
+	z-index: 3
+	display: none
+
+#runway-title
+	width: 100%
+	background:
+		color: $c-blue
+	color: #fff
+	line-height: 40px
+	text-align: center
+	letter-spacing: 1px
+	font:
+		size: 1rem
+		weight: bold
+
+#runway-date
+	padding: 20px
+
+#runway-send
+	background:
+		color: $c-blue
+	line-height: 30px
+	width: 70px
+	border-radius: 8px
+	text-align: center
+	color: #fff
+	margin: 0 auto
+	cursor: pointer
+
+#runway-masker
+	position: fixed
+	top: 0
+	right: 0
+	bottom: 0
+	left: 0
+	margin: auto
+	display: none
+	background:
+		color: rgba(0,0,0,.8)
+	top: -20px
+	z-index: 3

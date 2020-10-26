@@ -1,4 +1,5 @@
-#datepicker
+#datepicker,
+#runway-lb
 	position: relative
 	user-select: none
 	height: 200px
@@ -8,6 +9,11 @@
 		width: 100%
 	td
 		text-align: center
+
+#runway-lb
+	td
+		width: 20px
+		height: 21px
 	
 // 週次
 .ui-datepicker-week-col
@@ -93,22 +99,30 @@
 // -  a(本月) / span (非本月者)
 // --------------------------------
 // 今日
-.ui-datepicker-today
-	a
-		background:
-			color: $c-blue
-		border-radius: 7px
-		color: #fff
-		display: block
-		width: 20px
-		line-height: 17px
-		margin: 0 auto
+%deco
+	background:
+		color: $c-blue
+	border-radius: 7px
+	color: #fff
+	display: block
+	width: 20px
+	line-height: 17px
+	margin: 0 auto
+#datepicker
+	.ui-datepicker-today
+		a
+			@extend %deco	
 
 // 選取日
 .ui-datepicker-current-day
 	a
 		// background-color: red
 		// color: yellow
+
+#runway-date
+	.ui-datepicker-current-day
+		a
+			@extend %deco
 
 // 其它月份的日
 .ui-datepicker-other-month

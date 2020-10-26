@@ -1094,7 +1094,7 @@ const demoWeekObj_202043 = {
 		},
 		{
 			"date": '22',
-			"daily_done": 0,
+			"daily_done": 2,
 			"daily_todos": 0,
 			"daily_truth": 0,
 			"hours": {
@@ -1105,7 +1105,7 @@ const demoWeekObj_202043 = {
 		},
 		{
 			"date": '23',
-			"daily_done": 0,
+			"daily_done": 2,
 			"daily_todos": 2,
 			"daily_truth": 0,
 			"hours": {
@@ -1119,7 +1119,7 @@ const demoWeekObj_202043 = {
 		},
 		{
 			"date": '24',
-			"daily_done": 0,
+			"daily_done": 2,
 			"daily_todos": 0,
 			"daily_truth": 0,
 			"hours": {
@@ -1130,7 +1130,7 @@ const demoWeekObj_202043 = {
 		},
 		{
 			"date": '25',
-			"daily_done": 0,
+			"daily_done": 2,
 			"daily_todos": 0,
 			"daily_truth": 0,
 			"hours": {
