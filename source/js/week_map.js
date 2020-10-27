@@ -9,10 +9,12 @@ let viewWeekId;
 let viewWeekAry = [];
 //
 let viewWeekIndex = 0;
-const veiwWeekMax = 1;// 僅可見未來一週
-let viewWeekMin = -15; 
+// const veiwWeekMax = 1;// 僅可見未來一週
+// let viewWeekMin = -15; 
+const veiwWeekMax = 500;// 僅可見未來一週
+let viewWeekMin = -100; 
 // ^ 往前三個月(12週)內 ( 12 = this x 1 + pre x 11 ) 
-// ^ 為取得 faceData 近三月完整 data, 需超出以逹目的，而在「face_map.js-fnRecolrfaceData」函式完成後回歸 -11** 
+// ^ 為取得 faceData 近三月完整 data, 需超出以逹目的，而在「face_map.js-fnRecordFaceData」函式完成後回歸 -11** 
 // const recordIndex = viewWeekMin * -1;
 const recordMax = viewWeekMin * -1;
 let recordIndex = 0;
@@ -186,7 +188,7 @@ const fnPrintWeekMap = function(id){
 	$('#achive-msg, #sticky-msg').text( weekData[id].weekly_msg );
 };
 
-const fnRecordweekData = function () {
+const fnRecordWeekData = function () {
 	$('#prev-week').click(); // < ** 連動「viewWeekId 退位」程式**
 	recordIndex++;
 	if (recordIndex >= recordMax) {
@@ -206,7 +208,7 @@ const fnRecordweekData = function () {
 		// NEXT FUNCTION v
 		console.log(weekData);
 		recordIndex = 0;
-		fId = setInterval(fnRecolrfaceData, 0);// in face_map
+		fId = setInterval(fnRecordFaceData, 0);// in face_map
 	}
 }
 
@@ -224,7 +226,7 @@ $(()=>{
 		fnCreateViewObj(viewWeekAry, viewYear, viewMonth, viewWeek, viewWeekId);
 	};
 	//
-	wId = setInterval( fnRecordweekData, 0);
+	wId = setInterval( fnRecordWeekData, 0);
 
 	// ==========================================
 	// == ACTION EVENT v

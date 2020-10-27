@@ -1,11 +1,12 @@
 let currentWeekYear;
 let currentWeekMonth;
 let currentWeek;
-let currentWeekId;
 let currentDate;
+let currentWeekId;
 let currentFaceId;
 let currentWeekAry;
 let currentWeekRate;
+let currentWeekEq;
 //
 const bus = {
 	hoursAry: ['m', 'a', 'e'],
@@ -28,6 +29,7 @@ const bus = {
 		[1,2,3],
 		[4,5,6],
 		[7,8,9],
+		[10,11,12]
 	],
 	weekMax53: [2015, 2020, 2026, 2032, 2037, 2043, 2048],
 	weeklyAry: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
@@ -35,19 +37,22 @@ const bus = {
 }
 //
 const completeObj = {
-	monthy: {
-		202008: 50,
-		202009: 89,
-		202010: 15
+	"monthy": {
+		"202008": 50,
+		"202009": 89,
+		"202010": 15
 	},
-	seasons: [
-		{year: 2020, season: 2, rate: 55},
-		{year: 2020, season: 3, rate: 12},
-		// {year: 2021, season: 0, rate: 55}
+	"seasons": [
+		{"year": 2020, "season": 2, "rate": 55},
+		{"year": 2020, "season": 3, "rate": 12},
+		// {"year": 2021, "season": 0, "rate": 55}
 	],
-	play: {
-		turtle: 0,
-		robbit: 0
+	"play": {
+		"turtle": 50,
+		"robbit": 30,
+		"day_line": "2020.11.15",
+		"day_line": '',
+		"extend": true
 	}
 };
 //
@@ -101,8 +106,9 @@ const fnDatepickerJump = function(year, month){
 	$("#datepicker").datepicker("setDate",$.datepicker.parseDate("yy/mm/dd", year + "/" + month +"/01"));
 };
 
+let num=0;
 const fnCircle = function(selector, value){
-	let $target = $('#completebox-'+ selector +' .completebox-vision');
+	let $target = $('#completebox-'+ selector);
 	let color;
 	let duration;
 	switch(true){
@@ -121,7 +127,7 @@ const fnCircle = function(selector, value){
 		default:
 	};
 
-	$target.circleProgress({
+	$target.find('.completebox-vision').circleProgress({
 		startAngle: 4.7,
 		value,
 		fill: {color},
@@ -135,6 +141,66 @@ const fnCircle = function(selector, value){
 		thickness: '4'
 	});
 
+	// --------------------------------
+	// -- DATE v
+	// --------------------------------
+	let viewWeekEq;
+	$('#datepicker .ui-datepicker-group-first .ui-datepicker-week-col').each(function(i){
+		if( $(this).text() == viewWeek ){ viewWeekEq = i }
+	});
+	let viewWeekIsEq1;
+	viewWeekEq > 1 ? viewWeekIsEq1 = false : viewWeekIsEq1 = true;
+	const firstDate = Number(viewWeekAry[0]);
+	const lastDate = Number(viewWeekAry[6]);
+	const substrac = firstDate - lastDate;
+	//
+	let firstMonth = viewMonth;
+	let lastMonth = viewMonth;
+	//
+	let firstYear = viewYear;
+	let lastYear = viewYear;
+	switch(true){
+		case selector == 7:
+			if( !viewWeekIsEq1 ){
+				// 非第一週 v
+				if( substrac > -1 ){ lastMonth = Number(viewMonth) + 1 };
+				if( lastMonth == 13 ){ 
+					lastMonth = 1;
+					lastMonth = (Number(fnGetThisYear()) + 1 ) + '.' + lastMonth;
+				};
+			}else{
+				// 第一週 v
+				if( substrac > -1 ){ firstMonth = Number(viewMonth) - 1 };
+				if( firstMonth == 0 ){ 
+					firstMonth = 12;
+					lastMonth = fnGetThisYear() + '.' + lastMonth;
+				};
+			}
+			const weekStr = firstMonth + '.' + firstDate + ' ~ ' + lastMonth + '.' + lastDate;
+			console.log('%c'+num+' 週', 'color:green', weekStr);
+			$target.find('.completebox-time').text(weekStr);
+			break;
+		case selector == 30:
+			const monthStr = fnGetThisYear() + '.' + fnGetThisMonth();
+			$target.find('.completebox-time').text(monthStr);
+			console.log('%c'+num+' 月', 'color:blue');
+			break;
+		case selector == 90:
+			const month = Number(fnGetThisMonth());
+			let ary = [];
+			for( a in bus.season_area ){
+				console.log(bus.season_area[a]);
+				// for( b in bus.season_area[a] ){}
+				const num = bus.season_area[a].findIndex(item => item == month);
+				if( num > -1 ){ ary =   bus.season_area[a]}
+			};
+			const seasonStr = fnGetThisYear() + '.' + ary[0] + ' ~ ' + ary[2];
+			$target.find('.completebox-time').text(seasonStr);
+			console.log('%c'+num+' 季'+fnGetThisMonth()+' / '+ary, 'color:yellow');
+			break;
+		default:
+	};
+	num ++;
 };
 
 const fnWeekObjMemo = function(string){
@@ -219,25 +285,33 @@ $(()=>{
 		// minDate: -20, maxDate: "+1M +10D" // < 限制可選日期範圍
 	});
 	
+	// ==========================================
+	// == INIT v
+	// ==========================================
 	currentWeekYear = fnGetThisYear();
 	currentWeekMonth = fnGetThisMonth();
-	currentWeek = $('.ui-datepicker-today').siblings().eq(0).text();
+	currentDate = $('#datepicker .ui-datepicker-today:eq(0) > *').text();
+	currentWeek = $('#datepicker .ui-datepicker-today').siblings().eq(0).text();
 	currentWeekAry = fnGetViewWeekAry(currentWeek);
+
+	// WEEK ID v
 	// currentWeek = 1
-	// console.log( currentWeek, String(currentWeek).length);
 	if( String(currentWeek).length < 2 ){
 		currentWeekId = currentWeekYear + '0' + currentWeek;
 	}else{
 		currentWeekId = currentWeekYear + String(currentWeek);
-	}
-	// console.log(currentWeekId);
-	// currentWeekRate = weekData[currentWeekId].weekly_rate;
-	currentDate = $('.ui-datepicker-today:eq(0) > *').text();
-	//
+	};
+
+	// WEEK RATE v
 	if( String(currentWeekMonth).length < 2 ){
 		currentFaceId = currentWeekYear + '0' + currentWeekMonth;
 	}else{
 		currentFaceId = currentWeekYear + String(currentWeekMonth);
 	};
-	// console.log(currentFaceId);
+	
+	// WEEK EQ v
+	$('#datepicker .ui-datepicker-group-first tbody > tr').each(function(i){
+		const got = /ui\-datepicker\-today/.test($(this).html());
+		if( got ){ currentWeekEq = i };
+	});
 });

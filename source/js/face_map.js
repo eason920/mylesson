@@ -18,7 +18,7 @@ let preMonthSeason2;
 let preMonthYear1;
 let preMonthYear2;
 
-const fnRecolrfaceData = function(){
+const fnRecordFaceData = function(){
 	// --------------------------------
 	// -- CURR WEEK v
 	// --------------------------------
@@ -89,6 +89,9 @@ const fnRecolrfaceData = function(){
 		clearInterval(fId);
 		delete faceData[monthCutId];
 
+		// CHECK v
+		fnfaceDataCheck();
+
 		// WEEK MAP v
 		fnPrintWeekMap(currentWeekId);
 		viewWeekIndex = 0;
@@ -97,7 +100,7 @@ const fnRecolrfaceData = function(){
 		viewWeek = currentWeek;
 		viewWeekId = currentWeekId;
 		viewWeekAry = currentWeekAry;
-		viewWeekMin = -11;// 11+1 = 12 = 三個月
+		// viewWeekMin = -11;// 11+1 = 12 = 三個月
 		
 		// DATE-PICKER & FACE MAP v
 		fnDatepickerJump(currentWeekYear, currentWeekMonth);
@@ -121,8 +124,6 @@ const fnRecolrfaceData = function(){
 		fnCircle(90, completeObj.seasons[1].rate/100 );
 		$('#completebox-90 .completebox-text').text( completeObj.seasons[1].rate + '%' ).removeClass('is-un');
 
-		// CHECK v
-		fnfaceDataCheck();
 		console.log(faceData);
 	}
 };
@@ -134,10 +135,16 @@ const fnRecolrfaceData = function(){
 // week = 40
 // id = 202040
 const fnfaceDataCheck = function(){
-	// console.log( currentWeekId , id, id < currentWeekId);
-	// console.log( currentFaceId );
+	// currentDate = 28
+	// currentWeekEq = 0
+	const fnLess7 = function(){
+		for( date in faceData[id].week_list[i].date ){
+			if( faceData[id].week_list[i].date[date] > 7 ){
+				faceData[id].week_list[i].daily_done[date] = 0;
+			} // if
+		} // date
+	}
 	for( id in faceData ){
-		// console.log(id, id < currentFaceId);
 		// 過去月份 v
 		if ( id < currentFaceId ) {
 			for (i in faceData[id].week_list) {
@@ -151,11 +158,7 @@ const fnfaceDataCheck = function(){
 				// 2. 第一週的上月 date 改作 0 v
 				if( i == 0 ){
 					// console.log('is first', faceData[id].week_list[i]);
-					for( date in faceData[id].week_list[i].date ){
-						if( faceData[id].week_list[i].date[date] > 7 ){
-							faceData[id].week_list[i].daily_done[date] = 0;
-						} // if
-					} // date
+					fnLess7();
 				}
 	
 				// 3. 最後週的下月 date 改作 0 v
@@ -172,58 +175,16 @@ const fnfaceDataCheck = function(){
 		}// if
 
 		// 本月 v
-		if ( id = currentFaceId ) {
-			console.log(id);
+		if ( id == currentFaceId ) {
+			for (i in faceData[id].week_list) {
+				if( currentWeekEq != 0 && i == 0 ){
+					// 1.第一週的上月 date 改作 0 v
+					console.log('本週「不」是「第一」週');
+					fnLess7();
+				};// if
+			}; // i
 		}// if
 	}// id
-
-	// // DAILY DONE : WEEK v
-	// let dd;
-	// let dd_check = false;
-	// switch(true){
-	// 	// 過去的週 v
-	// 	case id < currentWeekId: 
-	// 		dd = 3;
-	// 		break;
-	// 	case id == currentWeekId:
-			
-	// 		break;
-	// 	// 未來的週 v
-	// 	case id > currentWeekId:
-	// 		dd = 0;
-	// 		break;
-	// 	// 本週 v
-	// 	default:
-	// 		console.log('the same week');
-	// 		dd_check = true;
-	// };
-
-	// // DAILY DONE : DATE v
-	// console.log(ary[i]);
-	// if( dd_check ){
-	// 	console.log(ary[i], ary[i] > currentDate );
-	// 	switch(true){
-	// 		// 下月的頭日(小) v
-	// 		case (ary[i] - currentDate) < -20:
-	// 			dd = 0;
-	// 			break;
-	// 		// 上月的尾日(大) v
-	// 		case (ary[i] - currentDate) > 20 :
-	// 			dd = 3;
-	// 			break;
-	// 		// 同月的過去日 v
-	// 		case ary[i] < currentDate:
-	// 			dd = 3;
-	// 			break;
-	// 		// 同月的未來日 v
-	// 		case ary[i] > currentDate:
-	// 			dd = 0;
-	// 			break;
-	// 		// 同一天
-	// 		default:
-	// 			dd = 'today';
-	// 	}
-	// }
 }
 
 const fnPrintFaceMap = function(id){
@@ -233,7 +194,8 @@ const fnPrintFaceMap = function(id){
 	let str = '';
 	for(w in wl){
 		const complete = wl[w]
-		str += '<div class="facemap-link" data-week-conplete="' + complete + '">'
+		// str += '<div class="facemap-link" data-week-conplete="' + complete + '">'
+		str += '<div class="facemap-link">'
 		for ( d in wl[w].date ){
 			str += '<div class="facemap-item" data-date="' + wl[w].date[d]
 			str += '" data-face="' + wl[w].daily_done[d] + '">'
@@ -246,12 +208,19 @@ const fnPrintFaceMap = function(id){
 	$('#facemap').append(str);
 };
 
+const fnCreateSeasonObj = function(index, year, season){
+	completeObj.seasons[index] = {};
+	completeObj.seasons[index].year = year;
+	completeObj.seasons[index].season = season;
+	completeObj.seasons[index].rate = 0;
+}
+
 $(()=>{
 	// ==========================================
 	// == 開頁運作邏輯 v
 	// ==========================================
 	// file:week_map.js-fn:fnRecordweekData v
-	// file:face_map.js-fn:fnRecolrfaceData v
+	// file:face_map.js-fn:fnRecordFaceData v
 	// 同檔-fn:fnPrintFaceMap
 
 	// ==========================================
@@ -294,7 +263,29 @@ $(()=>{
 		if( pre1 >= 0){ preMonthSeason1 = a };
 		if( pre2 >= 0){ preMonthSeason2 = a };
 	};
-	// console.log(currentSeason, preMonthSeason1, preMonthSeason2);
+
+	// ==========================================
+	// == 確認無季 DATA 就收集 v
+	// ==========================================
+	if( !completeObj.seasons[0] ){
+		// 第一季 v
+		fnCreateSeasonObj(0, currentWeekYear, currentSeason);
+
+		// 可能有的前一季 v
+		switch(true){
+			// 前一月可能就換季 v
+			case preMonthSeason1 != currentSeason:
+				fnCreateSeasonObj(1, preMonthYear1, preMonthSeason1);
+				break;
+			// 前二月可能才換季 v
+			case preMonthSeason2 != currentSeason:
+				fnCreateSeasonObj(1, preMonthYear2, preMonthSeason2);
+				break;
+			// 本、前一、前二都在同一季就不用建立了 v
+			default:
+		}
+	};
+	console.log( 'seasonData ', completeObj.seasons );
 
 	// ==========================================
 	// == EVENTS v
@@ -334,7 +325,7 @@ $(()=>{
 		// -- 處理「季」v
 		// --------------------------------
 		const month = fnGetThisMonth();
-		const fnOnTime = function(){
+		const fnOnTime = function(a){
 			if( completeObj.seasons[a].rate !=  $('#completebox-90 .completebox-text').text().replace('%', '') ){
 				fnCircle(90, completeObj.seasons[a].rate/100 );
 				$('#completebox-90 .completebox-text').text( completeObj.seasons[a].rate + '%' ).removeClass('is-un');
@@ -345,21 +336,21 @@ $(()=>{
 			case month == currentWeekMonth:
 				for( a in completeObj.seasons ){
 					if( completeObj.seasons[a].year ==  currentWeekYear && completeObj.seasons[a].season == currentSeason ){
-						fnOnTime();
+						fnOnTime(a);
 					};
 				};
 				break;
 			case month == preMonth1:
 				for( a in completeObj.seasons ){
 					if( completeObj.seasons[a].year ==  preMonthYear1 && completeObj.seasons[a].season == preMonthSeason1 ){
-						fnOnTime();
+						fnOnTime(a);
 					};
 				};
 				break;
 			case month == preMonth2:
 				for( a in completeObj.seasons ){
 					if( completeObj.seasons[a].year ==  preMonthYear2 && completeObj.seasons[a].season == preMonthSeason2 ){
-						fnOnTime();
+						fnOnTime(a);
 					};
 				};
 				break;

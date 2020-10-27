@@ -1,5 +1,10 @@
 let startDate;
 $(()=>{
+	const dayLine = completeObj.play.day_line
+	if( dayLine ){ 
+		$('#runway-finish b').text(dayLine);
+		$('#runway-start').hide();
+	}
 	// console.log('got play');
 	const $turtle = $('#runway-time .guest');
 	const $robbit = $('#runway-client .guest');
@@ -7,14 +12,16 @@ $(()=>{
 	let robbit = completeObj.play.robbit;
 	//
 	switch(true){
+		case ( turtle - robbit ) >= 20 && turtle >= 50 && completeObj.play.extend:
+			$('#runway-extend').show();
+			// break;
 		case ( turtle - robbit ) >= 20:
 			$robbit.addClass('lose-2');
-			$('#runway-extend').show();
 			break;
 		case turtle > robbit:
 			$robbit.addClass('lose-1');
 			break;
-		case turtle == 0 && robbit == 0:
+		case turtle == 0 && robbit == 0 && ! dayLine:
 			$('#runway-start').show();
 		default:
 	};
@@ -23,10 +30,9 @@ $(()=>{
 	robbit > 99 ? robbit = 'calc(100% + 115px)' : robbit += '%';
 	$turtle.css('left', turtle);
 	$robbit.css('left', robbit);
-	// if(  )
 	
 	// ==========================================
-	// == DATE v
+	// == DATE-PICKER v
 	// ==========================================
 	$('#runway-date').datepicker({showOtherMonths: true});
 
@@ -38,17 +44,24 @@ $(()=>{
 		$('#runway-date .ui-icon-circle-triangle-e').click();
 	});
 
+	// ==========================================
+	// == EVENTS v
+	// ==========================================
 	$('#runway-start').click(function(){
 		$('#runway-lb, #runway-masker').fadeIn();
-	})
+	});
 
 	$('#runway-send').click(function(){
 		const year = Number( $('#runway-date .ui-datepicker-year').text() );
 		const month = Number( $('#runway-date .ui-datepicker-month').text().replace(' 月', '') );
 		const date = Number( $('#runway-date .ui-state-active').text() );
 		startDate = year + '.' + month +'.' + date;
+
+		// 同年同月 >= 今天
 		const sort1 = year == Number(currentWeekYear) && month == Number(currentWeekMonth) && date <= Number(currentDate);
+		// 同月小於今年
 		const sort2 = month == Number(currentWeekMonth) && year < Number(currentWeekYear);
+		// 小於月同年
 		const sort3 = month < Number(currentWeekMonth) && year == Number(currentWeekYear);
 		console.log(sort1, sort2, sort3);
 		//
@@ -61,27 +74,32 @@ $(()=>{
 			if( check ){ 
 				$('#runway-finish b').text(startDate);
 				$('#runway-start').fadeOut();
+				$('#runway-lb, #runway-masker').fadeOut();
 			}
-			$('#runway-lb, #runway-masker').fadeOut();
 		}
-		// console.log(currentWeekYear, currentWeekMonth, currentDate);
-		// // 同年同月同天&小於
-		// console.log(date, currentDate);
-		// console.log( year == currentWeekYear, month == currentWeekMonth, Number(date) <= Number(currentDate) );
-		// console.log( year == currentWeekYear && month == currentWeekMonth && date <= currentDate );
-		// // 同月小於今年
-		// console.log( month == currentWeekMonth, year < currentWeekYear );
-		// console.log( month == currentWeekMonth && year < currentWeekYear);
-		// 小於月同年
-		// console.log( month < currentWeekMonth, year == currentWeekYear);
-		// console.log(month < currentWeekMonth && year == currentWeekYear);
-		// 
-		
 	});
 
 	$('#runway-masker, #runway-cancel, #runway-close').click(function(){
 		$('#runway-lb, #runway-masker').fadeOut();
 	});
 
+	$('#runway-extend').click(function(){
+		const ary = $('#runway-finish b').text().split('.');
+		let month = Number( ary[1] ) + 2;// 2 = 每延一次以二個月計
+		switch(true){
+			case month == 13:
+				month = 1;break;
+			case month == 14:
+				month = 2;break;
+			default:
+		}
+		console.log(month);
+		const date = ary[0] + '.' + month + '.' + ary[2];
+		$('#runway-finish b').text(date);
+		completeObj.play.day_line = date;
+		completeObj.play.extend = false;
+		console.log(completeObj.play);
+		$(this).fadeOut();
+	});
 	// $('#runway-start').click();
 });
