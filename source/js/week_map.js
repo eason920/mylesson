@@ -9,10 +9,10 @@ let viewWeekId;
 let viewWeekAry = [];
 //
 let viewWeekIndex = 0;
-// const veiwWeekMax = 1;// 僅可見未來一週
-// let viewWeekMin = -15; 
-const veiwWeekMax = 500;// 僅可見未來一週
-let viewWeekMin = -100; 
+const veiwWeekMax = 1;// 僅可見未來一週
+let viewWeekMin = -15; 
+// const veiwWeekMax = 500;// 僅可見未來一週
+// let viewWeekMin = -100; 
 // ^ 往前三個月(12週)內 ( 12 = this x 1 + pre x 11 ) 
 // ^ 為取得 faceData 近三月完整 data, 需超出以逹目的，而在「face_map.js-fnRecordFaceData」函式完成後回歸 -11** 
 // const recordIndex = viewWeekMin * -1;
@@ -204,6 +204,22 @@ const fnRecordWeekData = function () {
 		viewWeek = currentWeek;
 		viewWeekId = currentWeekId;
 		viewWeekAry = fnGetViewWeekAry(viewWeek);
+
+		// SORT v
+		for( id in weekData ){
+			for( date in weekData[id].date_list ){
+				for( hours in weekData[id].date_list[date].hours ){
+					weekData[id].date_list[date].hours[hours].sort(function(n, p){
+						if( n.done > p.done ){ return -1 }else{ return 1 };
+					})
+				}// hours
+				for( hours in weekData[id].date_list[date].hours ){
+					weekData[id].date_list[date].hours[hours].sort(function(n, p){
+						if( bus.todoList[n.sort].skin > bus.todoList[p.sort].skin ){ return 1 }else{ return -1 };
+					})// fn sort
+				}// hours
+			}// date
+		}// id
 
 		// NEXT FUNCTION v
 		console.log(weekData);

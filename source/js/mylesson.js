@@ -6,6 +6,8 @@ let currentWeekId;
 let currentFaceId;
 let currentWeekAry;
 let currentWeekRate;
+//
+let currentDateEq;
 let currentWeekEq;
 //
 const bus = {
@@ -51,7 +53,7 @@ const completeObj = {
 		"turtle": 50,
 		"robbit": 30,
 		"day_line": "2020.11.15",
-		"day_line": '',
+		// "day_line": '',
 		"extend": true
 	}
 };
@@ -75,6 +77,7 @@ const weekData = {
 // date_list[0].daily_done v
 // 0 = 時間未到 / 非本週數字
 // 1 = 完成
+// 2 = 完成一半
 // 3 = 未完成
 //
 const fnGetThisMonth = function(){
@@ -177,26 +180,21 @@ const fnCircle = function(selector, value){
 				};
 			}
 			const weekStr = firstMonth + '.' + firstDate + ' ~ ' + lastMonth + '.' + lastDate;
-			console.log('%c'+num+' 週', 'color:green', weekStr);
 			$target.find('.completebox-time').text(weekStr);
 			break;
 		case selector == 30:
 			const monthStr = fnGetThisYear() + '.' + fnGetThisMonth();
 			$target.find('.completebox-time').text(monthStr);
-			console.log('%c'+num+' 月', 'color:blue');
 			break;
 		case selector == 90:
 			const month = Number(fnGetThisMonth());
 			let ary = [];
 			for( a in bus.season_area ){
-				console.log(bus.season_area[a]);
-				// for( b in bus.season_area[a] ){}
 				const num = bus.season_area[a].findIndex(item => item == month);
 				if( num > -1 ){ ary =   bus.season_area[a]}
 			};
 			const seasonStr = fnGetThisYear() + '.' + ary[0] + ' ~ ' + ary[2];
 			$target.find('.completebox-time').text(seasonStr);
-			console.log('%c'+num+' 季'+fnGetThisMonth()+' / '+ary, 'color:yellow');
 			break;
 		default:
 	};
@@ -250,6 +248,15 @@ const fnWeekObjMemo = function(string){
 	if( weekData[viewWeekId] ){
 		obj.weekly_rate = weekData[viewWeekId].weekly_rate;
 	};
+
+	// SORT v
+	for( date in  obj.date_list ){
+		for( hours in obj.date_list[date].hours ){
+			obj.date_list[date].hours[hours].sort(function(n, p){
+				if( n.sort > p.sort ){ return 1 }else{ return -1 };
+			})// fn sort
+		}// hours
+	};// date
 
 	return obj;
 };
@@ -313,5 +320,11 @@ $(()=>{
 	$('#datepicker .ui-datepicker-group-first tbody > tr').each(function(i){
 		const got = /ui\-datepicker\-today/.test($(this).html());
 		if( got ){ currentWeekEq = i };
+	});
+
+	// DATE EQ v
+	$('#datepicker .ui-datepicker-group-first tbody > tr:eq('+currentWeekEq+') td').each(function(i){
+		const got = /ui\-datepicker\-today/.test($(this).attr('class'));
+		if( got ){ currentDateEq = i - 1 };
 	});
 });

@@ -17,6 +17,8 @@ let preMonthSeason2;
 //
 let preMonthYear1;
 let preMonthYear2;
+//
+let passToday = false;
 
 const fnRecordFaceData = function(){
 	// --------------------------------
@@ -100,7 +102,7 @@ const fnRecordFaceData = function(){
 		viewWeek = currentWeek;
 		viewWeekId = currentWeekId;
 		viewWeekAry = currentWeekAry;
-		// viewWeekMin = -11;// 11+1 = 12 = 三個月
+		viewWeekMin = -11;// 11+1 = 12 = 三個月
 		
 		// DATE-PICKER & FACE MAP v
 		fnDatepickerJump(currentWeekYear, currentWeekMonth);
@@ -159,7 +161,7 @@ const fnfaceDataCheck = function(){
 				if( i == 0 ){
 					// console.log('is first', faceData[id].week_list[i]);
 					fnLess7();
-				}
+				};// if
 	
 				// 3. 最後週的下月 date 改作 0 v
 				if( i == faceData[id].week_length ){
@@ -169,7 +171,7 @@ const fnfaceDataCheck = function(){
 							faceData[id].week_list[i].daily_done[date] = 0;
 						} // if
 					} // date
-				}
+				}; // if
 			} // i
 
 		}// if
@@ -177,15 +179,37 @@ const fnfaceDataCheck = function(){
 		// 本月 v
 		if ( id == currentFaceId ) {
 			for (i in faceData[id].week_list) {
+				// 1. 補空「本週以前的週」視覺白 (0 改作 3) v
+				if( i < currentWeekEq ){
+					for(done in faceData[id].week_list[i].daily_done){
+						if( faceData[id].week_list[i].daily_done[done] == 0 ){
+							faceData[id].week_list[i].daily_done[done] = 3
+						} // if
+					} // done
+				};// if
+				
+				// 2. 補空「本週」+「未逹本日」視覺白 (0 改作 3) v
+				if( i == currentWeekEq ){
+					for(done in faceData[id].week_list[i].daily_done){
+						if( done == currentDateEq ){ passToday = true };
+						if( !passToday &&
+							done < currentDateEq &&
+							faceData[id].week_list[i].daily_done[done] == 0 
+						){
+							faceData[id].week_list[i].daily_done[done] = 3
+						} // if
+					} // done
+				};// if
+
+				// 3.若本週「不是」本月的第一週，將屬於上月的 date 改作 0 v
 				if( currentWeekEq != 0 && i == 0 ){
-					// 1.第一週的上月 date 改作 0 v
 					console.log('本週「不」是「第一」週');
 					fnLess7();
 				};// if
 			}; // i
 		}// if
 	}// id
-}
+};
 
 const fnPrintFaceMap = function(id){
 	$('#facemap').html('');
@@ -213,7 +237,7 @@ const fnCreateSeasonObj = function(index, year, season){
 	completeObj.seasons[index].year = year;
 	completeObj.seasons[index].season = season;
 	completeObj.seasons[index].rate = 0;
-}
+};
 
 $(()=>{
 	// ==========================================

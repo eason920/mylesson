@@ -86,15 +86,20 @@ $(()=>{
 	$('#runway-extend').click(function(){
 		const ary = $('#runway-finish b').text().split('.');
 		let month = Number( ary[1] ) + 2;// 2 = 每延一次以二個月計
+		let year = Number( ary[0] );
 		switch(true){
 			case month == 13:
-				month = 1;break;
+				month = 1;
+				year = year +1;
+				break;
 			case month == 14:
-				month = 2;break;
+				month = 2;
+				year = year +1;
+				break;
 			default:
 		}
-		console.log(month);
-		const date = ary[0] + '.' + month + '.' + ary[2];
+		console.log(year, month);
+		const date = year + '.' + month + '.' + ary[2];
 		$('#runway-finish b').text(date);
 		completeObj.play.day_line = date;
 		completeObj.play.extend = false;

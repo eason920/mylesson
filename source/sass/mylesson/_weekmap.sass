@@ -118,7 +118,7 @@ $g: 9px
 	// height: 13px
 	// margin-bottom: calc( (100% - 13px * 5) / 4 )
 	align-items: center
-	margin-bottom: 5px
+	margin-bottom: 4px
 	&[data-skin='1']
 		color: $c-red
 	&[data-skin='2']
@@ -150,12 +150,19 @@ $g: 9px
 				top: 50%
 				transform: translateY(-50%)
 
+@media screen and (max-width: $bp-wide)
+	.weekmap-item
+		margin: 3px
+
+	.weekmap-hours
+		padding: 8px 0
+
 @media screen and (max-width: $bp-13)
 	.weekmap-hours
-		padding: 3px 0
+		padding: 6px 0
 
 	.weekmap-in
-		width: 68px
+		width: 60px
 
 	.weekmap-item
 		margin: 0
@@ -163,6 +170,3 @@ $g: 9px
 	.weekmap-status
 		transform: scale(.8)
 
-@media screen and (max-width: $bp-wide)
-	.weekmap-item
-		margin: 3px

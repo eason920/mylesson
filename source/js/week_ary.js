@@ -523,7 +523,7 @@ const demoWeekObj_202040 = {
 	"dt_id": '202040',
 	"dt_year": 2020,
 	"dt_week": 40,
-	"dt_month": 10,
+	"dt_month": 9,
 	"weekly_todos": 40,
 	"weekly_truth": 30,
 	"weekly_rate": 30,
@@ -1040,16 +1040,18 @@ const demoWeekObj_202043 = {
 			"daily_truth": 2,
 			"hours": {
 				"m": [
-					{"sort": 1, "done": 2},
+					{"sort": 1, "done": 1},
 					{"sort": 2, "done": 2},
-					{"sort": 3, "done": 2},
+					{"sort": 3, "done": 1},
 					{"sort": 4, "done": 2},
-					{"sort": 5, "done": 2},
+					{"sort": 5, "done": 3},
 				],
 				"a": [
-					{"sort": 8, "done": 2},
 					{"sort": 1, "done": 1},
-					{"sort": 6, "done": 2}
+					{"sort": 6, "done": 2},
+					{"sort": 3, "done": 1},
+					{"sort": 4, "done": 2},
+					{"sort": 5, "done": 3},
 				],
 				"e": [
 					{"sort": 8, "done": 2},
