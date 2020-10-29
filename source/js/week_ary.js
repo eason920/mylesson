@@ -1027,7 +1027,7 @@ const demoWeekObj_202043 = {
 	"dt_month": 10,
 	"weekly_todos": 21,
 	"weekly_truth": 2,
-	"weekly_rate": 89,
+	"weekly_rate": 89.7,
 	"weekly_bar1": 0,
 	"weekly_bar2": 100,
 	"weekly_level": 4,

@@ -143,10 +143,13 @@ const fnPrintWeekMap = function(id){
 			// 「時區」為單位的 editStatus v
 			if( item.date === currentDate && data.dt_week == currentWeek ){
 				switch(true){
-					case h === 'm' && hours >= 12:
+					case h === 'm' && hours >= 4:
 						editStatus = false;
 						break;
-					case h === 'a' && hours >= 18:
+					case h === 'a' && hours >= 12:
+						editStatus = false;
+						break;
+					case h === 'e' && hours >= 18:
 						editStatus = false;
 						break;
 					default:

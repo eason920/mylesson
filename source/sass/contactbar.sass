@@ -1,0 +1,108 @@
+#contact
+	padding: 0px
+	font-family: PingFangTC-Regular,'Microsoft JhengHei', sans-serif
+
+	.Top-div
+		width: 100%
+		height: 20%
+
+	.SE-div, .AC-div
+		float: left
+		width: 50%
+		height: 100%
+		color: #FFFFFF
+		border-radius: 10px 10px 0px 0px
+		text-align: center
+		font:
+			style: normal
+			weight: 600
+			size: 1.4em
+		display: flex
+		justify-content: center
+		align-items: center
+
+	.SE-All
+		width: 100%
+
+	.SE-div
+		background-color: #344D83
+		box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.1)
+
+	.AC-div
+		background-color: #E24E62
+		box-shadow: -10px 1px 10px rgba(0, 0, 0, 0.1)
+
+	.Down-div
+		width: 100%
+		height: 80%
+
+	.Name-div
+		float: left
+		width: 50%
+		height: 80%
+		color: #FFFFFF
+		display: flex
+		flex-direction: column
+		justify-content: center
+		align-items: center
+
+	.Phto-div
+		float: left
+		width: 50%
+		height: 80%
+		color: #FFFFFF
+		display: flex
+		justify-content: flex-end
+		align-items: center
+
+	.title, .tel
+		width: 100%
+		height: 1.8em
+		font:
+			weight: 500
+			size: 1.2em
+		line-height: 1.8em
+
+	.Name-divN
+		width: 100%
+		height: 80%
+		color: #FFFFFF
+		text-align: center
+		display: flex
+		flex-direction: column
+		justify-content: center
+		align-items: center
+
+	.Messageboard-div
+		width: 100%
+		height: 20%
+		color: #FFFFFF
+		font-size: 1.3em
+
+@media screen and (max-width: 1580px)
+	#contact
+		.Down-div
+			padding: 20px 25px 20px 25px
+
+		.circle
+			width: 75px
+			height: 75px
+			background:
+				position: center
+				size: 75px
+				image: var(--phto)
+			border-radius: 50%
+
+@media screen and (min-width: 1581px)
+	#contact
+		.Down-div
+			padding: 20px 60px 20px 60px
+
+		.circle
+			width: 85px
+			height: 85px
+			background:
+				position: center
+				size: 85px
+				image: var(--phto)
+			border-radius: 50%

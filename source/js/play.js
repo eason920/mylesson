@@ -1,4 +1,12 @@
 let startDate;
+
+const fnUpdatePlay = function(date){
+	completeObj.play.day_line = date;
+	completeObj.play.extend = false;
+	console.log(completeObj.play);
+	console.log('%cUpdated!', 'color:greenyellow;font-size:20px;');
+};
+
 $(()=>{
 	const dayLine = completeObj.play.day_line
 	if( dayLine ){ 
@@ -98,13 +106,15 @@ $(()=>{
 				break;
 			default:
 		}
-		console.log(year, month);
 		const date = year + '.' + month + '.' + ary[2];
-		$('#runway-finish b').text(date);
-		completeObj.play.day_line = date;
-		completeObj.play.extend = false;
-		console.log(completeObj.play);
-		$(this).fadeOut();
+		
+		// 
+		const check = confirm('確定要展廷目標逹成時間至'+date+'?');
+		if (check) {
+			$('#runway-finish b').text(date);
+			fnUpdatePlay(date);
+			$(this).fadeOut();
+		};
 	});
 	// $('#runway-start').click();
 });
