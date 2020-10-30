@@ -10,18 +10,25 @@ let viewWeekAry = [];
 //
 let viewWeekIndex = 0;
 const veiwWeekMax = 1;// 僅可見未來一週
-let viewWeekMin = -15; 
+// let viewWeekMin = -15;
+let viewWeekMin = -16;// +1 -16 = -15 
 // const veiwWeekMax = 500;// 僅可見未來一週
 // let viewWeekMin = -100; 
 // ^ 往前三個月(12週)內 ( 12 = this x 1 + pre x 11 ) 
 // ^ 為取得 faceData 近三月完整 data, 需超出以逹目的，而在「face_map.js-fnRecordFaceData」函式完成後回歸 -11** 
 // const recordIndex = viewWeekMin * -1;
-const recordMax = viewWeekMin * -1;
-let recordIndex = 0;
-let wId;
 //
+let weekDataCollected = false;// < weekData 收集完，還 $('#prev-week') 的 printWeekMap 功能 v
 
-const fnCreateViewObj = function(ary, year, month, week, id){	
+const viewInit = function(){
+	viewMonth = currentWeekMonth;
+	viewYear = currentWeekYear;
+	viewWeek = currentWeek;
+	viewWeekId = currentWeekId;
+	viewWeekAry = fnGetViewWeekAry(viewWeek);
+}
+
+const fnCreateViewObj = function(ary, year, month, week){	
 	newObj = {}
 	// ID v
 	if( String(week).length < 2 ){ week = '0' + week };
@@ -50,15 +57,13 @@ const fnCreateViewObj = function(ary, year, month, week, id){
 		obj.hours = {m: [], a: [], e: []};
 		newObj.date_list.push(obj);
 	}
-	weekData[id] = newObj;
+
+	return newObj;
 }
 
+
 const fnPrintWeekMap = function(id){
-	let data;
-	if( !weekData[id] ){
-		fnCreateViewObj(viewWeekAry, viewYear, viewMonth, viewWeek, viewWeekId );
-	}
-	data = weekData[id];
+	const data = weekData[id];
 	let week = -1;
 	const ary = data.date_list;
 	//
@@ -68,7 +73,7 @@ const fnPrintWeekMap = function(id){
 	// -- WEEK TITLE HTML v
 	// --------------------------------
 	let thisWeekIndex = 0;
-	const isSameYearMonth = data.dt_year == currentWeekYear && data.dt_month == currentWeekMonth;
+	const isSameYearMonth = data.dt_year == currentWeekYear && data.dt_month == currentWeekMonth && viewWeekIndex == 1 || viewWeekIndex == -1 || viewWeekIndex == 0;
 	//
 	$('.weekmap-week').html('');
 	let dayStr = '';
@@ -76,7 +81,7 @@ const fnPrintWeekMap = function(id){
 		const date = item.date;
 		dayStr += '<div class="weekmap-td';
 		if( isSameYearMonth ){
-			if( date === currentDate ){
+			if( date === currentDate){
 				dayStr += " is-today";
 				week = thisWeekIndex;
 			}
@@ -191,43 +196,148 @@ const fnPrintWeekMap = function(id){
 	$('#achive-msg, #sticky-msg').text( weekData[id].weekly_msg );
 };
 
+const fnGetPrevViewWeekId = function(){
+	viewWeek = Number(viewWeek) - 1;
+	const viewPreYear = viewYear - 1;
+	const preIsMax53 = bus.weekMax53.findIndex( item => item == viewPreYear );
+	if( viewWeek == 0 ){
+		viewYear --;
+		if( preIsMax53 >= 0 ){ 
+			viewWeek = 53;
+		}else{
+			viewWeek = 52;
+		}
+	}
+
+	// 取得前一個 viewWeekId v
+	if( String(viewWeek).length < 2 ){
+		viewWeekId = String(viewYear) + '0' + viewWeek;
+	}else{
+		viewWeekId = String(viewYear) + viewWeek;
+	}
+};
+
+const fnGeViewWeekMonthAry_prev_next = function(){
+	// 確認 DATE-PICKER 是否需退一月 v
+	let check = false;
+	$('#datepicker .ui-datepicker-week-col').each(function(){
+		if( $(this).text() == viewWeek ){ check = true }
+	});
+	if( !check ){ $('#month-prev').click() };
+
+	// 取值 v
+	viewMonth = $('#datepicker .ui-datepicker-month:eq(0)').text().replace(' 月', '');
+	viewWeekAry = fnGetViewWeekAry(viewWeek);
+}
+
 const fnRecordWeekData = function () {
-	$('#prev-week').click(); // < ** 連動「viewWeekId 退位」程式**
-	recordIndex++;
-	if (recordIndex >= recordMax) {
-		clearInterval(wId);
+	if( viewWeekIndex > viewWeekMin ){
+		// --------------------------------
+		// -- 取得 ID v
+		// --------------------------------
+		// 取得前一週的 viewWeekYear、viewWeek、viewWeekId v
+		fnGetPrevViewWeekId();
+		
+		// --------------------------------
+		// -- API OR 設立虛擬 v
+		// --------------------------------
+		$.ajax({
+			type:"POST",
+			url:"./2020/api/Wschedule.asp",
+			data:{
+				dt_id: viewWeekId
+			},
+			dataType:"json",
+			// API v
+			success: function(data){	
+				weekData[viewWeekId] = data;
+				//
+				viewWeekIndex --;
+				viewWeekIndex > viewWeekMin ? fnRecordWeekData() : fnRecordWeekData_finish();
+			},
+			// 設立虛擬 v
+			error: function(){
+				// 取得前一週的 viewWeekMonth、viewWeekAry v
+				fnGeViewWeekMonthAry_prev_next();
+				weekData[viewWeekId] = fnCreateViewObj(viewWeekAry, viewYear, viewMonth, viewWeek);
+				//
+				viewWeekIndex --;
+				viewWeekIndex > viewWeekMin ? fnRecordWeekData() : fnRecordWeekData_finish();
+			}
+		});		
+	}
+}
 
-		// DATE-PICKER v
-		fnDatepickerJump(currentWeekYear, currentWeekMonth);
+const fnRecordWeekData_finish = function(){
+	console.log('finish record', weekData);
 
-		// WEEK MAP v
-		viewWeekIndex = 0;
-		viewMonth = currentWeekMonth;
-		viewYear = currentWeekYear;
-		viewWeek = currentWeek;
-		viewWeekId = currentWeekId;
-		viewWeekAry = fnGetViewWeekAry(viewWeek);
+	// DATE-PICKER v
+	fnDatepickerJump(currentWeekYear, currentWeekMonth);
 
-		// SORT v
-		for( id in weekData ){
-			for( date in weekData[id].date_list ){
-				for( hours in weekData[id].date_list[date].hours ){
-					weekData[id].date_list[date].hours[hours].sort(function(n, p){
-						if( n.done > p.done ){ return -1 }else{ return 1 };
-					})
-				}// hours
-				for( hours in weekData[id].date_list[date].hours ){
-					weekData[id].date_list[date].hours[hours].sort(function(n, p){
-						if( bus.todoList[n.sort].skin > bus.todoList[p.sort].skin ){ return 1 }else{ return -1 };
-					})// fn sort
-				}// hours
-			}// date
-		}// id
+	// weekData 收集完，還 $('#prev-week') printWeekMap 功能 v
+	weekDataCollected = true;
 
-		// NEXT FUNCTION v
-		console.log(weekData);
-		recordIndex = 0;
-		fId = setInterval(fnRecordFaceData, 0);// in face_map
+	// WEEK MAP v
+	viewWeekIndex = 0;
+	viewInit();
+
+	// SORT v
+	for( id in weekData ){
+		for( date in weekData[id].date_list ){
+			for( hours in weekData[id].date_list[date].hours ){
+				weekData[id].date_list[date].hours[hours].sort(function(n, p){
+					if( n.done > p.done ){ return -1 }else{ return 1 };
+				})
+			}// hours
+			for( hours in weekData[id].date_list[date].hours ){
+				weekData[id].date_list[date].hours[hours].sort(function(n, p){
+					if( bus.todoList[n.sort].skin > bus.todoList[p.sort].skin ){ return 1 }else{ return -1 };
+				})// fn sort
+			}// hours
+		}// date
+	}// id
+
+	// NEXT FUNCTION v
+	fId = setInterval(fnRecordFaceData, 0);// in face_map
+}
+
+const fnGetNextViewWeekId = function(){
+	// WEEK  & YEAR v
+	viewWeek = Number(viewWeek) + 1;
+	const nextIsMax53 = bus.weekMax53.findIndex( item => item == viewYear );
+	if( nextIsMax53 >= 0 ){
+		if( viewWeek == 54 ){ 
+			viewWeek = 1;
+			viewYear ++;
+		};
+	}else{
+		if( viewWeek == 53 ){ 
+			viewWeek = 1;
+			viewYear ++;
+		};
+	}
+
+	// ID OF MONTH MUST BE LENGTH = 2 v
+	if( String(viewWeek).length < 2 ){
+		viewWeekId = String(viewYear) + '0' + viewWeek;
+	}else{
+		viewWeekId = String(viewYear) + viewWeek;
+	}
+};
+
+const fnPrevNextCheck = function(id){
+	fnCircle(7, weekData[id].weekly_rate/100);
+	$('#completebox-7 .completebox-text').text( weekData[id].weekly_rate + '%' ).removeClass('is-un');
+	//
+	if( viewWeekIndex < 0 ){
+		$('#edit-week').addClass('is-muted');
+	}else{
+		$('#edit-week').removeClass('is-muted');
+	}
+	if (viewWeekIndex < 1) {
+		$('#week-clone').removeClass('is-muted');
+	}else{
+		$('#week-clone').addClass('is-muted');
 	}
 }
 
@@ -235,131 +345,70 @@ $(()=>{
 	// ==========================================
 	// == INIT VAR v
 	// ==========================================
-	viewMonth = currentWeekMonth;
-	viewYear = currentWeekYear;
-	viewWeek = currentWeek;
-	viewWeekId = currentWeekId;
-	viewWeekAry = fnGetViewWeekAry(viewWeek);
-	//
-	if (!weekData[currentWeekId]) {
-		fnCreateViewObj(viewWeekAry, viewYear, viewMonth, viewWeek, viewWeekId);
-	};
-	//
-	wId = setInterval( fnRecordWeekData, 0);
+	viewInit();
+
+	// 取得後一週的 viewWeekYear、viewWeek、viewWeekId v
+	fnGetNextViewWeekId();
+	// 取得後一週的 viewWeekMonth、viewWeekAry v
+	fnGeViewWeekMonthAry_prev_next();
+
+	$.ajax({
+		type:"POST",
+		url:"./2020/api/Wschedule.asp",
+		data:{
+			dt_id: viewWeekId
+		},
+		dataType:"json",
+		success:function(data){	
+			weekData[viewWeekId] = data;
+			console.log('next 1st success', weekData[viewWeekId], weekData);
+			fnRecordWeekData();
+		},
+		error:function(){
+			weekData[viewWeekId] = fnCreateViewObj(viewWeekAry, viewYear, viewMonth, viewWeek);
+			console.log('next 1st no data', weekData[viewWeekId],weekData);
+			fnRecordWeekData();
+		}
+	});	
 
 	// ==========================================
 	// == ACTION EVENT v
 	// ==========================================	
 	$('#prev-week').click(function(){
-		// fnDatepickerJump(fnGetThisYear(), fnGetThisMonth());
 		fnDatepickerJump(viewYear, viewMonth);
 		$('#next-week').fadeIn();
 		if( viewWeekIndex > viewWeekMin ){
-			// WEEK  & YEAR v
-			viewWeek = Number(viewWeek) - 1;
-			const viewPreYear = viewYear - 1;
-			const preIsMax53 = bus.weekMax53.findIndex( item => item == viewPreYear );
-			if( viewWeek == 0 ){
-				viewYear --;
-				if( preIsMax53 >= 0 ){ 
-					viewWeek = 53;
-				}else{
-					viewWeek = 52;
-				}
-			}
-	
-			// ID OF MONTH MUST BE LENGTH = 2 v
-			if( String(viewWeek).length < 2 ){
-				viewWeekId = String(viewYear) + '0' + viewWeek;
-			}else{
-				viewWeekId = String(viewYear) + viewWeek;
-			}
+			// 取得前一週的 viewWeekYear、viewWeek、viewWeekId v
+			// 取得前一週的 viewWeekMonth、viewWeekAry v
+			fnGetPrevViewWeekId();
+			fnGeViewWeekMonthAry_prev_next();
 			
-			// CHECK DATE-PICKER HAVE DATA ? v
-			let check = false;
-			$('#datepicker .ui-datepicker-week-col').each(function(){
-				// console.log( $(this).text() , viewWeek, $(this).text() == viewWeek );
-				if( $(this).text() == viewWeek ){ check = true }
-			});
-			if( !check ){ $('#month-prev').click() };
-	
-			viewMonth = $('#datepicker .ui-datepicker-month:eq(0)').text().replace(' 月', '');
-			
-			// GET VIEW ARY v
-			viewWeekAry = fnGetViewWeekAry(viewWeek);
-	
-			fnPrintWeekMap( viewWeekId );
-			
+			// 渲染週曆 v
+			if( weekDataCollected ){ fnPrintWeekMap(viewWeekId) };
+
+			// VISION LOGICS v
 			viewWeekIndex --;
+			fnPrevNextCheck(viewWeekId);
 			if( viewWeekIndex == viewWeekMin ){ $('#prev-week').fadeOut() };
-			// console.log(viewWeekId, viewYear, viewWeek, viewMonth, preIsMax53, check, viewWeekAry);
-			// console.log(viewWeekIndex);
 		}
 	});
 
 	$('#next-week').click(function(){
-		// fnDatepickerJump(fnGetThisYear(), fnGetThisMonth());
 		fnDatepickerJump(viewYear, viewMonth);
 		$('#prev-week').fadeIn();
 		if( viewWeekIndex < veiwWeekMax ){
-			// WEEK  & YEAR v
-			viewWeek = Number(viewWeek) + 1;
-			const nextIsMax53 = bus.weekMax53.findIndex( item => item == viewYear );
-			if( nextIsMax53 >= 0 ){
-				if( viewWeek == 54 ){ 
-					viewWeek = 1;
-					viewYear ++;
-				};
-			}else{
-				if( viewWeek == 53 ){ 
-					viewWeek = 1;
-					viewYear ++;
-				};
-			}
-
-			// ID OF MONTH MUST BE LENGTH = 2 v
-			if( String(viewWeek).length < 2 ){
-				viewWeekId = String(viewYear) + '0' + viewWeek;
-			}else{
-				viewWeekId = String(viewYear) + viewWeek;
-			}
+			// 取得後一週的 viewWeekYear、viewWeek、viewWeekId v
+			// 取得後一週的 viewWeekMonth、viewWeekAry v
+			fnGetNextViewWeekId();
+			fnGeViewWeekMonthAry_prev_next();
 			
-			// CHECK DATE-PICKER HAVE DATA ? v
-			let check = false;
-			$('#datepicker .ui-datepicker-calendar:eq(0) .ui-datepicker-week-col').each(function(){
-				// console.log( $(this).text() , viewWeek, $(this).text() == viewWeek );
-				if( $(this).text() == viewWeek ){ check = true }
-			});
-			if( !check ){ $('#month-next').click() };
-
-			viewMonth = $('#datepicker .ui-datepicker-month:eq(0)').text().replace(' 月', '');
-			
-			// GET VIEW ARY v
-			viewWeekAry = fnGetViewWeekAry(viewWeek);
-
+			// 渲染週曆 v
 			fnPrintWeekMap( viewWeekId );
 
+			// VISION LOGICS v
 			viewWeekIndex ++;
-			// console.log(viewWeekId, viewYear, viewWeek, viewMonth, nextIsMax53, check, viewWeekAry);
-			// console.log(viewWeekIndex);
+			fnPrevNextCheck(viewWeekId);
 			if( viewWeekIndex == veiwWeekMax ){ $('#next-week').fadeOut(); }
-		}
-	});
-	// if( viewWeekIndex <= veiwWeekMax && viewWeekIndex > -1 )
-
-	$('#prev-week, #next-week').click(function(){
-		fnCircle(7, weekData[viewWeekId].weekly_rate/100);
-		$('#completebox-7 .completebox-text').text( weekData[viewWeekId].weekly_rate + '%' ).removeClass('is-un');
-		//
-		if( viewWeekIndex < 0 ){
-			$('#edit-week').addClass('is-muted');
-		}else{
-			$('#edit-week').removeClass('is-muted');
-		}
-		if (viewWeekIndex < 1) {
-			$('#week-clone').removeClass('is-muted');
-		}else{
-			$('#week-clone').addClass('is-muted');
 		}
 	});
 
@@ -376,11 +425,7 @@ $(()=>{
 				// 1. WEEK MAP INIT v
 				fnPrintWeekMap(currentWeekId);
 				viewWeekIndex = 0;
-				viewMonth = currentWeekMonth;
-				viewYear = currentWeekYear;
-				viewWeek = currentWeek;
-				viewWeekId = currentWeekId;
-				viewWeekAry = currentWeekAry;
+				viewInit();
 
 				// 2. DATE-PICKER & FACE MAP INIT v
 				fnDatepickerJump(currentWeekYear, currentWeekMonth);
@@ -412,35 +457,4 @@ $(()=>{
 			}, delay);
 		};
 	});
-
-	// ==========================================
-	// == TEST WEEK v
-	// ==========================================
-	// MAX WEEK 53 v
-	// let ccMax = 0
-	// const cc = function(){
-	// 	// $('#add-week').click();
-	// 	// $('#prev-week').click();
-	// 	$('#next-week').click();
-	// 	ccMax ++;
-	// 	if(ccMax > 330){
-	// 		console.log('STOP');
-	// 		clearInterval(cId);
-	// 		console.log(weekData);
-			
-	// 	}
-	// }
-	// let cId = setInterval( cc, 0);
-
-	
-	// WEEK v
-	// const thisDay = new Date().getDay() - 1;
-	// const dayList = ['一', '二', '三', '四', '五', '六', '日'];
-	// console.log(thisDay, dayList[thisDay]);
-
-	// $('#try-week').click(function(){
-	// 	const target = $('#datepicker tbody tr:eq(0) .ui-datepicker-week-col').text();
-	// 	console.log('clicked try week', target);
-	// });
-	
 });

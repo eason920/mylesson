@@ -50,22 +50,22 @@ const completeObj = {
 		// {"year": 2021, "season": 0, "rate": 55}
 	],
 	"play": {
-		"turtle": 50,
-		"robbit": 30,
-		"day_line": "2020.11.15",
-		// "day_line": '',
+		"turtle": 0,
+		"robbit": 0,
+		// "day_line": "2020.11.15",
+		"day_line": '',
 		"extend": true
 	}
 };
 //
 const weekData = {
-	202034: demoWeekObj_202034,
-	202038: demoWeekObj_202038,
-	202039: demoWeekObj_202039,
-	202040: demoWeekObj_202040,
-	202041: demoWeekObj_202041,
-	202042: demoWeekObj_202042,
-	202043: demoWeekObj_202043
+	// 202034: demoWeekObj_202034,
+	// 202038: demoWeekObj_202038,
+	// 202039: demoWeekObj_202039,
+	// 202040: demoWeekObj_202040,
+	// 202041: demoWeekObj_202041,
+	// 202042: demoWeekObj_202042,
+	// 202043: demoWeekObj_202043
 }
 // date_list[0].hors.m[0].done v
 // 0 = 時間未到
@@ -262,20 +262,20 @@ const fnWeekObjMemo = function(string){
 };
 
 const fnWeekObjUpdate = function(obj){
-	console.log(weekData);
-	console.log('JSON', obj);
-	// console.log( 'STRING' ,JSON.stringify(obj) );
-	// $.ajax({
-	// 	type: "post",
-	// 	url: "https://funday.asia/mylesson/2020/api/jsonTest.asp",
-	// 	dataType: "json",
-	// 	// data: JSON.stringify(obj),
-	// 	data: obj,
-	// 	success: function(){
-	// 		// console.log('got json test', JSON.stringify(obj));
-	// 		console.log('got obj', obj);
-	// 	}
-	// })
+	const data = JSON.stringify(obj).replace(',null', '');
+
+	$.ajax({
+		type:"POST",
+		url:"./2020/api/WscheduleUpdate.asp",
+		data,
+		dataType:"html",
+		success:function(data){	
+			console.log('success', data)
+		},
+		error:function(data){
+			console.log('error', data)
+		}
+	});
 	console.log('%cUpdated!', 'color:greenyellow;font-size:20px;');
 }
 

@@ -66,7 +66,7 @@ const fnRecordFaceData = function(){
 	// --------------------------------
 	// -- PREV WEEK v 
 	// --------------------------------
-	recordIndex++;
+	viewWeekIndex --
 	$('#prev-week').click();// < ** 連動「viewWeekId 退位」程式**
 	
 	const prevMonth = viewMonth;
@@ -87,7 +87,7 @@ const fnRecordFaceData = function(){
 	// --------------------------------
 	// -- DONE & INIT v
 	// --------------------------------
-	if (recordIndex > recordMax) {
+	if( viewWeekIndex > viewWeekMin ){
 		clearInterval(fId);
 		delete faceData[monthCutId];
 
@@ -95,13 +95,9 @@ const fnRecordFaceData = function(){
 		fnfaceDataCheck();
 
 		// WEEK MAP v
-		fnPrintWeekMap(currentWeekId);
 		viewWeekIndex = 0;
-		viewMonth = currentWeekMonth;
-		viewYear = currentWeekYear;
-		viewWeek = currentWeek;
-		viewWeekId = currentWeekId;
-		viewWeekAry = currentWeekAry;
+		fnPrintWeekMap(currentWeekId);
+		viewInit();
 		viewWeekMin = -11;// 11+1 = 12 = 三個月
 		
 		// DATE-PICKER & FACE MAP v
@@ -127,6 +123,7 @@ const fnRecordFaceData = function(){
 		$('#completebox-90 .completebox-text').text( completeObj.seasons[1].rate + '%' ).removeClass('is-un');
 
 		console.log(faceData);
+		console.log(weekData);
 	}
 };
 
@@ -243,7 +240,10 @@ $(()=>{
 	// ==========================================
 	// == 開頁運作邏輯 v
 	// ==========================================
-	// file:week_map.js-fn:fnRecordweekData v
+	// file:week_map.js get next viewWeekId v
+	// 同檔 api get next obj
+	// 同檔 fn-fnRecordweekData * 16
+	// 同檔 fn-fnRecordWeekData_finish
 	// file:face_map.js-fn:fnRecordFaceData v
 	// 同檔-fn:fnPrintFaceMap
 

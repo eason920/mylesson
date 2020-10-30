@@ -96,6 +96,7 @@ $(()=>{
 		weekData[viewWeekId] = obj;
 		//
 		fnPrintWeekMap( viewWeekId );
+		console.log('send', obj);
 		fnWeekObjUpdate( obj );
 	});
 
