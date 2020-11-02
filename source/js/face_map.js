@@ -19,90 +19,83 @@ let preMonthYear1;
 let preMonthYear2;
 //
 let passToday = false;
+//
+let recordFaceMonth = 0;
+const recordFaceMonthMax = 2;
+//
+let completeObj = {};
+//
 
 const fnRecordFaceData = function(){
 	// --------------------------------
 	// -- CURR WEEK v
 	// --------------------------------
-	const currMonth = viewMonth;
-	if (doAdd) {
-		if (String(viewMonth).length < 2) {
-			faceId = viewYear + '0' + viewMonth;
-		} else {
-			faceId = viewYear + String(viewMonth);
-		};
-
-		faceData[faceId] = {};
-		faceData[faceId].week_list = [];
-
-		let weekId;
-		let weekLength = -1;
-		
-		$('#datepicker .ui-datepicker-group-first tbody tr').each(function (i) {
-			weekLength ++
-			const week = $(this).find('.ui-datepicker-week-col').text();
-			faceData[faceId].week_list.push({ week });
-			//
-			faceData[faceId].week_list[i].date = [];
-			faceData[faceId].week_list[i].daily_done = [];
-			//
-			if (String(week).length < 2) {
-				weekId = viewYear + '0' + String(week);
-			} else {
-				weekId = viewYear + String(week);
-			};
-			if (weekData[weekId]) {
-				for (a in weekData[weekId].date_list ){
-					faceData[faceId].week_list[i].date.push( weekData[weekId].date_list[a].date );
-					faceData[faceId].week_list[i].daily_done.push( weekData[weekId].date_list[a].daily_done );
-				};
-			};
-
-			faceData[faceId].week_length = weekLength;
-		});
-		doAdd = false;
-	}
+	// 取得此次 ID v
+	faceId = fnGetThisYear() + fnGetThisMonth();
 
 	// --------------------------------
-	// -- PREV WEEK v 
+	// -- FACE OBJ INIT v
 	// --------------------------------
-	viewWeekIndex --
-	$('#prev-week').click();// < ** 連動「viewWeekId 退位」程式**
+	faceData[faceId] = {};
+	faceData[faceId].week_list = [];
+
+	// --------------------------------
+	// -- 取得 WEEKLY DATE & DAILY_DONE 值 v
+	// --------------------------------
+	let weekId;
+	let weekLength = -1;
 	
-	const prevMonth = viewMonth;
-	if (currMonth != prevMonth) { 
-		doAdd = true;
+	// 第一組的 tr 全部 run 一遍 (*n) v
+	$('#datepicker .ui-datepicker-group-first tbody tr').each(function (i) {
+		weekLength ++
 
-		// 紀錄滿溢的 faceId
-		monthLength ++;
-		if( monthLength > monthMax ){
-			if (String(viewMonth).length < 2) {
-				monthCutId = viewYear + '0' + viewMonth;
-			} else {
-				monthCutId = viewYear + String(viewMonth);
+		// 取 WEEK ID v
+		const week = $(this).find('.ui-datepicker-week-col').text();
+		faceData[faceId].week_list.push({ week });
+
+		faceData[faceId].week_list[i].date = [];
+		faceData[faceId].week_list[i].daily_done = [];
+		if (String(week).length < 2) {
+			weekId = viewYear + '0' + String(week);
+		} else {
+			weekId = viewYear + String(week);
+		};
+
+		// 給值 v
+		if (weekData[weekId]) {
+			for (a in weekData[weekId].date_list ){
+				faceData[faceId].week_list[i].date.push( weekData[weekId].date_list[a].date );
+				faceData[faceId].week_list[i].daily_done.push( weekData[weekId].date_list[a].daily_done );
 			};
 		};
-	};
 
-	// --------------------------------
-	// -- DONE & INIT v
-	// --------------------------------
-	if( viewWeekIndex > viewWeekMin ){
-		clearInterval(fId);
-		delete faceData[monthCutId];
+		faceData[faceId].week_length = weekLength;
+	});
 
-		// CHECK v
+	// ==========================================
+	// == 前往前一月 v
+	// ==========================================
+	$('#datepicker .ui-icon-circle-triangle-w').click();
+
+	recordFaceMonth ++;
+	if( recordFaceMonth <= recordFaceMonthMax ){ 
+		fnRecordFaceData();
+	}else{
+		// --------------------------------
+		// -- DONE & INIT v
+		// --------------------------------
+		// FACE MAP 的視覺邏輯 v
 		fnfaceDataCheck();
+
+		// DATE-PICKER & FACE MAP v
+		fnDatepickerJump(currentWeekYear, currentWeekMonth);
+		fnPrintFaceMap( currentFaceId );
 
 		// WEEK MAP v
 		viewWeekIndex = 0;
 		fnPrintWeekMap(currentWeekId);
 		viewInit();
 		viewWeekMin = -11;// 11+1 = 12 = 三個月
-		
-		// DATE-PICKER & FACE MAP v
-		fnDatepickerJump(currentWeekYear, currentWeekMonth);
-		fnPrintFaceMap( currentFaceId );
 		
 		// VISION v
 		$('#prev-week').fadeIn();
@@ -114,16 +107,17 @@ const fnRecordFaceData = function(){
 		// CIRCLE ANIMATE v
 		// week
 		fnCircle(7, weekData[currentWeekId].weekly_rate/100);
-		$('#completebox-7 .completebox-text').text( weekData[currentWeekId].weekly_rate + '%' ).removeClass('is-un');
+		$('#completebox-7 .completebox-text').text( fnMathRound10(weekData[currentWeekId].weekly_rate) + '%' ).removeClass('is-un');
 		// month
 		fnCircle(30, completeObj.monthy[currentFaceId]/100 );
-		$('#completebox-30 .completebox-text').text( completeObj.monthy[currentFaceId] + '%' ).removeClass('is-un');
+		$('#completebox-30 .completebox-text').text( fnMathRound10(completeObj.monthy[currentFaceId]) + '%' ).removeClass('is-un');
 		// season
 		fnCircle(90, completeObj.seasons[1].rate/100 );
-		$('#completebox-90 .completebox-text').text( completeObj.seasons[1].rate + '%' ).removeClass('is-un');
+		$('#completebox-90 .completebox-text').text( fnMathRound10(completeObj.seasons[1].rate) + '%' ).removeClass('is-un');
 
 		console.log(faceData);
 		console.log(weekData);
+		console.log(completeObj);
 	}
 };
 
@@ -147,7 +141,7 @@ const fnfaceDataCheck = function(){
 		// 過去月份 v
 		if ( id < currentFaceId ) {
 			for (i in faceData[id].week_list) {
-				// 1. 補空視覺白 (0 改作 3) v
+				// 1. 補視覺空白 (0 改作 3) v
 				for(done in faceData[id].week_list[i].daily_done){
 					if( faceData[id].week_list[i].daily_done[done] == 0 ){
 						faceData[id].week_list[i].daily_done[done] = 3
@@ -200,7 +194,7 @@ const fnfaceDataCheck = function(){
 
 				// 3.若本週「不是」本月的第一週，將屬於上月的 date 改作 0 v
 				if( currentWeekEq != 0 && i == 0 ){
-					console.log('本週「不」是「第一」週');
+					// console.log('本週「不」是「第一」週');
 					fnLess7();
 				};// if
 			}; // i
@@ -211,7 +205,6 @@ const fnfaceDataCheck = function(){
 const fnPrintFaceMap = function(id){
 	$('#facemap').html('');
 	const wl = faceData[id].week_list;
-	// console.log( wl );
 	let str = '';
 	for(w in wl){
 		const complete = wl[w]
@@ -274,8 +267,6 @@ $(()=>{
 			preMonth2 = currentWeekMonth - 2;
 			preMonthYear2 = currentWeekYear;
 	};
-	// console.log(currentWeekMonth, preMonth1, preMonth2);
-	// console.log( currentWeekYear, preMonthYear1, preMonthYear2);
 
 	// 取前二月各自的季數 v
 	for( a in bus.season_area ){
@@ -291,25 +282,40 @@ $(()=>{
 	// ==========================================
 	// == 確認無季 DATA 就收集 v
 	// ==========================================
-	if( !completeObj.seasons[0] ){
-		// 第一季 v
-		fnCreateSeasonObj(0, currentWeekYear, currentSeason);
+	
+	$.ajax({
+		type: "POST",
+		url: "./2020/API/running.asp",
+		success: function(res){
+			completeObj = JSON.parse(res);
+			
+			console.log(completeObj, completeObj.seasons, completeObj["seasons"]);
+			// face_map.js v
+			if( !completeObj.seasons[0] ){
+				// 第一季 v
+				fnCreateSeasonObj(0, currentWeekYear, currentSeason);
+		
+				// 可能有的前一季 v
+				switch(true){
+					// 前一月可能就換季 v
+					case preMonthSeason1 != currentSeason:
+						fnCreateSeasonObj(1, preMonthYear1, preMonthSeason1);
+						break;
+					// 前二月可能才換季 v
+					case preMonthSeason2 != currentSeason:
+						fnCreateSeasonObj(1, preMonthYear2, preMonthSeason2);
+						break;
+					// 本、前一、前二都在同一季就不用建立了 v
+					default:
+				}
+			};
+			console.log( 'seasonData ', completeObj.seasons );
 
-		// 可能有的前一季 v
-		switch(true){
-			// 前一月可能就換季 v
-			case preMonthSeason1 != currentSeason:
-				fnCreateSeasonObj(1, preMonthYear1, preMonthSeason1);
-				break;
-			// 前二月可能才換季 v
-			case preMonthSeason2 != currentSeason:
-				fnCreateSeasonObj(1, preMonthYear2, preMonthSeason2);
-				break;
-			// 本、前一、前二都在同一季就不用建立了 v
-			default:
+			// play.js v
+			playInit();
 		}
-	};
-	console.log( 'seasonData ', completeObj.seasons );
+	});
+
 
 	// ==========================================
 	// == EVENTS v
@@ -342,7 +348,7 @@ $(()=>{
 
 			// CIRCLE ANIMATE v
 			fnCircle(30, completeObj.monthy[id]/100 );
-			$('#completebox-30 .completebox-text').text( completeObj.monthy[id] + '%' ).removeClass('is-un');
+			$('#completebox-30 .completebox-text').text( fnMathRound10(completeObj.monthy[id]) + '%' ).removeClass('is-un');
 		};
 
 		// --------------------------------
@@ -352,7 +358,7 @@ $(()=>{
 		const fnOnTime = function(a){
 			if( completeObj.seasons[a].rate !=  $('#completebox-90 .completebox-text').text().replace('%', '') ){
 				fnCircle(90, completeObj.seasons[a].rate/100 );
-				$('#completebox-90 .completebox-text').text( completeObj.seasons[a].rate + '%' ).removeClass('is-un');
+				$('#completebox-90 .completebox-text').text( fnMathRound10(completeObj.seasons[a].rate) + '%' ).removeClass('is-un');
 			}
 		};
 

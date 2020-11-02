@@ -8,3 +8,7 @@ $('#edit-send').click(function(){
 });
 
 // animation: ani-moving 2s linear 「infinite」 forwards
+
+//- NEW STUDY ####################################
+//- 在正則表達式中，使用變數 => /string/g 改以 「new RegExp('string', 'g')」定義之
+//- ##############################################

@@ -38,25 +38,26 @@ const bus = {
 	monthAry: ["January","February","March","April","May","June","July","August","September","October", "November", "December"],
 }
 //
-const completeObj = {
-	"monthy": {
-		"202008": 50,
-		"202009": 89,
-		"202010": 15
-	},
-	"seasons": [
-		{"year": 2020, "season": 2, "rate": 55},
-		{"year": 2020, "season": 3, "rate": 12},
-		// {"year": 2021, "season": 0, "rate": 55}
-	],
-	"play": {
-		"turtle": 0,
-		"robbit": 0,
-		// "day_line": "2020.11.15",
-		"day_line": '',
-		"extend": true
-	}
-};
+// const completeObj = {
+// 	"monthy": {
+// 		"202008": 50,
+// 		"202009": 89,
+// 		"202010": 15,
+// 		"202011": 83
+// 	},
+// 	"seasons": [
+// 		{"year": 2020, "season": 2, "rate": 55},
+// 		{"year": 2020, "season": 3, "rate": 12},
+// 		// {"year": 2021, "season": 0, "rate": 55}
+// 	],
+// 	"play": {
+// 		"turtle": 0,
+// 		"robbit": 0,
+// 		// "day_line": "2020.11.15",
+// 		"day_line": '',
+// 		"extend": true
+// 	}
+// };
 //
 const weekData = {
 	// 202034: demoWeekObj_202034,
@@ -109,7 +110,6 @@ const fnDatepickerJump = function(year, month){
 	$("#datepicker").datepicker("setDate",$.datepicker.parseDate("yy/mm/dd", year + "/" + month +"/01"));
 };
 
-let num=0;
 const fnCircle = function(selector, value){
 	let $target = $('#completebox-'+ selector);
 	let color;
@@ -160,8 +160,6 @@ const fnCircle = function(selector, value){
 	let firstMonth = viewMonth;
 	let lastMonth = viewMonth;
 	//
-	let firstYear = viewYear;
-	let lastYear = viewYear;
 	switch(true){
 		case selector == 7:
 			if( !viewWeekIsEq1 ){
@@ -169,21 +167,21 @@ const fnCircle = function(selector, value){
 				if( substrac > -1 ){ lastMonth = Number(viewMonth) + 1 };
 				if( lastMonth == 13 ){ 
 					lastMonth = 1;
-					lastMonth = (Number(fnGetThisYear()) + 1 ) + '.' + lastMonth;
+					lastMonth = (Number(fnGetThisYear()) + 1 ) + ' / ' + lastMonth;
 				};
 			}else{
 				// 第一週 v
 				if( substrac > -1 ){ firstMonth = Number(viewMonth) - 1 };
 				if( firstMonth == 0 ){ 
 					firstMonth = 12;
-					lastMonth = fnGetThisYear() + '.' + lastMonth;
+					lastMonth = fnGetThisYear() + ' / ' + lastMonth;
 				};
 			}
-			const weekStr = firstMonth + '.' + firstDate + ' ~ ' + lastMonth + '.' + lastDate;
+			const weekStr = firstMonth + ' / ' + firstDate + ' ~ ' + lastMonth + ' / ' + lastDate;
 			$target.find('.completebox-time').text(weekStr);
 			break;
 		case selector == 30:
-			const monthStr = fnGetThisYear() + '.' + fnGetThisMonth();
+			const monthStr = fnGetThisYear() + ' / ' + fnGetThisMonth();
 			$target.find('.completebox-time').text(monthStr);
 			break;
 		case selector == 90:
@@ -193,12 +191,16 @@ const fnCircle = function(selector, value){
 				const num = bus.season_area[a].findIndex(item => item == month);
 				if( num > -1 ){ ary =   bus.season_area[a]}
 			};
-			const seasonStr = fnGetThisYear() + '.' + ary[0] + ' ~ ' + ary[2];
+			const seasonStr = fnGetThisYear() + ' / ' + ary[0] + ' ~ ' + ary[2];
 			$target.find('.completebox-time').text(seasonStr);
 			break;
 		default:
 	};
-	num ++;
+};
+
+const fnMathRound10 = function(num){
+	num = Math.round( Number(num) * 10 ) /10;
+	return num;
 };
 
 const fnWeekObjMemo = function(string){
@@ -262,7 +264,9 @@ const fnWeekObjMemo = function(string){
 };
 
 const fnWeekObjUpdate = function(obj){
-	const data = JSON.stringify(obj).replace(',null', '');
+	const reg = new RegExp(',null', 'g')
+	const data = JSON.stringify(obj).replace(reg, '');
+	console.log(data);
 
 	$.ajax({
 		type:"POST",

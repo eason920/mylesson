@@ -197,6 +197,40 @@ const demo3 = {
 	}
 }
 
+const demoOnline = `
+202010:
+week_length: 4
+week_list: Array(5)
+0:
+daily_done: (7) [0, 0, 0, 3, 3, 3, 3]
+date: (7) ["28", "29", "30", "1", "2", "3", "4"]
+week: "40"
+__proto__: Object
+1:
+daily_done: (7) [3, 3, 3, 3, 3, 3, 3]
+date: (7) ["5", "6", "7", "8", "9", "10", "11"]
+week: "41"
+__proto__: Object
+2:
+daily_done: (7) [3, 3, 3, 3, 3, 3, 3]
+date: (7) ["12", "13", "14", "15", "16", "17", "18"]
+week: "42"
+__proto__: Object
+3:
+daily_done: (7) [3, 3, 3, 3, 3, 3, 3]
+date: (7) ["19", "20", "21", "22", "23", "24", "25"]
+week: "43"
+__proto__: Object
+4:
+daily_done: (7) [3, 3, 3, 3, 3, 3, 0]
+date: (7) ["26", "27", "28", "29", "30", "31", "1"]
+week: "44"
+__proto__: Object
+length: 5
+__proto__: Array(0)
+__proto__: Object
+`
+
 // 0 = 時間未到 / 非本週數字
 // 1 = 完成
 // 2 = 完成一半

@@ -10,15 +10,12 @@ let viewWeekAry = [];
 //
 let viewWeekIndex = 0;
 const veiwWeekMax = 1;// 僅可見未來一週
-// let viewWeekMin = -15;
 let viewWeekMin = -16;// +1 -16 = -15 
-// const veiwWeekMax = 500;// 僅可見未來一週
-// let viewWeekMin = -100; 
 // ^ 往前三個月(12週)內 ( 12 = this x 1 + pre x 11 ) 
 // ^ 為取得 faceData 近三月完整 data, 需超出以逹目的，而在「face_map.js-fnRecordFaceData」函式完成後回歸 -11** 
-// const recordIndex = viewWeekMin * -1;
 //
 let weekDataCollected = false;// < weekData 收集完，還 $('#prev-week') 的 printWeekMap 功能 v
+//
 
 const viewInit = function(){
 	viewMonth = currentWeekMonth;
@@ -40,7 +37,6 @@ const fnCreateViewObj = function(ary, year, month, week){
 	newObj.dt_month = Number(month);
 	newObj.weekly_todos= 0;
 	newObj.weekly_truth= 0;
-	newObj.weekly_rate = 0;
 	newObj.weekly_bar1 = 0;
 	newObj.weekly_bar2 = 0;
 	newObj.weekly_level = 0;
@@ -202,11 +198,7 @@ const fnGetPrevViewWeekId = function(){
 	const preIsMax53 = bus.weekMax53.findIndex( item => item == viewPreYear );
 	if( viewWeek == 0 ){
 		viewYear --;
-		if( preIsMax53 >= 0 ){ 
-			viewWeek = 53;
-		}else{
-			viewWeek = 52;
-		}
+		preIsMax53 >= 0 ? viewWeek = 53 : viewWeek = 52;
 	}
 
 	// 取得前一個 viewWeekId v
@@ -298,7 +290,8 @@ const fnRecordWeekData_finish = function(){
 	}// id
 
 	// NEXT FUNCTION v
-	fId = setInterval(fnRecordFaceData, 0);// in face_map
+	//fId = setInterval(fnRecordFaceData, 0);// in face_map
+	fnRecordFaceData();
 }
 
 const fnGetNextViewWeekId = function(){
@@ -327,7 +320,7 @@ const fnGetNextViewWeekId = function(){
 
 const fnPrevNextCheck = function(id){
 	fnCircle(7, weekData[id].weekly_rate/100);
-	$('#completebox-7 .completebox-text').text( weekData[id].weekly_rate + '%' ).removeClass('is-un');
+	$('#completebox-7 .completebox-text').text( fnMathRound10(weekData[id].weekly_rate) + '%' ).removeClass('is-un');
 	//
 	if( viewWeekIndex < 0 ){
 		$('#edit-week').addClass('is-muted');
@@ -347,11 +340,12 @@ $(()=>{
 	// ==========================================
 	viewInit();
 
+	// 往下一週進一格 v
 	// 取得後一週的 viewWeekYear、viewWeek、viewWeekId v
-	fnGetNextViewWeekId();
 	// 取得後一週的 viewWeekMonth、viewWeekAry v
+	fnGetNextViewWeekId();
 	fnGeViewWeekMonthAry_prev_next();
-
+	
 	$.ajax({
 		type:"POST",
 		url:"./2020/api/Wschedule.asp",
@@ -361,15 +355,13 @@ $(()=>{
 		dataType:"json",
 		success:function(data){	
 			weekData[viewWeekId] = data;
-			console.log('next 1st success', weekData[viewWeekId], weekData);
 			fnRecordWeekData();
 		},
 		error:function(){
 			weekData[viewWeekId] = fnCreateViewObj(viewWeekAry, viewYear, viewMonth, viewWeek);
-			console.log('next 1st no data', weekData[viewWeekId],weekData);
 			fnRecordWeekData();
 		}
-	});	
+	});
 
 	// ==========================================
 	// == ACTION EVENT v
@@ -419,7 +411,7 @@ $(()=>{
 			$('#load-cal').fadeIn(delay);
 			$('#calbox, #achive, #facemap-open').fadeOut(delay);
 			const obj = fnWeekObjMemo('clone');
-			
+			// nextWeekAry
 			//--------------------------
 			setTimeout(()=>{
 				// 1. WEEK MAP INIT v
@@ -435,7 +427,6 @@ $(()=>{
 				$('#next-week').click();
 				weekData[viewWeekId] = obj;
 				weekData[viewWeekId].date_list.forEach(function(item, i){
-					console.log(i, item.date, viewWeekAry[i]);
 					item.date = viewWeekAry[i];
 				});
 				weekData[viewWeekId].dt_year = viewYear;
@@ -453,7 +444,7 @@ $(()=>{
 				$('#load-cal').fadeOut();
 				$('#calbox, #achive, #facemap-open').fadeIn();
 
-				console.log(obj);
+				fnWeekObjUpdate(obj);
 			}, delay);
 		};
 	});

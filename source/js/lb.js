@@ -10,7 +10,6 @@ $(()=>{
 		const sort = Number($this.attr('data-sort'));
 		$('.edit-item').removeClass('active');
 		$this.addClass('active');
-		console.log( skin,  sort);
 		str += '<div class="weekmap-item" ';
 		str += 'data-skin="' + skin + '" ';
 		str += 'data-sort="' + sort + '" ';
@@ -20,7 +19,6 @@ $(()=>{
 		str += bus.todoList[sort].title;
 		str += '</div>' // -text
 		str += '</div>' // -item
-		// console.log(str);
 	});
 
 	$('#edit-unedit').click(function(){
@@ -45,11 +43,7 @@ $(()=>{
 		const $target = $(this).find('.weekmap-in');
 		const sum = $(this).find('.weekmap-item').length;
 		if( $('#lb').attr('data-edit') == 'true' ){
-			if (sum < 5) {
-				$target.append(str)
-			}else {
-				alert('每時段規劃上限為5則');
-			};
+			sum < 5 ? $target.append(str) : alert('每時段規劃上限為5則');
 		};
 	});
 
@@ -57,11 +51,7 @@ $(()=>{
 	$('#lb').on('click', '.weekmap-item', function(){
 		const $this = $(this);
 		if ($('#lb').attr('data-edit') == 'false' && $this.parent().parent().attr('data-plan') == 'true' ){
-			if( $this.attr('data-done') == 4 ){
-				$this.attr('data-done', 0);
-			}else{
-				$this.attr('data-done', 4);
-			}
+			$this.attr('data-done') == 4 ? $this.attr('data-done', 0) : $this.attr('data-done', 4);
 		}
 	});
 
@@ -96,14 +86,11 @@ $(()=>{
 		weekData[viewWeekId] = obj;
 		//
 		fnPrintWeekMap( viewWeekId );
-		console.log('send', obj);
 		fnWeekObjUpdate( obj );
 	});
 
 	$('#edit-clean').click(function(){
-		console.log('clean');
-		$('.weekmap-hours[data-plan="true"]').find('.weekmap-in').html('');
-		// $('.weekmap-hours[data-plan="true"]').find('.weekmap-in').html() = '';
+		$('#lb .weekmap-hours[data-plan="true"]').find('.weekmap-in').html('');
 	});
 
 	// $('#edit-week').click();

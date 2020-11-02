@@ -1,5 +1,38 @@
 let startDate;
 
+const playInit = function(){
+	const dayLine = completeObj.play.day_line
+	if( dayLine ){ 
+		$('#runway-finish b').text(dayLine);
+		$('#runway-start').hide();
+	}
+	// console.log('got play');
+	const $turtle = $('#runway-time .guest');
+	const $rabbit = $('#runway-client .guest');
+	let turtle = completeObj.play.turtle;
+	let rabbit = completeObj.play.rabbit;
+	//
+	switch(true){
+		case ( turtle - rabbit ) >= 20 && turtle >= 50 && completeObj.play.extend:
+			$('#runway-extend').show();
+			// break;
+		case ( turtle - rabbit ) >= 20:
+			$rabbit.addClass('lose-2');
+			break;
+		case turtle > rabbit:
+			$rabbit.addClass('lose-1');
+			break;
+		case turtle == 0 && rabbit == 0 && ! dayLine:
+			$('#runway-start').show();
+		default:
+	};
+	//
+	turtle > 99 ? turtle = 'calc(100% + 140px)' : turtle += '%';
+	rabbit > 99 ? rabbit = 'calc(100% + 115px)' : rabbit += '%';
+	$turtle.css('left', turtle);
+	$rabbit.css('left', rabbit);
+}
+
 const fnUpdatePlay = function(date){
 	completeObj.play.day_line = date;
 	completeObj.play.extend = false;
@@ -8,36 +41,8 @@ const fnUpdatePlay = function(date){
 };
 
 $(()=>{
-	const dayLine = completeObj.play.day_line
-	if( dayLine ){ 
-		$('#runway-finish b').text(dayLine);
-		$('#runway-start').hide();
-	}
-	// console.log('got play');
-	const $turtle = $('#runway-time .guest');
-	const $robbit = $('#runway-client .guest');
-	let turtle = completeObj.play.turtle;
-	let robbit = completeObj.play.robbit;
-	//
-	switch(true){
-		case ( turtle - robbit ) >= 20 && turtle >= 50 && completeObj.play.extend:
-			$('#runway-extend').show();
-			// break;
-		case ( turtle - robbit ) >= 20:
-			$robbit.addClass('lose-2');
-			break;
-		case turtle > robbit:
-			$robbit.addClass('lose-1');
-			break;
-		case turtle == 0 && robbit == 0 && ! dayLine:
-			$('#runway-start').show();
-		default:
-	};
-	//
-	turtle > 99 ? turtle = 'calc(100% + 140px)' : turtle += '%';
-	robbit > 99 ? robbit = 'calc(100% + 115px)' : robbit += '%';
-	$turtle.css('left', turtle);
-	$robbit.css('left', robbit);
+	
+
 	
 	// ==========================================
 	// == DATE-PICKER v
