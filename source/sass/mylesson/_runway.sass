@@ -17,6 +17,7 @@
 			image: image-url('turtle.png')
 		height: image-height('turtle.png')
 		width: image-width('turtle.png')
+		transition: .6s
 		// left: 100%
 	
 #runway-client
@@ -31,6 +32,7 @@
 			image: image-url('rabbit_win.png')
 		height: image-height('rabbit_win.png')
 		width: image-width('rabbit_win.png')
+		transition: .45s .15s
 		// left: 100%
 		&.lose-1
 			background:
@@ -38,16 +40,52 @@
 		&.lose-2
 			background:
 				image: image-url('rabbit_lose2.png')
+		.status
+			position: absolute
+			color: red
+			left: -31px
+			top: 34px
+			background-color: #fff
+			width: 47px
+			height: 36px
+			border-radius: 18px
+			justify-content: center
+			align-items: center
+			text-align: center
+			line-height: 1.1
+			font:
+				size: .8125rem
+			display: none
+			box-shadow: 0 0 9px rgba(0,0,0,.3)
+			&.is-success
+				left: 55px
+				top: 6px
+				&:after
+					display: none
+			&.is-extend
+				left: -55px
+				width: 75px
+				cursor: pointer
+			&:after
+				content: ''
+				position: absolute
+				top: 27px
+				right: 0
+				transform: rotate(-27deg)
+				width: 0
+				height: 0
+				border:
+					style: solid
+					width: 8px 3px 0px 3px
+					color: #fff transparent transparent 
 
 .guest
 	position: absolute
-	transition: .3s
+	left: 0
 
 #runway-finish
 	background:
 		image: image-url('finish.png')
-	width: image-width('finish.png')
-	height: image-width('finish.png')
 	width: 102px
 	height: 122px
 	position: absolute
@@ -56,11 +94,11 @@
 
 	b
 		position: absolute
-		bottom: 57px
+		bottom: 62px
 		right: 9px
 		color: red
 		font:
-			size: 1rem
+			size: 15px
 			family: arial
 		transform: rotate(-3deg)
 		width: 85px

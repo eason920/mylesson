@@ -38,26 +38,26 @@ const bus = {
 	monthAry: ["January","February","March","April","May","June","July","August","September","October", "November", "December"],
 }
 //
-// const completeObj = {
-// 	"monthy": {
-// 		"202008": 50,
-// 		"202009": 89,
-// 		"202010": 15,
-// 		"202011": 83
-// 	},
-// 	"seasons": [
-// 		{"year": 2020, "season": 2, "rate": 55},
-// 		{"year": 2020, "season": 3, "rate": 12},
-// 		// {"year": 2021, "season": 0, "rate": 55}
-// 	],
-// 	"play": {
-// 		"turtle": 0,
-// 		"robbit": 0,
-// 		// "day_line": "2020.11.15",
-// 		"day_line": '',
-// 		"extend": true
-// 	}
-// };
+let completeObj = {
+	// "monthy": {
+	// 	"202008": 50,
+	// 	"202009": 89,
+	// 	"202010": 15,
+	// 	"202011": 83
+	// },
+	// "seasons": [
+	// 	{"year": 2020, "season": 2, "rate": 55},
+	// 	{"year": 2020, "season": 3, "rate": 12},
+	// 	// {"year": 2021, "season": 0, "rate": 55}
+	// ],
+	// "play": {
+	// 	"turtle": 0,
+	// 	"robbit": 0,
+	// 	// "day_line": "2020.11.15",
+	// 	"day_line": '',
+	// 	"extend": true
+	// }
+};
 //
 const weekData = {
 	// 202034: demoWeekObj_202034,
@@ -283,7 +283,101 @@ const fnWeekObjUpdate = function(obj){
 	console.log('%cUpdated!', 'color:greenyellow;font-size:20px;');
 }
 
+const tryUpdateObj = {
+	"dt_id": "202045",
+	"dt_year": "2020",
+	"dt_week": "45",
+	"dt_month": 11,
+	"date_list": [{
+		"date": "2",
+		"daily_done": false,
+		"hours": {
+			"m": [],
+			"a": [{
+				"done": "3",
+				"sort": "8"
+			}],
+			"e": []
+		},
+		"daily_todos": 1,
+		"daily_truth": 0
+	}, {
+		"date": "3",
+		"daily_done": false,
+		"hours": {
+			"m": [],
+			"a": [{
+				"sort": "0",
+				"done": "0"
+			},{
+				"sort": "1",
+				"done": "0"
+			},{
+				"sort": "2",
+				"done": "0"
+			}],
+			"e": []
+		},
+		"daily_todos": 0,
+		"daily_truth": 0
+	}, {
+		"date": "4",
+		"daily_done": false,
+		"hours": {
+			"m": [],
+			"a": [],
+			"e": []
+		},
+		"daily_todos": 0,
+		"daily_truth": 0
+	}, {
+		"date": "5",
+		"daily_done": false,
+		"hours": {
+			"m": [],
+			"a": [],
+			"e": []
+		},
+		"daily_todos": 0,
+		"daily_truth": 0
+	}, {
+		"date": "6",
+		"daily_done": false,
+		"hours": {
+			"m": [],
+			"a": [],
+			"e": []
+		},
+		"daily_todos": 0,
+		"daily_truth": 0
+	}, {
+		"date": "7",
+		"daily_done": false,
+		"hours": {
+			"m": [],
+			"a": [],
+			"e": []
+		},
+		"daily_todos": 0,
+		"daily_truth": 0
+	}, {
+		"date": "8",
+		"daily_done": false,
+		"hours": {
+			"m": [],
+			"a": [],
+			"e": []
+		},
+		"daily_todos": 0,
+		"daily_truth": 0
+	}],
+	"weekly_rate": "0"
+}
+
 $(()=>{
+	$('#member').click(function(){
+		fnWeekObjUpdate(tryUpdateObj)
+	});
 	// ==========================================
 	// == PLUGIN SETTING v
 	// ==========================================

@@ -23,8 +23,6 @@ let passToday = false;
 let recordFaceMonth = 0;
 const recordFaceMonthMax = 2;
 //
-let completeObj = {};
-//
 
 const fnRecordFaceData = function(){
 	// --------------------------------
@@ -274,9 +272,9 @@ $(()=>{
 		let pre1 = bus.season_area[a].findIndex( item=> item == preMonth1);
 		let pre2 = bus.season_area[a].findIndex( item=> item == preMonth2);
 		//
-		if( cur >= 0){ currentSeason = a };
-		if( pre1 >= 0){ preMonthSeason1 = a };
-		if( pre2 >= 0){ preMonthSeason2 = a };
+		if( cur >= 0){ currentSeason = Number(a)+1 };
+		if( pre1 >= 0){ preMonthSeason1 = Number(a)+1 };
+		if( pre2 >= 0){ preMonthSeason2 = Number(a)+1 };
 	};
 
 	// ==========================================
@@ -288,8 +286,6 @@ $(()=>{
 		url: "./2020/API/running.asp",
 		success: function(res){
 			completeObj = JSON.parse(res);
-			
-			console.log(completeObj, completeObj.seasons, completeObj["seasons"]);
 			// face_map.js v
 			if( !completeObj.seasons[0] ){
 				// 第一季 v
@@ -371,6 +367,7 @@ $(()=>{
 				};
 				break;
 			case month == preMonth1:
+				console.log('pre1');
 				for( a in completeObj.seasons ){
 					if( completeObj.seasons[a].year ==  preMonthYear1 && completeObj.seasons[a].season == preMonthSeason1 ){
 						fnOnTime(a);
@@ -378,6 +375,7 @@ $(()=>{
 				};
 				break;
 			case month == preMonth2:
+				console.log('pre2');
 				for( a in completeObj.seasons ){
 					if( completeObj.seasons[a].year ==  preMonthYear2 && completeObj.seasons[a].season == preMonthSeason2 ){
 						fnOnTime(a);

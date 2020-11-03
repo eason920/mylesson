@@ -11,24 +11,46 @@ const playInit = function(){
 	const $rabbit = $('#runway-client .guest');
 	let turtle = completeObj.play.turtle;
 	let rabbit = completeObj.play.rabbit;
-	//
+	
+	const subtract = (turtle - rabbit) >= 20;
+	// 「START」顯示邏輯 v
+	if( turtle == 0 && rabbit == 0 && ! dayLine ){ $('#runway-start').show() };
+
+	// 「延長時間「顯示邏輯 v
+	if( subtract && turtle >= 50 && !completeObj.play.extend ){
+		$rabbit.find('.status').css('display', 'flex').text('延長時間?').addClass('is-extend');
+	}
+
+	// 「落後程度」的視覺邏輯 v
 	switch(true){
-		case ( turtle - rabbit ) >= 20 && turtle >= 50 && completeObj.play.extend:
-			$('#runway-extend').show();
-			// break;
-		case ( turtle - rabbit ) >= 20:
+		case subtract:
 			$rabbit.addClass('lose-2');
 			break;
 		case turtle > rabbit:
 			$rabbit.addClass('lose-1');
 			break;
-		case turtle == 0 && rabbit == 0 && ! dayLine:
-			$('#runway-start').show();
+		default:
+	};
+
+	// 「成功/失敗」視覺邏輯 v
+	switch(true){
+		case rabbit >= 100 && turtle <= 100:
+			$rabbit.find('.status').css('display', 'flex').text('成功!').addClass('is-success');
+			break;
+		case rabbit <= 100 && turtle >= 100 && !completeObj.play.extend:
+			console.log('aaa');
+			$rabbit.find('.status').css('display', 'flex').html('矢敗!<br>延長時間?').addClass('is-extend');
+			break;
+		case rabbit <= 100 && turtle >= 100 && completeObj.play.extend:
+			$rabbit.find('.status').css('display', 'flex').text('矢敗');
+			break;
 		default:
 	};
 	//
-	turtle > 99 ? turtle = 'calc(100% + 140px)' : turtle += '%';
-	rabbit > 99 ? rabbit = 'calc(100% + 115px)' : rabbit += '%';
+	turtle >= 100 ? turtle = 'calc(100% + 140px)' : turtle += '%';
+	rabbit >= 100 ? rabbit = 'calc(100% + 115px)' : rabbit += '%';
+
+	// 給值 v
 	$turtle.css('left', turtle);
 	$rabbit.css('left', rabbit);
 }
@@ -40,8 +62,19 @@ const fnUpdatePlay = function(date){
 	console.log('%cUpdated!', 'color:greenyellow;font-size:20px;');
 };
 
+const fnAfterUpdatePlay = function(){
+	$.ajax({
+		type: "POST",
+		url: "./2020/API/running.asp",
+		success: function(res){
+			completeObj = JSON.parse(res);
+			playInit();
+		}
+	});
+};
+
 $(()=>{
-	
+	// $('#runway-extend').show();
 
 	
 	// ==========================================
@@ -68,7 +101,7 @@ $(()=>{
 		const year = Number( $('#runway-date .ui-datepicker-year').text() );
 		const month = Number( $('#runway-date .ui-datepicker-month').text().replace(' 月', '') );
 		const date = Number( $('#runway-date .ui-state-active').text() );
-		startDate = year + '.' + month +'.' + date;
+		startDate = year + '/' + month +'/' + date;
 
 		// 同年同月 >= 今天
 		const sort1 = year == Number(currentWeekYear) && month == Number(currentWeekMonth) && date <= Number(currentDate);
@@ -84,10 +117,21 @@ $(()=>{
 		}else{
 			console.log('> 今天');
 			const check = confirm('確定選定「'+startDate+'」作挑戰升下個等級的時間?');
-			if( check ){ 
-				$('#runway-finish b').text(startDate);
-				$('#runway-start').fadeOut();
-				$('#runway-lb, #runway-masker').fadeOut();
+			if( check ){
+				$.ajax({
+					type: "POST",
+					// url: "./2020/api/runningUpdate.asp?day_line=2020/11/5&Rstart=R",
+					url: "./2020/api/runningUpdate.asp?day_line="+startDate,
+					success: function(res){
+						console.log(res);
+						$('#runway-finish b').text(startDate);
+						$('#runway-start').fadeOut();
+						$('#runway-lb, #runway-masker').fadeOut();
+
+						// init v
+						fnAfterUpdatePlay();
+					}
+				});
 			}
 		}
 	});
@@ -97,7 +141,7 @@ $(()=>{
 	});
 
 	$('#runway-extend').click(function(){
-		const ary = $('#runway-finish b').text().split('.');
+		const ary = $('#runway-finish b').text().split('-');
 		let month = Number( ary[1] ) + 2;// 2 = 每延一次以二個月計
 		let year = Number( ary[0] );
 		switch(true){
@@ -111,14 +155,30 @@ $(()=>{
 				break;
 			default:
 		}
-		const date = year + '.' + month + '.' + ary[2];
+		const date = year + '/' + month + '/' + ary[2];
 		
 		// 
 		const check = confirm('確定要展廷目標逹成時間至'+date+'?');
+		console.log('api', "./2020/api/runningUpdate.asp?day_line="+date);
 		if (check) {
-			$('#runway-finish b').text(date);
-			fnUpdatePlay(date);
-			$(this).fadeOut();
+			$.ajax({
+				type: "POST",
+				// url: "./2020/api/runningUpdate.asp?day_line=2020/11/5&Rstart=R",
+				url: "./2020/api/runningUpdate.asp?day_line="+date,
+				success: function(res){
+					console.log(res);
+
+					// vision v
+					$('#runway-finish b').text(date);
+					fnUpdatePlay(date);
+					$(this).fadeOut();
+
+					// init v
+					fnAfterUpdatePlay();
+				}
+			});
+
+			
 		};
 	});
 	// $('#runway-start').click();
