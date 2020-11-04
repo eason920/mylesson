@@ -1,3 +1,5 @@
+let nickName;
+
 $(()=>{
 	let str;
 	$('.edit-item').click(function(){
@@ -57,6 +59,12 @@ $(()=>{
 
 	// OPEN v
 	$('#edit-week, #lb-close, #lbmasker, #edit-send').click(function(){
+		console.log( nickName == undefined );
+		if( nickName == undefined ){
+			nickName = $('.Mnameb span').text();
+			$('#sticky-middle b:eq(1)').text(nickName + ' :');
+		}
+
 		const $lb = $('#lb');
 		const $mk = $('#lbmasker');
 		//
@@ -83,10 +91,41 @@ $(()=>{
 
 	$('#edit-send').click(function(){
 		const obj = fnWeekObjMemo();
-		weekData[viewWeekId] = obj;
 		//
-		fnPrintWeekMap( viewWeekId );
 		fnWeekObjUpdate( obj );
+		$.ajax({
+			type:"POST",
+			url:"./2020/api/Wschedule.asp",
+			data:{
+				dt_id: viewWeekId
+			},
+			dataType:"json",
+			success: function(data){	
+				weekData[viewWeekId] = data;
+				fnPrintWeekMap( viewWeekId );
+
+				// CIRCLE ANIMATE v
+				// week
+				fnCircle(7, weekData[currentWeekId].weekly_rate/100);
+				$('#completebox-7 .completebox-text').text( fnMathRound10(weekData[currentWeekId].weekly_rate) + '%' ).removeClass('is-un');
+			}
+		});
+
+		$.ajax({
+			type: "POST",
+			url: "./2020/API/running.asp",
+			success: function(res){
+				completeObj = JSON.parse(res);
+
+				// CIRCLE ANIMATE v
+				// month
+				fnCircle(30, completeObj.monthy[currentFaceId]/100 );
+				$('#completebox-30 .completebox-text').text( fnMathRound10(completeObj.monthy[currentFaceId]) + '%' ).removeClass('is-un');
+				// season
+				fnCircle(90, completeObj.seasons[1].rate/100 );
+				$('#completebox-90 .completebox-text').text( fnMathRound10(completeObj.seasons[1].rate) + '%' ).removeClass('is-un');
+			}
+		});
 	});
 
 	$('#edit-clean').click(function(){

@@ -1,4 +1,4 @@
-$h: 42px
+$h: 38px
 $pw: 90px
 // --------------------------------
 #contact
@@ -8,6 +8,8 @@ $pw: 90px
 	.Top-div
 		width: 100%
 		height: $h
+		background-color: #344D83
+		border-radius: 10px 10px 0 0 
 
 	.SE-div, .AC-div
 		float: left
@@ -19,7 +21,8 @@ $pw: 90px
 		font:
 			style: normal
 			weight: 600
-			size: 1.4em
+			size: 17px
+		letter-spacing: 1px
 		display: flex
 		justify-content: center
 		align-items: center
@@ -27,13 +30,11 @@ $pw: 90px
 	.SE-All
 		width: 100%
 
-	.SE-div
-		background-color: #344D83
-		box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.1)
-
-	.AC-div
-		background-color: #E24E62
-		box-shadow: -10px 1px 10px rgba(0, 0, 0, 0.1)
+	.SE-div, .AC-div
+		cursor: pointer
+		&.active
+			background-color: #E24E62
+			box-shadow: -10px 1px 10px rgba(0, 0, 0, 0.1)
 
 
 	// --------------------------------

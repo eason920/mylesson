@@ -375,9 +375,9 @@ const tryUpdateObj = {
 }
 
 $(()=>{
-	$('#member').click(function(){
-		fnWeekObjUpdate(tryUpdateObj)
-	});
+	// $('#member').click(function(){
+	// 	fnWeekObjUpdate(tryUpdateObj)
+	// });
 	// ==========================================
 	// == PLUGIN SETTING v
 	// ==========================================

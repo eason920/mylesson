@@ -367,7 +367,6 @@ $(()=>{
 				};
 				break;
 			case month == preMonth1:
-				console.log('pre1');
 				for( a in completeObj.seasons ){
 					if( completeObj.seasons[a].year ==  preMonthYear1 && completeObj.seasons[a].season == preMonthSeason1 ){
 						fnOnTime(a);
@@ -375,7 +374,6 @@ $(()=>{
 				};
 				break;
 			case month == preMonth2:
-				console.log('pre2');
 				for( a in completeObj.seasons ){
 					if( completeObj.seasons[a].year ==  preMonthYear2 && completeObj.seasons[a].season == preMonthSeason2 ){
 						fnOnTime(a);

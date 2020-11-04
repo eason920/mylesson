@@ -15,7 +15,6 @@ let viewWeekMin = -16;// +1 -16 = -15
 // ^ 為取得 faceData 近三月完整 data, 需超出以逹目的，而在「face_map.js-fnRecordFaceData」函式完成後回歸 -11** 
 //
 let weekDataCollected = false;// < weekData 收集完，還 $('#prev-week') 的 printWeekMap 功能 v
-//
 
 const viewInit = function(){
 	viewMonth = currentWeekMonth;
@@ -39,7 +38,7 @@ const fnCreateViewObj = function(ary, year, month, week){
 	newObj.weekly_truth= 0;
 	newObj.weekly_bar1 = 0;
 	newObj.weekly_bar2 = 0;
-	newObj.weekly_level = 0;
+	newObj.weekly_level = '無';
 	newObj.weekly_rate = 0;
 	newObj.weekly_msg = '本週尚未安排學習課程';
 	newObj.date_list = [];
@@ -180,7 +179,7 @@ const fnPrintWeekMap = function(id){
 	// --------------------------------
 	// -- LEVEL v
 	// --------------------------------
-	$('#achive-level span').text( bus.levelAry[weekData[id].weekly_level] );
+	$('#achive-level span').text( weekData[id].weekly_level );
 	//
 	let ml1 = weekData[id].weekly_bar1;
 	let ml2 = weekData[id].weekly_bar2;

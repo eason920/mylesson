@@ -38,11 +38,11 @@ const playInit = function(){
 			$rabbit.find('.status').css('display', 'flex').text('成功!').addClass('is-success');
 			break;
 		case rabbit <= 100 && turtle >= 100 && !completeObj.play.extend:
-			console.log('aaa');
 			$rabbit.find('.status').css('display', 'flex').html('矢敗!<br>延長時間?').addClass('is-extend');
 			break;
 		case rabbit <= 100 && turtle >= 100 && completeObj.play.extend:
 			$rabbit.find('.status').css('display', 'flex').text('矢敗');
+			$('#runway-start').show();
 			break;
 		default:
 	};
@@ -140,7 +140,7 @@ $(()=>{
 		$('#runway-lb, #runway-masker').fadeOut();
 	});
 
-	$('#runway-extend').click(function(){
+	$('#runway-client').on('click', '.is-extend', function(){
 		const ary = $('#runway-finish b').text().split('-');
 		let month = Number( ary[1] ) + 2;// 2 = 每延一次以二個月計
 		let year = Number( ary[0] );
@@ -177,8 +177,6 @@ $(()=>{
 					fnAfterUpdatePlay();
 				}
 			});
-
-			
 		};
 	});
 	// $('#runway-start').click();
