@@ -305,7 +305,7 @@ $(()=>{
 					default:
 				}
 			};
-			console.log( 'seasonData ', completeObj.seasons );
+			console.log( 'seasonData ', completeObj );
 
 			// play.js v
 			playInit();

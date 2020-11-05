@@ -1,6 +1,7 @@
 let startDate;
 
 const playInit = function(){
+	console.log('updated & render', completeObj.play);
 	const dayLine = completeObj.play.day_line
 	if( dayLine ){ 
 		$('#runway-finish b').text(dayLine);
@@ -33,19 +34,25 @@ const playInit = function(){
 	};
 
 	// 「成功/失敗」視覺邏輯 v
+	const cssAniTime = 600;
 	switch(true){
 		case rabbit >= 100 && turtle <= 100:
-			$rabbit.find('.status').css('display', 'flex').text('成功!').addClass('is-success');
+			setTimeout(function(){
+				$rabbit.find('.status').css('display', 'flex').html('成功!<br><b>重開新局?</b>').addClass('is-success');
+			}, cssAniTime);
 			break;
-		case rabbit <= 100 && turtle >= 100 && !completeObj.play.extend:
-			$rabbit.find('.status').css('display', 'flex').html('矢敗!<br>延長時間?').addClass('is-extend');
-			break;
-		case rabbit <= 100 && turtle >= 100 && completeObj.play.extend:
-			$rabbit.find('.status').css('display', 'flex').text('矢敗');
-			$('#runway-start').show();
-			break;
-		default:
-	};
+			case rabbit <= 100 && turtle >= 100 && !completeObj.play.extend:
+				setTimeout(function(){
+					$rabbit.find('.status').css('display', 'flex').html('矢敗!<br><b>延長時間?</b>').addClass('is-extend');
+				}, cssAniTime);
+				break;
+				case rabbit <= 100 && turtle >= 100 && completeObj.play.extend:
+					setTimeout(function(){
+						$rabbit.find('.status').css('display', 'flex').html('矢敗...<br><b>重新開始?</b>').addClass('is-restart');
+					}, cssAniTime);
+				break;
+			default:
+		};
 	//
 	turtle >= 100 ? turtle = 'calc(100% + 140px)' : turtle += '%';
 	rabbit >= 100 ? rabbit = 'calc(100% + 115px)' : rabbit += '%';
@@ -93,10 +100,20 @@ $(()=>{
 	// ==========================================
 	// == EVENTS v
 	// ==========================================
+	// 開始鈕的顯示 v
 	$('#runway-start').click(function(){
 		$('#runway-lb, #runway-masker').fadeIn();
 	});
 
+	$('#runway-client .guest').on('click', '.is-restart', function(){
+		$('#runway-lb, #runway-masker').fadeIn();
+	});
+
+	$('#runway-client .guest').on('click', '.is-success', function(){
+		$('#runway-lb, #runway-masker').fadeIn();
+	})
+
+	// OTHER v
 	$('#runway-send').click(function(){
 		const year = Number( $('#runway-date .ui-datepicker-year').text() );
 		const month = Number( $('#runway-date .ui-datepicker-month').text().replace(' 月', '') );
@@ -118,6 +135,7 @@ $(()=>{
 			console.log('> 今天');
 			const check = confirm('確定選定「'+startDate+'」作挑戰升下個等級的時間?');
 			if( check ){
+				$('#runway-client .guest .status').hide();
 				$.ajax({
 					type: "POST",
 					// url: "./2020/api/runningUpdate.asp?day_line=2020/11/5&Rstart=R",
@@ -167,11 +185,13 @@ $(()=>{
 				url: "./2020/api/runningUpdate.asp?day_line="+date,
 				success: function(res){
 					console.log(res);
-
+					const $rabbit = $('#runway-client .guest');
 					// vision v
 					$('#runway-finish b').text(date);
-					fnUpdatePlay(date);
-					$(this).fadeOut();
+					// fnUpdatePlay(date);
+					$('#runway-client .is-extend').fadeOut();
+					$rabbit.removeClass('lose-1');
+					$rabbit.removeClass('lose-2');
 
 					// init v
 					fnAfterUpdatePlay();

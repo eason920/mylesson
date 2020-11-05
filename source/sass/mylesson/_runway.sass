@@ -49,6 +49,7 @@
 			width: 47px
 			height: 36px
 			border-radius: 18px
+			flex-direction: column
 			justify-content: center
 			align-items: center
 			text-align: center
@@ -58,14 +59,21 @@
 			display: none
 			box-shadow: 0 0 9px rgba(0,0,0,.3)
 			&.is-success
-				left: 55px
-				top: 6px
+				top: 2px
+				left: 47px
+				width: 77px
+				cursor: pointer
 				&:after
 					display: none
-			&.is-extend
-				left: -55px
-				width: 75px
+
+			&.is-extend, &.is-restart
+				left: -67px
+				width: 88px
 				cursor: pointer
+				b
+					font:
+						size: 15px
+
 			&:after
 				content: ''
 				position: absolute

@@ -208,15 +208,24 @@ const fnGetPrevViewWeekId = function(){
 	}
 };
 
-const fnGeViewWeekMonthAry_prev_next = function(){
+const fnGeViewWeekMonthAry_prev_next = function(target){
 	// 確認 DATE-PICKER 是否需退一月 v
 	let check = false;
-	$('#datepicker .ui-datepicker-week-col').each(function(){
+	$('#datepicker .ui-datepicker-group-first .ui-datepicker-week-col').each(function(){
 		if( $(this).text() == viewWeek ){ check = true }
 	});
-	if( !check ){ $('#month-prev').click() };
+
+	if( !check ){ 
+		if( target == 'prev' ){
+			$('#month-prev').click();
+		}else{
+			$('#month-next').click();
+		}
+	
+	};
 
 	// 取值 v
+	viewYear = $('#datepicker .ui-datepicker-year:eq(0)').text();
 	viewMonth = $('#datepicker .ui-datepicker-month:eq(0)').text().replace(' 月', '');
 	viewWeekAry = fnGetViewWeekAry(viewWeek);
 }
@@ -249,7 +258,7 @@ const fnRecordWeekData = function () {
 			// 設立虛擬 v
 			error: function(){
 				// 取得前一週的 viewWeekMonth、viewWeekAry v
-				fnGeViewWeekMonthAry_prev_next();
+				fnGeViewWeekMonthAry_prev_next('prev');
 				weekData[viewWeekId] = fnCreateViewObj(viewWeekAry, viewYear, viewMonth, viewWeek);
 				//
 				viewWeekIndex --;
@@ -343,7 +352,7 @@ $(()=>{
 	// 取得後一週的 viewWeekYear、viewWeek、viewWeekId v
 	// 取得後一週的 viewWeekMonth、viewWeekAry v
 	fnGetNextViewWeekId();
-	fnGeViewWeekMonthAry_prev_next();
+	fnGeViewWeekMonthAry_prev_next('next');
 	
 	$.ajax({
 		type:"POST",
@@ -372,7 +381,7 @@ $(()=>{
 			// 取得前一週的 viewWeekYear、viewWeek、viewWeekId v
 			// 取得前一週的 viewWeekMonth、viewWeekAry v
 			fnGetPrevViewWeekId();
-			fnGeViewWeekMonthAry_prev_next();
+			fnGeViewWeekMonthAry_prev_next('prev');
 			
 			// 渲染週曆 v
 			if( weekDataCollected ){ fnPrintWeekMap(viewWeekId) };
@@ -391,7 +400,7 @@ $(()=>{
 			// 取得後一週的 viewWeekYear、viewWeek、viewWeekId v
 			// 取得後一週的 viewWeekMonth、viewWeekAry v
 			fnGetNextViewWeekId();
-			fnGeViewWeekMonthAry_prev_next();
+			fnGeViewWeekMonthAry_prev_next('next');
 			
 			// 渲染週曆 v
 			fnPrintWeekMap( viewWeekId );
