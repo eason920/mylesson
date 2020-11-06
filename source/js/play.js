@@ -1,7 +1,6 @@
 let startDate;
 
 const playInit = function(){
-	console.log('updated & render', completeObj.play);
 	const dayLine = completeObj.play.day_line
 	if( dayLine ){ 
 		$('#runway-finish b').text(dayLine);

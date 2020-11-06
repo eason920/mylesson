@@ -60,35 +60,42 @@ $path: 'loading.gif'
 	left: 0
 	margin: auto
 
+$wpn: 110px
 #prev-week,
 #next-week
 	position: absolute
 	top: 0
 	cursor: pointer
-	width: 100px
+	width: $wpn
 	height: 23px
 	font:
 		weight: bold
 		size: 1rem
-	color: #aaa
+	color: $c-blue
+	display: flex
+	align-items: center
 	svg
 		display: inline-block
 		width: 12px
 		height: 100%
 
 #prev-week
-	left: 2px
+	left: $w-time
+	svg
+		margin-right: 5px
 
 #next-week
-	right: 10px
+	right: $g-calbox-r
+	svg
+		margin-left: 5px
 
 // --------------------------------
 #week-clone
 	width: 23px
 	height: 23px
 	position: absolute
-	top: 0
-	right: 70px
+	top: -36px
+	left: 0
 	cursor: pointer
 	svg
 		width: 100%
@@ -98,8 +105,8 @@ $path: 'loading.gif'
 	width: 19px
 	height: 19px
 	position: absolute
-	top: 1px
-	right: 36px
+	top: -36px
+	left: 36px
 	cursor: pointer
 	transition: opacity .3s
 	svg

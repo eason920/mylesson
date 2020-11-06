@@ -113,6 +113,7 @@ const fnRecordFaceData = function(){
 		fnCircle(90, completeObj.seasons[1].rate/100 );
 		$('#completebox-90 .completebox-text').text( fnMathRound10(completeObj.seasons[1].rate) + '%' ).removeClass('is-un');
 
+		// $('#edit-week').click(); // for debug
 		console.log(faceData);
 		console.log(weekData);
 		console.log(completeObj);
