@@ -80,9 +80,6 @@ const fnAfterUpdatePlay = function(){
 };
 
 $(()=>{
-	// $('#runway-extend').show();
-
-	
 	// ==========================================
 	// == DATE-PICKER v
 	// ==========================================
@@ -135,10 +132,12 @@ $(()=>{
 			const check = confirm('確定選定「'+startDate+'」作挑戰升下個等級的時間?');
 			if( check ){
 				$('#runway-client .guest .status').hide();
+				$('#runway-client .guest').removeClass('lose-1');
+				$('#runway-client .guest').removeClass('lose-2');
 				$.ajax({
 					type: "POST",
 					// url: "./2020/api/runningUpdate.asp?day_line=2020/11/5&Rstart=R",
-					url: "./2020/api/runningUpdate.asp?day_line="+startDate,
+					url: "./2020/api/runningUpdate.asp?day_line="+startDate+"&Rstart=R",
 					success: function(res){
 						console.log(res);
 						$('#runway-finish b').text(startDate);

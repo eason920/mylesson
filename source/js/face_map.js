@@ -310,6 +310,8 @@ $(()=>{
 
 			// play.js v
 			playInit();
+			$('#runway-next-lv').fadeIn().text(completeObj.play.nextLevel);
+			$('#runway-title').text('請選擇預計升' + completeObj.play.nextLevel +'日期');
 		}
 	});
 

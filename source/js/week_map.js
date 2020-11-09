@@ -14,6 +14,10 @@ let viewWeekMin = -16;// +1 -16 = -15
 // ^ 往前三個月(12週)內 ( 12 = this x 1 + pre x 11 ) 
 // ^ 為取得 faceData 近三月完整 data, 需超出以逹目的，而在「face_map.js-fnRecordFaceData」函式完成後回歸 -11** 
 //
+let nextWeekAry;
+let nextMonth1;
+let nextMonth2;
+//
 let weekDataCollected = false;// < weekData 收集完，還 $('#prev-week') 的 printWeekMap 功能 v
 
 const viewInit = function(){
@@ -156,7 +160,13 @@ const fnPrintWeekMap = function(id){
 						editStatus = true;
 				};
 			}
-			dateStr += '<div class="weekmap-hours" data-plan="' + editStatus + '">';
+			
+			// ALT 文字 v
+			let title;
+			editStatus ? title = '點擊以編輯排程' : title = '點擊以複製此週排程';
+
+			//
+			dateStr += '<div class="weekmap-hours" data-plan="' + editStatus + '" title="' + title + '">';
 			dateStr += '<div class="weekmap-in">';
 			item.hours[h].forEach(function(j){
 				dateStr += '<div class="weekmap-item" ';
@@ -172,8 +182,13 @@ const fnPrintWeekMap = function(id){
 		}
 		dateStr += '</div>'// -td
 	});
+	
+	$('#calbox .weekmap-date').html(dateStr);
 
-	$('.weekmap-date').html(dateStr);
+	const a = new RegExp('title="點擊以編輯排程"', 'g');
+	const b = new RegExp('title="點擊以複製此週排程"', 'g');
+	$('#lb .weekmap-date').html( dateStr.replace(a, '').replace(b, '') );
+
 	$('.weekmap-date .weekmap-td:eq(' + week + ')').addClass('is-today');
 
 	// --------------------------------
@@ -353,7 +368,16 @@ $(()=>{
 	// 取得後一週的 viewWeekMonth、viewWeekAry v
 	fnGetNextViewWeekId();
 	fnGeViewWeekMonthAry_prev_next('next');
+
+	// 紀錄未來一週的 date v
+	nextWeekAry = viewWeekAry;
+	nextMonth1 = viewMonth;
+	if( (Number(nextWeekAry[0]) - Number(nextWeekAry[6])) > 20 ){
+		const month = Number(nextMonth1) + 1;
+		month == 13 ? nextMonth2 = 1 : nextMonth2 = month;
+	}else{ nextMonth2 = nextMonth1 };
 	
+	// 繼續收集 weekData v
 	$.ajax({
 		type:"POST",
 		url:"./2020/api/Wschedule.asp",
@@ -412,48 +436,78 @@ $(()=>{
 		}
 	});
 
-	$('#week-clone').click(function(){
-		const delay = 600;
-		const check = confirm('確定要將此週的學習排程\n複製到未來一週嗎?\n*己安排的排程將會被覆蓋');
-		if( check ){
-			$('#load-cal').fadeIn(delay);
-			$('#calbox, #achive, #facemap-open').fadeOut(delay);
-			const obj = fnWeekObjMemo('clone');
-			// nextWeekAry
-			//--------------------------
+	$('#calbox').on('click', '.weekmap-hours', function(){
+		const plan = $(this).attr('data-plan');
+		if( plan == 'true' ){
+			// --------------------------------
+			// -- $('#edit-week').click(function(){ V
+			// -- #EDIT-WEEK v
+			// --------------------------------
+			// 第一次開 lb 取匿稱文字 v
+			if( nickName == undefined ){
+				nickName = $('.Mnameb span').text();
+				$('#sticky-middle b:eq(1)').text(nickName + ' :');
+			}
+
+			const $lb = $('#lb');
+			const $mk = $('#lbmasker');
+			//
+			fnPrintWeekMap(viewWeekId);
+			$lb.css('display', 'flex');
+			$mk.show();
 			setTimeout(()=>{
-				// 1. WEEK MAP INIT v
-				fnPrintWeekMap(currentWeekId);
-				viewWeekIndex = 0;
-				viewInit();
+				$lb.removeClass('is-hide');
+				$mk.removeClass('is-hide');
+			}, 300);
 
-				// 2. DATE-PICKER & FACE MAP INIT v
-				fnDatepickerJump(currentWeekYear, currentWeekMonth);
-				fnPrintFaceMap(currentFaceId);
+		}else{
+			// --------------------------------
+			// -- $('#week-clone').click(function(){ V
+			// -- #WEEK-CLONE v
+			// --------------------------------
+			const delay = 600;
+			const date = nextMonth1 + '/' + nextWeekAry[0] + ' ~ ' + nextMonth2 + '/' + nextWeekAry[6];
+			const check = confirm('確定要將此週的學習排程\n複製到未來一週 ('+ date +') 嗎?\n*己安排的排程將會被覆蓋');
+			if( check ){
+				$('#load-cal').fadeIn(delay);
+				$('#calbox, #achive, #facemap-open').fadeOut(delay);
+				const obj = fnWeekObjMemo('clone');
+				// nextWeekAry
+				//--------------------------
+				setTimeout(()=>{
+					// 1. WEEK MAP INIT v
+					fnPrintWeekMap(currentWeekId);
+					viewWeekIndex = 0;
+					viewInit();
 
-				// 3. GET NEXT WEEK & FIX OBJ v
-				$('#next-week').click();
-				weekData[viewWeekId] = obj;
-				weekData[viewWeekId].date_list.forEach(function(item, i){
-					item.date = viewWeekAry[i];
-				});
-				weekData[viewWeekId].dt_year = viewYear;
-				weekData[viewWeekId].dt_month = viewMonth;
-				weekData[viewWeekId].dt_week = viewWeek
-				weekData[viewWeekId].dt_id = viewWeekId;
-				weekData[viewWeekId].weekly_bar1 = 0;
-				weekData[viewWeekId].weekly_bar2 = 0;
-				weekData[viewWeekId].weekly_level = 0;
-				weekData[viewWeekId].weekly_msg = '尚待咨詢師分析';
-				weekData[viewWeekId].weekly_rate = 0;
+					// 2. DATE-PICKER & FACE MAP INIT v
+					fnDatepickerJump(currentWeekYear, currentWeekMonth);
+					fnPrintFaceMap(currentFaceId);
 
-				// 4. PRINT & FINISH v
-				fnPrintWeekMap(viewWeekId);
-				$('#load-cal').fadeOut();
-				$('#calbox, #achive, #facemap-open').fadeIn();
+					// 3. GET NEXT WEEK & FIX OBJ v
+					$('#next-week').click();
+					weekData[viewWeekId] = obj;
+					weekData[viewWeekId].date_list.forEach(function(item, i){
+						item.date = viewWeekAry[i];
+					});
+					weekData[viewWeekId].dt_year = viewYear;
+					weekData[viewWeekId].dt_month = viewMonth;
+					weekData[viewWeekId].dt_week = viewWeek
+					weekData[viewWeekId].dt_id = viewWeekId;
+					weekData[viewWeekId].weekly_bar1 = 0;
+					weekData[viewWeekId].weekly_bar2 = 0;
+					weekData[viewWeekId].weekly_level = 0;
+					weekData[viewWeekId].weekly_msg = '尚待咨詢師分析';
+					weekData[viewWeekId].weekly_rate = 0;
 
-				fnWeekObjUpdate(obj);
-			}, delay);
-		};
+					// 4. PRINT & FINISH v
+					fnPrintWeekMap(viewWeekId);
+					$('#load-cal').fadeOut();
+					$('#calbox, #achive, #facemap-open').fadeIn();
+
+					fnWeekObjUpdate(obj);
+				}, delay);
+			};
+		}
 	});
 });

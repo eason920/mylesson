@@ -93,32 +93,17 @@ $(()=>{
 	});
 
 	// OPEN v
-	$('#edit-week, #lb-close, #lbmasker, #edit-send').click(function(){
-		console.log( nickName == undefined );
-		if( nickName == undefined ){
-			nickName = $('.Mnameb span').text();
-			$('#sticky-middle b:eq(1)').text(nickName + ' :');
-		}
-
+	// $('#edit-week, #lb-close, #lbmasker, #edit-send').click(function(){
+	$('#lb-close, #lbmasker, #edit-send').click(function(){
 		const $lb = $('#lb');
 		const $mk = $('#lbmasker');
 		//
-		if( $lb.is(':hidden') ){
-			fnPrintWeekMap(viewWeekId);
-			$lb.css('display', 'flex');
-			$mk.show();
-			setTimeout(()=>{
-				$lb.removeClass('is-hide');
-				$mk.removeClass('is-hide');
-			}, 300);
-		}else{
-			$lb.fadeOut(100);
-			$mk.fadeOut(100);
-			setTimeout(()=>{
-				$lb.addClass('is-hide');
-				$mk.addClass('is-hide');
-			}, 400);
-		}
+		$lb.fadeOut(100);
+		$mk.fadeOut(100);
+		setTimeout(()=>{
+			$lb.addClass('is-hide');
+			$mk.addClass('is-hide');
+		}, 400);
 		//
 		$lb.attr('data-edit', false);
 		$('.edit-item').removeClass('active');
