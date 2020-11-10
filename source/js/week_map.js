@@ -484,6 +484,7 @@ $(()=>{
 					fnDatepickerJump(currentWeekYear, currentWeekMonth);
 					fnPrintFaceMap(currentFaceId);
 
+
 					// 3. GET NEXT WEEK & FIX OBJ v
 					$('#next-week').click();
 					weekData[viewWeekId] = obj;
@@ -501,11 +502,44 @@ $(()=>{
 					weekData[viewWeekId].weekly_rate = 0;
 
 					// 4. PRINT & FINISH v
-					fnPrintWeekMap(viewWeekId);
-					$('#load-cal').fadeOut();
-					$('#calbox, #achive, #facemap-open').fadeIn();
+					const reg = new RegExp(',null', 'g')
+					const data = JSON.stringify(obj).replace(reg, '');
+					console.log(data);
 
-					fnWeekObjUpdate(obj);
+					$.ajax({
+						type:"POST",
+						url:"./2020/api/WscheduleUpdate.asp",
+						data,
+						dataType:"html",
+						success:function(data){	
+							console.log('success', data);
+							$.ajax({
+								type:"POST",
+								url:"./2020/api/Wschedule.asp",
+								data:{
+									dt_id: viewWeekId
+								},
+								dataType:"json",
+								success:function(data){	
+									weekData[viewWeekId] = data;
+									fnPrintWeekMap(viewWeekId);
+									fnCircle(7, weekData[viewWeekId].weekly_rate/100);
+									$('#completebox-7 .completebox-text').text( fnMathRound10(weekData[viewWeekId].weekly_rate) + '%' ).removeClass('is-un');
+			
+									$('#load-cal').fadeOut();
+									$('#calbox, #achive, #facemap-open').fadeIn();
+								},
+								error:function(){
+									alert('因網路不穩定造成更新失敗，請稍候再試');
+								}
+							});
+
+						},
+						error:function(data){
+							alert('因網路不穩定造成更新失敗，請稍候再試');
+						}
+					});
+
 				}, delay);
 			};
 		}

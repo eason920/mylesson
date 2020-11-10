@@ -110,25 +110,69 @@ $(()=>{
 	});
 
 	$('#edit-send').click(function(){
+		const delay = 100;
+		$('#load-cal').fadeIn(delay);
+		$('#calbox, #achive, #facemap-open').fadeOut(delay);
 		const obj = fnWeekObjMemo();
 		//
-		fnWeekObjUpdate( obj );
+		// fnWeekObjUpdate( obj );
+		// $.ajax({
+		// 	type:"POST",
+		// 	url:"./2020/api/Wschedule.asp",
+		// 	data:{
+		// 		dt_id: viewWeekId
+		// 	},
+		// 	dataType:"json",
+		// 	success: function(data){	
+		// 		weekData[viewWeekId] = data;
+		// 		fnPrintWeekMap( viewWeekId );
+		// 		console.log(data);
+		// 		console.log( weekData[viewWeekId] );
+		// 		// CIRCLE ANIMATE v
+		// 		// week
+		// 		fnCircle(7, weekData[viewWeekId].weekly_rate/100);
+		// 		$('#completebox-7 .completebox-text').text( fnMathRound10(weekData[viewWeekId].weekly_rate) + '%' ).removeClass('is-un');
+		// 	}
+		// });
+		// ^ old
+		// v new
+		const reg = new RegExp(',null', 'g')
+		const data = JSON.stringify(obj).replace(reg, '');
+		console.log(data);
+
 		$.ajax({
 			type:"POST",
-			url:"./2020/api/Wschedule.asp",
-			data:{
-				dt_id: viewWeekId
+			url:"./2020/api/WscheduleUpdate.asp",
+			data,
+			dataType:"html",
+			success:function(data){	
+				console.log('update');
+				console.log('success', data);
+				$.ajax({
+					type:"POST",
+					url:"./2020/api/Wschedule.asp",
+					data:{
+						dt_id: viewWeekId
+					},
+					dataType:"json",
+					success:function(data){	
+						console.log('get');
+						weekData[viewWeekId] = data;
+						fnPrintWeekMap(viewWeekId);
+						fnCircle(7, weekData[viewWeekId].weekly_rate/100);
+						$('#completebox-7 .completebox-text').text( fnMathRound10(weekData[viewWeekId].weekly_rate) + '%' ).removeClass('is-un');
+					
+						$('#load-cal').fadeOut();
+						$('#calbox, #achive, #facemap-open').fadeIn();
+					},
+					error:function(){
+						alert('因網路不穩定造成更新失敗，請稍候再試');
+					}
+				});
+
 			},
-			dataType:"json",
-			success: function(data){	
-				weekData[viewWeekId] = data;
-				fnPrintWeekMap( viewWeekId );
-				console.log(data);
-				console.log( weekData[viewWeekId] );
-				// CIRCLE ANIMATE v
-				// week
-				fnCircle(7, weekData[viewWeekId].weekly_rate/100);
-				$('#completebox-7 .completebox-text').text( fnMathRound10(weekData[viewWeekId].weekly_rate) + '%' ).removeClass('is-un');
+			error:function(data){
+				alert('因網路不穩定造成更新失敗，請稍候再試');
 			}
 		});
 
