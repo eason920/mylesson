@@ -42,12 +42,12 @@ const playInit = function(){
 			break;
 			case rabbit <= 100 && turtle >= 100 && !completeObj.play.extend:
 				setTimeout(function(){
-					$rabbit.find('.status').css('display', 'flex').html('矢敗!<br><b>延長時間?</b>').addClass('is-extend');
+					$rabbit.find('.status').css('display', 'flex').html('失敗!<br><b>延長時間?</b>').addClass('is-extend');
 				}, cssAniTime);
 				break;
 				case rabbit <= 100 && turtle >= 100 && completeObj.play.extend:
 					setTimeout(function(){
-						$rabbit.find('.status').css('display', 'flex').html('矢敗...<br><b>重新開始?</b>').addClass('is-restart');
+						$rabbit.find('.status').css('display', 'flex').html('失敗...<br><b>重新開始?</b>').addClass('is-restart');
 					}, cssAniTime);
 				break;
 			default:

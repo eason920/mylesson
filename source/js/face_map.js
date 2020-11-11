@@ -357,8 +357,8 @@ $(()=>{
 		const fnOnTime = function(a){
 			if( completeObj.seasons[a].rate !=  $('#completebox-90 .completebox-text').text().replace('%', '') ){
 				fnCircle(90, completeObj.seasons[a].rate/100 );
-				$('#completebox-90 .completebox-text').text( fnMathRound10(completeObj.seasons[a].rate) + '%' ).removeClass('is-un');
 			}
+			$('#completebox-90 .completebox-text').text( fnMathRound10(completeObj.seasons[a].rate) + '%' ).removeClass('is-un');
 		};
 
 		switch(true){

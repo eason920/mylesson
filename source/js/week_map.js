@@ -45,6 +45,7 @@ const fnCreateViewObj = function(ary, year, month, week){
 	newObj.weekly_level = '無';
 	newObj.weekly_rate = 0;
 	newObj.weekly_msg = '本週尚未安排學習課程';
+	newObj.weekly_Emsg = 'No courses scheduled this week.';
 	newObj.date_list = [];
 
 	for (i=0; i<7;i ++) {
@@ -203,7 +204,8 @@ const fnPrintWeekMap = function(id){
 	$('.achive-bar.is-bar1 .achive-percent').css({left: weekData[id].weekly_bar1+'%', marginLeft: 'calc( -8% / '+ ml1 +')'});
 	$('.achive-bar.is-bar2 .achive-percent').css({left: weekData[id].weekly_bar2+'%', marginLeft: 'calc( -8% / '+ ml2 +')'});
 	//
-	$('#achive-msg, #sticky-msg').text( weekData[id].weekly_msg );
+	$('#achive-msg').text( weekData[id].weekly_msg );
+	$('#sticky-msg').text( weekData[id].weekly_Emsg );
 };
 
 const fnGetPrevViewWeekId = function(){
