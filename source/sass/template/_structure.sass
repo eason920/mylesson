@@ -1,0 +1,29 @@
+#content
+	position: relative
+
+#prev-page,
+#next-page
+	// display: none
+	top: 50%
+	transform: translateY(-50%)
+	cursor: pointer
+	svg
+		width: 21px
+		height: 47px
+
+#prev-page
+	left: 22px
+
+#next-page
+	right: 22px
+
+@media screen and (max-width: 1279px)
+	#prev-page,
+	#next-page
+		position: absolute
+		top: 200px
+
+@media screen and (min-width: 1280px)
+	#prev-page,
+	#next-page
+		position: fixed

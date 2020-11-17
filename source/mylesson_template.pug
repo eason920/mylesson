@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		title My Lesson temp
+		link(href="./css/mylesson_template.css", rel="stylesheet")
+		script(src='./assets/plugins/jquery/jquery.1.12.4.min.js')
+		//- datapicker v
+
+	body
+		#nav
+			.wrapper
+				.box nav
+		#content(style="height: 1000px")
+			#prev-page
+				svg(fill='none')
+					path(d='M19 2L2 23.5L19 45', stroke='white', stroke-width='4')
+			#next-page
+				svg(fill='none')
+					path(d='M2 2L19 23.5L2 45', stroke='white', stroke-width='4')
+			.wrapper
+		#foo
+			.f1
+				| 需要其他協助嗎?  請聯絡我們
+				.msg-board(onclick="GoLink('MessageBoard')" title='留言版')
+			.f2
+				span.f2-1
+					| 服務時間：週一～週六 10:00~12:30、13:30~17:30、18:30~22:00  |  02-2523-9777 / 0800-023-777 (限市話)
+				span.f2-2
+					| © 2020 Brainstorm Digital Communications Corp. All rights reserved. Privacy Policy
