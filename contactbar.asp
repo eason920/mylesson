@@ -83,7 +83,7 @@ var AC_phto='<%=ac_phto%>';
 <link href="./2020/css/contactbar.css?dd=<%=now%>" rel="stylesheet">
 
 <div Class="Top-div">
-	<div Class="SE-div SE-All" onclick="SE_ACChange(1)">顧問</div>
+	<div Class="SE-div SE-All" onclick="SE_ACChange(1)">專屬顧問</div>
 	<div Class="AC-div" style="display:none;" onclick="SE_ACChange(2)">語言諮詢師</div>
 </div>
 <div Class="Down-div">
