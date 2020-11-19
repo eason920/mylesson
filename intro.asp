@@ -50,99 +50,99 @@ end if
 
     <script src="../../js/Uinfo.js"></script>
     <script src="./2020/js/lightBoxDIY-V2.js?<%=Timer%>"></script>    
-    <script src="./2020/js/tool.js?dd=<%=now%>"></script>    
-  <style>
-    .wd2{
-      position:fixed;
-      width:100%;
-      height:100%;
-      top:0px;
-      left:0px;
-      background-color:rgba(0, 0, 0, 0.6);
-      z-index:6;
-    }
-    .DivBlock,.DivIndx,.DivScores{
-      position:relative;
-      margin:0 auto;
-      padding-left: 10px;
-      padding-right: 10px;
-      margin-top:20px;
-      margin-bottom:-10px;
-      border-radius: 16px;
-      font-size: 13px;
-      font-weight: bold;
-      font-style: normal;
-      font-stretch: normal;
-      line-height: 32px;
-      letter-spacing: -0.3px;
-      text-align: left;
-      color: #888888;  
-      background-color: #ffffff;
-      border: solid 1px #bcbcbc;
-      position:absolute;
-      float:left;
-      left:calc(50% - (777px) / 2);
-      top:calc(50% - (493px) / 2);	
-      width: 777px;
-      height: 500px;
-      border-radius: 5px;
-
-      background-color: #ffffff;
-      box-shadow: 0px 4px 9px 0 rgba(0, 0, 0, 0.26);
-      display:none;
-      z-index:7;
-    }
-    .DivIndx{ width: 755px; height: 650px;}
-    .DivScores{ width: 850px; height: 633px;}
-    .DVShow{ background: url(../../track/images/Loading.svg) center center no-repeat; background-size: 200px;background-color: #ffffff;}
-  </style>
-  <script>
-    var ClientsId=window.location.hostname.split(".");
-
-    function DivPoint(){
-      if($('.DivScores').css('display')=='none'){	
-        $('.DivScores').html('<iframe src="https://exchange.funday.asia/pointnew/?indx=<%=session("indx")%>&key1=<%=pass1%>" width="100%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="yes"></iframe>');  
-        $('body').append('<div class="wd2" onclick="removeWd2()" ></div>'); 
-        $('.DivScores').fadeIn();
+    <script src="./2020/js/tool.js?dd=<%=now%>"></script>
+    <style>
+      .wd2{
+        position:fixed;
+        width:100%;
+        height:100%;
+        top:0px;
+        left:0px;
+        background-color:rgba(0, 0, 0, 0.6);
+        z-index:6;
       }
-    }
+      .DivBlock,.DivIndx,.DivScores{
+        position:relative;
+        margin:0 auto;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-top:20px;
+        margin-bottom:-10px;
+        border-radius: 16px;
+        font-size: 13px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 32px;
+        letter-spacing: -0.3px;
+        text-align: left;
+        color: #888888;  
+        background-color: #ffffff;
+        border: solid 1px #bcbcbc;
+        position:absolute;
+        float:left;
+        left:calc(50% - (777px) / 2);
+        top:calc(50% - (493px) / 2);	
+        width: 777px;
+        height: 500px;
+        border-radius: 5px;
 
-    function DivBlock(type){
-      if($('.DivBlock').css('display')=='none'){	
-        $('.DivBlock').attr('class','DivBlock DVShow')   
-        $('.DivBlock').html('<iframe src="../../../../track/LessonGraph?type='+type+'" width="100%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>');  
-        $('body').append('<div class="wd2" onclick="removeWd2()" ></div>'); 
-        $('.DivBlock').fadeIn();
+        background-color: #ffffff;
+        box-shadow: 0px 4px 9px 0 rgba(0, 0, 0, 0.26);
+        display:none;
+        z-index:7;
       }
-    }
+      .DivIndx{ width: 755px; height: 650px;}
+      .DivScores{ width: 850px; height: 633px;}
+      .DVShow{ background: url(../../track/images/Loading.svg) center center no-repeat; background-size: 200px;background-color: #ffffff;}
+    </style>
+    <script>
+      var ClientsId=window.location.hostname.split(".");
 
-    function DivScores(type){
-      if($('.DivScores').css('display')=='none'){	
-        $('.DivScores').attr('class','DivScores DVShow')  
-        $('.DivScores').html('<iframe src="../../../../track/pointsRecord?type='+type+'" width="100%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>');  
-        $('body').append('<div class="wd2" onclick="removeWd2()" ></div>'); 
-        $('.DivScores').fadeIn();
+      function DivPoint(){
+        if($('.DivScores').css('display')=='none'){	
+          $('.DivScores').html('<iframe src="https://exchange.funday.asia/pointnew/?indx=<%=session("indx")%>&key1=<%=pass1%>" width="100%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="yes"></iframe>');  
+          $('body').append('<div class="wd2" onclick="removeWd2()" ></div>'); 
+          $('.DivScores').fadeIn();
+        }
       }
-    }
 
-
-    function DivIndx(){
-      if($('.DivIndx').css('display')=='none'){	
-        $('.DivIndx').html('<iframe src="../../../../track/LessonIndex/barChart/" width="100%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>');  
-        $('body').append('<div class="wd2" onclick="removeWd2()" ></div>'); 
-        $('.DivIndx').fadeIn();
+      function DivBlock(type){
+        if($('.DivBlock').css('display')=='none'){	
+          $('.DivBlock').attr('class','DivBlock DVShow')   
+          $('.DivBlock').html('<iframe src="../../../../track/LessonGraph?type='+type+'" width="100%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>');  
+          $('body').append('<div class="wd2" onclick="removeWd2()" ></div>'); 
+          $('.DivBlock').fadeIn();
+        }
       }
-    }
 
-    function removeWd2(){
-      $('.setting_DV,.Search_DV,.DivBlock,.DivIndx,.DivScores').fadeOut();
-      $('.SerachBar').css('z-index','1');
-      if($("#toolbar").css("left")>"-425px"){
-        $("#toolbar").attr('class','toolbarSlideout');
+      function DivScores(type){
+        if($('.DivScores').css('display')=='none'){	
+          $('.DivScores').attr('class','DivScores DVShow')  
+          $('.DivScores').html('<iframe src="../../../../track/pointsRecord?type='+type+'" width="100%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>');  
+          $('body').append('<div class="wd2" onclick="removeWd2()" ></div>'); 
+          $('.DivScores').fadeIn();
+        }
       }
-      $('.wd2').remove();
-    }
-  </script>
+
+
+      function DivIndx(){
+        if($('.DivIndx').css('display')=='none'){	
+          $('.DivIndx').html('<iframe src="../../../../track/LessonIndex/barChart/" width="100%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>');  
+          $('body').append('<div class="wd2" onclick="removeWd2()" ></div>'); 
+          $('.DivIndx').fadeIn();
+        }
+      }
+
+      function removeWd2(){
+        $('.setting_DV,.Search_DV,.DivBlock,.DivIndx,.DivScores').fadeOut();
+        $('.SerachBar').css('z-index','1');
+        if($("#toolbar").css("left")>"-425px"){
+          $("#toolbar").attr('class','toolbarSlideout');
+        }
+        $('.wd2').remove();
+      }
+    </script>
   </head>
 
   <body>
