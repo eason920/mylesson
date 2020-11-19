@@ -4,15 +4,15 @@ html(lang="en")
 		meta(charset="UTF-8")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		title My Lesson Page 2
-		link(href="./css/mylesson_template.css", rel="stylesheet")
+		link(href="./css/mylesson_2.css", rel="stylesheet")
 		script(src='./assets/plugins/jquery/jquery.1.12.4.min.js')
-		//- datapicker v
+		script(src='./js/mylesson_2.js')
 
 	body
 		#nav
 			.wrapper
 				.box nav
-		#content(style="height: 1000px")
+		#content
 			#prev-page
 				svg(fill='none')
 					path(d='M19 2L2 23.5L19 45', stroke='white', stroke-width='4')
@@ -20,5 +20,42 @@ html(lang="en")
 				svg(fill='none')
 					path(d='M2 2L19 23.5L2 45', stroke='white', stroke-width='4')
 			.wrapper
+				#block0
+					#block0-title 閱讀與聽力課程
+					img(src='images/sidebar_open.svg')
+				#block1
+					.grid1
+						.grid-title 國際時事
+						include partials/2/block1_grid1_item
+					.grid2
+						#slidebox
+							#slider
+						include partials/2/block1_grid2_item
+						include partials/2/block1_grid2_item
+
+					.grid3
+						.grid3-video
+							iframe(src="https://www.youtube.com/embed/Nw7wwHm4GxU?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+						.grid-title 生活新知
+						include partials/2/block1_grid3_item
+
+					.grid4
+						.grid-title 商務情境
+						include partials/2/block1_grid4_item
+
+				#block2
+					.grid1
+						include partials/2/block2_grid1_item
+					.grid2
+						.grid2-video
+							iframe(src="https://www.youtube.com/embed/Nw7wwHm4GxU?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+						include partials/2/block2_grid2_item
+					.grid3
+						include partials/2/block2_grid3_item
+					.grid4
+						include partials/2/block2_grid4_item
+					.grid5
+						include partials/2/block2_grid5_item
+
 
 		include partials/footer
