@@ -7,6 +7,11 @@ html(lang="en")
 		link(href="./css/mylesson_2.css", rel="stylesheet")
 		script(src='./assets/plugins/jquery/jquery.1.12.4.min.js')
 		script(src='./js/mylesson_2.js')
+		//-slick v
+		//- link(href='./assets/plugins/slick/slick.css' rel='stylesheet' type='text/css')
+		script(src='./assets/plugins/slick/slick.min.js')
+
+
 
 	body
 		#nav
@@ -28,8 +33,25 @@ html(lang="en")
 						.grid-title 國際時事
 						include partials/2/block1_grid1_item
 					.grid2
-						#slidebox
+						#sliderbox
 							#slider
+								div
+									a(href='#' style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)")
+										.grid-subtitle 《天能》上映六天破億1
+										.grid2-en “Tenet” Rakes in Billions of Dollars After...
+								div
+									a(href='#' style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)")
+										.grid-subtitle 《天能》上映六天破億2
+										.grid2-en “Tenet” Rakes in Billions of Dollars After...
+								div
+									a(href='#' style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)")
+										.grid-subtitle 《天能》上映六天破億3
+										.grid2-en “Tenet” Rakes in Billions of Dollars After...
+								div
+									a(href='#' style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)")
+										.grid-subtitle 《天能》上映六天破億4
+										.grid2-en “Tenet” Rakes in Billions of Dollars After...
+
 						include partials/2/block1_grid2_item
 						include partials/2/block1_grid2_item
 
@@ -45,6 +67,7 @@ html(lang="en")
 
 				#block2
 					.grid1
+						.grid-title 部落格
 						include partials/2/block2_grid1_item
 					.grid2
 						.grid2-video
@@ -53,7 +76,7 @@ html(lang="en")
 					.grid3
 						include partials/2/block2_grid3_item
 					.grid4
-						include partials/2/block2_grid4_item
+						include partials/2/block2_grid3_item
 					.grid5
 						include partials/2/block2_grid5_item
 

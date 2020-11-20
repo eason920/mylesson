@@ -103,10 +103,10 @@ monthAry=0
 		<div class="db-circle" onclick="DivBlock('onlineClass')">
 			<div class="subCount" id="TutorC">0</div>
 			<div class="subUnit">堂</div>
-			<div class="subTitle" >互動課程</div>
+			<div class="subTitle" >互動課程</div> 
 		</div>				
 	</div>
-	<div class="down-div">
+	<div class="under-div">
 		<div class="db-circle" onclick="DivScores('Toeic')">
 			<div class="subUnit">
 				<div class="TOEIC-icon"></div>

@@ -1,0 +1,66 @@
+// ====================================
+// == ALL v
+// ====================================
+html
+	font-size: 16px
+	
+#nav
+	margin-bottom: 15px
+
+@media screen and (min-width: 1680px)
+	$sum: calc( 50% - #{$w-max-width} / 2 + 21px )
+	#prev-page
+		left: $sum
+
+	#next-page
+		right: $sum
+
+// ====================================
+// == BLOCK1 & BLOCK2 v
+// ====================================
+.grid1, .grid3
+	width: calc( #{$w-g13} - #{$g} )
+	margin-right: $g
+
+.grid2
+	width: calc( #{$w-g2} - #{$g} )
+	margin-right: $g
+
+.grid4
+	width: $w-g4
+
+.grid-content
+	font:
+		size: .875rem
+	
+.grid-title
+	line-height: 31px
+	text-align: center
+	font:
+		size: 1.125rem
+		weight: bold
+
+
+// ====================================
+// ==  FOR DEMO v
+// ====================================
+#block1
+	// background: #aaa
+
+.grid1, .grid2, .grid3, .grid4
+	height: 800px
+
+.grid1
+	background: red
+
+.grid2
+	background: yellow
+
+.grid3
+	background: pink
+
+.grid4
+	background: green
+
+#slider
+	background: greenyellow

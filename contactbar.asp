@@ -162,7 +162,7 @@ function SE_ACChange(id){
 		const Photo_div=`<div Class="Phto-div"><div Class="circle"></div></div>`
 
 		const str = '<div Class="Left-div">' + Name_div + '</div><div Class="Right-div">' + Photo_div + '</div>';
-		$('.Down-div').html(str)
+		$('#contact .Down-div').html(str)
 
 		$('.Left-div .title').html(name_V)
 		$('.Left-div .tel').html(telicon+' 02-2523-9777')	

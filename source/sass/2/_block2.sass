@@ -3,22 +3,58 @@
 	display: flex
 	position: relative
 
+	// ====================================
+	// == 1
+	// ====================================
+	.grid1-item
+		img
+			width: 100%
 
-// ====================================
-// == 2
-// ====================================
-.grid2-video
-	@include video
+	// ====================================
+	// == 2
+	// ====================================
+	.grid2-video
+		@include video
 
-// ====================================
-// == 5
-// ====================================
-.grid5
-	position: absolute
-	right: 0
-	bottom: 0
-	width: calc( #{$w-g13} + #{$w-g2} + #{$w-g4} )
-	// height:  200px
+	// ====================================
+	// == 3 & 4
+	// ====================================
+	.grid3-item
+		display: flex
+
+	.grid3-img
+		width: 45%
+		// height: 78px
+		background:
+			size: cover
+			position: center
+
+	.grid3-box
+		width: 55%
+		display: flex
+		flex-direction: column
+		justify-content: center
+		text-align: left
+		& > *
+			font-size: .75rem
+			@extend %row1
+
+	// ====================================
+	// == 5
+	// ====================================
+	.grid5
+		position: absolute
+		right: 0
+		bottom: 0
+		width: calc( #{$w-g13} + #{$w-g2} + #{$w-g4} )
+		// height:  200px
+	
+	.grid5-actor, .grid5-title
+		font-size: .875rem
+
+	.grid5-actor
+
+	.grid5-title
 
 // ====================================
 // == FOR DEMO v
@@ -27,5 +63,6 @@
 	.grid1, .grid2, .grid3, .grid4
 		height: 520px
 
-.grid5
-	background: #bbb
+	.grid5
+		background: #bbb
+		// mizu no ko kyuu
