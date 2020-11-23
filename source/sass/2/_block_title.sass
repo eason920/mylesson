@@ -1,0 +1,52 @@
+#block-title
+	display: flex
+	margin:
+		top: 15px
+		bottom: 15px
+	position: relative
+	height: calc( #{$h-title} + 4px )
+
+	.grid1, .grid2, .grid3, .grid4
+		position: absolute
+		top: 0
+
+	.grid1
+		left: 0
+
+	.grid2
+		left: $w-g13
+
+	.grid3
+		right: $w-g4
+
+	.grid4
+		right: 0
+
+	//
+	.grid2, .grid3, .grid4
+		padding-top: 2px
+		.grid-title
+			border: none
+			&:before
+				display: none
+
+	.grid2, .grid3
+		&:before
+			content: ''
+			position: absolute
+			border-left: solid 1px $c-t2
+			top: 8px
+			bottom: 6px
+			right: $g / -2
+
+.title-group
+	display: flex
+	width: 100%
+	margin:
+		left: $w-g13
+	@include title-deco
+	&:before
+		top: 3px
+		left: $w-g13
+		right: 0
+		width: auto

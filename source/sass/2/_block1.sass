@@ -1,17 +1,45 @@
 #block1
 	display: flex
 
+	a
+		text-decoration: none
+		display: block
+
+	.grid-title
+		// margin-bottom: 12px
+
+	.grid-subtitle
+		line-height: 32px
+
 	// ====================================
 	// == 1
 	// ====================================
+	.grid1-box
+		height: calc( 100% - #{$h-title} )
+		display: flex
+		flex-direction: column
+		justify-content: space-between
+
+		.grid-content
+			@extend %row5
+
+	.grid1-item
+		color: $c-t1
+
 	.grid1-img
 		width: 70px
 		float: left
+		margin:
+			right: 16px
 
 	// ====================================
 	// == 2
 	// ====================================
 	.grid2
+
+	// ====================================
+	// == 2-2
+	// ====================================
 	.grid2-item
 		display: flex
 
@@ -32,6 +60,12 @@
 	.grid3-video
 		@include video
 
+
+	.grid3-mgz
+		background:
+			size: contain
+			position: center 0
+
 	// ====================================
 	// == 4
 	// ====================================
@@ -47,6 +81,21 @@
 
 	.grid4-box
 		width: calc( 100% - 56px )
+
+	.grid4-wt
+		img
+			width: 100%
+
+	// ====================================
+	// == 4-2
+	// ====================================
+	.grid42-item
+
+	.grid42-img
+		width: 100%
+		background:
+			size: cover
+			position: center
 
 @media screen and (max-width: 1439px)
 	$w2: 180px

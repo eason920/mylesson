@@ -3,5 +3,23 @@ $w-g13: 20%
 $w-g4: 18%
 $w-g2: calc( 100% - #{$w-g13} * 2 - #{$w-g4} )
 
+$h-title: 31px
+
+$c-t1: #333
+$c-t2: #777
+
+@mixin title-deco
+	border:
+		style: solid
+		width: 2px 0
+		color: $c-t2
+	&:before
+		content: ''
+		width: 100%
+		position: absolute
+		top: 1px
+		left: 0
+		border-top: solid 1px $c-t2
+
 // $bp-narrow2:
 // $bp-wide2: 

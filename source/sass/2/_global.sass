@@ -34,33 +34,82 @@ html
 		size: .875rem
 	
 .grid-title
-	line-height: 31px
+	position: relative
+	line-height: $h-title
 	text-align: center
 	font:
 		size: 1.125rem
 		weight: bold
+	
+	color: $c-t1
 
+	@include title-deco
+
+.grid-subtitle
+	@extend %row1
+	font:
+		size: 1rem
+		weight: bold
+
+.grid-content
+	line-height: 1.3
+	font-size: .875rem
+
+// --------------------------------
+.grid-bottom
+	margin-top: 10px
+	position: relative
+	font-size: .75rem
+
+.grid-view
+	display: flex
+	position: absolute
+	right: 0
+	top: 0
+	img
+		margin-right: 3px
+	span
+
+.add-hr
+	border-bottom: double 3px $c-t2
+	padding-bottom: 10px
+	// margin-bottom: 10px
+	&:last-child
+		border: none
+		padding: 0
+	
 
 // ====================================
 // ==  FOR DEMO v
 // ====================================
 #block1
-	// background: #aaa
+// 	background: #aaa
 
-.grid1, .grid2, .grid3, .grid4
-	height: 800px
+// .grid1, .grid2, .grid3, .grid4
+// 	// height: 800px
 
-.grid1
-	background: red
+// .grid1
+// 	background: red
 
-.grid2
-	background: yellow
+// .grid2
+// 	background: yellow
 
-.grid3
-	background: pink
+// .grid3
+// 	background: pink
 
-.grid4
-	background: green
+// .grid4
+// 	background: green
 
-#slider
-	background: greenyellow
+// #slider
+// 	background: greenyellow
+
+// ====================================
+// == FOR DEMO v
+// ====================================
+#block2
+	.grid1, .grid2, .grid3, .grid4
+		height: 520px
+
+	.grid5
+		// background: #bbb
+		// mizu no ko kyuu

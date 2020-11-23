@@ -1,5 +1,4 @@
 #block2
-	margin-top: 15px
 	display: flex
 	position: relative
 
@@ -47,22 +46,18 @@
 		right: 0
 		bottom: 0
 		width: calc( #{$w-g13} + #{$w-g2} + #{$w-g4} )
-		// height:  200px
+		display: flex
 	
 	.grid5-actor, .grid5-title
-		font-size: .875rem
+		font:
+			size: .875rem
+			weight: bold
+		line-height: 20px
 
 	.grid5-actor
+		color: $c-t1
 
 	.grid5-title
+		color: $c-t2
+		margin-bottom: 8px
 
-// ====================================
-// == FOR DEMO v
-// ====================================
-#block2
-	.grid1, .grid2, .grid3, .grid4
-		height: 520px
-
-	.grid5
-		background: #bbb
-		// mizu no ko kyuu

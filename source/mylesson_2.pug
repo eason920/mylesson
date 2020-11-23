@@ -31,14 +31,23 @@ html(lang="en")
 				#block1
 					.grid1
 						.grid-title 國際時事
-						include partials/2/block1_grid1_item
+						.grid1-box
+							include partials/2/block1_grid1_item
+							include partials/2/block1_grid1_item
+							include partials/2/block1_grid1_item
+							include partials/2/block1_grid1_item
+							include partials/2/block1_grid1_item
+							include partials/2/block1_grid1_item
+							include partials/2/block1_grid1_item
+							include partials/2/block1_grid1_item
+
 					.grid2
 						#sliderbox
 							#slider
 								div
 									a(href='#' style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)")
-										.grid-subtitle 《天能》上映六天破億1
-										.grid2-en “Tenet” Rakes in Billions of Dollars After...
+										.grid-subtitle 《天能》上映六天破億1 上映六天破億1 上映六天破億1 上映六天破億1 上映六天破億1
+										.grid2-en “Tenet” Rakes in Billions of Dollars After “Tenet” Rakes in Billions of Dollars After
 								div
 									a(href='#' style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)")
 										.grid-subtitle 《天能》上映六天破億2
@@ -54,20 +63,52 @@ html(lang="en")
 
 						include partials/2/block1_grid2_item
 						include partials/2/block1_grid2_item
+						include partials/2/block1_grid2_item
+						include partials/2/block1_grid2_item
+						include partials/2/block1_grid2_item
 
 					.grid3
 						.grid3-video
 							iframe(src="https://www.youtube.com/embed/Nw7wwHm4GxU?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
 						.grid-title 生活新知
-						include partials/2/block1_grid3_item
+						.grid3-box1
+							include partials/2/block1_grid3_item
+							include partials/2/block1_grid3_item
+							include partials/2/block1_grid3_item
+							include partials/2/block1_grid3_item
+							include partials/2/block1_grid3_item
+						.grid-title 雜誌
+						.grid3-mgz(style='background-image: url(https://funday.asia/funMz/2020080019/P1.jpg)')
+						
 
 					.grid4
 						.grid-title 商務情境
-						include partials/2/block1_grid4_item
-
-				#block2
+						.grid4-box1
+							include partials/2/block1_grid4_item
+							include partials/2/block1_grid4_item
+							include partials/2/block1_grid4_item
+							include partials/2/block1_grid4_item
+							include partials/2/block1_grid4_item
+							include partials/2/block1_grid4_item
+						a.grid4-wt(href='#')
+							img(src='images/wt.png')
+						.grid-title 童話故事 
+						include partials/2/block1_grid42_item
+						include partials/2/block1_grid42_item
+				#block-title
 					.grid1
 						.grid-title 部落格
+					.grid2
+						.grid-title 看影片學英文
+					.grid3
+						.grid-title 賞電影 / 聊新知
+					.grid4
+						.grid-title 北捷微電影
+					.title-group
+				#block2
+					.grid1
+						include partials/2/block2_grid1_item
+						include partials/2/block2_grid1_item
 						include partials/2/block2_grid1_item
 					.grid2
 						.grid2-video
@@ -75,10 +116,21 @@ html(lang="en")
 						include partials/2/block2_grid2_item
 					.grid3
 						include partials/2/block2_grid3_item
+						include partials/2/block2_grid3_item
+						include partials/2/block2_grid3_item
+
 					.grid4
 						include partials/2/block2_grid3_item
+						//- include partials/2/block2_grid3_item
+						//- include partials/2/block2_grid3_item
+						include partials/2/block2_grid5_item
+					
 					.grid5
 						include partials/2/block2_grid5_item
-
+						include partials/2/block2_grid5_item
+						include partials/2/block2_grid5_item
+						include partials/2/block2_grid5_item
+						include partials/2/block2_grid5_item
+						include partials/2/block2_grid5_item
 
 		include partials/footer

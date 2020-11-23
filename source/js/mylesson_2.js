@@ -1,13 +1,36 @@
-const fnSliderHeight = ()=>{
-	const height = $('#sliderbox').width() * 0.675;
-	$('#sliderbox').css({height});
-}
+const fnGiveHeight = function(){
+	console.log('active');
+
+	const rate1 = 0.56;
+	const rate2 = 0.67;
+	const rate3 = 1.33;
+
+	// SLIDER v
+	const hSlider = $('#sliderbox').width() * 0.675;
+	$('#sliderbox').css('height', hSlider);
+
+	// BOX1 GRID3 v
+	const hb1mgz = $('#block1 .grid3-mgz').width() * rate3;
+	$('#block1 .grid3-mgz').css('height', hb1mgz);
+
+	// BOX1 GRID4-2 v
+	const hb1g42 = $('#block1 .grid42-img').width() * rate2;
+	$('#block1 .grid42-img').css('height', hb1g42);
+
+	// BOX2 GRID3 v
+	const hb2g3 = $('#block2 .grid3-img').width() * rate1;
+	$('#block2 .grid3-img').css('height', hb2g3);
+
+	// BOX2 GRID5 MUSIC v
+	const hb2g5 = $('#block2 .grid5-item').width() * rate1;
+	$('#block2 .grid5-img').css('height', hb2g5);
+};
 
 $(()=>{
-	fnSliderHeight();
+	fnGiveHeight();
 
 	$(window).resize(()=>{
-		fnSliderHeight();
+		fnGiveHeight();
 	});
 
 	$("#slider").slick({
@@ -60,7 +83,5 @@ $(()=>{
 	$('.slick-slide').css({width});
 
 
-	// BOX2 GRID3
-	const hb2g3 = $('#block2 .grid3-img').width() * 0.542;
-	$('#block2 .grid3-img').css('height', hb2g3);
+	
 })
