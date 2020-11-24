@@ -9,58 +9,131 @@
 		// margin-bottom: 12px
 
 	.grid-subtitle
-		line-height: 32px
+		
 
 	// ====================================
 	// == 1
 	// ====================================
+	.grid1
+		.grid-subtitle
+			line-height: 32px
+		
+		.grid-title
+			margin-bottom: 10px
+
 	.grid1-box
-		height: calc( 100% - #{$h-title} )
+		height: calc( 100% - #{$h-title} - 4px - 10px )
+		// height: 1600px
 		display: flex
 		flex-direction: column
 		justify-content: space-between
 
 		.grid-content
-			@extend %row5
+			@include row(5)
 
 	.grid1-item
-		color: $c-t1
+		&.add-hr:first-child
+			padding: 0
+			border: none
 
 	.grid1-img
-		width: 70px
+		width: 80px
 		float: left
 		margin:
-			right: 16px
+			right: 10px
+		transform: translateY(5px)
 
 	// ====================================
 	// == 2
 	// ====================================
-	.grid2
+	.grid22-box
+		display: flex
+		flex-direction: column
+		justify-content: space-between
 
 	// ====================================
 	// == 2-2
 	// ====================================
-	.grid2-item
+	.grid22-item
 		display: flex
+		&.add-hr:first-child
+			padding: 0
+			border: none
 
-	$w2: 266px
-	.grid2-img
+	$w2: 280px
+	$g2: 15px
+	$g2-2: 5px
+	.grid22-img
 		width: $w2
-		height: 138px
 		background:
-			size: contain
+			size: cover
 			position: center center
+		margin-right: 15px
 
-	.grid2-box
-		width: calc( 100% - #{$w2} )
+	.grid22-right
+		width: calc( 100% - #{$w2} - #{$g2} )
+		display: flex
+		flex-direction: column
+		justify-content: space-between
+
+	.grid22-ch
+		@extend %row1
+		color: $c-t1
+		font:
+			size: 1.125rem
+			weight: bold
+
+	.grid22-en
+		color: $c-t1
+		margin: $g2-2 0
+		font:
+			size: 1.125rem
+			weight: bold
+		max-height: 46px
+		align-items: center
+		line-height: 1.2
+		// display: flex
 
 	// ====================================
-	// == 3
+	// == 3 ALL
+	// ====================================
+	.grid3
+		.grid-title
+			&.is-1
+				margin-bottom: 10px
+			&.is-2
+				margin: 
+					top: $g-hr + 15
+					bottom: $g-hr
+
+		.grid-subtitle
+			line-height: 32px
+
+	// ====================================
+	// == 3-1 VIDEO
 	// ====================================
 	.grid3-video
 		@include video
+		margin-bottom: $g-hr
 
+	// ====================================
+	// == 3-2 LIST
+	// ====================================
+	.grid3-box
+		display: flex
+		flex-direction: column
+		justify-content: space-between
 
+	.grid3-item
+		&.add-hr:first-child
+			padding: 0
+			border: none
+		.grid-content
+			@include row(3)
+	
+	// ====================================
+	// == 3-3 MAGAZINE
+	// ====================================
 	.grid3-mgz
 		background:
 			size: contain
@@ -69,27 +142,88 @@
 	// ====================================
 	// == 4
 	// ====================================
+	.grid4
+		.grid-title
+			&.is-1
+				margin-bottom: 10px
+			&.is-2
+				margin:
+					top: $g-hr + 10
+					bottom: $g-hr
+
+	// ====================================
+	// == 4-1 LIST
+	// ====================================
+	.grid4-box
+		padding-bottom: $g-hr
+		display: flex
+		flex-direction: column
+		justify-content: space-between
+
+		.grid-subtitle
+			padding-bottom: 5px
+		
 	.grid4-item
 		display: flex
+		width: 100%
+		&.add-hr:first-child
+			padding: 0
+			border: none
 
-	.grid4-img
+	.grid4-sort
 		width: 56px
-		height: 56px
+		height: 50px
+		display: flex
+		align-items: center
+		justify-content: center
 		background:
 			size: contain
 			position:  center center
+		margin:
+			right: 10px
+		border-radius: 7px
+		font:
+			size: .875rem
+		background-color: #dae0f0
+		color: #000
+		// &.is-s1
+		// 	background-color: greenyellow
+		// &.is-s2
+		// 	background-color: yellow
 
-	.grid4-box
-		width: calc( 100% - 56px )
+	.grid4-right
+		padding-top: 10px
+		width: calc( 100% - 56px - 10px )
 
+	.grid4-en
+		@extend %row1
+		color: $c-t2
+		font:
+			size: .75rem
+
+	// ====================================
+	// == 4-2 BUTTON 
+	// ====================================
 	.grid4-wt
+		font-size: 0
 		img
 			width: 100%
 
 	// ====================================
-	// == 4-2
+	// == 4-2 LIST
 	// ====================================
+	.grid42-box
+		.grid-subtitle
+			// line-height: 32px
+			padding-top: 8px
+
 	.grid42-item
+		&:first-child
+			padding-bottom: 10px
+
+		&.add-hr:first-child
+			padding-top: 0
+			border: none
 
 	.grid42-img
 		width: 100%
@@ -98,16 +232,29 @@
 			position: center
 
 @media screen and (max-width: 1439px)
-	$w2: 180px
+	$w2: 221px
 
 	#block1
-		.grid2-img
+		.grid22-img
 			width: $w2
-			height: 93px
+			// height: 93px
 
-		.grid2-box
+		.grid22-right
 			width: calc( 100% - #{$w2} )
+
+		.grid22-en
+			@include row1
+
+		.grid22-item
+			.grid-content
+				@include row(2)
 
 
 @media screen and (min-width: 1440px)
+	#block1
+		.grid22-en
+			@include row(2)
 
+		.grid22-item
+			.grid-content
+				@include row(3)

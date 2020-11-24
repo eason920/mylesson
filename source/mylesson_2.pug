@@ -61,40 +61,43 @@ html(lang="en")
 										.grid-subtitle 《天能》上映六天破億4
 										.grid2-en “Tenet” Rakes in Billions of Dollars After...
 
-						include partials/2/block1_grid2_item
-						include partials/2/block1_grid2_item
-						include partials/2/block1_grid2_item
-						include partials/2/block1_grid2_item
-						include partials/2/block1_grid2_item
+						.grid22-box
+							include partials/2/block1_grid22_item
+							include partials/2/block1_grid22_item
+							include partials/2/block1_grid22_item
+							include partials/2/block1_grid22_item
 
 					.grid3
 						.grid3-video
 							iframe(src="https://www.youtube.com/embed/Nw7wwHm4GxU?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
-						.grid-title 生活新知
-						.grid3-box1
+						.grid-title.is-1 生活新知
+						.grid3-box
 							include partials/2/block1_grid3_item
 							include partials/2/block1_grid3_item
 							include partials/2/block1_grid3_item
 							include partials/2/block1_grid3_item
 							include partials/2/block1_grid3_item
-						.grid-title 雜誌
+							include partials/2/block1_grid3_item
+							include partials/2/block1_grid3_item
+							
+						.grid-title.is-2 雜誌
 						.grid3-mgz(style='background-image: url(https://funday.asia/funMz/2020080019/P1.jpg)')
-						
 
 					.grid4
-						.grid-title 商務情境
-						.grid4-box1
+						.grid-title.is-1 商務情境
+						.grid4-box
 							include partials/2/block1_grid4_item
 							include partials/2/block1_grid4_item
 							include partials/2/block1_grid4_item
 							include partials/2/block1_grid4_item
 							include partials/2/block1_grid4_item
-							include partials/2/block1_grid4_item
+							//- include partials/2/block1_grid4_item
 						a.grid4-wt(href='#')
 							img(src='images/wt.png')
-						.grid-title 童話故事 
-						include partials/2/block1_grid42_item
-						include partials/2/block1_grid42_item
+						.grid-title.is-2 童話故事
+						.grid42-box
+							include partials/2/block1_grid42_item
+							include partials/2/block1_grid42_item
 				#block-title
 					.grid1
 						.grid-title 部落格
@@ -121,9 +124,9 @@ html(lang="en")
 
 					.grid4
 						include partials/2/block2_grid3_item
-						//- include partials/2/block2_grid3_item
-						//- include partials/2/block2_grid3_item
-						include partials/2/block2_grid5_item
+						include partials/2/block2_grid3_item
+						include partials/2/block2_grid3_item
+						//- include partials/2/block2_grid5_item
 					
 					.grid5
 						include partials/2/block2_grid5_item

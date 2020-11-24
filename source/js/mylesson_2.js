@@ -4,19 +4,50 @@ const fnGiveHeight = function(){
 	const rate1 = 0.56;
 	const rate2 = 0.67;
 	const rate3 = 1.33;
+	const rate4 = 1.49
 
+	// --------------------------------
 	// SLIDER v
 	const hSlider = $('#sliderbox').width() * 0.675;
 	$('#sliderbox').css('height', hSlider);
 
-	// BOX1 GRID3 v
+	const hSliderOuter = $('#sliderbox').outerHeight(true);
+	console.log(hSliderOuter);
+	$('#block1 .grid22-box').css('height', 'calc(100% - ' + hSliderOuter +'px)')
+
+	// BOX1 GRID2	
+	const hb1g2 = $('#block1 .grid22-img').width() * rate1;
+	$('#block1 .grid22-img').css('height', hb1g2);
+
+	// --------------------------------
+	// BOX1 GRID3 MAGAZINE v
 	const hb1mgz = $('#block1 .grid3-mgz').width() * rate3;
 	$('#block1 .grid3-mgz').css('height', hb1mgz);
 
-	// BOX1 GRID4-2 v
-	const hb1g42 = $('#block1 .grid42-img').width() * rate2;
-	$('#block1 .grid42-img').css('height', hb1g42);
+	// BOX1 GRID3 LIST v
+	const hb1g3v = $('#block1 .grid3-video').outerHeight(true);
+	const hb1g3t1 = $('#block1 .grid-title.is-1').outerHeight(true);
+	const hb1g3t2 = $('#block1 .grid-title.is-2').outerHeight(true);
+	const hb1g3subtract = hb1g3v + hb1g3t1 + hb1g3t2 + hb1mgz;
+	$('#block1 .grid3-box').css('height', 'calc( 100% - ' + hb1g3subtract + 'px )');
 
+
+	// --------------------------------
+	// BOX1 GRID4-2 LIST v
+	const hb1g42img = $('#block1 .grid42-img').width() * rate1;
+	$('#block1 .grid42-img').css('height', hb1g42img);
+
+	// BOX1 GRID4-1 LIST v
+	const hb1g4wt = $('#block1 .grid4-wt').width() * rate4;
+	const hb1g4t1 = $('#block1 .grid4 .grid-title.is-1').outerHeight(true);
+	const hb1g4t2 = $('#block1 .grid4 .grid-title.is-2').outerHeight(true);
+	const hb1g42 = $('#block1 .grid42-box').outerHeight(true)
+	const hb1g4subtract = hb1g4wt + hb1g4t1 + hb1g4t2 + hb1g42;
+	console.log(hb1g4t1, hb1g4wt, hb1g4t2,hb1g42, hb1g4subtract);
+	$('#block1 .grid4-box').css('height', 'calc( 100% - ' + hb1g4subtract + 'px)');
+
+	// ================================
+	// ================================
 	// BOX2 GRID3 v
 	const hb2g3 = $('#block2 .grid3-img').width() * rate1;
 	$('#block2 .grid3-img').css('height', hb2g3);

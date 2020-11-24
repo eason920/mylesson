@@ -28,38 +28,35 @@ html
 
 .grid4
 	width: $w-g4
-
-.grid-content
-	font:
-		size: .875rem
 	
 .grid-title
+	color: #000
 	position: relative
 	line-height: $h-title
 	text-align: center
 	font:
 		size: 1.125rem
 		weight: bold
-	
-	color: $c-t1
-
 	@include title-deco
 
 .grid-subtitle
+	color: #000
 	@extend %row1
 	font:
 		size: 1rem
 		weight: bold
 
 .grid-content
-	line-height: 1.3
+	line-height: 1.5
 	font-size: .875rem
+	color: $c-t2
 
 // --------------------------------
 .grid-bottom
 	margin-top: 10px
 	position: relative
 	font-size: .75rem
+	color: $c-t2
 
 .grid-view
 	display: flex
@@ -71,19 +68,18 @@ html
 	span
 
 .add-hr
-	border-bottom: double 3px $c-t2
-	padding-bottom: 10px
-	// margin-bottom: 10px
+	border-top: double 3px $c-t2
+	padding-top: $g-hr
 	&:last-child
-		border: none
-		padding: 0
+		// border: none
+		// padding: 0
 	
 
 // ====================================
 // ==  FOR DEMO v
 // ====================================
 #block1
-// 	background: #aaa
+	// background: rgba(0, 255, 0, .1)
 
 // .grid1, .grid2, .grid3, .grid4
 // 	// height: 800px
