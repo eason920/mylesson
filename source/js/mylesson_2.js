@@ -4,7 +4,8 @@ const fnGiveHeight = function(){
 	const rate1 = 0.56;
 	const rate2 = 0.67;
 	const rate3 = 1.33;
-	const rate4 = 1.49
+	const rate4 = 1.49;
+	const rate5 = 0.562;
 
 	// --------------------------------
 	// SLIDER v
@@ -48,28 +49,38 @@ const fnGiveHeight = function(){
 
 	// ================================
 	// ================================
-	// BOX2 GRID3 v
+	// BLOCK2 GRID3 v
 	const hb2g3 = $('#block2 .grid3-img').width() * rate1;
 	$('#block2 .grid3-img').css('height', hb2g3);
 
-	// BOX2 GRID5 MUSIC v
-	const hb2g5 = $('#block2 .grid5-item').width() * rate1;
-	$('#block2 .grid5-img').css('height', hb2g5);
+	// BLOCK2 GRID2&3 v
+	const hb2g2v = $('#block2 .grid2-video').width() * rate5;
+	$('#block2 .grid2, #block2 .grid3, #block2 .grid4').css('height', hb2g2v);
+
+	// BLOCK2 GRID5 MUSIC v
+	const hb2g5img = $('#block2 .grid5-img').width() * rate1;
+	$('#block2 .grid5-img').css('height', hb2g5img);
+
+	// BLOCK2
+	const hb2gutter = 13;
+	const hb2g5 = $('#block2 .grid5-title').outerHeight() + hb2g5img + $('#block2 .grid5-under').outerHeight(true);
+	const h2 = hb2g2v + hb2g5 + hb2gutter;
+
+	console.log(hb2g2v, hb2g5, h2);
+	$('#block2 .grid1').css('height', h2)
 };
 
 $(()=>{
 	fnGiveHeight();
 
-	$(window).resize(()=>{
-		fnGiveHeight();
-	});
+	$(window).resize(()=>{ fnGiveHeight() });
 
 	$("#slider").slick({
 		dots: true, // 動畫控制點點 : 有
 		infinite: true, // 無止境動畫
 		slidesToShow: 1,
 		slidesToScroll: 1,
-		autoplay: false, // 自動幻影格 : 是
+		autoplay: true, // 自動幻影格 : 是
 		autoplaySpeed: 1000, // 影格的停留展示時間 : 毫秒
 		speed: 800, // 切幻影格的速率 : 毫秒
 		pauseOnFocus: true, // 聚焦就停止動畫 : 否

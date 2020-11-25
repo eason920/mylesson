@@ -27,7 +27,11 @@ html(lang="en")
 			.wrapper
 				#block0
 					#block0-title 閱讀與聽力課程
-					img(src='images/sidebar_open.svg')
+					#circle-box
+						.circle-item
+							img(src='images/sidebar_open.svg')
+						.circle-item
+						.circle-item
 				#block1
 					.grid1
 						.grid-title 國際時事
@@ -98,6 +102,7 @@ html(lang="en")
 						.grid42-box
 							include partials/2/block1_grid42_item
 							include partials/2/block1_grid42_item
+							include partials/2/block1_grid42_item
 				#block-title
 					.grid1
 						.grid-title 部落格
@@ -110,9 +115,10 @@ html(lang="en")
 					.title-group
 				#block2
 					.grid1
-						include partials/2/block2_grid1_item
-						include partials/2/block2_grid1_item
-						include partials/2/block2_grid1_item
+						.grid1-box
+							include partials/2/block2_grid1_item
+							include partials/2/block2_grid1_item
+							include partials/2/block2_grid1_item
 					.grid2
 						.grid2-video
 							iframe(src="https://www.youtube.com/embed/Nw7wwHm4GxU?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
@@ -121,19 +127,23 @@ html(lang="en")
 						include partials/2/block2_grid3_item
 						include partials/2/block2_grid3_item
 						include partials/2/block2_grid3_item
+						include partials/2/block2_grid3_item
 
 					.grid4
+						include partials/2/block2_grid3_item
 						include partials/2/block2_grid3_item
 						include partials/2/block2_grid3_item
 						include partials/2/block2_grid3_item
 						//- include partials/2/block2_grid5_item
 					
 					.grid5
-						include partials/2/block2_grid5_item
-						include partials/2/block2_grid5_item
-						include partials/2/block2_grid5_item
-						include partials/2/block2_grid5_item
-						include partials/2/block2_grid5_item
-						include partials/2/block2_grid5_item
+						.grid5-title 唱歌學英文
+						.grid5-box
+							include partials/2/block2_grid5_item
+							include partials/2/block2_grid5_item
+							include partials/2/block2_grid5_item
+							include partials/2/block2_grid5_item
+							include partials/2/block2_grid5_item
+						//- include partials/2/block2_grid5_item
 
 		include partials/footer
