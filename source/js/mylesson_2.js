@@ -120,6 +120,6 @@ $(()=>{
 	const width = $('#sliderbox').width();
 	$('.slick-slide').css({width});
 
-
+	new PerfectScrollbar('#sidebar-scroller');
 	
 })
