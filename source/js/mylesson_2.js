@@ -1,24 +1,18 @@
 const fnGiveHeight = function(){
-	console.log('active');
-
 	const rate1 = 0.56;
 	const rate2 = 0.67;
 	const rate3 = 1.33;
 	const rate4 = 1.49;
 	const rate5 = 0.562;
+	const rate6 = 0.645;
 
 	// --------------------------------
-	// SLIDER v
-	const hSlider = $('#sliderbox').width() * 0.675;
-	$('#sliderbox').css('height', hSlider);
+	// BLOCK1 GRID2 v
+	const hFade = $('#fade').width() * rate6;
+	$('#fade').css('height', hFade);
 
-	const hSliderOuter = $('#sliderbox').outerHeight(true);
-	console.log(hSliderOuter);
-	$('#block1 .grid22-box').css('height', 'calc(100% - ' + hSliderOuter +'px)')
-
-	// BOX1 GRID2	
-	const hb1g2 = $('#block1 .grid22-img').width() * rate1;
-	$('#block1 .grid22-img').css('height', hb1g2);
+	const hFadeOuter = $('#fade').outerHeight(true);
+	$('#block1 .grid22-box').css('height', 'calc(100% - ' + hFadeOuter +'px)');
 
 	// --------------------------------
 	// BOX1 GRID3 MAGAZINE v
@@ -32,14 +26,16 @@ const fnGiveHeight = function(){
 	const hb1g3subtract = hb1g3v + hb1g3t1 + hb1g3t2 + hb1mgz;
 	$('#block1 .grid3-box').css('height', 'calc( 100% - ' + hb1g3subtract + 'px )');
 
-
 	// --------------------------------
 	// BOX1 GRID4-2 LIST v
 	const hb1g42img = $('#block1 .grid42-img').width() * rate1;
 	$('#block1 .grid42-img').css('height', hb1g42img);
 
-	// BOX1 GRID4-1 LIST v
+	// BLOCK 1 WEEK TEST v
 	const hb1g4wt = $('#block1 .grid4-wt').width() * rate4;
+	$('#block1 .grid4-wt').css('height', hb1g4wt);
+
+	// BOX1 GRID4-1 LIST v
 	const hb1g4t1 = $('#block1 .grid4 .grid-title.is-1').outerHeight(true);
 	const hb1g4t2 = $('#block1 .grid4 .grid-title.is-2').outerHeight(true);
 	const hb1g42 = $('#block1 .grid42-box').outerHeight(true)

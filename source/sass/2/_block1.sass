@@ -3,7 +3,6 @@
 
 	a
 		text-decoration: none
-		display: block
 
 	.grid-title
 		// margin-bottom: 12px
@@ -205,9 +204,18 @@
 	// == 4-2 BUTTON 
 	// ====================================
 	.grid4-wt
-		font-size: 0
-		img
-			width: 100%
+		display: block
+		position: relative
+		background-size: cover
+
+	.grid4-week
+		position: absolute
+		left: 0
+		right: 0
+		text-align: center
+		margin: auto
+		color: #fff
+		bottom: 58px
 
 	// ====================================
 	// == 4-2 LIST
@@ -249,6 +257,10 @@
 			.grid-content
 				@include row(2)
 
+		.grid4-week
+			font:
+				size: .875rem
+
 
 @media screen and (min-width: 1440px)
 	#block1
@@ -258,3 +270,7 @@
 		.grid22-item
 			.grid-content
 				@include row(3)
+
+		.grid4-week
+			font:
+				size: 1rem
