@@ -5,6 +5,7 @@ const fnGiveHeight = function(){
 	const rate4 = 1.49;
 	const rate5 = 0.562;
 	const rate6 = 0.645;
+	const rate7 = 1.2;
 
 	// --------------------------------
 	// BLOCK1 GRID2 v
@@ -32,14 +33,14 @@ const fnGiveHeight = function(){
 	$('#block1 .grid42-img').css('height', hb1g42img);
 
 	// BLOCK 1 WEEK TEST v
-	const hb1g4wt = $('#block1 .grid4-wt').width() * rate4;
+	const hb1g4wt = $('#block1 .grid4-wt').width() * 1;
 	$('#block1 .grid4-wt').css('height', hb1g4wt);
 
 	// BOX1 GRID4-1 LIST v
 	const hb1g4t1 = $('#block1 .grid4 .grid-title.is-1').outerHeight(true);
 	const hb1g4t2 = $('#block1 .grid4 .grid-title.is-2').outerHeight(true);
 	const hb1g42 = $('#block1 .grid42-box').outerHeight(true)
-	const hb1g4subtract = hb1g4wt + hb1g4t1 + hb1g4t2 + hb1g42;
+	const hb1g4subtract = hb1g4wt * 2 + hb1g4t1 + hb1g4t2 + hb1g42;
 	console.log(hb1g4t1, hb1g4wt, hb1g4t2,hb1g42, hb1g4subtract);
 	$('#block1 .grid4-box').css('height', 'calc( 100% - ' + hb1g4subtract + 'px)');
 
@@ -71,55 +72,29 @@ $(()=>{
 
 	$(window).resize(()=>{ fnGiveHeight() });
 
-	$("#slider").slick({
-		dots: true, // 動畫控制點點 : 有
-		infinite: true, // 無止境動畫
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		autoplay: true, // 自動幻影格 : 是
-		autoplaySpeed: 1000, // 影格的停留展示時間 : 毫秒
-		speed: 800, // 切幻影格的速率 : 毫秒
-		pauseOnFocus: true, // 聚焦就停止動畫 : 否
-		pauseOnHover: true,// 滑鼠over 就停止動畫 : 否
-		variableWidth: true,// 是否接受 .slick-slide 非 100% 寬
-		prevArrow: true,
-		nextArrow: false,
-		// 客製化 nex & pre 鈕：https://codepen.io/blanks-site/embed/dZNEwW?height=350&theme-id=dark&slug-hash=dZNEwW&default-tab=js%2Cresult&user=blanks-site&embed-version=2&pen-title=slick-arrows&preview=true 
-		responsive: [
-			// {
-			// 	breakpoint: 1024,
-			// 	settings: {
-			// 		slidesToShow: 3,
-			// 		slidesToScroll: 3,
-			// 		infinite: true,
-			// 		dots: true
-			// 	}
-			// },
-			// 	{
-			// 	breakpoint: 600,
-			// 	settings: {
-			// 		slidesToShow: 2,
-			// 		slidesToScroll: 2
-			// 	}
-			// },
-			// {
-			// 	breakpoint: 480,
-			// 	settings: {
-			// 		slidesToShow: 1,
-			// 		slidesToScroll: 1
-			// 	}
-			// }
-			// vvv 值得一試 值得一試 值得一試 vvv
-			// You can unslick at a given breakpoint now by adding:
-			// settings: "unslick" // 
-			// instead of a settings object
-			// ^^^ 值得一試 值得一試 值得一試 ^^^
-		]
+	new PerfectScrollbar('#content .wrapper');
+	new PerfectScrollbar('#sidebar-scroller');
+
+	$('.circle-item[data-type="noti"]').click(function(){
+		$('.tgnav-group-dropdown').toggleClass('is-open');
 	});
 
-	const width = $('#sliderbox').width();
-	$('.slick-slide').css({width});
+	$('.circle-item[data-type="side"]').click(function(){
+		if( $('#sidebar').hasClass('is-open') ){
+			$('#sidebar').removeClass('is-open');
+			$('#content .wrapper').removeAttr('style')
+		}else{
+			$('#sidebar').addClass('is-open');
+			const aa = ( $(window).width() - $('#content .wrapper').width() ) /2;
+			const bb = $('#sidebar').width() - aa;
+			const cc = aa - bb + 15
+			console.log(aa, bb, cc, "translateX("+ aa +"px)");
+			$('#content .wrapper').css('transform', 'translateX(-'+ cc +'px)');
+		}
+	});
 
-	new PerfectScrollbar('#sidebar-scroller');
-	
+	const href = location.href;
+	if( /white/.test(href) ){
+		$('#content').addClass('is-white');
+	}
 })

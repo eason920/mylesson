@@ -19,12 +19,16 @@ $p-s: 20px
 // -----------------------------------
 #sidebar
 	position: fixed
-	top: 0
+	top: 96px
 	bottom: 0
-	right: 0
-	width: 300px
+	right: -330px
+	width: 330px
 	background:
 		color: $c-blue
+	z-index: 1
+	transition: right .3s
+	&.is-open
+		right: 0
 
 // -----------------------------------
 #sidebar-title

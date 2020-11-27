@@ -206,7 +206,11 @@
 	.grid4-wt
 		display: block
 		position: relative
-		background-size: cover
+		background:
+			size: cover
+			position: center -45px
+		& + .grid4-wt
+			margin-top: 10px
 
 	.grid4-week
 		position: absolute
@@ -215,12 +219,16 @@
 		text-align: center
 		margin: auto
 		color: #fff
-		bottom: 58px
+		bottom: 14px
 
 	// ====================================
 	// == 4-2 LIST
 	// ====================================
 	.grid42-box
+		height: 580px
+		display: flex
+		flex-direction: column
+		justify-content: space-between
 		.grid-subtitle
 			// line-height: 32px
 			padding-top: 8px

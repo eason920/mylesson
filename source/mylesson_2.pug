@@ -6,9 +6,12 @@ html(lang="en")
 		title My Lesson Page 2
 		link(href="./css/mylesson_2.css", rel="stylesheet")
 		link(href='./assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css' rel='stylesheet')
+		link(href='https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css' rel='stylesheet')
 		style. 
 			/* v scrollbar 是否永遠顥示的跟據 v */
-			.ps__rail-x,
+			.ps__rail-x{
+				opacity: 0!important;
+			}
 			.ps__rail-y {
 				opacity: 0.6;
 			}
@@ -18,8 +21,6 @@ html(lang="en")
 		script(src='./assets/plugins/perfect-scrollbar-master/perfect-scrollbar.min.js')
 		script(src='./js/mylesson_2.js')
 		//-slick v
-		//- link(href='./assets/plugins/slick/slick.css' rel='stylesheet' type='text/css')
-		script(src='./assets/plugins/slick/slick.min.js')
 		script(src='./js/fade_show.js')
 	body
 		#nav
@@ -36,10 +37,36 @@ html(lang="en")
 				#block0
 					#block0-title 閱讀與聽力課程
 					#circle-box
-						.circle-item
+						.circle-item(data-type='cursor')
+							img(src='images/cursor.svg')
+						.circle-item(data-type='noti')
+							img(src='images/noti.svg')
+						.circle-item(data-type='side')
 							img(src='images/sidebar_open.svg')
-						.circle-item
-						.circle-item
+					ul.tgnav-group-dropdown
+						.bulletinToolbox1
+						.bulletinIconDiv
+							.bulletinTxt1
+								i.fa.fa-thumb-tack(aria-hidden='true')
+								|Bulletin
+							.bulletinDate 2020.11.20
+						.bulletinCntDiv(data-val='0')
+							.bulletinCnt
+								i.fa.fa-clock-o(aria-hidden='true')
+								|Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。
+							.gradeline
+							.bulletinCnt
+								i.fa.fa-clock-o(aria-hidden='true')
+								|Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。
+							.gradeline
+							.bulletinCnt
+								i.fa.fa-clock-o(aria-hidden='true')
+								|Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。
+							.gradeline
+							.bulletinCnt
+								i.fa.fa-clock-o(aria-hidden='true')
+								|Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。
+						#bulletinDiv
 				#block1
 					.grid1
 						.grid-title 國際時事
@@ -106,6 +133,7 @@ html(lang="en")
 							include partials/2/block1_grid4_item
 							//- include partials/2/block1_grid4_item
 						a.grid4-wt(href='#' style='background-image: url(images/wt.png)')
+						a.grid4-wt(href='#' style='background-image: url(images/wt.png)')
 							.grid4-week 2020/11/20~2020/11/27
 						.grid-title.is-2 童話故事
 						.grid42-box
@@ -154,8 +182,8 @@ html(lang="en")
 							include partials/2/block2_grid5_item
 							include partials/2/block2_grid5_item
 						//- include partials/2/block2_grid5_item
+				include partials/footer
 
-		include partials/footer
 
 		#sidebar
 			#sidebar-title

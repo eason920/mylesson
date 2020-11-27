@@ -32,6 +32,7 @@ end if
 		<meta property="og:keywords" content="看新聞學英文,英文閱讀,時事英文,線上英文,學習英文,看電影學英文,英語會話,雙語新聞,線上英文課程,英聽,聽力練習,線上英語,英文文法,聽音樂學英文,英文寫作,英語口說">    
 		<title>My Lesson page2</title>
 		<link href="./2020/css/mylesson_2.css?<%=Timer%>" rel="stylesheet"/>
+		<link href="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css?<%=Timer%>" rel="stylesheet"/>
 		<!--link href="./2020/css/memberbar.css?<%=Timer%>" rel="stylesheet"/-->
 		<style>
 			.wd {
@@ -44,7 +45,16 @@ end if
 				z-index: 6;
 			}
 			/* 藏廣告用，應刪除 */
-			#lightBoxDIY{display: none}
+			/* #lightBoxDIY{display: none} */
+
+      /* v scrollbar 是否永遠顥示的跟據 v */
+      .ps__rail-x{
+      	opacity: 0!important;
+      }
+      .ps__rail-y {
+      	opacity: 0.6;
+      }
+      /* ^ scrollbar 是否永遠顥示的跟據 ^ */
 		</style>
 		<!---->
 		<script src="./2020/assets/plugins/jquery/jquery.1.12.4.min.js"></script>
@@ -53,8 +63,9 @@ end if
 		<script src="../jquery.cookie.js"></script>    
 		<script src="../js/MessageVer2/alert.js" type="text/javascript"></script>        
 		<!---->
-		<!--script src="./2020/js/mylesson_2.js"></script-->
-		<script src="./2020/assets/plugins/slick/slick.min.js"></script>
+		<script src="./2020/js/mylesson_2.js"></script>
+		<script src="./2020/js/fade_show.js"></script>
+		<script src="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.min.js"></script>
 		<!---->
 		<script src="../js/Uinfo.js"></script>
 		<script src="./2020/js/lightBoxDIY-V2.js?<%=Timer%>"></script>    
@@ -68,590 +79,676 @@ end if
 			</div>
 		</div>
 		<div id="content">
-			<div id="prev-page">
-				<svg fill="none">
-					<path d="M19 2L2 23.5L19 45" stroke="white" stroke-width="4"></path>
-				</svg>
-			</div>
-			<div id="next-page">
-				<svg fill="none">
-					<path d="M2 2L19 23.5L2 45" stroke="white" stroke-width="4"></path>
-				</svg>
-			</div>
-			<div id="app" class="wrapper">
-				<div id="block0">
-					<div id="block0-title">閱讀與聽力課程</div>
-					<div id="circle-box">
-						<div class="circle-item"><img src="2020/images/sidebar_open.svg"/></div>
-						<div class="circle-item"></div>
-						<div class="circle-item"></div>
-					</div>
-				</div>
-				<div id="block1">
-					<div class="grid1">
-						<div class="grid-title" onclick='GoLink("FunProgram","indx=203")'>國際時事</div>
-						<div class="grid1-box"><a class="grid1-item add-hr" href="#">
-								<div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-								<div class="grid-content"><img class="grid1-img" src="https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg"/>包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-								<div class="grid-bottom">(繼續閱讀)
-									<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-								</div></a><a class="grid1-item add-hr" href="#">
-								<div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-								<div class="grid-content"><img class="grid1-img" src="https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg"/>包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-								<div class="grid-bottom">(繼續閱讀)
-									<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-								</div></a><a class="grid1-item add-hr" href="#">
-								<div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-								<div class="grid-content"><img class="grid1-img" src="https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg"/>包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-								<div class="grid-bottom">(繼續閱讀)
-									<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-								</div></a><a class="grid1-item add-hr" href="#">
-								<div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-								<div class="grid-content"><img class="grid1-img" src="https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg"/>包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-								<div class="grid-bottom">(繼續閱讀)
-									<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-								</div></a><a class="grid1-item add-hr" href="#">
-								<div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-								<div class="grid-content"><img class="grid1-img" src="https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg"/>包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-								<div class="grid-bottom">(繼續閱讀)
-									<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-								</div></a><a class="grid1-item add-hr" href="#">
-								<div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-								<div class="grid-content"><img class="grid1-img" src="https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg"/>包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-								<div class="grid-bottom">(繼續閱讀)
-									<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-								</div></a><a class="grid1-item add-hr" href="#">
-								<div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-								<div class="grid-content"><img class="grid1-img" src="https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg"/>包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-								<div class="grid-bottom">(繼續閱讀)
-									<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-								</div></a><a class="grid1-item add-hr" href="#">
-								<div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-								<div class="grid-content"><img class="grid1-img" src="https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg"/>包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-								<div class="grid-bottom">(繼續閱讀)
-									<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-								</div></a></div>
-					</div>
-					<div class="grid2">
-						<div id="sliderbox">
-							<div id="slider">
-								<div><a href="#" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)">
-										<div class="grid-subtitle">《天能》上映六天破億1 上映六天破億1 上映六天破億1 上映六天破億1 上映六天破億1</div>
-										<div class="grid2-en">“Tenet” Rakes in Billions of Dollars After “Tenet” Rakes in Billions of Dollars After</div></a></div>
-								<div><a href="#" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)">
-										<div class="grid-subtitle">《天能》上映六天破億2</div>
-										<div class="grid2-en">“Tenet” Rakes in Billions of Dollars After...</div></a></div>
-								<div><a href="#" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)">
-										<div class="grid-subtitle">《天能》上映六天破億3</div>
-										<div class="grid2-en">“Tenet” Rakes in Billions of Dollars After...</div></a></div>
-								<div><a href="#" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)">
-										<div class="grid-subtitle">《天能》上映六天破億4</div>
-										<div class="grid2-en">“Tenet” Rakes in Billions of Dollars After...</div></a></div>
-							</div>
+      <div id="prev-page">
+        <svg fill="none">
+          <path d="M19 2L2 23.5L19 45" stroke="white" stroke-width="4"></path>
+        </svg>
+      </div>
+      <div id="next-page">
+        <svg fill="none">
+          <path d="M2 2L19 23.5L2 45" stroke="white" stroke-width="4"></path>
+        </svg>
+      </div>
+      <div class="wrapper" id="app">
+        <div id="block0">
+          <div id="block0-title">閱讀與聽力課程</div>
+          <div id="circle-box">
+            <div class="circle-item" data-type="cursor"><img src="./2020/images/cursor.svg"/></div>
+            <div class="circle-item" data-type="noti"><img src="./2020/images/noti.svg"/></div>
+            <div class="circle-item" data-type="side"><img src="./2020/images/sidebar_open.svg"/></div>
+          </div>
+					<ul class="tgnav-group-dropdown">
+						<div class="bulletinToolbox1"></div>
+						<div class="bulletinIconDiv">
+							<div class="bulletinTxt1"><i class="fa fa-thumb-tack" aria-hidden="true"></i>Bulletin</div>
+							<div class="bulletinDate">2020.11.20</div>
 						</div>
-						<div class="grid22-box"><a class="grid22-item add-hr" href="#">
-								<div class="grid22-img" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
-								<div class="grid22-right">
-									<div class="grid22-above">
-										<div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-										<div class="grid22-en">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis vero nobis optio, quibusdam doloribus repellendus architecto tenetur assumenda explicabo neque laudantium, perspiciatis reprehenderit. Voluptatibus eius recusandae cupiditate optio mollitia praesentium!</div>
-										<div class="grid-content">
-											包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-									</div>
-									<div class="grid-bottom">(繼續閱讀)
-										<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-									</div>
-								</div></a><a class="grid22-item add-hr" href="#">
-								<div class="grid22-img" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
-								<div class="grid22-right">
-									<div class="grid22-above">
-										<div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-										<div class="grid22-en">Adipisicing elit. Quis praium!</div>
-										<div class="grid-content">
-											包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-									</div>
-									<div class="grid-bottom">(繼續閱讀)
-										<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-									</div>
-								</div></a><a class="grid22-item add-hr" href="#">
-								<div class="grid22-img" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
-								<div class="grid22-right">
-									<div class="grid22-above">
-										<div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-										<div class="grid22-en">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis vero nobis optio, quibusdam doloribus repellendus architecto tenetur assumenda explicabo neque laudantium, perspiciatis reprehenderit. Voluptatibus eius recusandae cupiditate optio mollitia praesentium!</div>
-										<div class="grid-content">
-											包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-									</div>
-									<div class="grid-bottom">(繼續閱讀)
-										<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-									</div>
-								</div></a><a class="grid22-item add-hr" href="#">
-								<div class="grid22-img" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
-								<div class="grid22-right">
-									<div class="grid22-above">
-										<div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-										<div class="grid22-en">Adipisicing elit. Quis praium!</div>
-										<div class="grid-content">
-											包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-									</div>
-									<div class="grid-bottom">(繼續閱讀)
-										<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-									</div>
-								</div></a><a class="grid22-item add-hr" href="#">
-								<div class="grid22-img" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
-								<div class="grid22-right">
-									<div class="grid22-above">
-										<div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-										<div class="grid22-en">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis vero nobis optio, quibusdam doloribus repellendus architecto tenetur assumenda explicabo neque laudantium, perspiciatis reprehenderit. Voluptatibus eius recusandae cupiditate optio mollitia praesentium!</div>
-										<div class="grid-content">
-											包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-									</div>
-									<div class="grid-bottom">(繼續閱讀)
-										<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-									</div>
-								</div></a><a class="grid22-item add-hr" href="#">
-								<div class="grid22-img" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
-								<div class="grid22-right">
-									<div class="grid22-above">
-										<div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-										<div class="grid22-en">Adipisicing elit. Quis praium!</div>
-										<div class="grid-content">
-											包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-									</div>
-									<div class="grid-bottom">(繼續閱讀)
-										<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-									</div>
-								</div></a><a class="grid22-item add-hr" href="#">
-								<div class="grid22-img" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
-								<div class="grid22-right">
-									<div class="grid22-above">
-										<div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-										<div class="grid22-en">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis vero nobis optio, quibusdam doloribus repellendus architecto tenetur assumenda explicabo neque laudantium, perspiciatis reprehenderit. Voluptatibus eius recusandae cupiditate optio mollitia praesentium!</div>
-										<div class="grid-content">
-											包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-									</div>
-									<div class="grid-bottom">(繼續閱讀)
-										<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-									</div>
-								</div></a><a class="grid22-item add-hr" href="#">
-								<div class="grid22-img" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
-								<div class="grid22-right">
-									<div class="grid22-above">
-										<div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-										<div class="grid22-en">Adipisicing elit. Quis praium!</div>
-										<div class="grid-content">
-											包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-									</div>
-									<div class="grid-bottom">(繼續閱讀)
-										<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-									</div>
-								</div></a></div>
-					</div>
-					<div class="grid3">
-						<div class="grid3-video">
-							<iframe src="https://www.youtube.com/embed/Nw7wwHm4GxU?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe>
+						<div class="bulletinCntDiv" data-val="0">
+							<div class="bulletinCnt"><i class="fa fa-clock-o" aria-hidden="true"></i>Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。</div>
+							<div class="gradeline"></div>
+							<div class="bulletinCnt"><i class="fa fa-clock-o" aria-hidden="true"></i>Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。</div>
+							<div class="gradeline"></div>
+							<div class="bulletinCnt"><i class="fa fa-clock-o" aria-hidden="true"></i>Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。</div>
+							<div class="gradeline"></div>
+							<div class="bulletinCnt"><i class="fa fa-clock-o" aria-hidden="true"></i>Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。</div>
 						</div>
-						<div class="grid-title is-1">生活新知</div>
-						<div class="grid3-box"><a class="grid3-item add-hr" href="#">
-								<div class="grid-subtitle">桃園機場計程車更加專業</div>
-								<div class="grid-content">
-									包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-								<div class="grid-bottom">(繼續閱讀)
-									<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-								</div></a><a class="grid3-item add-hr" href="#">
-								<div class="grid-subtitle">桃園機場計程車更加專業</div>
-								<div class="grid-content">
-									包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-								<div class="grid-bottom">(繼續閱讀)
-									<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-								</div></a><a class="grid3-item add-hr" href="#">
-								<div class="grid-subtitle">桃園機場計程車更加專業</div>
-								<div class="grid-content">
-									包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-								<div class="grid-bottom">(繼續閱讀)
-									<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-								</div></a><a class="grid3-item add-hr" href="#">
-								<div class="grid-subtitle">桃園機場計程車更加專業</div>
-								<div class="grid-content">
-									包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-								<div class="grid-bottom">(繼續閱讀)
-									<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-								</div></a><a class="grid3-item add-hr" href="#">
-								<div class="grid-subtitle">桃園機場計程車更加專業</div>
-								<div class="grid-content">
-									包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-								<div class="grid-bottom">(繼續閱讀)
-									<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-								</div></a><a class="grid3-item add-hr" href="#">
-								<div class="grid-subtitle">桃園機場計程車更加專業</div>
-								<div class="grid-content">
-									包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-								<div class="grid-bottom">(繼續閱讀)
-									<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-								</div></a><a class="grid3-item add-hr" href="#">
-								<div class="grid-subtitle">桃園機場計程車更加專業</div>
-								<div class="grid-content">
-									包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-								<div class="grid-bottom">(繼續閱讀)
-									<div class="grid-view"> <img src="2020/images/view.svg"/><span>988</span></div>
-								</div></a></div>
-						<div class="grid-title is-2">雜誌</div>
-						<div class="grid3-mgz" style="background-image: url(https://funday.asia/funMz/2020080019/P1.jpg)"></div>
-					</div>
-					<div class="grid4">
-						<div class="grid-title is-1">商務情境</div>
-						<div class="grid4-box"><a class="grid4-item add-hr" href="#">
-								<div class="grid4-sort is-s1">商用</div>
-								<div class="grid4-right">
-									<div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-									<div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-								</div></a><a class="grid4-item add-hr" href="#">
-								<div class="grid4-sort is-s2">上班族</div>
-								<div class="grid4-right">
-									<div class="grid-subtitle">桃園機場計程車更加專業</div>
-									<div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-								</div></a><a class="grid4-item add-hr" href="#">
-								<div class="grid4-sort is-s1">商用</div>
-								<div class="grid4-right">
-									<div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-									<div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-								</div></a><a class="grid4-item add-hr" href="#">
-								<div class="grid4-sort is-s2">上班族</div>
-								<div class="grid4-right">
-									<div class="grid-subtitle">桃園機場計程車更加專業</div>
-									<div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-								</div></a><a class="grid4-item add-hr" href="#">
-								<div class="grid4-sort is-s1">商用</div>
-								<div class="grid4-right">
-									<div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-									<div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-								</div></a><a class="grid4-item add-hr" href="#">
-								<div class="grid4-sort is-s2">上班族</div>
-								<div class="grid4-right">
-									<div class="grid-subtitle">桃園機場計程車更加專業</div>
-									<div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-								</div></a><a class="grid4-item add-hr" href="#">
-								<div class="grid4-sort is-s1">商用</div>
-								<div class="grid4-right">
-									<div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-									<div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-								</div></a><a class="grid4-item add-hr" href="#">
-								<div class="grid4-sort is-s2">上班族</div>
-								<div class="grid4-right">
-									<div class="grid-subtitle">桃園機場計程車更加專業</div>
-									<div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-								</div></a><a class="grid4-item add-hr" href="#">
-								<div class="grid4-sort is-s1">商用</div>
-								<div class="grid4-right">
-									<div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-									<div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-								</div></a><a class="grid4-item add-hr" href="#">
-								<div class="grid4-sort is-s2">上班族</div>
-								<div class="grid4-right">
-									<div class="grid-subtitle">桃園機場計程車更加專業</div>
-									<div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-								</div></a></div><a class="grid4-wt" href="#" style="background-image: url(./2020/images/wt.png)">
-							<div class="grid4-week">2020/11/20~2020/11/27</div></a>
-						<div class="grid-title is-2">童話故事</div>
-						<div class="grid42-box"><a class="grid42-item add-hr" href="#">
-								<div class="grid42-img" style="background-image: url(https://dsn.funday.asia/photo/Story/20200106113259_img.jpg)"></div>
-								<div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div></a><a class="grid42-item add-hr" href="#">
-								<div class="grid42-img" style="background-image: url(https://dsn.funday.asia/photo/Story/20200106113259_img.jpg)"></div>
-								<div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div></a><a class="grid42-item add-hr" href="#">
-								<div class="grid42-img" style="background-image: url(https://dsn.funday.asia/photo/Story/20200106113259_img.jpg)"></div>
-								<div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div></a></div>
-					</div>
-				</div>
-				<div id="block-title">
-					<div class="grid1">
-						<div class="grid-title">部落格</div>
-					</div>
-					<div class="grid2">
-						<div class="grid-title">看影片學英文</div>
-					</div>
-					<div class="grid3">
-						<div class="grid-title">賞電影 / 聊新知</div>
-					</div>
-					<div class="grid4">
-						<div class="grid-title">北捷微電影</div>
-					</div>
-					<div class="title-group"></div>
-				</div>
-				<div id="block2">
-					<div class="grid1">
-						<div class="grid1-box"><a class="grid1-item add-hr" href="#"><img src="https://funday.asia/BlogS/files/img-e-504.jpg"/>
-								<div class="grid-subtitle">名句背後的故事 _ 史恩·康納萊</div></a><a class="grid1-item add-hr" href="#"><img src="https://funday.asia/BlogS/files/img-e-504.jpg"/>
-								<div class="grid-subtitle">名句背後的故事 _ 史恩·康納萊</div></a><a class="grid1-item add-hr" href="#"><img src="https://funday.asia/BlogS/files/img-e-504.jpg"/>
-								<div class="grid-subtitle">名句背後的故事 _ 史恩·康納萊</div></a></div>
-					</div>
-					<div class="grid2">
-						<div class="grid2-video">
-							<iframe src="https://www.youtube.com/embed/Nw7wwHm4GxU?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe>
-						</div>
-					</div>
-					<div class="grid3"><a class="grid3-item" href="#">
-							<div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
-							<div class="grid3-box">
-								<div class="grid3-sort">Cinephile</div>
-								<div class="grid3-ch">美好的一年美好的一年美好的一年</div>
-								<div class="grid3-en">A Good Year</div>
-							</div></a>
-						<div class="grid3-hr"></div><a class="grid3-item" href="#">
-							<div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
-							<div class="grid3-box">
-								<div class="grid3-sort">Cinephile</div>
-								<div class="grid3-ch">美好的一年美好的一年美好的一年</div>
-								<div class="grid3-en">A Good Year</div>
-							</div></a>
-						<div class="grid3-hr"></div><a class="grid3-item" href="#">
-							<div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
-							<div class="grid3-box">
-								<div class="grid3-sort">Cinephile</div>
-								<div class="grid3-ch">美好的一年美好的一年美好的一年</div>
-								<div class="grid3-en">A Good Year</div>
-							</div></a>
-						<div class="grid3-hr"></div><a class="grid3-item" href="#">
-							<div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
-							<div class="grid3-box">
-								<div class="grid3-sort">Cinephile</div>
-								<div class="grid3-ch">美好的一年美好的一年美好的一年</div>
-								<div class="grid3-en">A Good Year</div>
-							</div></a>
-						<div class="grid3-hr"></div>
-					</div>
-					<div class="grid4"><a class="grid3-item" href="#">
-							<div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
-							<div class="grid3-box">
-								<div class="grid3-sort">Cinephile</div>
-								<div class="grid3-ch">美好的一年美好的一年美好的一年</div>
-								<div class="grid3-en">A Good Year</div>
-							</div></a>
-						<div class="grid3-hr"></div><a class="grid3-item" href="#">
-							<div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
-							<div class="grid3-box">
-								<div class="grid3-sort">Cinephile</div>
-								<div class="grid3-ch">美好的一年美好的一年美好的一年</div>
-								<div class="grid3-en">A Good Year</div>
-							</div></a>
-						<div class="grid3-hr"></div><a class="grid3-item" href="#">
-							<div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
-							<div class="grid3-box">
-								<div class="grid3-sort">Cinephile</div>
-								<div class="grid3-ch">美好的一年美好的一年美好的一年</div>
-								<div class="grid3-en">A Good Year</div>
-							</div></a>
-						<div class="grid3-hr"></div><a class="grid3-item" href="#">
-							<div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
-							<div class="grid3-box">
-								<div class="grid3-sort">Cinephile</div>
-								<div class="grid3-ch">美好的一年美好的一年美好的一年</div>
-								<div class="grid3-en">A Good Year</div>
-							</div></a>
-						<div class="grid3-hr"></div>
-					</div>
-					<div class="grid5">
-						<div class="grid5-title">唱歌學英文</div>
-						<div class="grid5-box">
-							<div class="grid5-item">
-								<div class="grid5-img" style="background-image: url(https://img.youtube.com/vi/bo_efYhYU2A/hqdefault.jpg)"></div>
-								<div class="grid5-under">
-									<div class="grid5-actor">Margaret Berger Margaret Berger</div>
-									<div class="grid5-subtitle">I Feed You My Love I Feed You My Love</div>
-									<div class="grid5-btn"></div>
-								</div>
-							</div>
-							<div class="grid5-item">
-								<div class="grid5-img" style="background-image: url(https://img.youtube.com/vi/bo_efYhYU2A/hqdefault.jpg)"></div>
-								<div class="grid5-under">
-									<div class="grid5-actor">Margaret Berger Margaret Berger</div>
-									<div class="grid5-subtitle">I Feed You My Love I Feed You My Love</div>
-									<div class="grid5-btn"></div>
-								</div>
-							</div>
-							<div class="grid5-item">
-								<div class="grid5-img" style="background-image: url(https://img.youtube.com/vi/bo_efYhYU2A/hqdefault.jpg)"></div>
-								<div class="grid5-under">
-									<div class="grid5-actor">Margaret Berger Margaret Berger</div>
-									<div class="grid5-subtitle">I Feed You My Love I Feed You My Love</div>
-									<div class="grid5-btn"></div>
-								</div>
-							</div>
-							<div class="grid5-item">
-								<div class="grid5-img" style="background-image: url(https://img.youtube.com/vi/bo_efYhYU2A/hqdefault.jpg)"></div>
-								<div class="grid5-under">
-									<div class="grid5-actor">Margaret Berger Margaret Berger</div>
-									<div class="grid5-subtitle">I Feed You My Love I Feed You My Love</div>
-									<div class="grid5-btn"></div>
-								</div>
-							</div>
-							<div class="grid5-item">
-								<div class="grid5-img" style="background-image: url(https://img.youtube.com/vi/bo_efYhYU2A/hqdefault.jpg)"></div>
-								<div class="grid5-under">
-									<div class="grid5-actor">Margaret Berger Margaret Berger</div>
-									<div class="grid5-subtitle">I Feed You My Love I Feed You My Love</div>
-									<div class="grid5-btn"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="foo">
-			<div class="f1">需要其他協助嗎?  請聯絡我們
-				<div class="msg-board" onclick="GoLink('MessageBoard')" title="留言版"></div>
-			</div>
-			<div class="f2"><span class="f2-1">服務時間：週一～週六 10:00~12:30、13:30~17:30、18:30~22:00  |  02-2523-9777 / 0800-023-777 (限市話)</span><span class="f2-2">© 2020 Brainstorm Digital Communications Corp. All rights reserved. Privacy Policy</span></div>
-		</div>
+						<div id="bulletinDiv"></div>
+					</ul>
+        </div>
+        <div id="block1">
+          <div class="grid1">
+            <div class="grid-title">國際時事</div>
+            <div class="grid1-box"><a class="grid1-item add-hr" href="#">
+                <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                <div class="grid-content"><img class="grid1-img" src="https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg"/>包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                <div class="grid-bottom">(繼續閱讀)
+                  <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                </div></a><a class="grid1-item add-hr" href="#">
+                <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                <div class="grid-content"><img class="grid1-img" src="https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg"/>包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                <div class="grid-bottom">(繼續閱讀)
+                  <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                </div></a><a class="grid1-item add-hr" href="#">
+                <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                <div class="grid-content"><img class="grid1-img" src="https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg"/>包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                <div class="grid-bottom">(繼續閱讀)
+                  <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                </div></a><a class="grid1-item add-hr" href="#">
+                <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                <div class="grid-content"><img class="grid1-img" src="https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg"/>包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                <div class="grid-bottom">(繼續閱讀)
+                  <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                </div></a><a class="grid1-item add-hr" href="#">
+                <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                <div class="grid-content"><img class="grid1-img" src="https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg"/>包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                <div class="grid-bottom">(繼續閱讀)
+                  <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                </div></a><a class="grid1-item add-hr" href="#">
+                <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                <div class="grid-content"><img class="grid1-img" src="https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg"/>包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                <div class="grid-bottom">(繼續閱讀)
+                  <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                </div></a><a class="grid1-item add-hr" href="#">
+                <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                <div class="grid-content"><img class="grid1-img" src="https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg"/>包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                <div class="grid-bottom">(繼續閱讀)
+                  <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                </div></a><a class="grid1-item add-hr" href="#">
+                <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                <div class="grid-content"><img class="grid1-img" src="https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg"/>包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                <div class="grid-bottom">(繼續閱讀)
+                  <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                </div></a></div>
+          </div>
+          <div class="grid2">
+            <div id="fade">
+              <div class="fade-main"><a class="fade-main-item" href="#" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1.jpg)">
+                  <div class="grid-subtitle">《天能》上映六天破億1</div>
+                  <div class="fade-en">“Tenet” Rakes in Billions of Dollars After...</div></a><a class="fade-main-item" href="#" style="background-image: url(https://funday.asia/en/pic/201124img-newsC19509-1-1.jpg)">
+                  <div class="grid-subtitle">《天能》上映六天破億2</div>
+                  <div class="fade-en">“Tenet” Rakes in Billions of Dollars After...</div></a><a class="fade-main-item" href="#" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1.jpg)">
+                  <div class="grid-subtitle">《天能》上映六天破億3</div>
+                  <div class="fade-en">“Tenet” Rakes in Billions of Dollars After...</div></a><a class="fade-main-item" href="#" style="background-image: url(https://funday.asia/en/pic/201124img-newsC19509-1-1.jpg)">
+                  <div class="grid-subtitle">《天能》上映六天破億4</div>
+                  <div class="fade-en">“Tenet” Rakes in Billions of Dollars After...</div></a></div>
+              <div class="fade-dot">
+                <div class="fade-dot-item active"></div>
+                <div class="fade-dot-item"></div>
+                <div class="fade-dot-item"></div>
+                <div class="fade-dot-item"></div>
+              </div>
+            </div>
+            <div class="grid22-box"><a class="grid22-item add-hr" href="#">
+                <div class="grid22-img" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
+                <div class="grid22-right">
+                  <div class="grid22-above">
+                    <div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                    <div class="grid22-en">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis vero nobis optio, quibusdam doloribus repellendus architecto tenetur assumenda explicabo neque laudantium, perspiciatis reprehenderit. Voluptatibus eius recusandae cupiditate optio mollitia praesentium!</div>
+                    <div class="grid-content">
+                       包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                  </div>
+                  <div class="grid-bottom">(繼續閱讀)
+                    <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                  </div>
+                </div></a><a class="grid22-item add-hr" href="#">
+                <div class="grid22-img" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
+                <div class="grid22-right">
+                  <div class="grid22-above">
+                    <div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                    <div class="grid22-en">Adipisicing elit. Quis praium!</div>
+                    <div class="grid-content">
+                       包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                  </div>
+                  <div class="grid-bottom">(繼續閱讀)
+                    <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                  </div>
+                </div></a><a class="grid22-item add-hr" href="#">
+                <div class="grid22-img" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
+                <div class="grid22-right">
+                  <div class="grid22-above">
+                    <div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                    <div class="grid22-en">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis vero nobis optio, quibusdam doloribus repellendus architecto tenetur assumenda explicabo neque laudantium, perspiciatis reprehenderit. Voluptatibus eius recusandae cupiditate optio mollitia praesentium!</div>
+                    <div class="grid-content">
+                       包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                  </div>
+                  <div class="grid-bottom">(繼續閱讀)
+                    <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                  </div>
+                </div></a><a class="grid22-item add-hr" href="#">
+                <div class="grid22-img" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
+                <div class="grid22-right">
+                  <div class="grid22-above">
+                    <div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                    <div class="grid22-en">Adipisicing elit. Quis praium!</div>
+                    <div class="grid-content">
+                       包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                  </div>
+                  <div class="grid-bottom">(繼續閱讀)
+                    <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                  </div>
+                </div></a><a class="grid22-item add-hr" href="#">
+                <div class="grid22-img" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
+                <div class="grid22-right">
+                  <div class="grid22-above">
+                    <div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                    <div class="grid22-en">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis vero nobis optio, quibusdam doloribus repellendus architecto tenetur assumenda explicabo neque laudantium, perspiciatis reprehenderit. Voluptatibus eius recusandae cupiditate optio mollitia praesentium!</div>
+                    <div class="grid-content">
+                       包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                  </div>
+                  <div class="grid-bottom">(繼續閱讀)
+                    <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                  </div>
+                </div></a><a class="grid22-item add-hr" href="#">
+                <div class="grid22-img" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
+                <div class="grid22-right">
+                  <div class="grid22-above">
+                    <div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                    <div class="grid22-en">Adipisicing elit. Quis praium!</div>
+                    <div class="grid-content">
+                       包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                  </div>
+                  <div class="grid-bottom">(繼續閱讀)
+                    <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                  </div>
+                </div></a><a class="grid22-item add-hr" href="#">
+                <div class="grid22-img" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
+                <div class="grid22-right">
+                  <div class="grid22-above">
+                    <div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                    <div class="grid22-en">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis vero nobis optio, quibusdam doloribus repellendus architecto tenetur assumenda explicabo neque laudantium, perspiciatis reprehenderit. Voluptatibus eius recusandae cupiditate optio mollitia praesentium!</div>
+                    <div class="grid-content">
+                       包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                  </div>
+                  <div class="grid-bottom">(繼續閱讀)
+                    <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                  </div>
+                </div></a><a class="grid22-item add-hr" href="#">
+                <div class="grid22-img" style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
+                <div class="grid22-right">
+                  <div class="grid22-above">
+                    <div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                    <div class="grid22-en">Adipisicing elit. Quis praium!</div>
+                    <div class="grid-content">
+                       包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                  </div>
+                  <div class="grid-bottom">(繼續閱讀)
+                    <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                  </div>
+                </div></a></div>
+          </div>
+          <div class="grid3">
+            <div class="grid3-video">
+              <iframe src="https://www.youtube.com/embed/Nw7wwHm4GxU?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe>
+            </div>
+            <div class="grid-title is-1">生活新知</div>
+            <div class="grid3-box"><a class="grid3-item add-hr" href="#">
+                <div class="grid-subtitle">桃園機場計程車更加專業</div>
+                <div class="grid-content">
+                   包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                <div class="grid-bottom">(繼續閱讀)
+                  <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                </div></a><a class="grid3-item add-hr" href="#">
+                <div class="grid-subtitle">桃園機場計程車更加專業</div>
+                <div class="grid-content">
+                   包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                <div class="grid-bottom">(繼續閱讀)
+                  <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                </div></a><a class="grid3-item add-hr" href="#">
+                <div class="grid-subtitle">桃園機場計程車更加專業</div>
+                <div class="grid-content">
+                   包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                <div class="grid-bottom">(繼續閱讀)
+                  <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                </div></a><a class="grid3-item add-hr" href="#">
+                <div class="grid-subtitle">桃園機場計程車更加專業</div>
+                <div class="grid-content">
+                   包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                <div class="grid-bottom">(繼續閱讀)
+                  <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                </div></a><a class="grid3-item add-hr" href="#">
+                <div class="grid-subtitle">桃園機場計程車更加專業</div>
+                <div class="grid-content">
+                   包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                <div class="grid-bottom">(繼續閱讀)
+                  <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                </div></a><a class="grid3-item add-hr" href="#">
+                <div class="grid-subtitle">桃園機場計程車更加專業</div>
+                <div class="grid-content">
+                   包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                <div class="grid-bottom">(繼續閱讀)
+                  <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                </div></a><a class="grid3-item add-hr" href="#">
+                <div class="grid-subtitle">桃園機場計程車更加專業</div>
+                <div class="grid-content">
+                   包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
+                <div class="grid-bottom">(繼續閱讀)
+                  <div class="grid-view"> <img src="./2020/images/view.svg"/><span>988</span></div>
+                </div></a></div>
+            <div class="grid-title is-2">雜誌</div>
+            <div class="grid3-mgz" style="background-image: url(https://funday.asia/funMz/2020080019/P1.jpg)"></div>
+          </div>
+          <div class="grid4">
+            <div class="grid-title is-1">商務情境</div>
+            <div class="grid4-box"><a class="grid4-item add-hr" href="#">
+                <div class="grid4-sort is-s1">書信</div>
+                <div class="grid4-right">
+                  <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                  <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
+                </div></a><a class="grid4-item add-hr" href="#">
+                <div class="grid4-sort is-s2">對話</div>
+                <div class="grid4-right">
+                  <div class="grid-subtitle">桃園機場計程車更加專業</div>
+                  <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
+                </div></a><a class="grid4-item add-hr" href="#">
+                <div class="grid4-sort is-s1">公告</div>
+                <div class="grid4-right">
+                  <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                  <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
+                </div></a><a class="grid4-item add-hr" href="#">
+                <div class="grid4-sort is-s2">報告</div>
+                <div class="grid4-right">
+                  <div class="grid-subtitle">桃園機場計程車更加專業</div>
+                  <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
+                </div></a><a class="grid4-item add-hr" href="#">
+                <div class="grid4-sort is-s1">書信</div>
+                <div class="grid4-right">
+                  <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                  <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
+                </div></a><a class="grid4-item add-hr" href="#">
+                <div class="grid4-sort is-s2">對話</div>
+                <div class="grid4-right">
+                  <div class="grid-subtitle">桃園機場計程車更加專業</div>
+                  <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
+                </div></a><a class="grid4-item add-hr" href="#">
+                <div class="grid4-sort is-s1">商用</div>
+                <div class="grid4-right">
+                  <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                  <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
+                </div></a><a class="grid4-item add-hr" href="#">
+                <div class="grid4-sort is-s2">上班族</div>
+                <div class="grid4-right">
+                  <div class="grid-subtitle">桃園機場計程車更加專業</div>
+                  <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
+                </div></a><a class="grid4-item add-hr" href="#">
+                <div class="grid4-sort is-s1">商用</div>
+                <div class="grid4-right">
+                  <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+                  <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
+                </div></a><a class="grid4-item add-hr" href="#">
+                <div class="grid4-sort is-s2">上班族</div>
+                <div class="grid4-right">
+                  <div class="grid-subtitle">桃園機場計程車更加專業</div>
+                  <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
+                </div></a></div><a class="grid4-wt" href="#" style="background-image: url(./2020/images/wt.png)">
+              <div class="grid4-week">2020/11/20~2020/11/27</div></a>
+							<a class="grid4-wt" href="#" style="background-image: url(./2020/images/wt.png)">
+              <div class="grid4-week">2020/11/20~2020/11/27</div></a>
+            <div class="grid-title is-2">童話故事</div>
+            <div class="grid42-box"><a class="grid42-item add-hr" href="#">
+                <div class="grid42-img" style="background-image: url(https://dsn.funday.asia/photo/Story/20200106113259_img.jpg)"></div>
+                <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div></a><a class="grid42-item add-hr" href="#">
+                <div class="grid42-img" style="background-image: url(https://dsn.funday.asia/photo/Story/20200106113259_img.jpg)"></div>
+                <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div></a><a class="grid42-item add-hr" href="#">
+                <div class="grid42-img" style="background-image: url(https://dsn.funday.asia/photo/Story/20200106113259_img.jpg)"></div>
+                <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div></a></div>
+          </div>
+        </div>
+        <div id="block-title">
+          <div class="grid1">
+            <div class="grid-title">部落格</div>
+          </div>
+          <div class="grid2">
+            <div class="grid-title">看影片學英文</div>
+          </div>
+          <div class="grid3">
+            <div class="grid-title">賞電影 / 聊新知</div>
+          </div>
+          <div class="grid4">
+            <div class="grid-title">北捷微電影</div>
+          </div>
+          <div class="title-group"></div>
+        </div>
+        <div id="block2">
+          <div class="grid1">
+            <div class="grid1-box"><a class="grid1-item add-hr" href="#"><img src="https://funday.asia/BlogS/files/img-e-504.jpg"/>
+                <div class="grid-subtitle">名句背後的故事 _ 史恩·康納萊</div></a><a class="grid1-item add-hr" href="#"><img src="https://funday.asia/BlogS/files/img-e-504.jpg"/>
+                <div class="grid-subtitle">名句背後的故事 _ 史恩·康納萊</div></a><a class="grid1-item add-hr" href="#"><img src="https://funday.asia/BlogS/files/img-e-504.jpg"/>
+                <div class="grid-subtitle">名句背後的故事 _ 史恩·康納萊</div></a></div>
+          </div>
+          <div class="grid2">
+            <div class="grid2-video">
+              <iframe src="https://www.youtube.com/embed/Nw7wwHm4GxU?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe>
+            </div>
+          </div>
+          <div class="grid3"><a class="grid3-item" href="#">
+              <div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
+              <div class="grid3-box">
+                <div class="grid3-sort">Cinephile</div>
+                <div class="grid3-ch">美好的一年美好的一年美好的一年</div>
+                <div class="grid3-en">A Good Year</div>
+              </div></a>
+            <div class="grid3-hr"></div><a class="grid3-item" href="#">
+              <div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
+              <div class="grid3-box">
+                <div class="grid3-sort">Cinephile</div>
+                <div class="grid3-ch">美好的一年美好的一年美好的一年</div>
+                <div class="grid3-en">A Good Year</div>
+              </div></a>
+            <div class="grid3-hr"></div><a class="grid3-item" href="#">
+              <div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
+              <div class="grid3-box">
+                <div class="grid3-sort">Cinephile</div>
+                <div class="grid3-ch">美好的一年美好的一年美好的一年</div>
+                <div class="grid3-en">A Good Year</div>
+              </div></a>
+            <div class="grid3-hr"></div><a class="grid3-item" href="#">
+              <div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
+              <div class="grid3-box">
+                <div class="grid3-sort">Cinephile</div>
+                <div class="grid3-ch">美好的一年美好的一年美好的一年</div>
+                <div class="grid3-en">A Good Year</div>
+              </div></a>
+            <div class="grid3-hr"></div>
+          </div>
+          <div class="grid4"><a class="grid3-item" href="#">
+              <div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
+              <div class="grid3-box">
+                <div class="grid3-sort">Cinephile</div>
+                <div class="grid3-ch">美好的一年美好的一年美好的一年</div>
+                <div class="grid3-en">A Good Year</div>
+              </div></a>
+            <div class="grid3-hr"></div><a class="grid3-item" href="#">
+              <div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
+              <div class="grid3-box">
+                <div class="grid3-sort">Cinephile</div>
+                <div class="grid3-ch">美好的一年美好的一年美好的一年</div>
+                <div class="grid3-en">A Good Year</div>
+              </div></a>
+            <div class="grid3-hr"></div><a class="grid3-item" href="#">
+              <div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
+              <div class="grid3-box">
+                <div class="grid3-sort">Cinephile</div>
+                <div class="grid3-ch">美好的一年美好的一年美好的一年</div>
+                <div class="grid3-en">A Good Year</div>
+              </div></a>
+            <div class="grid3-hr"></div><a class="grid3-item" href="#">
+              <div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
+              <div class="grid3-box">
+                <div class="grid3-sort">Cinephile</div>
+                <div class="grid3-ch">美好的一年美好的一年美好的一年</div>
+                <div class="grid3-en">A Good Year</div>
+              </div></a>
+            <div class="grid3-hr"></div>
+          </div>
+          <div class="grid5">
+            <div class="grid5-title">唱歌學英文</div>
+            <div class="grid5-box">
+              <div class="grid5-item">
+                <div class="grid5-img" style="background-image: url(https://img.youtube.com/vi/bo_efYhYU2A/hqdefault.jpg)"></div>
+                <div class="grid5-under">
+                  <div class="grid5-actor">Margaret Berger Margaret Berger</div>
+                  <div class="grid5-subtitle">I Feed You My Love I Feed You My Love</div>
+                  <div class="grid5-btn"></div>
+                </div>
+              </div>
+              <div class="grid5-item">
+                <div class="grid5-img" style="background-image: url(https://img.youtube.com/vi/bo_efYhYU2A/hqdefault.jpg)"></div>
+                <div class="grid5-under">
+                  <div class="grid5-actor">Margaret Berger Margaret Berger</div>
+                  <div class="grid5-subtitle">I Feed You My Love I Feed You My Love</div>
+                  <div class="grid5-btn"></div>
+                </div>
+              </div>
+              <div class="grid5-item">
+                <div class="grid5-img" style="background-image: url(https://img.youtube.com/vi/bo_efYhYU2A/hqdefault.jpg)"></div>
+                <div class="grid5-under">
+                  <div class="grid5-actor">Margaret Berger Margaret Berger</div>
+                  <div class="grid5-subtitle">I Feed You My Love I Feed You My Love</div>
+                  <div class="grid5-btn"></div>
+                </div>
+              </div>
+              <div class="grid5-item">
+                <div class="grid5-img" style="background-image: url(https://img.youtube.com/vi/bo_efYhYU2A/hqdefault.jpg)"></div>
+                <div class="grid5-under">
+                  <div class="grid5-actor">Margaret Berger Margaret Berger</div>
+                  <div class="grid5-subtitle">I Feed You My Love I Feed You My Love</div>
+                  <div class="grid5-btn"></div>
+                </div>
+              </div>
+              <div class="grid5-item">
+                <div class="grid5-img" style="background-image: url(https://img.youtube.com/vi/bo_efYhYU2A/hqdefault.jpg)"></div>
+                <div class="grid5-under">
+                  <div class="grid5-actor">Margaret Berger Margaret Berger</div>
+                  <div class="grid5-subtitle">I Feed You My Love I Feed You My Love</div>
+                  <div class="grid5-btn"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="foo">
+          <div class="f1">需要其他協助嗎?  請聯絡我們
+            <div class="msg-board" onclick="GoLink('MessageBoard')" title="留言版"></div>
+          </div>
+          <div class="f2"><span class="f2-1">服務時間：週一～週六 10:00~12:30、13:30~17:30、18:30~22:00  |  02-2523-9777 / 0800-023-777 (限市話)</span><span class="f2-2">© 2020 Brainstorm Digital Communications Corp. All rights reserved. Privacy Policy</span></div>
+        </div>
+      </div>
+    </div>
+    <div id="sidebar">
+      <div id="sidebar-title">
+        <div id="sidebar-icon"><img src="./2020/images/member.svg"/>個人等級</div>
+        <div id="sidebar-level">A2-3</div>
+      </div>
+      <div id="sidebar-scroller">
+        <div id="sidebar-scroller-title">複習列表 REVIEW</div>
+        <div id="sidebar-list"><a class="sidebar-item is-s1" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/26</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">A2-1</div></a><a class="sidebar-item is-s2" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/27</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">B1-2</div></a><a class="sidebar-item is-s1" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/26</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">A2-1</div></a><a class="sidebar-item is-s2" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/27</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">B1-2</div></a><a class="sidebar-item is-s1" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/26</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">A2-1</div></a><a class="sidebar-item is-s2" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/27</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">B1-2</div></a><a class="sidebar-item is-s1" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/26</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">A2-1</div></a><a class="sidebar-item is-s2" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/27</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">B1-2</div></a><a class="sidebar-item is-s1" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/26</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">A2-1</div></a><a class="sidebar-item is-s2" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/27</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">B1-2</div></a><a class="sidebar-item is-s1" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/26</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">A2-1</div></a><a class="sidebar-item is-s2" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/27</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">B1-2</div></a><a class="sidebar-item is-s1" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/26</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">A2-1</div></a><a class="sidebar-item is-s2" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/27</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">B1-2</div></a><a class="sidebar-item is-s1" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/26</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">A2-1</div></a><a class="sidebar-item is-s2" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/27</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">B1-2</div></a><a class="sidebar-item is-s1" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/26</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">A2-1</div></a><a class="sidebar-item is-s2" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/27</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">B1-2</div></a><a class="sidebar-item is-s1" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/26</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">A2-1</div></a><a class="sidebar-item is-s2" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/27</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">B1-2</div></a><a class="sidebar-item is-s1" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/26</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">A2-1</div></a><a class="sidebar-item is-s2" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/27</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">B1-2</div></a><a class="sidebar-item is-s1" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/26</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">A2-1</div></a><a class="sidebar-item is-s2" href="#">
+            <div class="sidebar-left">
+              <div class="sidebar-dot"></div>
+              <div class="sidebar-info">
+                <div class="sidebar-time">2020/11/27</div>
+                <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
+              </div>
+            </div>
+            <div class="sidebar-right">B1-2</div></a></div>
+      </div>
+      <div id="sidebar-under">
+        <div id="sidebar-under-title">個人收錄</div>
+        <ul id="sidebar-under-list">
+          <li class="sidebar-under-item"><img src="./2020/images/under1.svg"/>單字</li>
+          <li class="sidebar-under-hr"></li>
+          <li class="sidebar-under-item"><img src="./2020/images/under2.svg"/>片語</li>
+          <li class="sidebar-under-hr"></li>
+          <li class="sidebar-under-item"><img src="./2020/images/under3.svg"/>文章</li>
+        </ul>
+      </div>
+    </div>
 	</body>
 </html>
 <script>
-	$("#slider").slick({
-		dots: true, // 動畫控制點點 : 有
-		infinite: true, // 無止境動畫
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		autoplay: true, // 自動幻影格 : 是
-		autoplaySpeed: 1000, // 影格的停留展示時間 : 毫秒
-		speed: 800, // 切幻影格的速率 : 毫秒
-		pauseOnFocus: true, // 聚焦就停止動畫 : 否
-		pauseOnHover: true,// 滑鼠over 就停止動畫 : 否
-		variableWidth: true,// 是否接受 .slick-slide 非 100% 寬
-		prevArrow: true,
-		nextArrow: false,
-		// 客製化 nex & pre 鈕：https://codepen.io/blanks-site/embed/dZNEwW?height=350&theme-id=dark&slug-hash=dZNEwW&default-tab=js%2Cresult&user=blanks-site&embed-version=2&pen-title=slick-arrows&preview=true 
-		responsive: [
-			// {
-			// 	breakpoint: 1024,
-			// 	settings: {
-			// 		slidesToShow: 3,
-			// 		slidesToScroll: 3,
-			// 		infinite: true,
-			// 		dots: true
-			// 	}
-			// },
-			// 	{
-			// 	breakpoint: 600,
-			// 	settings: {
-			// 		slidesToShow: 2,
-			// 		slidesToScroll: 2
-			// 	}
-			// },
-			// {
-			// 	breakpoint: 480,
-			// 	settings: {
-			// 		slidesToShow: 1,
-			// 		slidesToScroll: 1
-			// 	}
-			// }
-			// vvv 值得一試 值得一試 值得一試 vvv
-			// You can unslick at a given breakpoint now by adding:
-			// settings: "unslick" // 
-			// instead of a settings object
-			// ^^^ 值得一試 值得一試 值得一試 ^^^
-		]
-	});
-
-	// const mylesson2 = new Vue({
-	// 	el: '#app',
-	// 	data:{
-	// 		ary: []
-	// 	},
-	// 	created(){
-	// 		const vm = this;
-
-	// 		vm.fnGiveHeight();
-	// 		$(window).resize(()=>{ vm.fnGiveHeight() });
-
-	// 		$.ajax({
-	// 			type: 'GET',
-	// 			url: 'https://funday.asia/self-study/json/news_array.json',
-	// 			success: function(res){
-	// 				vm.ary = res;
-	// 				console.log('ary ajax >>', vm.ary);
-	// 			}
-	// 		});
-
-			
-
-	// 		const width = $('#sliderbox').width();
-	// 		$('.slick-slide').css({width});
-	// 	},
-	// 	methods: {
-	// 		// fnGiveHeight = function(){
-	// 		fnGiveHeight(){
-	// 			const rate1 = 0.56;
-	// 			const rate2 = 0.67;
-	// 			const rate3 = 1.33;
-	// 			const rate4 = 1.49;
-	// 			const rate5 = 0.562;
-
-	// 			// --------------------------------
-	// 			// SLIDER v
-	// 			const hSlider = $('#sliderbox').width() * 0.675;
-	// 			$('#sliderbox').css('height', hSlider);
-
-	// 			const hSliderOuter = $('#sliderbox').outerHeight(true);
-	// 			console.log(hSliderOuter);
-	// 			$('#block1 .grid22-box').css('height', 'calc(100% - ' + hSliderOuter +'px)')
-
-	// 			// BOX1 GRID2	
-	// 			const hb1g2 = $('#block1 .grid22-img').width() * rate1;
-	// 			$('#block1 .grid22-img').css('height', hb1g2);
-
-	// 			// --------------------------------
-	// 			// BOX1 GRID3 MAGAZINE v
-	// 			const hb1mgz = $('#block1 .grid3-mgz').width() * rate3;
-	// 			$('#block1 .grid3-mgz').css('height', hb1mgz);
-
-	// 			// BOX1 GRID3 LIST v
-	// 			const hb1g3v = $('#block1 .grid3-video').outerHeight(true);
-	// 			const hb1g3t1 = $('#block1 .grid-title.is-1').outerHeight(true);
-	// 			const hb1g3t2 = $('#block1 .grid-title.is-2').outerHeight(true);
-	// 			const hb1g3subtract = hb1g3v + hb1g3t1 + hb1g3t2 + hb1mgz;
-	// 			$('#block1 .grid3-box').css('height', 'calc( 100% - ' + hb1g3subtract + 'px )');
-
-	// 			// --------------------------------
-	// 			// BOX1 GRID4-2 LIST v
-	// 			const hb1g42img = $('#block1 .grid42-img').width() * rate1;
-	// 			$('#block1 .grid42-img').css('height', hb1g42img);
-
-	// 			// BLOCK 1 WEEK TEST v
-	// 			const hb1g4wt = $('#block1 .grid4-wt').width() * rate4;
-	// 			$('#block1 .grid4-wt').css('height', hb1g4wt);
-
-	// 			// BOX1 GRID4-1 LIST v
-	// 			const hb1g4t1 = $('#block1 .grid4 .grid-title.is-1').outerHeight(true);
-	// 			const hb1g4t2 = $('#block1 .grid4 .grid-title.is-2').outerHeight(true);
-	// 			const hb1g42 = $('#block1 .grid42-box').outerHeight(true)
-	// 			const hb1g4subtract = hb1g4wt + hb1g4t1 + hb1g4t2 + hb1g42;
-	// 			console.log(hb1g4t1, hb1g4wt, hb1g4t2,hb1g42, hb1g4subtract);
-	// 			$('#block1 .grid4-box').css('height', 'calc( 100% - ' + hb1g4subtract + 'px)');
-
-	// 			// ================================
-	// 			// ================================
-	// 			// BLOCK2 GRID3 v
-	// 			const hb2g3 = $('#block2 .grid3-img').width() * rate1;
-	// 			$('#block2 .grid3-img').css('height', hb2g3);
-
-	// 			// BLOCK2 GRID2&3 v
-	// 			const hb2g2v = $('#block2 .grid2-video').width() * rate5;
-	// 			$('#block2 .grid2, #block2 .grid3, #block2 .grid4').css('height', hb2g2v);
-
-	// 			// BLOCK2 GRID5 MUSIC v
-	// 			const hb2g5img = $('#block2 .grid5-img').width() * rate1;
-	// 			$('#block2 .grid5-img').css('height', hb2g5img);
-
-	// 			// BLOCK2
-	// 			const hb2gutter = 13;
-	// 			const hb2g5 = $('#block2 .grid5-title').outerHeight() + hb2g5img + $('#block2 .grid5-under').outerHeight(true);
-	// 			const h2 = hb2g2v + hb2g5 + hb2gutter;
-
-	// 			console.log(hb2g2v, hb2g5, h2);
-	// 			$('#block2 .grid1').css('height', h2)
-	// 		},
-	// 	}
-	// });
 
 	// ==========================================
 	// == SYSTEN (BACK-END) v
