@@ -77,10 +77,7 @@
         <div class="grid1">
           <div class="grid-title">國際時事</div>
           <div class="grid1-box">
-            <my-cpn v-bind:prop='key' v-for='key in trend' :req-url='key.news_id' :req-pic='key.pic'></my-cpn>
-            <my-cpn v-bind:prop='key' v-for='key in trend' :req-url='key.news_id' :req-pic='key.pic'></my-cpn>
-            <my-cpn v-bind:prop='key' v-for='key in trend' :req-url='key.news_id' :req-pic='key.pic'></my-cpn>
-            <my-cpn v-bind:prop='key' v-for='key in trend' :req-url='key.news_id' :req-pic='key.pic'></my-cpn>
+            <cpn-tread v-bind:prop='key' v-for='key in trend' :req-url='key.news_id' :req-pic='key.pic'></cpn-tread>
           </div>
         </div>
         <div class="grid2">
@@ -109,131 +106,10 @@
               <div class="fade-dot-item"></div>
             </div>
           </div>
-          <div class="grid22-box"><a class="grid22-item add-hr" href="#">
-              <div class="grid22-img"
-                style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
-              <div class="grid22-right">
-                <div class="grid22-above">
-                  <div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-                  <div class="grid22-en">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis vero nobis
-                    optio, quibusdam doloribus repellendus architecto tenetur assumenda explicabo neque laudantium,
-                    perspiciatis reprehenderit. Voluptatibus eius recusandae cupiditate optio mollitia praesentium!
-                  </div>
-                  <div class="grid-content">
-                    包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-                </div>
-                <div class="grid-bottom">(繼續閱讀)
-                  <div class="grid-view"> <img src="images/view.svg" /><span>988</span></div>
-                </div>
-              </div>
-            </a><a class="grid22-item add-hr" href="#">
-              <div class="grid22-img"
-                style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
-              <div class="grid22-right">
-                <div class="grid22-above">
-                  <div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-                  <div class="grid22-en">Adipisicing elit. Quis praium!</div>
-                  <div class="grid-content">
-                    包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-                </div>
-                <div class="grid-bottom">(繼續閱讀)
-                  <div class="grid-view"> <img src="images/view.svg" /><span>988</span></div>
-                </div>
-              </div>
-            </a><a class="grid22-item add-hr" href="#">
-              <div class="grid22-img"
-                style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
-              <div class="grid22-right">
-                <div class="grid22-above">
-                  <div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-                  <div class="grid22-en">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis vero nobis
-                    optio, quibusdam doloribus repellendus architecto tenetur assumenda explicabo neque laudantium,
-                    perspiciatis reprehenderit. Voluptatibus eius recusandae cupiditate optio mollitia praesentium!
-                  </div>
-                  <div class="grid-content">
-                    包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-                </div>
-                <div class="grid-bottom">(繼續閱讀)
-                  <div class="grid-view"> <img src="images/view.svg" /><span>988</span></div>
-                </div>
-              </div>
-            </a><a class="grid22-item add-hr" href="#">
-              <div class="grid22-img"
-                style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
-              <div class="grid22-right">
-                <div class="grid22-above">
-                  <div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-                  <div class="grid22-en">Adipisicing elit. Quis praium!</div>
-                  <div class="grid-content">
-                    包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-                </div>
-                <div class="grid-bottom">(繼續閱讀)
-                  <div class="grid-view"> <img src="images/view.svg" /><span>988</span></div>
-                </div>
-              </div>
-            </a><a class="grid22-item add-hr" href="#">
-              <div class="grid22-img"
-                style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
-              <div class="grid22-right">
-                <div class="grid22-above">
-                  <div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-                  <div class="grid22-en">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis vero nobis
-                    optio, quibusdam doloribus repellendus architecto tenetur assumenda explicabo neque laudantium,
-                    perspiciatis reprehenderit. Voluptatibus eius recusandae cupiditate optio mollitia praesentium!
-                  </div>
-                  <div class="grid-content">
-                    包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-                </div>
-                <div class="grid-bottom">(繼續閱讀)
-                  <div class="grid-view"> <img src="images/view.svg" /><span>988</span></div>
-                </div>
-              </div>
-            </a><a class="grid22-item add-hr" href="#">
-              <div class="grid22-img"
-                style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
-              <div class="grid22-right">
-                <div class="grid22-above">
-                  <div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-                  <div class="grid22-en">Adipisicing elit. Quis praium!</div>
-                  <div class="grid-content">
-                    包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-                </div>
-                <div class="grid-bottom">(繼續閱讀)
-                  <div class="grid-view"> <img src="images/view.svg" /><span>988</span></div>
-                </div>
-              </div>
-            </a><a class="grid22-item add-hr" href="#">
-              <div class="grid22-img"
-                style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
-              <div class="grid22-right">
-                <div class="grid22-above">
-                  <div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-                  <div class="grid22-en">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis vero nobis
-                    optio, quibusdam doloribus repellendus architecto tenetur assumenda explicabo neque laudantium,
-                    perspiciatis reprehenderit. Voluptatibus eius recusandae cupiditate optio mollitia praesentium!
-                  </div>
-                  <div class="grid-content">
-                    包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-                </div>
-                <div class="grid-bottom">(繼續閱讀)
-                  <div class="grid-view"> <img src="images/view.svg" /><span>988</span></div>
-                </div>
-              </div>
-            </a><a class="grid22-item add-hr" href="#">
-              <div class="grid22-img"
-                style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1ss.jpg)"></div>
-              <div class="grid22-right">
-                <div class="grid22-above">
-                  <div class="grid22-ch">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-                  <div class="grid22-en">Adipisicing elit. Quis praium!</div>
-                  <div class="grid-content">
-                    包括中國、日本和韓國在內的亞太國家簽署了世界最大的區域自由貿易協定，簽署國家的人口和經濟產出約佔全球三分之一。同時，這項協定由中國領頭，進一步鞏固了中國在亞太地區的影響力。</div>
-                </div>
-                <div class="grid-bottom">(繼續閱讀)
-                  <div class="grid-view"> <img src="images/view.svg" /><span>988</span></div>
-                </div>
-              </div>
-            </a></div>
+          <div class="grid22-box">
+            <cpn-mixin v-bind:prop='key' v-for='key in mixin' :req-url='key.news_id' :req-pic='key.pic | filterBG'>
+            </cpn-mixin>
+          </div>
         </div>
         <div class="grid3">
           <div class="grid3-video">
@@ -243,78 +119,18 @@
           </div>
           <div class="grid-title is-1">生活新知</div>
           <div class="grid3-box">
-            <cpn-living v-bind:prop='key' v-for='key in living' req-url='key.news_id'></cpn-living>
-            <cpn-living v-bind:prop='key' v-for='key in living' req-url='key.news_id'></cpn-living>
-            <cpn-living v-bind:prop='key' v-for='key in living' req-url='key.news_id'></cpn-living>
-            <cpn-living v-bind:prop='key' v-for='key in living' req-url='key.news_id'></cpn-living>
+            <cpn-living v-bind:prop='key' v-for='key in living' :req-url='key.news_id'></cpn-living>
           </div>
           <div class="grid-title is-2">雜誌</div>
           <div class="grid3-mgz" style="background-image: url(https://funday.asia/funMz/2020080019/P1.jpg)"></div>
         </div>
         <div class="grid4">
           <div class="grid-title is-1">商務情境</div>
-          <div class="grid4-box"><a class="grid4-item add-hr" href="#">
-              <div class="grid4-sort is-s1">商用</div>
-              <div class="grid4-right">
-                <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-                <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-              </div>
-            </a><a class="grid4-item add-hr" href="#">
-              <div class="grid4-sort is-s2">上班族</div>
-              <div class="grid4-right">
-                <div class="grid-subtitle">桃園機場計程車更加專業</div>
-                <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-              </div>
-            </a><a class="grid4-item add-hr" href="#">
-              <div class="grid4-sort is-s1">商用</div>
-              <div class="grid4-right">
-                <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-                <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-              </div>
-            </a><a class="grid4-item add-hr" href="#">
-              <div class="grid4-sort is-s2">上班族</div>
-              <div class="grid4-right">
-                <div class="grid-subtitle">桃園機場計程車更加專業</div>
-                <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-              </div>
-            </a><a class="grid4-item add-hr" href="#">
-              <div class="grid4-sort is-s1">商用</div>
-              <div class="grid4-right">
-                <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-                <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-              </div>
-            </a><a class="grid4-item add-hr" href="#">
-              <div class="grid4-sort is-s2">上班族</div>
-              <div class="grid4-right">
-                <div class="grid-subtitle">桃園機場計程車更加專業</div>
-                <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-              </div>
-            </a><a class="grid4-item add-hr" href="#">
-              <div class="grid4-sort is-s1">商用</div>
-              <div class="grid4-right">
-                <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-                <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-              </div>
-            </a><a class="grid4-item add-hr" href="#">
-              <div class="grid4-sort is-s2">上班族</div>
-              <div class="grid4-right">
-                <div class="grid-subtitle">桃園機場計程車更加專業</div>
-                <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-              </div>
-            </a><a class="grid4-item add-hr" href="#">
-              <div class="grid4-sort is-s1">商用</div>
-              <div class="grid4-right">
-                <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-                <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-              </div>
-            </a><a class="grid4-item add-hr" href="#">
-              <div class="grid4-sort is-s2">上班族</div>
-              <div class="grid4-right">
-                <div class="grid-subtitle">桃園機場計程車更加專業</div>
-                <div class="grid4-en">AI News Anchor Makes Debut in South Korea</div>
-              </div>
-            </a></div><a class="grid4-wt" href="#" style="background-image: url(images/wt.png)"></a><a class="grid4-wt"
-            href="#" style="background-image: url(images/wt.png)">
+          <div class="grid4-box">
+            <cpn-office v-bind:prop='key' v-for='key in office' :req-url='key.news_id'></cpn-office>
+          </div>
+          <a class="grid4-wt" href="#" style="background-image: url(images/wt.png)"></a>
+          <a class="grid4-wt" href="#" style="background-image: url(images/wt.png)">
             <div class="grid4-week">2020/11/20~2020/11/27</div>
           </a>
           <div class="grid-title is-2">童話故事</div>
@@ -493,262 +309,57 @@
             (限市話)</span><span class="f2-2">© 2020 Brainstorm Digital Communications Corp. All rights reserved. Privacy
             Policy</span></div>
       </div>
+      <div id="sidebar">
+        <div id="sidebar-title">
+          <div id="sidebar-icon"><img src="./images/member.svg" />個人等級</div>
+          <div id="sidebar-level">A2-3</div>
+        </div>
+        <div id="sidebar-scroller">
+          <div id="sidebar-scroller-title">複習列表 REVIEW</div>
+          <div id="sidebar-list">
+            <cpn-side-item v-bind:prop='key' v-for='key in review' :req-sort='key.sort' :req-url='key.url'>
+            </cpn-side-item>
+          </div>
+        </div>
+        <div id="sidebar-under">
+          <div id="sidebar-under-title">個人收錄</div>
+          <ul id="sidebar-under-list">
+            <li class="sidebar-under-item"><img src="./images/under1.svg" />單字</li>
+            <li class="sidebar-under-hr"></li>
+            <li class="sidebar-under-item"><img src="./images/under2.svg" />片語</li>
+            <li class="sidebar-under-hr"></li>
+            <li class="sidebar-under-item"><img src="./images/under3.svg" />文章</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
-  <div id="sidebar">
-    <div id="sidebar-title">
-      <div id="sidebar-icon"><img src="./images/member.svg" />個人等級</div>
-      <div id="sidebar-level">A2-3</div>
-    </div>
-    <div id="sidebar-scroller">
-      <div id="sidebar-scroller-title">複習列表 REVIEW</div>
-      <div id="sidebar-list"><a class="sidebar-item is-s1" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/26</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">A2-1</div>
-        </a><a class="sidebar-item is-s2" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/27</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">B1-2</div>
-        </a><a class="sidebar-item is-s1" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/26</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">A2-1</div>
-        </a><a class="sidebar-item is-s2" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/27</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">B1-2</div>
-        </a><a class="sidebar-item is-s1" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/26</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">A2-1</div>
-        </a><a class="sidebar-item is-s2" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/27</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">B1-2</div>
-        </a><a class="sidebar-item is-s1" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/26</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">A2-1</div>
-        </a><a class="sidebar-item is-s2" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/27</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">B1-2</div>
-        </a><a class="sidebar-item is-s1" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/26</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">A2-1</div>
-        </a><a class="sidebar-item is-s2" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/27</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">B1-2</div>
-        </a><a class="sidebar-item is-s1" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/26</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">A2-1</div>
-        </a><a class="sidebar-item is-s2" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/27</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">B1-2</div>
-        </a><a class="sidebar-item is-s1" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/26</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">A2-1</div>
-        </a><a class="sidebar-item is-s2" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/27</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">B1-2</div>
-        </a><a class="sidebar-item is-s1" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/26</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">A2-1</div>
-        </a><a class="sidebar-item is-s2" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/27</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">B1-2</div>
-        </a><a class="sidebar-item is-s1" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/26</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">A2-1</div>
-        </a><a class="sidebar-item is-s2" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/27</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">B1-2</div>
-        </a><a class="sidebar-item is-s1" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/26</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">A2-1</div>
-        </a><a class="sidebar-item is-s2" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/27</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">B1-2</div>
-        </a><a class="sidebar-item is-s1" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/26</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">A2-1</div>
-        </a><a class="sidebar-item is-s2" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/27</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">B1-2</div>
-        </a><a class="sidebar-item is-s1" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/26</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">A2-1</div>
-        </a><a class="sidebar-item is-s2" href="#">
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">2020/11/27</div>
-              <div class="sidebar-title">桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </div>
-          </div>
-          <div class="sidebar-right">B1-2</div>
-        </a></div>
-    </div>
-    <div id="sidebar-under">
-      <div id="sidebar-under-title">個人收錄</div>
-      <ul id="sidebar-under-list">
-        <li class="sidebar-under-item"><img src="./images/under1.svg" />單字</li>
-        <li class="sidebar-under-hr"></li>
-        <li class="sidebar-under-item"><img src="./images/under2.svg" />片語</li>
-        <li class="sidebar-under-hr"></li>
-        <li class="sidebar-under-item"><img src="./images/under3.svg" />文章</li>
-      </ul>
-    </div>
-  </div>
+
 </body>
+<script type="texplate-x" id='htmlTread'>
+    <a class="grid1-item add-hr" :href="reqUrl">
+      <div class="grid-subtitle">{{prop.ch_article}}</div>
+      <div class="grid-content"><img class="grid1-img" :src='reqPic'/>{{prop.ch_article}}</div>
+      <div class="grid-bottom">(繼續閱讀)
+        <div class="grid-view"> <img src="images/view.svg"/><span>{{prop.read_count}}</span></div>
+      </div>
+    </a>
+  </script>
 <script>
   //=========================================
   // <31(G)> global component (& global in )
   // <43> v-for & prop value use ( under pic )
+  // <30> :class mutiple
+  // <59> Vue.filter  
   //=========================================
-  Vue.component('my-cpn', {
+  // Vue.component('cpn-tread', {
+  //   props: ['prop', 'reqUrl', 'reqPic'],
+  //   template: '#htmlTread'
+  // });
+  const cpnTread = {
     props: ['prop', 'reqUrl', 'reqPic'],
-    template: `
-        <a class="grid1-item add-hr" :href="reqUrl">
-          <div class="grid-subtitle">{{prop.ch_article}}</div>
-          <div class="grid-content"><img class="grid1-img" :src='reqPic'/>{{prop.ch_article}}</div>
-          <div class="grid-bottom">(繼續閱讀)
-            <div class="grid-view"> <img src="images/view.svg"/><span>{{prop.read_count}}</span></div>
-          </div>
-        </a>
-    `
-  });
+    template: '#htmlTread'
+  }
 
   const cpnLiving = {
     props: ['prop', 'reqUrl'],
@@ -763,14 +374,98 @@
       `
   };
 
-  const ml2 = new Vue({
+  const cpnOffice = {
+    props: ['prop', 'reqUrl'],
+    template: `
+        <a class="grid4-item add-hr" :href="reqUrl">
+          <div class="grid4-sort is-s1">{{prop.sort}}</div>
+          <div class="grid4-right">
+            <div class="grid-subtitle">{{prop.ch_subject}}</div>
+            <div class="grid4-en">{{prop.en_subject}}</div>
+          </div>
+        </a>
+      `
+  }
+
+  const cpnSideItem = {
+    props: ['prop', 'reqUrl', 'reqSort'],
+    template: `
+        <a class="sidebar-item" :data-sort='reqSort' :href='reqUrl'>
+          <div class="sidebar-left">
+            <div class="sidebar-dot"></div>
+            <div class="sidebar-info">
+              <div class="sidebar-time">{{prop.time}}</div>
+              <div class="sidebar-title">{{prop.title}}</div>
+            </div>
+          </div>
+          <div class="sidebar-right">{{prop.lv}}</div>
+        </a>
+      `
+  };
+
+  const cpnMixin = {
+    props: ['prop', 'reqUrl', 'reqPic'],
+    template: `
+        <a class="grid22-item add-hr" :href="reqUrl">
+          <div class="grid22-img" :style="reqPic"></div>
+          <div class="grid22-right">
+            <div class="grid22-above">
+              <div class="grid22-ch">{{prop.ch_subject}}</div>
+              <div class="grid22-en">{{prop.en_subject}}</div>
+              <div class="grid-content">{{prop.ch_article}}</div>
+            </div>
+            <div class="grid-bottom">(繼續閱讀)
+              <div class="grid-view"> <img src="images/view.svg"/><span>{{prop.read_count}}</span></div>
+            </div>
+          </div>
+        </a>
+      `
+  }
+
+  const vueSideBar = new Vue({
+    el: '#sidebar',
+    data: {
+      review: [
+        {
+          sort: '1',
+          time: '2020/11/30',
+          title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
+          url: 's_link1',
+          lv: 'B2-2'
+        },
+        {
+          sort: '2',
+          time: '2020/11/29',
+          title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
+          url: 's_link2',
+          lv: 'A2-1'
+        },
+      ]
+    },
+    components: {
+      cpnSideItem,
+    }
+  });
+
+  Vue.filter('filterBG', (str) => { return 'background-image: url(' + str + ')' });
+
+  const vueMain = new Vue({
     el: '#app',
     components: {
-      cpnLiving
+      cpnTread,
+      cpnLiving,
+      cpnOffice,
+      cpnSideItem,
+      cpnMixin
     },
     created() {
       const vm = this;
       console.log('got ,', vm.office);
+    },
+    methods: {
+      fn(str) {
+        return 'background-image: url(' + str + ')'
+      }
     },
     data: {
       dUrl: '1887',
