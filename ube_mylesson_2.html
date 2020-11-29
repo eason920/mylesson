@@ -82,23 +82,10 @@
         </div>
         <div class="grid2">
           <div id="fade">
-            <div class="fade-main"><a class="fade-main-item" href="#"
-                style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1.jpg)">
-                <div class="grid-subtitle">《天能》上映六天破億1</div>
-                <div class="fade-en">“Tenet” Rakes in Billions of Dollars After...</div>
-              </a><a class="fade-main-item" href="#"
-                style="background-image: url(https://funday.asia/en/pic/201124img-newsC19509-1-1.jpg)">
-                <div class="grid-subtitle">《天能》上映六天破億2</div>
-                <div class="fade-en">“Tenet” Rakes in Billions of Dollars After...</div>
-              </a><a class="fade-main-item" href="#"
-                style="background-image: url(https://funday.asia/en/pic/201117img-newsC19483-1-1.jpg)">
-                <div class="grid-subtitle">《天能》上映六天破億3</div>
-                <div class="fade-en">“Tenet” Rakes in Billions of Dollars After...</div>
-              </a><a class="fade-main-item" href="#"
-                style="background-image: url(https://funday.asia/en/pic/201124img-newsC19509-1-1.jpg)">
-                <div class="grid-subtitle">《天能》上映六天破億4</div>
-                <div class="fade-en">“Tenet” Rakes in Billions of Dollars After...</div>
-              </a></div>
+            <div class="fade-main">
+              <cpn-fade v-bind:prop='key' v-for='key in fade' :req-url='key.news_id' :req-pic='key.pic | filterBG'>
+              </cpn-fade>
+            </div>
             <div class="fade-dot">
               <div class="fade-dot-item active"></div>
               <div class="fade-dot-item"></div>
@@ -134,19 +121,10 @@
             <div class="grid4-week">2020/11/20~2020/11/27</div>
           </a>
           <div class="grid-title is-2">童話故事</div>
-          <div class="grid42-box"><a class="grid42-item add-hr" href="#">
-              <div class="grid42-img"
-                style="background-image: url(https://dsn.funday.asia/photo/Story/20200106113259_img.jpg)"></div>
-              <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </a><a class="grid42-item add-hr" href="#">
-              <div class="grid42-img"
-                style="background-image: url(https://dsn.funday.asia/photo/Story/20200106113259_img.jpg)"></div>
-              <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </a><a class="grid42-item add-hr" href="#">
-              <div class="grid42-img"
-                style="background-image: url(https://dsn.funday.asia/photo/Story/20200106113259_img.jpg)"></div>
-              <div class="grid-subtitle">桃園機場計程車更加專業桃園機場計程車更加專業桃園機場計程車更加專業</div>
-            </a></div>
+          <div class="grid42-box">
+            <cpn-tales :prop='key' v-for='key in tales' :req-url='key.news_id' :req-pic='key.pic | filterBG'>
+            </cpn-tales>
+          </div>
         </div>
       </div>
       <div id="block-title">
@@ -302,6 +280,8 @@
         </div>
       </div>
       <div id="foo">
+        <div id="foo-left"></div>
+        <div id="foo-right"></div>
         <div class="f1">需要其他協助嗎? 請聯絡我們
           <div class="msg-board" onclick="GoLink('MessageBoard')" title="留言版"></div>
         </div>
@@ -309,42 +289,42 @@
             (限市話)</span><span class="f2-2">© 2020 Brainstorm Digital Communications Corp. All rights reserved. Privacy
             Policy</span></div>
       </div>
-      <div id="sidebar">
-        <div id="sidebar-title">
-          <div id="sidebar-icon"><img src="./images/member.svg" />個人等級</div>
-          <div id="sidebar-level">A2-3</div>
+    </div>
+    <div id="sidebar">
+      <div id="sidebar-title">
+        <div id="sidebar-icon"><img src="./images/member.svg" />個人等級</div>
+        <div id="sidebar-level">A2-3</div>
+      </div>
+      <div id="sidebar-scroller">
+        <div id="sidebar-scroller-title">複習列表 REVIEW</div>
+        <div id="sidebar-list">
+          <cpn-side-item v-bind:prop='key' v-for='key in review' :req-sort='key.sort' :req-url='key.url'>
+          </cpn-side-item>
         </div>
-        <div id="sidebar-scroller">
-          <div id="sidebar-scroller-title">複習列表 REVIEW</div>
-          <div id="sidebar-list">
-            <cpn-side-item v-bind:prop='key' v-for='key in review' :req-sort='key.sort' :req-url='key.url'>
-            </cpn-side-item>
-          </div>
-        </div>
-        <div id="sidebar-under">
-          <div id="sidebar-under-title">個人收錄</div>
-          <ul id="sidebar-under-list">
-            <li class="sidebar-under-item"><img src="./images/under1.svg" />單字</li>
-            <li class="sidebar-under-hr"></li>
-            <li class="sidebar-under-item"><img src="./images/under2.svg" />片語</li>
-            <li class="sidebar-under-hr"></li>
-            <li class="sidebar-under-item"><img src="./images/under3.svg" />文章</li>
-          </ul>
-        </div>
+      </div>
+      <div id="sidebar-under">
+        <div id="sidebar-under-title">個人收錄</div>
+        <ul id="sidebar-under-list">
+          <li class="sidebar-under-item"><img src="./images/under1.svg" />單字</li>
+          <li class="sidebar-under-hr"></li>
+          <li class="sidebar-under-item"><img src="./images/under2.svg" />片語</li>
+          <li class="sidebar-under-hr"></li>
+          <li class="sidebar-under-item"><img src="./images/under3.svg" />文章</li>
+        </ul>
       </div>
     </div>
   </div>
 
 </body>
 <script type="texplate-x" id='htmlTread'>
-    <a class="grid1-item add-hr" :href="reqUrl">
-      <div class="grid-subtitle">{{prop.ch_article}}</div>
-      <div class="grid-content"><img class="grid1-img" :src='reqPic'/>{{prop.ch_article}}</div>
-      <div class="grid-bottom">(繼續閱讀)
-        <div class="grid-view"> <img src="images/view.svg"/><span>{{prop.read_count}}</span></div>
-      </div>
-    </a>
-  </script>
+  <a class="grid1-item add-hr" :href="reqUrl">
+    <div class="grid-subtitle">{{prop.ch_article}}</div>
+    <div class="grid-content"><img class="grid1-img" :src='reqPic'/>{{prop.ch_article}}</div>
+    <div class="grid-bottom">(繼續閱讀)
+      <div class="grid-view"> <img src="images/view.svg"/><span>{{prop.read_count}}</span></div>
+    </div>
+  </a>
+</script>
 <script>
   //=========================================
   // <31(G)> global component (& global in )
@@ -420,7 +400,27 @@
           </div>
         </a>
       `
-  }
+  };
+
+  const cpnFade = {
+    props: ['prop', 'reqUrl', 'reqPic'],
+    template: `
+      <a class="fade-main-item" :href="reqUrl" :style="reqPic">
+        <div class="grid-subtitle">{{prop.ch_subject}}</div>
+        <div class="fade-en">{{prop.en_subject}}</div>
+      </a>
+    `
+  };
+
+  const cpnTales = {
+    props: ['prop', 'reqUrl', 'reqPic'],
+    template: `
+      <a class="grid42-item add-hr" :href="reqUrl">
+        <div class="grid42-img" :style="reqPic"></div>
+        <div class="grid-subtitle">{{prop.ch_subject}}</div>
+      </a>
+    `
+  };
 
   const vueSideBar = new Vue({
     el: '#sidebar',
@@ -456,11 +456,14 @@
       cpnLiving,
       cpnOffice,
       cpnSideItem,
-      cpnMixin
+      cpnMixin,
+      cpnFade,
+      cpnTales
     },
     created() {
       const vm = this;
       console.log('got ,', vm.office);
+      console.log('fade', vm.fade[0].ch_subject);
     },
     methods: {
       fn(str) {
@@ -486,7 +489,7 @@
           read_count: 12
         },
       ],
-      mixin_fade: [
+      fade: [
         {
           news_id: '19514',
           ch_subject: 'mf1馬斯克晉升全球第三大富豪',
@@ -496,7 +499,7 @@
         {
           news_id: '19514',
           ch_subject: 'mf2馬斯克晉升全球第三大富豪',
-          pic: 'https://funday.asia/en/pic/201125img-newsC19514-1-1m.jpg',
+          pic: 'https://funday.asia/en/pic/201124img-newsC19509-1-1.jpg',
           en_subject: 'Termination of Contract"',
         },
         {
@@ -508,7 +511,7 @@
         {
           news_id: '19514',
           ch_subject: 'mf4馬斯克晉升全球第三大富豪',
-          pic: 'https://funday.asia/en/pic/201125img-newsC19514-1-1m.jpg',
+          pic: 'https://funday.asia/en/pic/201117img-newsC19483-1-1.jpg',
           en_subject: 'Termination of Contract"',
         },
       ],
@@ -567,7 +570,7 @@
         {
           news_id: '19514',
           ch_subject: 'tales2馬斯克晉升全球第三大富豪',
-          pic: 'https://funday.asia/en/pic/201125img-newsC19514-1-1m.jpg',
+          pic: 'https://dsn.funday.asia/photo/Story/20200106113259_img.jpg',
         }
       ],
       ary: [0, 8, 9, 4, 5, 7]

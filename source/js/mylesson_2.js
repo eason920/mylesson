@@ -1,3 +1,9 @@
+let uiGutter;
+let transX;
+const transX1199 = -265
+let sideBarWidth;
+const gutter = 5;
+
 const fnGiveHeight = function(){
 	const rate1 = 0.56;
 	const rate2 = 0.67;
@@ -41,7 +47,6 @@ const fnGiveHeight = function(){
 	const hb1g4t2 = $('#block1 .grid4 .grid-title.is-2').outerHeight(true);
 	const hb1g42 = $('#block1 .grid42-box').outerHeight(true)
 	const hb1g4subtract = hb1g4wt * 2 + hb1g4t1 + hb1g4t2 + hb1g42;
-	console.log(hb1g4t1, hb1g4wt, hb1g4t2,hb1g42, hb1g4subtract);
 	$('#block1 .grid4-box').css('height', 'calc( 100% - ' + hb1g4subtract + 'px)');
 
 	// ================================
@@ -63,11 +68,29 @@ const fnGiveHeight = function(){
 	const hb2g5 = $('#block2 .grid5-title').outerHeight() + hb2g5img + $('#block2 .grid5-under').outerHeight(true);
 	const h2 = hb2g2v + hb2g5 + hb2gutter;
 
-	console.log(hb2g2v, hb2g5, h2);
-	$('#block2 .grid1').css('height', h2)
+	$('#block2 .grid1').css('height', h2);
+	
+	// ================================
+	// ================================
+	// SIDE v	
+	
+	
+	const ww = $(window).width();
+	if( ww >= 1200 ){
+		uiGutter = ( ww - $('#app').outerWidth() ) / 2;
+		transX = uiGutter - sideBarWidth - gutter;
+	}else{
+		transX = transX1199;
+	};
+	console.log( transX );
+	if( $('#sidebar').hasClass('is-open') ){
+		$('#app').css('transform', 'translateX(' + transX + 'px)');
+	};
 };
 
+
 $(()=>{
+	sideBarWidth = $('#sidebar').width();
 	fnGiveHeight();
 
 	$(window).resize(()=>{ fnGiveHeight() });
@@ -85,12 +108,9 @@ $(()=>{
 			$('#content .wrapper').removeAttr('style')
 		}else{
 			$('#sidebar').addClass('is-open');
-			const aa = ( $(window).width() - $('#content .wrapper').width() ) /2;
-			const bb = $('#sidebar').width() - aa;
-			const cc = aa - bb + 15
-			console.log(aa, bb, cc, "translateX("+ aa +"px)");
-			$('#content .wrapper').css('transform', 'translateX(-'+ cc +'px)');
-		}
+			if ($(window).width() < 1200) { transX = transX1199 }
+			$('#content .wrapper').css('transform', 'translateX('+ transX +'px)');
+ 		}
 	});
 
 	// =============================
