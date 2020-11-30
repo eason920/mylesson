@@ -44,6 +44,11 @@
 		display: flex
 		color: $c-t1
 		text-decoration: none
+		border-top: solid 1px $c-t1
+		padding-top: 4%
+		&:first-child
+			border: none
+			padding: 0
 
 	.grid3-hr
 		height: 1px
@@ -53,11 +58,11 @@
 
 	.grid3-img
 		width: 45%
+		min-height: 55px
 		// height: 78px
 		background:
 			size: cover
 			position: center
-		border-top: solid 1px #000
 		margin-right: 12px
 		text-decoration: none
 
@@ -65,22 +70,25 @@
 		width: calc( 55% - 12px )
 		display: flex
 		flex-direction: column
-		justify-content: center
+		// justify-content: center
 		text-align: left
 		& > *
 			
-			@extend %row1
+			@include row(2)
 
 	.grid3-ch
 		font:
 			size: .875rem
 			weight: bold
-		padding: 8px 0 4px
+		padding: 
+			top: 6px
 		color: #000
+		line-height: 1.4
 
 	.grid3-sort
 		color: $c-t2
 		font-size: .75rem
+		@extend %row1
 
 	.grid3-en
 		font-size: .8125rem

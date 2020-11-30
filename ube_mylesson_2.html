@@ -23,7 +23,8 @@
   <script src="./assets/plugins/jquery/jquery.1.12.4.min.js"></script>
   <script src="./assets/plugins/perfect-scrollbar-master/perfect-scrollbar.min.js"></script>
   <script src="./assets/plugins/vue/vue2.6.12.js"></script>
-  <script src="./js/mylesson_2.js"></script>
+  <!-- <script src="./js/mylesson_2.js"></script> -->
+  <script src="./js/cpn_2.js"></script>
 </head>
 
 <body>
@@ -47,31 +48,10 @@
       <div id="block0">
         <div id="block0-title">閱讀與聽力課程</div>
         <div id="circle-box">
-          <div class="circle-item" data-type="cursor"><img src="images/cursor.svg" /></div>
-          <div class="circle-item" data-type="noti"><img src="images/noti.svg" /></div>
-          <div class="circle-item" data-type="side"><img src="images/sidebar_open.svg" /></div>
+          <!-- <div class="circle-item" data-type="cursor"><img src="images/cursor.svg" /></div> -->
+          <!-- <div class="circle-item" data-type="noti"><img src="images/noti.svg" /></div> -->
+          <div class="circle-item" @click='fnOpenSideBar' data-type="side"><img src="images/sidebar_open.svg" /></div>
         </div>
-        <ul class="tgnav-group-dropdown">
-          <div class="bulletinToolbox1"></div>
-          <div class="bulletinIconDiv">
-            <div class="bulletinTxt1"><i class="fa fa-thumb-tack" aria-hidden="true"></i>Bulletin</div>
-            <div class="bulletinDate">2020.11.20</div>
-          </div>
-          <div class="bulletinCntDiv" data-val="0">
-            <div class="bulletinCnt"><i class="fa fa-clock-o"
-                aria-hidden="true"></i>Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。</div>
-            <div class="gradeline"></div>
-            <div class="bulletinCnt"><i class="fa fa-clock-o"
-                aria-hidden="true"></i>Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。</div>
-            <div class="gradeline"></div>
-            <div class="bulletinCnt"><i class="fa fa-clock-o"
-                aria-hidden="true"></i>Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。</div>
-            <div class="gradeline"></div>
-            <div class="bulletinCnt"><i class="fa fa-clock-o"
-                aria-hidden="true"></i>Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。</div>
-          </div>
-          <div id="bulletinDiv"></div>
-        </ul>
       </div>
       <div id="block1">
         <div class="grid1">
@@ -144,14 +124,14 @@
       </div>
       <div id="block2">
         <div class="grid1">
-          <div class="grid1-box"><a class="grid1-item add-hr" href="#"><img
-                src="https://funday.asia/BlogS/files/img-e-504.jpg" />
-              <div class="grid-subtitle">名句背後的故事 _ 史恩·康納萊</div>
-            </a><a class="grid1-item add-hr" href="#"><img src="https://funday.asia/BlogS/files/img-e-504.jpg" />
-              <div class="grid-subtitle">名句背後的故事 _ 史恩·康納萊</div>
-            </a><a class="grid1-item add-hr" href="#"><img src="https://funday.asia/BlogS/files/img-e-504.jpg" />
-              <div class="grid-subtitle">名句背後的故事 _ 史恩·康納萊</div>
-            </a></div>
+          <div class="grid1-box">
+            <cpn-blog
+              :prop='key'
+              v-for='key in blog'
+              :req-url='key.indx'
+              :req-pic='key.pic'
+            ></cpn-blog>
+          </div>
         </div>
         <div class="grid2">
           <div class="grid2-video">
@@ -160,122 +140,31 @@
               allowfullscreen="allowfullscreen"></iframe>
           </div>
         </div>
-        <div class="grid3"><a class="grid3-item" href="#">
-            <div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
-            <div class="grid3-box">
-              <div class="grid3-sort">Cinephile</div>
-              <div class="grid3-ch">美好的一年美好的一年美好的一年</div>
-              <div class="grid3-en">A Good Year</div>
-            </div>
-          </a>
-          <div class="grid3-hr"></div><a class="grid3-item" href="#">
-            <div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
-            <div class="grid3-box">
-              <div class="grid3-sort">Cinephile</div>
-              <div class="grid3-ch">美好的一年美好的一年美好的一年</div>
-              <div class="grid3-en">A Good Year</div>
-            </div>
-          </a>
-          <div class="grid3-hr"></div><a class="grid3-item" href="#">
-            <div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
-            <div class="grid3-box">
-              <div class="grid3-sort">Cinephile</div>
-              <div class="grid3-ch">美好的一年美好的一年美好的一年</div>
-              <div class="grid3-en">A Good Year</div>
-            </div>
-          </a>
-          <div class="grid3-hr"></div><a class="grid3-item" href="#">
-            <div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
-            <div class="grid3-box">
-              <div class="grid3-sort">Cinephile</div>
-              <div class="grid3-ch">美好的一年美好的一年美好的一年</div>
-              <div class="grid3-en">A Good Year</div>
-            </div>
-          </a>
-          <div class="grid3-hr"></div>
+        <div class="grid3">
+          <cpn-program
+            :prop='key'
+            v-for='key in program1'
+            :req-url='key.indx'
+            :req-pic='key.pic | filterBG'
+          ></cpn-program>
         </div>
-        <div class="grid4"><a class="grid3-item" href="#">
-            <div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
-            <div class="grid3-box">
-              <div class="grid3-sort">Cinephile</div>
-              <div class="grid3-ch">美好的一年美好的一年美好的一年</div>
-              <div class="grid3-en">A Good Year</div>
-            </div>
-          </a>
-          <div class="grid3-hr"></div><a class="grid3-item" href="#">
-            <div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
-            <div class="grid3-box">
-              <div class="grid3-sort">Cinephile</div>
-              <div class="grid3-ch">美好的一年美好的一年美好的一年</div>
-              <div class="grid3-en">A Good Year</div>
-            </div>
-          </a>
-          <div class="grid3-hr"></div><a class="grid3-item" href="#">
-            <div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
-            <div class="grid3-box">
-              <div class="grid3-sort">Cinephile</div>
-              <div class="grid3-ch">美好的一年美好的一年美好的一年</div>
-              <div class="grid3-en">A Good Year</div>
-            </div>
-          </a>
-          <div class="grid3-hr"></div><a class="grid3-item" href="#">
-            <div class="grid3-img" style="background-image: url(https://img.youtube.com/vi/Nw7wwHm4GxU/1.jpg)"></div>
-            <div class="grid3-box">
-              <div class="grid3-sort">Cinephile</div>
-              <div class="grid3-ch">美好的一年美好的一年美好的一年</div>
-              <div class="grid3-en">A Good Year</div>
-            </div>
-          </a>
-          <div class="grid3-hr"></div>
+        <div class="grid4">
+          <cpn-program
+            :prop='key'
+            v-for='key in program2'
+            :req-url='key.indx'
+            :req-pic='key.pic | filterBG'
+          ></cpn-program>
         </div>
         <div class="grid5">
           <div class="grid5-title">唱歌學英文</div>
           <div class="grid5-box">
-            <div class="grid5-item">
-              <div class="grid5-img"
-                style="background-image: url(https://img.youtube.com/vi/bo_efYhYU2A/hqdefault.jpg)"></div>
-              <div class="grid5-under">
-                <div class="grid5-actor">Margaret Berger Margaret Berger</div>
-                <div class="grid5-subtitle">I Feed You My Love I Feed You My Love</div>
-                <div class="grid5-btn"></div>
-              </div>
-            </div>
-            <div class="grid5-item">
-              <div class="grid5-img"
-                style="background-image: url(https://img.youtube.com/vi/bo_efYhYU2A/hqdefault.jpg)"></div>
-              <div class="grid5-under">
-                <div class="grid5-actor">Margaret Berger Margaret Berger</div>
-                <div class="grid5-subtitle">I Feed You My Love I Feed You My Love</div>
-                <div class="grid5-btn"></div>
-              </div>
-            </div>
-            <div class="grid5-item">
-              <div class="grid5-img"
-                style="background-image: url(https://img.youtube.com/vi/bo_efYhYU2A/hqdefault.jpg)"></div>
-              <div class="grid5-under">
-                <div class="grid5-actor">Margaret Berger Margaret Berger</div>
-                <div class="grid5-subtitle">I Feed You My Love I Feed You My Love</div>
-                <div class="grid5-btn"></div>
-              </div>
-            </div>
-            <div class="grid5-item">
-              <div class="grid5-img"
-                style="background-image: url(https://img.youtube.com/vi/bo_efYhYU2A/hqdefault.jpg)"></div>
-              <div class="grid5-under">
-                <div class="grid5-actor">Margaret Berger Margaret Berger</div>
-                <div class="grid5-subtitle">I Feed You My Love I Feed You My Love</div>
-                <div class="grid5-btn"></div>
-              </div>
-            </div>
-            <div class="grid5-item">
-              <div class="grid5-img"
-                style="background-image: url(https://img.youtube.com/vi/bo_efYhYU2A/hqdefault.jpg)"></div>
-              <div class="grid5-under">
-                <div class="grid5-actor">Margaret Berger Margaret Berger</div>
-                <div class="grid5-subtitle">I Feed You My Love I Feed You My Love</div>
-                <div class="grid5-btn"></div>
-              </div>
-            </div>
+            <cpn-musicbox
+              :prop='key'
+              v-for='key in musicbox'
+              :req-url='key.index'
+              :req-pic='key.pic | filterBG'
+            ></cpn-musicbox>
           </div>
         </div>
       </div>
@@ -305,11 +194,17 @@
       <div id="sidebar-under">
         <div id="sidebar-under-title">個人收錄</div>
         <ul id="sidebar-under-list">
-          <li class="sidebar-under-item"><img src="./images/under1.svg" />單字</li>
+          <li class="sidebar-under-item">
+            <a href="https://funday.asia/newpage2/wordcard/" target='_blank'><img src="./images/under1.svg" />單字</a>
+          </li>
           <li class="sidebar-under-hr"></li>
-          <li class="sidebar-under-item"><img src="./images/under2.svg" />片語</li>
+          <li class="sidebar-under-item">
+            <a href="https://funday.asia/Personal_Sentences/list.asp" target='_blank'><img src="./images/under2.svg" />佳句</a>
+          </li>
           <li class="sidebar-under-hr"></li>
-          <li class="sidebar-under-item"><img src="./images/under3.svg" />文章</li>
+          <li class="sidebar-under-item">
+            <a href="https://funday.asia/search/article/#Collect" target='_blank' @click.prev ><img src="./images/under3.svg" />文章</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -336,92 +231,6 @@
   //   props: ['prop', 'reqUrl', 'reqPic'],
   //   template: '#htmlTread'
   // });
-  const cpnTread = {
-    props: ['prop', 'reqUrl', 'reqPic'],
-    template: '#htmlTread'
-  }
-
-  const cpnLiving = {
-    props: ['prop', 'reqUrl'],
-    template: `
-        <a class="grid3-item add-hr" :href="reqUrl">
-          <div class="grid-subtitle">{{prop.ch_subject}}</div>
-          <div class="grid-content">{{prop.ch_article}}</div>
-          <div class="grid-bottom">(繼續閱讀)
-            <div class="grid-view"><img src="images/view.svg"/><span>{{prop.read_count}}</span></div>
-          </div>
-        </a>
-      `
-  };
-
-  const cpnOffice = {
-    props: ['prop', 'reqUrl'],
-    template: `
-        <a class="grid4-item add-hr" :href="reqUrl">
-          <div class="grid4-sort is-s1">{{prop.sort}}</div>
-          <div class="grid4-right">
-            <div class="grid-subtitle">{{prop.ch_subject}}</div>
-            <div class="grid4-en">{{prop.en_subject}}</div>
-          </div>
-        </a>
-      `
-  }
-
-  const cpnSideItem = {
-    props: ['prop', 'reqUrl', 'reqSort'],
-    template: `
-        <a class="sidebar-item" :data-sort='reqSort' :href='reqUrl'>
-          <div class="sidebar-left">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-info">
-              <div class="sidebar-time">{{prop.time}}</div>
-              <div class="sidebar-title">{{prop.title}}</div>
-            </div>
-          </div>
-          <div class="sidebar-right">{{prop.lv}}</div>
-        </a>
-      `
-  };
-
-  const cpnMixin = {
-    props: ['prop', 'reqUrl', 'reqPic'],
-    template: `
-        <a class="grid22-item add-hr" :href="reqUrl">
-          <div class="grid22-img" :style="reqPic"></div>
-          <div class="grid22-right">
-            <div class="grid22-above">
-              <div class="grid22-ch">{{prop.ch_subject}}</div>
-              <div class="grid22-en">{{prop.en_subject}}</div>
-              <div class="grid-content">{{prop.ch_article}}</div>
-            </div>
-            <div class="grid-bottom">(繼續閱讀)
-              <div class="grid-view"> <img src="images/view.svg"/><span>{{prop.read_count}}</span></div>
-            </div>
-          </div>
-        </a>
-      `
-  };
-
-  const cpnFade = {
-    props: ['prop', 'reqUrl', 'reqPic'],
-    template: `
-      <a class="fade-main-item" :href="reqUrl" :style="reqPic">
-        <div class="grid-subtitle">{{prop.ch_subject}}</div>
-        <div class="fade-en">{{prop.en_subject}}</div>
-      </a>
-    `
-  };
-
-  const cpnTales = {
-    props: ['prop', 'reqUrl', 'reqPic'],
-    template: `
-      <a class="grid42-item add-hr" :href="reqUrl">
-        <div class="grid42-img" :style="reqPic"></div>
-        <div class="grid-subtitle">{{prop.ch_subject}}</div>
-      </a>
-    `
-  };
-
   const vueSideBar = new Vue({
     el: '#sidebar',
     data: {
@@ -447,27 +256,103 @@
     }
   });
 
-  Vue.filter('filterBG', (str) => { return 'background-image: url(' + str + ')' });
-
   const vueMain = new Vue({
     el: '#app',
     components: {
+      // 1 v
       cpnTread,
       cpnLiving,
       cpnOffice,
       cpnSideItem,
       cpnMixin,
       cpnFade,
-      cpnTales
+      cpnTales,
+      // 2 v
+      cpnBlog,
+      cpnProgram,
+      cpnMusicbox
     },
     created() {
       const vm = this;
-      console.log('got ,', vm.office);
-      console.log('fade', vm.fade[0].ch_subject);
+      // console.log('got ,', vm.office);
+      // console.log('fade', vm.fade[0].ch_subject);
+      vm.fnGiveHeight();
+
+      $(window).resize(()=>{ fnGiveHeight() });
+
+      
     },
     methods: {
-      fn(str) {
-        return 'background-image: url(' + str + ')'
+      fnGiveHeight(){
+        const rate1 = 0.56;
+        const rate2 = 0.67;
+        const rate3 = 1.33;
+        const rate4 = 1.49;
+        const rate5 = 0.57;
+        const rate6 = 0.645;
+        const rate7 = 1.2;
+
+        // --------------------------------
+        // BLOCK1 GRID2 v
+        const hFade = $('#fade').width() * rate6;
+        $('#fade').css('height', hFade);
+
+        const hFadeOuter = $('#fade').outerHeight(true);
+        $('#block1 .grid22-box').css('height', 'calc(100% - ' + hFadeOuter +'px)');
+
+        // --------------------------------
+        // BOX1 GRID3 MAGAZINE v
+        const hb1mgz = $('#block1 .grid3-mgz').width() * rate3;
+        $('#block1 .grid3-mgz').css('height', hb1mgz);
+
+        // BOX1 GRID3 LIST v
+        const hb1g3v = $('#block1 .grid3-video').outerHeight(true);
+        const hb1g3t1 = $('#block1 .grid-title.is-1').outerHeight(true);
+        const hb1g3t2 = $('#block1 .grid-title.is-2').outerHeight(true);
+        const hb1g3subtract = hb1g3v + hb1g3t1 + hb1g3t2 + hb1mgz;
+        $('#block1 .grid3-box').css('height', 'calc( 100% - ' + hb1g3subtract + 'px )');
+
+        // --------------------------------
+        // BOX1 GRID4-2 LIST v
+        const hb1g42img = $('#block1 .grid42-img').width() * rate1;
+        $('#block1 .grid42-img').css('height', hb1g42img);
+
+        // BLOCK 1 WEEK TEST v
+        const hb1g4wt = $('#block1 .grid4-wt').width() * 1;
+        $('#block1 .grid4-wt').css('height', hb1g4wt);
+
+        // BOX1 GRID4-1 LIST v
+        const hb1g4t1 = $('#block1 .grid4 .grid-title.is-1').outerHeight(true);
+        const hb1g4t2 = $('#block1 .grid4 .grid-title.is-2').outerHeight(true);
+        const hb1g42 = $('#block1 .grid42-box').outerHeight(true)
+        const hb1g4subtract = hb1g4wt * 2 + hb1g4t1 + hb1g4t2 + hb1g42;
+        console.log(hb1g4t1, hb1g4wt, hb1g4t2,hb1g42, hb1g4subtract);
+        $('#block1 .grid4-box').css('height', 'calc( 100% - ' + hb1g4subtract + 'px)');
+
+        // ================================
+        // ================================
+        // BLOCK2 GRID3 v
+        const hb2g3 = $('#block2 .grid3-img').width() * rate1;
+        $('#block2 .grid3-img').css('height', hb2g3);
+
+        // BLOCK2 GRID2&3 v
+        const hb2g2v = $('#block2 .grid2-video').width() * rate5;
+        $('#block2 .grid2, #block2 .grid3, #block2 .grid4').css('height', hb2g2v);
+
+        // BLOCK2 GRID5 MUSIC v
+        const hb2g5img = $('#block2 .grid5-img').width() * rate1;
+        $('#block2 .grid5-img').css('height', hb2g5img);
+
+        // BLOCK2
+        const hb2gutter = 13;
+        const hb2g5 = $('#block2 .grid5-title').outerHeight() + hb2g5img + $('#block2 .grid5-under').outerHeight(true);
+        const h2 = hb2g2v + hb2g5 + hb2gutter;
+
+        console.log(hb2g2v, hb2g5, h2);
+        $('#block2 .grid1').css('height', h2)
+      },
+      fnOpenSideBar(){
+        
       }
     },
     data: {
@@ -573,9 +458,120 @@
           pic: 'https://dsn.funday.asia/photo/Story/20200106113259_img.jpg',
         }
       ],
+
+      // BLOCK 2 v
+      blog: [
+        {
+          pic: "https://funday.asia/BlogS/files/img-e-508.jpg",
+          classify: "專題",
+          subject: "blog1名句背後的故事 _ 伊比鳩魯",
+          ndate: "2020/11/25",
+          isNew: "1",
+          indx: "508"
+        },
+        {
+          pic: "https://funday.asia/BlogS/files/img-e-507.png",
+          classify: "英語力",
+          subject: "blog2英文文法大解密 - 過去事實相反的假設",
+          ndate: "2020/11/20",
+          isNew: "0",
+          indx: "507"
+        },
+        {
+          pic: "https://funday.asia/BlogS/files/img-e-508.jpg",
+          classify: "專題",
+          subject: "blog3名句背後的故事 _ 伊比鳩魯",
+          ndate: "2020/11/25",
+          isNew: "1",
+          indx: "508"
+        },
+      ],
+      program1: [
+        {
+          pic: "https://dsn.funday.asia/photo/Program/202011251554372395達文西密碼_YT封面.jpg",
+          classify: "Cinephile",
+          subject: "p11 達文西密碼 The Da Vinic Code",
+          isNew: "1",
+          indx: "203"
+        },
+        {
+          pic: "https://dsn.funday.asia/photo/Program/202011251505487754EP16.jpg",
+          classify: "MRT_APP",
+          subject: "p12 MRT | 捷運微電影 EP16",
+          isNew: "0",
+          indx: "202"
+        },
+        {
+          pic: "https://dsn.funday.asia/photo/Program/202011251503321328EP15.jpg",
+          classify: "MRT_Funday",
+          subject: "p13 MRT | 捷運微電影 EP15",
+          isNew: "0",
+          indx: "200"
+        },
+        {
+          pic: "https://dsn.funday.asia/photo/Program/202011251554372395達文西密碼_YT封面.jpg",
+          classify: "Cinephile",
+          subject: "p11 達文西密碼 The Da Vinic Code",
+          isNew: "1",
+          indx: "203"
+        },
+      ],
+      program2: [
+        {
+          pic: "https://dsn.funday.asia/photo/Program/202011251505061185EP16.jpg",
+          classify: "p21 MRT_Funday",
+          subject: "MRT | 捷運微電影 EP16",
+          isNew: "0",
+          indx: "201"
+        },
+        {
+          pic: "https://dsn.funday.asia/photo/Program/202011251503321328EP15.jpg",
+          classify: "p22 MRT_Funday",
+          subject: "MRT | 捷運微電影 EP15",
+          isNew: "0",
+          indx: "200"
+        },
+        {
+          pic: "https://dsn.funday.asia/photo/Program/202011251554372395達文西密碼_YT封面.jpg",
+          classify: "Cinephile",
+          subject: "p23 達文西密碼 The Da Vinic Code",
+          isNew: "1",
+          indx: "203"
+        },
+        {
+          pic: "https://dsn.funday.asia/photo/Program/202011251554372395達文西密碼_YT封面.jpg",
+          classify: "Cinephile",
+          subject: "p11 達文西密碼 The Da Vinic Code",
+          isNew: "1",
+          indx: "203"
+        },
+      ],
+      musicbox: [
+        {
+          "pic": "https://img.youtube.com/vi/4NRXx6U8ABQ/hqdefault.jpg",
+          "singer": "The Weeknd",
+          "song": "Blinding Lights",
+          "isNew": "1",
+          "indx": "893"
+        },
+        {
+          "pic": "https://img.youtube.com/vi/oygrmJFKYZY/hqdefault.jpg",
+          "singer": "Dua Lipa",
+          "song": "Don’t Start Now",
+          "isNew": "0",
+          "indx": "883"
+        },
+      ],
+
       ary: [0, 8, 9, 4, 5, 7]
     },
   });
+
+  $(()=>{
+    new PerfectScrollbar('#content .wrapper');
+      new PerfectScrollbar('#sidebar-scroller');
+  })
+
 </script>
 
 </html>

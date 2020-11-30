@@ -1,3 +1,4 @@
+$w: 40px
 #foo
 	padding-top: 28px
 	position: relative
@@ -7,11 +8,13 @@
 		top: 0
 		background:
 			color: #333
-		left: -100%
-	// &:before
-	// 	left: -70px
-	// &:after
-	// 	right: -70px
+		width: $w
+
+	#foo-left
+		left: -1 * $w
+		
+	#foo-right
+		right: -1 * $w
 
 .f1
 	position: relative
