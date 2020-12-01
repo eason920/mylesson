@@ -101,14 +101,23 @@ end if
 					<div class="grid1">
 						<div class="grid-title">國際時事</div>
 						<div class="grid1-box">
-							<cpn-tread v-bind:prop='key' v-for='key in trend' :req-url='key.news_id' :req-pic='key.pic'></cpn-tread>
+							<cpn-tread
+								:prop='key'
+								v-for='key in trend'
+								:req-url='key.news_id | filterArticleLink'
+								:req-pic='key.pic | filterSrc'
+							></cpn-tread>
 						</div>
 					</div>
 					<div class="grid2">
 						<div id="fade">
 							<div class="fade-main">
-								<cpn-fade v-bind:prop='key' v-for='key in fade' :req-url='key.news_id' :req-pic='key.pic | filterBG'>
-								</cpn-fade>
+								<cpn-fade
+									:prop='key'
+									v-for='key in fade' 
+									:req-url='key.news_id | filterArticleLink' 
+									:req-pic='key.pic | filterSrc | filterBG'
+								></cpn-fade>
 							</div>
 							<div class="fade-dot">
 								<div class="fade-dot-item active"></div>
@@ -118,8 +127,12 @@ end if
 							</div>
 						</div>
 						<div class="grid22-box">
-							<cpn-mixin v-bind:prop='key' v-for='key in mixin' :req-url='key.news_id' :req-pic='key.pic | filterBG'>
-							</cpn-mixin>
+							<cpn-mixin
+								:prop='key'
+								v-for='key in mixin' 
+								:req-url='key.news_id | filterArticleLink' 
+								:req-pic='key.pic | filterSrc | filterBG'
+							></cpn-mixin>
 						</div>
 					</div>
 					<div class="grid3">
@@ -130,7 +143,11 @@ end if
 						</div>
 						<div class="grid-title is-1">生活新知</div>
 						<div class="grid3-box">
-							<cpn-living v-bind:prop='key' v-for='key in living' :req-url='key.news_id'></cpn-living>
+							<cpn-living
+								:prop='key'
+								v-for='key in living' 
+								:req-url='key.news_id | filterArticleLink'
+								></cpn-living>
 						</div>
 						<div class="grid-title is-2">雜誌</div>
 						<div class="grid3-mgz" style="background-image: url(https://funday.asia/funMz/2020080019/P1.jpg)"></div>
@@ -138,7 +155,11 @@ end if
 					<div class="grid4">
 						<div class="grid-title is-1">商務情境</div>
 						<div class="grid4-box">
-							<cpn-office v-bind:prop='key' v-for='key in office' :req-url='key.news_id'></cpn-office>
+							<cpn-office
+								:prop='key'
+								v-for='key in office' 
+								:req-url='key.news_id | filterArticleLink'
+							></cpn-office>
 						</div>
 						<a class="grid4-wt" href="#" style="background-image: url(./2020/images/wt.png)"></a>
 						<a class="grid4-wt" href="#" style="background-image: url(./2020/images/wt.png)">
@@ -146,8 +167,12 @@ end if
 						</a>
 						<div class="grid-title is-2">童話故事</div>
 						<div class="grid42-box">
-							<cpn-tales :prop='key' v-for='key in tales' :req-url='key.news_id' :req-pic='key.pic | filterBG'>
-							</cpn-tales>
+							<cpn-tales 
+								:prop='key'
+								v-for='key in tales' 
+								:req-url='key.indx | filterTalesLink' 
+								:req-pic='key.pic | filterBG'
+							></cpn-tales>
 						</div>
 					</div>
 				</div>
@@ -172,7 +197,7 @@ end if
 							<cpn-blog
 								:prop='key'
 								v-for='key in blog'
-								:req-url='key.indx'
+								:req-url='key.indx | filterBlogLink'
 								:req-pic='key.pic'
 							></cpn-blog>
 						</div>
@@ -188,7 +213,7 @@ end if
 						<cpn-program
 							:prop='key'
 							v-for='key in program1'
-							:req-url='key.indx'
+							:req-fn='key.indx | filterProgramFn'
 							:req-pic='key.pic | filterBG'
 						></cpn-program>
 					</div>
@@ -196,7 +221,7 @@ end if
 						<cpn-program
 							:prop='key'
 							v-for='key in program2'
-							:req-url='key.indx'
+							:req-fn='key.indx | filterProgramFn'
 							:req-pic='key.pic | filterBG'
 						></cpn-program>
 					</div>
@@ -206,7 +231,7 @@ end if
 							<cpn-musicbox
 								:prop='key'
 								v-for='key in musicbox'
-								:req-url='key.index'
+								:req-fn='key.indx | filterMusicFn'
 								:req-pic='key.pic | filterBG'
 							></cpn-musicbox>
 						</div>
@@ -231,7 +256,11 @@ end if
 				<div id="sidebar-scroller">
 					<div id="sidebar-scroller-title">複習列表 REVIEW</div>
 					<div id="sidebar-list">
-						<cpn-side-item v-bind:prop='key' v-for='key in review' :req-sort='key.sort' :req-url='key.url'>
+						<cpn-side-item
+							:prop='key'
+							v-for='key in review' 
+							:req-sort='key.sort' 
+							:req-url='key.url'>
 						</cpn-side-item>
 					</div>
 				</div>
@@ -274,6 +303,132 @@ end if
 					url: 's_link2',
 					lv: 'A2-1'
 				},
+				{
+					sort: '1',
+					time: '2020/11/30',
+					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
+					url: 's_link1',
+					lv: 'B2-2'
+				},
+				{
+					sort: '2',
+					time: '2020/11/29',
+					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
+					url: 's_link2',
+					lv: 'A2-1'
+				},
+				{
+					sort: '1',
+					time: '2020/11/30',
+					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
+					url: 's_link1',
+					lv: 'B2-2'
+				},
+				{
+					sort: '2',
+					time: '2020/11/29',
+					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
+					url: 's_link2',
+					lv: 'A2-1'
+				},
+				{
+					sort: '1',
+					time: '2020/11/30',
+					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
+					url: 's_link1',
+					lv: 'B2-2'
+				},
+				{
+					sort: '2',
+					time: '2020/11/29',
+					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
+					url: 's_link2',
+					lv: 'A2-1'
+				},
+				{
+					sort: '1',
+					time: '2020/11/30',
+					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
+					url: 's_link1',
+					lv: 'B2-2'
+				},
+				{
+					sort: '2',
+					time: '2020/11/29',
+					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
+					url: 's_link2',
+					lv: 'A2-1'
+				},
+				{
+					sort: '1',
+					time: '2020/11/30',
+					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
+					url: 's_link1',
+					lv: 'B2-2'
+				},
+				{
+					sort: '2',
+					time: '2020/11/29',
+					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
+					url: 's_link2',
+					lv: 'A2-1'
+				},
+				{
+					sort: '1',
+					time: '2020/11/30',
+					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
+					url: 's_link1',
+					lv: 'B2-2'
+				},
+				{
+					sort: '2',
+					time: '2020/11/29',
+					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
+					url: 's_link2',
+					lv: 'A2-1'
+				},
+				{
+					sort: '1',
+					time: '2020/11/30',
+					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
+					url: 's_link1',
+					lv: 'B2-2'
+				},
+				{
+					sort: '2',
+					time: '2020/11/29',
+					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
+					url: 's_link2',
+					lv: 'A2-1'
+				},
+				{
+					sort: '1',
+					time: '2020/11/30',
+					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
+					url: 's_link1',
+					lv: 'B2-2'
+				},
+				{
+					sort: '2',
+					time: '2020/11/29',
+					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
+					url: 's_link2',
+					lv: 'A2-1'
+				},
+				{
+					sort: '1',
+					time: '2020/11/30',
+					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
+					url: 's_link1',
+					lv: 'B2-2'
+				},
+				{
+					sort: '2',
+					time: '2020/11/29',
+					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
+					url: 's_link2',
+					lv: 'A2-1'
+				},
 			]
 		},
 		components: {
@@ -300,15 +455,157 @@ end if
 		created() {
 			const vm = this;
 			vm.sideBarWidth = $('#sidebar').width();
-			setTimeout(()=>{
-				vm.fnGiveHeight();
-			}, 0);
 
 			$.ajax({
 				type: 'GET',
 				url: 'https://funday.asia/self-study/json/news_array.json',
 				success: function(res){
-					console.log('got ', res);
+					const idxArt = res.findIndex(item => item.classify.toLowerCase() == 'article');
+					const idxCol = res.findIndex(item => item.classify.toLowerCase() == 'columns');
+					const idxPro = res.findIndex(item => item.classify.toLowerCase() == 'program');
+					const idxSto = res.findIndex(item => item.classify.toLowerCase() == 'story');
+					const idxMus = res.findIndex(item => item.classify.toLowerCase() == 'musicbox');
+					const idxMaz = res.findIndex(item => item.classify.toLowerCase() == 'magazine');
+					const idxBlo = res.findIndex(item => item.classify.toLowerCase() == 'blog');
+
+					// --------------------------------
+					// -- MUTIPLE v
+					// --------------------------------
+					vm.blog = res[idxBlo].data;
+					vm.tales = res[idxSto].data;
+					vm.musicbox = res[idxMus].data;
+					
+					// --------------------------------
+					// -- ARTICLE v
+					// --------------------------------
+					let artTrend = [];
+					let artLiving = [];
+					let artOffice = [];
+					//
+					res[idxArt].data.forEach(function(item, i){
+						const type = item.articletype.toLowerCase();
+						switch( type ){
+							case 'trend': artTrend.push(item);break;
+							case 'living': artLiving.push(item);break;
+							case 'office': artOffice.push(item);break;
+							default:
+						}
+					});
+					//
+					artTrend.sort(function(n, c){
+						if( n.news_id > c.news_id ){ return -1 }else{ return 1 };
+					});
+
+					artLiving.sort(function(n, c){
+						if( n.news_id > c.news_id ){ return -1 }else{ return 1 };
+					});
+
+					artOffice.sort(function(n, c){
+						if( n.news_id > c.news_id ){ return -1 }else{ return 1 };
+					});
+					//
+					vm.trend = artTrend;
+					vm.living = artLiving;
+					vm.office = artOffice;
+
+					// --------------------------------
+					// -- FADE & MIXIN v
+					// --------------------------------
+					const fadePush = function(){
+						vm.fade.push(vm.trend[0]);
+						vm.trend.splice(0,1);
+						//
+						vm.fade.push(vm.living[0]);
+						vm.living.splice(0,1);
+						//
+						fadeIndex ++;
+						if( fadeIndex >= fadeMax ){ 
+							clearInterval(fid);
+							mid = setInterval(mixinPush, 0);
+						};
+					};
+
+					const mixinPush = function(){
+						vm.mixin.push(vm.trend[0]);
+						vm.trend.splice(0,1);
+						//
+						vm.mixin.push(vm.living[0]);
+						vm.living.splice(0,1);
+						//
+						mixinIndex ++;
+						if( mixinIndex >= mixinMax ){ 
+							clearInterval(mid);
+						};
+					};
+
+					let fadeIndex = 0;
+					const fadeMax = 2;
+					let fid = setInterval(fadePush, 0);
+					let mixinIndex = 0;
+					const mixinMax = 3;
+					let mid;
+
+					// --------------------------------
+					// -- PROGRAM v
+					// --------------------------------
+					let programAll = res[idxPro].data;
+					programAll.forEach(function(item, i){
+						console.log(i, 'classify', item.classify.toLowerCase() , /mrt/i.test(item.classify));
+						if( /mrt/i.test(item.classify) ){
+							vm.program2.push(item);
+						}else{
+							vm.program1.push(item);
+						}
+					});
+					// vm.program1 = res[idxPro].data;
+					console.log('program', programAll, vm.program1, vm.program2);
+
+					vm.addAry();
+					// ==========================================
+					// == PLUGIN v
+					// ==========================================
+					new PerfectScrollbar('#content .wrapper');
+					new PerfectScrollbar('#sidebar-scroller');
+					setTimeout(()=>{vm.fnGiveHeight()}, 800);
+
+					// ==========================================
+					// == FADE ANIMATION v
+					// ==========================================
+					const $item = $('.fade-main-item');
+					const $dot = $('.fade-dot-item');
+					const max = $item.length - 1;
+					const fadeTimeDelay = 2000;
+					const fadeTimeChange = 1500;
+					const fadeTimeDotChange = 300;
+
+					let i = 0;
+					const fadeAni = function () {
+						i < max ? i++ : i = 0
+						$item.fadeOut(fadeTimeChange).eq(i).fadeIn(fadeTimeChange);
+						$dot.removeClass('active').eq(i).addClass('active');
+					};
+
+					let sid
+					setTimeout(()=>{
+						sid= setInterval(fadeAni, fadeTimeDelay);
+						console.log('should be active');
+					}, 1000);
+
+					$('.fade-main-item, .fade-dot-item').hover(function () {
+						console.log('fade in');
+						clearInterval(sid);
+					}, function () {
+						console.log('fade out');
+						sid = setInterval(fadeAni, fadeTimeDelay);
+					});
+
+					$dot.mouseover(function () {
+						const idx = $(this).index();
+						$item.fadeOut(fadeTimeDotChange).eq(idx).fadeIn(fadeTimeDotChange);
+						$dot.removeClass('active').eq(idx).addClass('active');
+					});
+
+
 				}
 			});
 
@@ -318,6 +615,14 @@ end if
 			$(window).resize(()=>{ vm.fnGiveHeight() });
 		},
 		methods: {
+			addAry(){
+				const vm = this;
+				vm.trend.push( vm.trend[0] );
+				//
+				for(i=0; i<=2;i++){
+					vm.program1.push( vm.program2[i] );
+				}
+			},
 			fnGiveHeight(){
 				const rate1 = 0.56;
 				const rate2 = 0.67;
@@ -326,7 +631,7 @@ end if
 				const rate5 = 0.562;
 				const rate6 = 0.645;
 				const rate7 = 1.2;
-				const rate8 = 0.566
+				const rate8 = 0.566;
 
 				// --------------------------------
 				// BLOCK1 GRID2 v
@@ -335,6 +640,11 @@ end if
 
 				const hFadeOuter = $('#fade').outerHeight(true);
 				$('#block1 .grid22-box').css('height', 'calc(100% - ' + hFadeOuter +'px)');
+
+				// --------------------------------
+				// BLOCK1 GRID22
+				const hb1g2img = $('.grid22-img').width() * rate5;
+				$('.grid22-img').css('height', hb1g2img);
 
 				// --------------------------------
 				// BOX1 GRID3 MAGAZINE v
@@ -349,20 +659,21 @@ end if
 				$('#block1 .grid3-box').css('height', 'calc( 100% - ' + hb1g3subtract + 'px )');
 
 				// --------------------------------
-				// BOX1 GRID4-2 LIST v
-				const hb1g42img = $('#block1 .grid42-img').width() * rate1;
-				$('#block1 .grid42-img').css('height', hb1g42img);
-
 				// BLOCK 1 WEEK TEST v
 				const hb1g4wt = $('#block1 .grid4-wt').width() * 1;
 				$('#block1 .grid4-wt').css('height', hb1g4wt);
 
+				// BOX1 GRID4-2 LIST v
+				const hb1g42img = $('#block1 .grid42-img').width() * rate1;
+				$('#block1 .grid42-img').css('height', hb1g42img);
+				
 				// BOX1 GRID4-1 LIST v
-				const hb1g4t1 = $('#block1 .grid4 .grid-title.is-1').outerHeight(true);
-				const hb1g4t2 = $('#block1 .grid4 .grid-title.is-2').outerHeight(true);
-				const hb1g42 = $('#block1 .grid42-box').outerHeight(true)
-				const hb1g4subtract = hb1g4wt * 2 + hb1g4t1 + hb1g4t2 + hb1g42;
-				$('#block1 .grid4-box').css('height', 'calc( 100% - ' + hb1g4subtract + 'px)');
+				// const hb1g4t1 = $('#block1 .grid4 .grid-title.is-1').outerHeight(true);
+				// const hb1g4t2 = $('#block1 .grid4 .grid-title.is-2').outerHeight(true);
+				// const hb1g42 = $('#block1 .grid42-box').outerHeight(true)
+				// const hb1g4subtract = hb1g4wt * 2 + hb1g4t1 + hb1g4t2 + hb1g42;
+				// $('#block1 .grid4-box').css('height', 'calc( 100% - ' + hb1g4subtract + 'px)');
+
 
 				// ================================
 				// ================================
@@ -423,248 +734,32 @@ end if
 			gutter: 5,
 			dUrl: '1887',
 			dPic: 'https://funday.asia/en/pic/201125img-newsC19514-1-1m.jpg',
-			trend: [
-				{
-					news_id: '11',
-					ch_subject: 'trend1馬斯克晉升全球第三大富豪',
-					pic: 'https://funday.asia/en/pic/201124img-newsC19509-1-1ss.jpg',
-					ch_article: '特斯拉將加入標準普爾500指數，是擴大投資人基礎的里程碑。標普道瓊指數公司11月16日宣佈，這家電動汽車製造商12月21日開盤前將納入基準指數，以配合12月單季調整。',
-					read_count: 11
-				},
-				{
-					news_id: '12',
-					ch_subject: 'trend2馬斯克晉升全球第三大富豪',
-					pic: 'https://funday.asia/en/pic/201125img-newsC19514-1-1m.jpg',
-					ch_article: '特斯拉將加入標準普爾500指數，是擴大投資人基礎的里程碑。標普道瓊指數公司11月16日宣佈，這家電動汽車製造商12月21日開盤前將納入基準指數，以配合12月單季調整。',
-					read_count: 12
-				},
-			],
-			fade: [
-				{
-					news_id: '19514',
-					ch_subject: 'mf1馬斯克晉升全球第三大富豪',
-					pic: 'https://funday.asia/en/pic/201125img-newsC19514-1-1m.jpg',
-					en_subject: 'Termination of Contract"',
-				},
-				{
-					news_id: '19514',
-					ch_subject: 'mf2馬斯克晉升全球第三大富豪',
-					pic: 'https://funday.asia/en/pic/201124img-newsC19509-1-1.jpg',
-					en_subject: 'Termination of Contract"',
-				},
-				{
-					news_id: '19514',
-					ch_subject: 'mf3馬斯克晉升全球第三大富豪',
-					pic: 'https://funday.asia/en/pic/201125img-newsC19514-1-1m.jpg',
-					en_subject: 'Termination of Contract"',
-				},
-				{
-					news_id: '19514',
-					ch_subject: 'mf4馬斯克晉升全球第三大富豪',
-					pic: 'https://funday.asia/en/pic/201117img-newsC19483-1-1.jpg',
-					en_subject: 'Termination of Contract"',
-				},
-			],
-			mixin: [
-				{
-					news_id: '19514',
-					ch_subject: 'mixin1馬斯克晉升全球第三大富豪',
-					pic: 'https://funday.asia/en/pic/201125img-newsC19514-1-1m.jpg',
-					en_subject: 'Termination of Contract"',
-					ch_article: '特斯拉將加入標準普爾500指數，是擴大投資人基礎的里程碑。標普道瓊指數公司11月16日宣佈，這家電動汽車製造商12月21日開盤前將納入基準指數，以配合12月單季調整。',
-					read_count: 888
-				},
-				{
-					news_id: '19514',
-					ch_subject: 'mixin2馬斯克晉升全球第三大富豪',
-					pic: 'https://funday.asia/en/pic/201125img-newsC19514-1-1m.jpg',
-					en_subject: 'Termination of Contract"',
-					ch_article: '特斯拉將加入標準普爾500指數，是擴大投資人基礎的里程碑。標普道瓊指數公司11月16日宣佈，這家電動汽車製造商12月21日開盤前將納入基準指數，以配合12月單季調整。',
-					read_count: 888
-				},
-			],
-			living: [
-				{
-					news_id: '19514',
-					ch_subject: 'living1馬斯克晉升全球第三大富豪',
-					ch_article: '特斯拉將加入標準普爾500指數，是擴大投資人基礎的里程碑。標普道瓊指數公司11月16日宣佈，這家電動汽車製造商12月21日開盤前將納入基準指數，以配合12月單季調整。',
-					read_count: 31
-				},
-				{
-					news_id: '19514',
-					ch_subject: 'living2馬斯克晉升全球第三大富豪',
-					ch_article: '特斯拉將加入標準普爾500指數，是擴大投資人基礎的里程碑。標普道瓊指數公司11月16日宣佈，這家電動汽車製造商12月21日開盤前將納入基準指數，以配合12月單季調整。',
-					read_count: 32
-				}
-			],
-			office: [
-				{
-					news_id: '19514',
-					ch_subject: 'office1馬斯克晉升全球第三大富豪',
-					en_subject: 'Termination of Contract"',
-					sort: '書信',
-				},
-				{
-					news_id: '19514',
-					ch_subject: 'office2馬斯克晉升全球第三大富豪',
-					en_subject: 'Termination of Contract"',
-					sort: '對話',
-				}
-			],
-			tales: [
-				{
-					news_id: '19514',
-					ch_subject: 'tales1馬斯克晉升全球第三大富豪',
-					pic: 'https://funday.asia/en/pic/201125img-newsC19514-1-1m.jpg',
-				},
-				{
-					news_id: '19514',
-					ch_subject: 'tales2馬斯克晉升全球第三大富豪',
-					pic: 'https://dsn.funday.asia/photo/Story/20200106113259_img.jpg',
-				}
-			],
+			
+			// BLOCK 1 v
+			trend: [],
+			fade: [],
+			mixin: [],
+			living: [],
+			office: [],
+			tales: [],
 
 			// BLOCK 2 v
-			blog: [
-				{
-					pic: "https://funday.asia/BlogS/files/img-e-508.jpg",
-					classify: "專題",
-					subject: "blog1名句背後的故事 _ 伊比鳩魯",
-					ndate: "2020/11/25",
-					isNew: "1",
-					indx: "508"
-				},
-				{
-					pic: "https://funday.asia/BlogS/files/img-e-507.png",
-					classify: "英語力",
-					subject: "blog2英文文法大解密 - 過去事實相反的假設",
-					ndate: "2020/11/20",
-					isNew: "0",
-					indx: "507"
-				},
-				{
-					pic: "https://funday.asia/BlogS/files/img-e-508.jpg",
-					classify: "專題",
-					subject: "blog3名句背後的故事 _ 伊比鳩魯",
-					ndate: "2020/11/25",
-					isNew: "1",
-					indx: "508"
-				},
-			],
-			program1: [
-				{
-					pic: "https://dsn.funday.asia/photo/Program/202011251554372395達文西密碼_YT封面.jpg",
-					classify: "Cinephile",
-					subject: "p11 達文西密碼 The Da Vinic Code",
-					isNew: "1",
-					indx: "203"
-				},
-				{
-					pic: "https://dsn.funday.asia/photo/Program/202011251505487754EP16.jpg",
-					classify: "MRT_APP",
-					subject: "p12 MRT | 捷運微電影 EP16",
-					isNew: "0",
-					indx: "202"
-				},
-				{
-					pic: "https://dsn.funday.asia/photo/Program/202011251503321328EP15.jpg",
-					classify: "MRT_Funday",
-					subject: "p13 MRT | 捷運微電影 EP15",
-					isNew: "0",
-					indx: "200"
-				},
-				{
-					pic: "https://dsn.funday.asia/photo/Program/202011251554372395達文西密碼_YT封面.jpg",
-					classify: "Cinephile",
-					subject: "p11 達文西密碼 The Da Vinic Code",
-					isNew: "1",
-					indx: "203"
-				},
-			],
-			program2: [
-				{
-					pic: "https://dsn.funday.asia/photo/Program/202011251505061185EP16.jpg",
-					classify: "p21 MRT_Funday",
-					subject: "MRT | 捷運微電影 EP16",
-					isNew: "0",
-					indx: "201"
-				},
-				{
-					pic: "https://dsn.funday.asia/photo/Program/202011251503321328EP15.jpg",
-					classify: "p22 MRT_Funday",
-					subject: "MRT | 捷運微電影 EP15",
-					isNew: "0",
-					indx: "200"
-				},
-				{
-					pic: "https://dsn.funday.asia/photo/Program/202011251554372395達文西密碼_YT封面.jpg",
-					classify: "Cinephile",
-					subject: "p23 達文西密碼 The Da Vinic Code",
-					isNew: "1",
-					indx: "203"
-				},
-				{
-					pic: "https://dsn.funday.asia/photo/Program/202011251554372395達文西密碼_YT封面.jpg",
-					classify: "Cinephile",
-					subject: "p11 達文西密碼 The Da Vinic Code",
-					isNew: "1",
-					indx: "203"
-				},
-			],
-			musicbox: [
-				{
-					"pic": "https://img.youtube.com/vi/4NRXx6U8ABQ/hqdefault.jpg",
-					"singer": "The Weeknd",
-					"song": "Blinding Lights",
-					"isNew": "1",
-					"indx": "893"
-				},
-				{
-					"pic": "https://img.youtube.com/vi/oygrmJFKYZY/hqdefault.jpg",
-					"singer": "Dua Lipa",
-					"song": "Don’t Start Now",
-					"isNew": "0",
-					"indx": "883"
-				},
-			],
-
-			ary: [0, 8, 9, 4, 5, 7]
+			blog: [],
+			program1: [],
+			program2: [],
+			musicbox: [],
 		},
 	});
 
+	Vue.config.devtools = false;
+	
 	$(()=>{
-		new PerfectScrollbar('#content .wrapper');
-		new PerfectScrollbar('#sidebar-scroller');
+		
 
 		// =============================
 		// == FADE SHOW v
 		// =============================
-		const $item = $('.fade-main-item');
-		const $dot = $('.fade-dot-item');
-		const max = $item.length - 1;
-		const fadeTimeDelay = 2000;
-		const fadeTimeChange = 1500;
-		const fadeTimeDotChange = 300;
-
-		let i = 0;
-		const fadeAni = function () {
-			i < max ? i++ : i = 0
-			$item.fadeOut(fadeTimeChange).eq(i).fadeIn(fadeTimeChange);
-			$dot.removeClass('active').eq(i).addClass('active');
-		};
-
-		let sid = setInterval(fadeAni, fadeTimeDelay);
-		$('.fade-main-item, .fade-dot-item').hover(function () {
-			clearInterval(sid);
-		}, function () {
-			sid = setInterval(fadeAni, fadeTimeDelay);
-		});
-
-		$dot.mouseover(function () {
-			const idx = $(this).index();
-			$item.fadeOut(fadeTimeDotChange).eq(idx).fadeIn(fadeTimeDotChange);
-			$dot.removeClass('active').eq(idx).addClass('active');
-		});
+		
 	});
 	
 	// ==========================================

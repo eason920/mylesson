@@ -53,7 +53,7 @@ console.log(`%c
 });
 
 // =============================
-// == SLICE SPLICE SPLIT v
+// == SPLIT v
 // =============================
 const ary_slice = [0,1,2,3,4,5,6]
 const slice_cuter = ary_slice.slice(2, 5);
@@ -63,6 +63,14 @@ const ary_splice = ['aa', 'bb', 'cc', 'dd', 'ee', 'ff', 'gg'];
 const splice_cuter = ary_splice.splice(2,2, 'newAdd');
 console.log(splice_cuter, ary_splice);
 
+// .SLICE (起始序, 結尾序) , 結果不包含結尾者
+//          same   diff
+// .SPLICE(起始序, 取得個數)
+// .SLICE & .SPLICE 都不會破壞原 ARY
+
+// =============================
+// == SPLIT v
+// =============================
 const str = 'string in review';
 console.log(str.split(''));
 

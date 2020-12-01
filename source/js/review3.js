@@ -7,6 +7,28 @@ $('#edit-send').click(function(){
 
 });
 
+const index = Ary.findIndex(function(item){
+	return item.key == val;
+});
+
+const index = Ary.findIndex(item=>item.key==val);
+
+
+weekData[id].date_list[date].hours[hours].sort(function(n, p){
+	if( n.done > p.done ){ return -1 }else{ return 1 };
+})
+
+// SORT v
+ary.sort(function(next, current){
+	if( next.id > current.id ){ return -1 }else{ return 1};
+})
+
+// >>**** return -1 前後對調, return 1 維持 ****<<
+// 褫增(最新在第一個) v
+if( next.id > current.id ){ return -1 }else{ return 1};
+// 褫減(最舊在第一個) v
+if( next.id < current.id ){ return -1 }else{ return 1};
+
 // animation: ani-moving 2s linear 「infinite」 forwards
 
 //- NEW STUDY ####################################

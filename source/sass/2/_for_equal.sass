@@ -1,3 +1,12 @@
+#block1, #block2
+	.grid1-item, 
+	.grid22-item,
+	.grid3-item,
+	.grid4-item, .grid42-item,
+	.grid5-item
+		display: none
+
+	
 // @media screen and (max-width: 1439px)
 // 	#block1
 // 		.grid1-item
@@ -6,21 +15,47 @@
 // 				margin: 0
 
 // @media screen and (min-width: 1440px)
-// 	#block1
-// 		.grid1-item
-// 			margin-bottom: 15px
-// 			&:last-child
-// 				margin: 0
+#block1
+	.grid1-item
+		&:nth-child(1), &:nth-child(2), &:nth-child(3),
+		&:nth-child(4), &:nth-child(5), &:nth-child(6),
+		&:nth-child(7), &:nth-child(8)
+			display: block
 
-// 		.grid22-item
-// 			&:last-child, &:nth-last-child(2)
-// 				display: none
+	.grid22-item
+		&:nth-child(1), &:nth-child(2), &:nth-child(3),
+		&:nth-child(4), &:nth-child(5), &:nth-child(6)
+			display: flex
 
-// 		.grid3-item
-// 			&:last-child
-// 				display: none
+	.grid3-item
+		&:nth-child(1), &:nth-child(2), &:nth-child(3),
+		&:nth-child(4), &:nth-child(5), &:nth-child(6)
+			display: block
 
-// 		.grid4-item
-// 			&:last-child, &:nth-last-child(2), &:nth-last-child(3), &:nth-last-child(4), &:nth-last-child(5)
-// 				display: none
-// 	#block2
+	.grid4-item
+		&:nth-child(1), &:nth-child(2), &:nth-child(3),
+		&:nth-child(4), &:nth-child(5)
+			display: flex
+
+	.grid42-item
+		&:nth-child(1), &:nth-child(2), &:nth-child(3),
+			display: block
+	
+	// --------------------------------
+	.grid4-box
+		height: 310px
+
+#block2
+	.grid1-item
+		&:nth-child(1), &:nth-child(2), &:nth-child(3),
+			display: block
+
+	.grid3-item
+		&:nth-child(1), &:nth-child(2), &:nth-child(3),
+		&:nth-child(4)
+			display: flex
+
+	.grid5-item
+		&:nth-child(1), &:nth-child(2), &:nth-child(3),
+		&:nth-child(4), &:nth-child(5)
+			display: block
