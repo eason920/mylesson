@@ -65,8 +65,9 @@ console.log(splice_cuter, ary_splice);
 
 // .SLICE (起始序, 結尾序) , 結果不包含結尾者
 //          same   diff
-// .SPLICE(起始序, 取得個數)
-// .SLICE & .SPLICE 都不會破壞原 ARY
+// .SPLICE(起始序, 取得個數) , 破壞原 ary 同時，可記載此次刪除的序值所組成的新陣列
+// .SLICE 不會破壞原 ARY
+// .SPLICE 「會」破壞原 ARY
 
 // =============================
 // == SPLIT v
