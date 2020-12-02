@@ -136,10 +136,13 @@ end if
 						</div>
 					</div>
 					<div class="grid3">
-						<div class="grid3-video">
-							<iframe src="https://www.youtube.com/embed/Nw7wwHm4GxU?controls=0" frameborder="0"
+						<div class="grid3-video"
+							:style='program.above.pic | filterBG'
+							:onclick='program.above.indx | filterProgramFn'
+						>
+							<!--iframe src="https://www.youtube.com/embed/Nw7wwHm4GxU?controls=0" frameborder="0"
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-								allowfullscreen="allowfullscreen"></iframe>
+								allowfullscreen="allowfullscreen"></iframe-->
 						</div>
 						<div class="grid-title is-1">生活新知</div>
 						<div class="grid3-box">
@@ -150,7 +153,11 @@ end if
 								></cpn-living>
 						</div>
 						<div class="grid-title is-2">雜誌</div>
-						<div class="grid3-mgz" style="background-image: url(https://funday.asia/funMz/2020080019/P1.jpg)"></div>
+						<a class="grid3-mgz"
+							:href='magazine.SN | filterMagazineFn'
+							:style='magazine.pic | filterBG '
+							target='magazine'
+						></a>
 					</div>
 					<div class="grid4">
 						<div class="grid-title is-1">商務情境</div>
@@ -159,6 +166,7 @@ end if
 								:prop='key'
 								v-for='key in office' 
 								:req-url='key.news_id | filterArticleLink'
+								:req-category='key.en_category'
 							></cpn-office>
 						</div>
 						<a class="grid4-wt" href="#" style="background-image: url(./2020/images/wt.png)"></a>
@@ -203,10 +211,13 @@ end if
 						</div>
 					</div>
 					<div class="grid2">
-						<div class="grid2-video">
-							<iframe src="https://www.youtube.com/embed/Nw7wwHm4GxU?controls=0" frameborder="0"
+						<div class="grid2-video"
+							:style='program.under.pic | filterBG'
+							:onclick='program.under.indx | filterProgramFn'
+						>
+							<!--iframe src="https://www.youtube.com/embed/Nw7wwHm4GxU?controls=0" frameborder="0"
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-								allowfullscreen="allowfullscreen"></iframe>
+								allowfullscreen="allowfullscreen"></iframe-->
 						</div>
 					</div>
 					<div class="grid3">
@@ -276,7 +287,7 @@ end if
 						</li>
 						<li class="sidebar-under-hr"></li>
 						<li class="sidebar-under-item">
-							<a href="https://funday.asia/search/article/#Collect" target='_blank' @click.prev ><img src="./2020/images/under3.svg" />文章</a>
+							<a href="https://funday.asia/search/article/#Course?collect" target='_blank' @click.prev ><img src="./2020/images/under3.svg" />文章</a>
 						</li>
 					</ul>
 				</div>
@@ -437,21 +448,6 @@ end if
 	});
 
 	const vueMain = new Vue({
-		el: '#app',
-		components: {
-			// 1 v
-			cpnTread,
-			cpnLiving,
-			cpnOffice,
-			cpnSideItem,
-			cpnMixin,
-			cpnFade,
-			cpnTales,
-			// 2 v
-			cpnBlog,
-			cpnProgram,
-			cpnMusicbox
-		},
 		created() {
 			const vm = this;
 			vm.sideBarWidth = $('#sidebar').width();
@@ -460,6 +456,7 @@ end if
 				type: 'GET',
 				url: 'https://funday.asia/self-study/json/news_array.json',
 				success: function(res){
+					console.log('success data is >', res);
 					const idxArt = res.findIndex(item => item.classify.toLowerCase() == 'article');
 					const idxCol = res.findIndex(item => item.classify.toLowerCase() == 'columns');
 					const idxPro = res.findIndex(item => item.classify.toLowerCase() == 'program');
@@ -549,18 +546,31 @@ end if
 					// -- PROGRAM v
 					// --------------------------------
 					let programAll = res[idxPro].data;
+					//
 					programAll.forEach(function(item, i){
-						console.log(i, 'classify', item.classify.toLowerCase() , /mrt/i.test(item.classify));
 						if( /mrt/i.test(item.classify) ){
 							vm.program2.push(item);
 						}else{
 							vm.program1.push(item);
 						}
 					});
-					// vm.program1 = res[idxPro].data;
-					console.log('program', programAll, vm.program1, vm.program2);
 
+					// JUST FOR DEMO v
 					vm.addAry();
+
+					// PROGRAM ABOVE & UNDER v
+					vm.program.above.indx = vm.program1[0].indx;
+					vm.program.above.pic= vm.program1[0].pic;
+					vm.program.under.indx = vm.program1[1].indx;
+					vm.program.under.pic= vm.program1[1].pic;
+					vm.program1.splice(0, 2);
+
+					// --------------------------------
+					// -- MAGAZINE v
+					// --------------------------------
+					vm.magazine.pic = res[idxMaz].data[0].pic;
+					vm.magazine.SN = res[idxMaz].data[0].SN;
+
 					// ==========================================
 					// == PLUGIN v
 					// ==========================================
@@ -573,36 +583,36 @@ end if
 					// ==========================================
 					const $item = $('.fade-main-item');
 					const $dot = $('.fade-dot-item');
-					const max = $item.length - 1;
-					const fadeTimeDelay = 2000;
-					const fadeTimeChange = 1500;
-					const fadeTimeDotChange = 300;
+					
 
-					let i = 0;
-					const fadeAni = function () {
-						i < max ? i++ : i = 0
-						$item.fadeOut(fadeTimeChange).eq(i).fadeIn(fadeTimeChange);
-						$dot.removeClass('active').eq(i).addClass('active');
-					};
+					// vm.smax = $('#fade').find('.fade-main-item').length - 1;
+					console.log('smax is ', vm.smax);
 
-					let sid
 					setTimeout(()=>{
-						sid= setInterval(fadeAni, fadeTimeDelay);
-						console.log('should be active');
+						vm.sid= setInterval(vm.fnFadeAni, vm.fadeTimeDelay);
 					}, 1000);
 
-					$('.fade-main-item, .fade-dot-item').hover(function () {
+					$('#fade').find('.fade-main-item').hover(function(){
 						console.log('fade in');
-						clearInterval(sid);
-					}, function () {
+						// clearInterval(vm.sid);
+						vm.sid = '';
+					}, function(){
 						console.log('fade out');
-						sid = setInterval(fadeAni, fadeTimeDelay);
+						vm.sid = setInterval(vm.fnFadeAni, vm.fadeTimeDelay);
 					});
 
-					$dot.mouseover(function () {
+
+					// $('.fade-main-item, .fade-dot-item').hover(function () {
+						
+					// }, function () {
+						
+					// });
+
+					$('.fade-dot-item').mouseover(function () {
 						const idx = $(this).index();
-						$item.fadeOut(fadeTimeDotChange).eq(idx).fadeIn(fadeTimeDotChange);
-						$dot.removeClass('active').eq(idx).addClass('active');
+						console.log('dot-item in', idx);
+						$('#fade').find('.fade-main-item').fadeOut(vm.fadeTimeDotChange).eq(idx).fadeIn(vm.fadeTimeDotChange);
+						$('.fade-dot-item').removeClass('active').eq(idx).addClass('active');
 					});
 
 
@@ -617,12 +627,35 @@ end if
 		methods: {
 			addAry(){
 				const vm = this;
-				vm.trend.push( vm.trend[0] );
-				//
-				for(i=0; i<=2;i++){
-					vm.program1.push( vm.program2[i] );
+				// TREAD
+				for(i=0; i<=2; i++){
+					vm.trend.push( vm.trend[i] );
 				}
+				// PROGRAM
+				for(i=0; i<=4; i++){
+					vm.program1.push( vm.program1[0] );
+				}
+				// MIXIN
+				for(i=0; i<=2; i++){
+					vm.mixin.push( vm.trend[i] );
+				};
+				// LIVING
+				for(i=0; i<=2; i++){
+					vm.living.push( vm.trend[i] );
+				};
+				// OFFICE
+				vm.office[0].en_category = '1';
+				vm.office[0].ch_category = '書信';
+				vm.office[1].en_category = '2';
+				vm.office[1].ch_category = '對話';
+				vm.office[2].en_category = '3';
+				vm.office[2].ch_category = '公告';
+				vm.office[3].en_category = '4';
+				vm.office[3].ch_category = '報告';
+				vm.office[4].en_category = '1';
+				vm.office[4].ch_category = '書信';
 			},
+
 			fnGiveHeight(){
 				const rate1 = 0.56;
 				const rate2 = 0.67;
@@ -667,14 +700,6 @@ end if
 				const hb1g42img = $('#block1 .grid42-img').width() * rate1;
 				$('#block1 .grid42-img').css('height', hb1g42img);
 				
-				// BOX1 GRID4-1 LIST v
-				// const hb1g4t1 = $('#block1 .grid4 .grid-title.is-1').outerHeight(true);
-				// const hb1g4t2 = $('#block1 .grid4 .grid-title.is-2').outerHeight(true);
-				// const hb1g42 = $('#block1 .grid42-box').outerHeight(true)
-				// const hb1g4subtract = hb1g4wt * 2 + hb1g4t1 + hb1g4t2 + hb1g42;
-				// $('#block1 .grid4-box').css('height', 'calc( 100% - ' + hb1g4subtract + 'px)');
-
-
 				// ================================
 				// ================================
 				// BLOCK2 GRID3 v
@@ -704,14 +729,20 @@ end if
 				if( ww >= 1200 ){
 					vm.uiGutter = ( ww - $('#app').outerWidth() ) / 2;
 					vm.transX = vm.uiGutter - vm.sideBarWidth - vm.gutter;
-					console.log('vm.uiGutter', vm.uiGutter);
-					console.log('vm.sideBarWidth', vm.sideBarWidth);
 				}else{
 					vm.transX = vm.transX1199;
 				};
 				if( $('#sidebar').hasClass('is-open') ){
 					$('#app').css('transform', 'translateX(' + vm.transX + 'px)');
 				};
+			},
+
+			fnFadeAni(){
+				const vm = this;
+				vm.si < vm.smax ? vm.si++ : vm.si = 0;
+				console.log('si is ', vm.si);
+				$('#fade').find('.fade-main-item').fadeOut(vm.fadeTimeChange).eq(vm.si).fadeIn(vm.fadeTimeChange);
+				$('.fade-dot-item').removeClass('active').eq(vm.si).addClass('active');
 			},
 			
 			fnOpenSideBar(){
@@ -727,13 +758,31 @@ end if
 			}
 		},
 		data: {
-			uiGutter: 0,
-			transX: 0,
-			transX1199: -265,
-			sideBarWidth: 0,
-			gutter: 5,
-			dUrl: '1887',
-			dPic: 'https://funday.asia/en/pic/201125img-newsC19514-1-1m.jpg',
+			// SIDE-BAR v
+			si: 0,
+			smax: 3,
+			sid: '',
+			fadeTimeDelay: 2000,
+			fadeTimeChange: 1500,
+			fadeTimeDotChange: 300,
+
+			// PROGRAM SINGLE v
+			program: {
+				above: {
+					indx: 0,
+					pic: '',
+				},
+				under: {
+					indx: 0,
+					pic: ''
+				}
+			},
+
+			// MAGAZINE v
+			magazine: {
+				pic: '',
+				SN: ''
+			},
 			
 			// BLOCK 1 v
 			trend: [],
@@ -748,19 +797,32 @@ end if
 			program1: [],
 			program2: [],
 			musicbox: [],
+
+			// SIDE-BAR v
+			uiGutter: 0,
+			transX: 0,
+			transX1199: -265,
+			sideBarWidth: 0,
+			gutter: 5,
 		},
+		components: {
+			// 1 v
+			cpnTread,
+			cpnLiving,
+			cpnOffice,
+			cpnSideItem,
+			cpnMixin,
+			cpnFade,
+			cpnTales,
+			// 2 v
+			cpnBlog,
+			cpnProgram,
+			cpnMusicbox
+		},
+		el: '#app',
 	});
 
 	Vue.config.devtools = false;
-	
-	$(()=>{
-		
-
-		// =============================
-		// == FADE SHOW v
-		// =============================
-		
-	});
 	
 	// ==========================================
 	// == SYSTEN (BACK-END) v

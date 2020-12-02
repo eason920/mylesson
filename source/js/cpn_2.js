@@ -3,11 +3,13 @@
 // ==========================================
 Vue.filter('filterBG', (str) => { return 'background-image: url(' + str + ')' });
 Vue.filter('filterSrc', (str) => { return 'https://funday.asia/en/pic/'+str });
+Vue.filter('filterMagazineSrc', (str) => { return 'https://funday.asia/funMz/'+str });
 Vue.filter('filterArticleLink', (id) => { return 'https://funday.asia/learning2020/?rid='+id});
 Vue.filter('filterTalesLink', (id) => { return 'https://funday.asia/self-study/FairyTales/?sid='+id });
 Vue.filter('filterBlogLink', (id) => { return 'https://funday.asia/blogDesktop/blog.asp?classify=life&blog=' + id })
 Vue.filter('filterMusicFn', (id) => { return 'GoLink("MusicBoxPlay","whichStart=1&musicNo='+id+'")'});
 Vue.filter('filterProgramFn', (id) => { return 'GoLink("FunProgram","indx='+id+'")'});
+Vue.filter('filterMagazineFn', (id) => {return 'https://funday.asia/self-study/MZ/?SN='+id})
 
 // ==========================================
 // == BLOCK 1 v
@@ -39,10 +41,10 @@ const cpnLiving = {
 };
 
 const cpnOffice = {
-	props: ['prop', 'reqUrl'],
+	props: ['prop', 'reqUrl', 'reqCategory'],
 	template: `
-			<a class="grid4-item add-hr" :href="reqUrl" target='article'>
-				<div class="grid4-sort is-s1">{{prop.sort}}</div>
+			<a class="grid4-item add-hr" :href="reqUrl" :data-category="reqCategory"  target='article'>
+				<div class="grid4-sort">{{prop.ch_category}}</div>
 				<div class="grid4-right">
 					<div class="grid-subtitle">{{prop.ch_subject}}</div>
 					<div class="grid4-en">{{prop.en_subject}}</div>
