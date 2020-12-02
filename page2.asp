@@ -103,9 +103,10 @@ end if
 						<div class="grid1-box">
 							<cpn-tread
 								:prop='key'
-								v-for='key in trend'
+								v-for='(key, i) in trend'
 								:req-url='key.news_id | filterArticleLink'
 								:req-pic='key.pic | filterSrc'
+								:key='i'
 							></cpn-tread>
 						</div>
 					</div>
@@ -114,24 +115,30 @@ end if
 							<div class="fade-main">
 								<cpn-fade
 									:prop='key'
-									v-for='key in fade' 
+									v-for='(key, i) in fade' 
 									:req-url='key.news_id | filterArticleLink' 
 									:req-pic='key.pic | filterSrc | filterBG'
+									:key='i'
 								></cpn-fade>
 							</div>
 							<div class="fade-dot">
-								<div class="fade-dot-item active"></div>
-								<div class="fade-dot-item"></div>
-								<div class="fade-dot-item"></div>
-								<div class="fade-dot-item"></div>
+								<cpn-Fade-dot
+									:prop='key'
+									v-for='(key, i) in fade'
+									:req-index='i'
+									@connecter='fnDotOver'
+									@connecter2='cleanTimeOut'
+									:key='i'
+								></cpn-fade-dot>
 							</div>
 						</div>
 						<div class="grid22-box">
 							<cpn-mixin
 								:prop='key'
-								v-for='key in mixin' 
+								v-for='(key, i) in mixin' 
 								:req-url='key.news_id | filterArticleLink' 
 								:req-pic='key.pic | filterSrc | filterBG'
+								:key='i'
 							></cpn-mixin>
 						</div>
 					</div>
@@ -148,8 +155,9 @@ end if
 						<div class="grid3-box">
 							<cpn-living
 								:prop='key'
-								v-for='key in living' 
+								v-for='(key, i) in living' 
 								:req-url='key.news_id | filterArticleLink'
+								:key='i'
 								></cpn-living>
 						</div>
 						<div class="grid-title is-2">雜誌</div>
@@ -164,9 +172,10 @@ end if
 						<div class="grid4-box">
 							<cpn-office
 								:prop='key'
-								v-for='key in office' 
+								v-for='(key, i) in office' 
 								:req-url='key.news_id | filterArticleLink'
 								:req-category='key.en_category'
+								:key='i'
 							></cpn-office>
 						</div>
 						<a class="grid4-wt" href="#" style="background-image: url(./2020/images/wt.png)"></a>
@@ -177,9 +186,10 @@ end if
 						<div class="grid42-box">
 							<cpn-tales 
 								:prop='key'
-								v-for='key in tales' 
+								v-for='(key, i) in tales' 
 								:req-url='key.indx | filterTalesLink' 
 								:req-pic='key.pic | filterBG'
+								:key='i'
 							></cpn-tales>
 						</div>
 					</div>
@@ -204,9 +214,10 @@ end if
 						<div class="grid1-box">
 							<cpn-blog
 								:prop='key'
-								v-for='key in blog'
+								v-for='(key, i) in blog'
 								:req-url='key.indx | filterBlogLink'
 								:req-pic='key.pic'
+								:key='i'
 							></cpn-blog>
 						</div>
 					</div>
@@ -223,17 +234,19 @@ end if
 					<div class="grid3">
 						<cpn-program
 							:prop='key'
-							v-for='key in program1'
+							v-for='(key, i) in program1'
 							:req-fn='key.indx | filterProgramFn'
 							:req-pic='key.pic | filterBG'
+							:key='i'
 						></cpn-program>
 					</div>
 					<div class="grid4">
 						<cpn-program
 							:prop='key'
-							v-for='key in program2'
+							v-for='(key, i) in program2'
 							:req-fn='key.indx | filterProgramFn'
 							:req-pic='key.pic | filterBG'
+							:key='i'
 						></cpn-program>
 					</div>
 					<div class="grid5">
@@ -241,9 +254,10 @@ end if
 						<div class="grid5-box">
 							<cpn-musicbox
 								:prop='key'
-								v-for='key in musicbox'
+								v-for='(key, i) in musicbox'
 								:req-fn='key.indx | filterMusicFn'
 								:req-pic='key.pic | filterBG'
+								:key='i'
 							></cpn-musicbox>
 						</div>
 					</div>
@@ -269,10 +283,11 @@ end if
 					<div id="sidebar-list">
 						<cpn-side-item
 							:prop='key'
-							v-for='key in review' 
+							v-for='(key, i) in review' 
 							:req-sort='key.sort' 
-							:req-url='key.url'>
-						</cpn-side-item>
+							:req-url='key.url'
+							:key='i'
+						></cpn-side-item>
 					</div>
 				</div>
 				<div id="sidebar-under">
@@ -588,34 +603,27 @@ end if
 					// vm.smax = $('#fade').find('.fade-main-item').length - 1;
 					console.log('smax is ', vm.smax);
 
-					setTimeout(()=>{
-						vm.sid= setInterval(vm.fnFadeAni, vm.fadeTimeDelay);
-					}, 1000);
+					// setTimeout(()=>{
+					// 	vm.sid= setInterval(vm.fnFadeAni, vm.fadeTimeDelay);
+					// }, 1000);
 
-					$('#fade').find('.fade-main-item').hover(function(){
-						console.log('fade in');
-						// clearInterval(vm.sid);
-						vm.sid = '';
-					}, function(){
-						console.log('fade out');
-						vm.sid = setInterval(vm.fnFadeAni, vm.fadeTimeDelay);
-					});
-
-
-					// $('.fade-main-item, .fade-dot-item').hover(function () {
-						
-					// }, function () {
-						
+					// $('#fade').find('.fade-main-item').hover(function(){
+					// 	console.log('fade in');
+					// 	// clearInterval(vm.sid);
+					// 	vm.sid = '';
+					// }, function(){
+					// 	console.log('fade out');
+					// 	vm.sid = setInterval(vm.fnFadeAni, vm.fadeTimeDelay);
 					// });
 
-					$('.fade-dot-item').mouseover(function () {
-						const idx = $(this).index();
-						console.log('dot-item in', idx);
-						$('#fade').find('.fade-main-item').fadeOut(vm.fadeTimeDotChange).eq(idx).fadeIn(vm.fadeTimeDotChange);
-						$('.fade-dot-item').removeClass('active').eq(idx).addClass('active');
-					});
+					// $('.fade-dot-item').mouseover(function () {
+					// 	const idx = $(this).index();
+					// 	console.log('dot-item in', idx);
+					// 	$('#fade').find('.fade-main-item').fadeOut(vm.fadeTimeDotChange).eq(idx).fadeIn(vm.fadeTimeDotChange);
+					// 	$('.fade-dot-item').removeClass('active').eq(idx).addClass('active');
+					// });
 
-
+					vm.setTimeoutFun();
 				}
 			});
 
@@ -625,6 +633,29 @@ end if
 			$(window).resize(()=>{ vm.fnGiveHeight() });
 		},
 		methods: {
+			cleanTimeOut() {
+				console.log('cleanTimeOut()');
+				let vm = this;
+				clearTimeout(vm.timeOutProcessId);
+				window.clearInterval(vm.timeOutRefresh);
+			},
+
+			setTimeoutFun() {
+				let vm = this;
+				this.timeOutProcessId = setTimeout(() => {
+					console.log('一小時後要做的事');
+				}, 1000 * 60 * 60);
+				this.timeOutRefresh = window.setInterval(() => {
+					console.log('每一秒要做的事');
+				}, 1000);
+			},
+
+			fnDotOver(key){
+				console.log('key is ', key);
+				$('.fade-dot-item').removeClass('active').eq(key).addClass('active');
+				$('#fade').find('.fade-main-item').fadeOut().eq(key).fadeIn('active');
+			},
+
 			addAry(){
 				const vm = this;
 				// TREAD
@@ -813,6 +844,7 @@ end if
 			cpnSideItem,
 			cpnMixin,
 			cpnFade,
+			cpnFadeDot,
 			cpnTales,
 			// 2 v
 			cpnBlog,

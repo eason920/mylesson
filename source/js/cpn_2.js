@@ -53,22 +53,6 @@ const cpnOffice = {
 		`
 }
 
-const cpnSideItem = {
-	props: ['prop', 'reqUrl', 'reqSort'],
-	template: `
-			<a class="sidebar-item" :data-sort='reqSort' :href='reqUrl' target='article'>
-				<div class="sidebar-left">
-					<div class="sidebar-dot"></div>
-					<div class="sidebar-info">
-						<div class="sidebar-time">{{prop.time}}</div>
-						<div class="sidebar-title">{{prop.title}}</div>
-					</div>
-				</div>
-				<div class="sidebar-right">{{prop.lv}}</div>
-			</a>
-		`
-};
-
 const cpnMixin = {
 	props: ['prop', 'reqUrl', 'reqPic'],
 	template: `
@@ -97,6 +81,32 @@ const cpnFade = {
 		</a>
 	`
 };
+
+const cpnFadeDot = {
+	props: ['prop', 'reqIndex'],
+	template: `
+		<div 
+			class="fade-dot-item"
+			:class="{'active': reqIndex==0}"
+			:data-index='reqIndex'
+			@mouseover='emitEvent'
+			@mouseout='emitEvent2'
+		></div>
+	`,
+	data: function(){
+		return {
+			cKey: this.reqIndex,
+		}
+	},
+	methods: {
+		emitEvent(){
+			this.$emit('connecter', this.reqIndex)
+		},
+		emitEvent2(){
+			this.$emit('connecter2')
+		}
+	}
+}
 
 const cpnTales = {
 	props: ['prop', 'reqUrl', 'reqPic'],
@@ -147,3 +157,22 @@ const cpnMusicbox = {
 	</div>
 	`
 }
+
+// =============================
+// == SIDE-BAR v
+// =============================
+const cpnSideItem = {
+	props: ['prop', 'reqUrl', 'reqSort'],
+	template: `
+			<a class="sidebar-item" :data-sort='reqSort' :href='reqUrl' target='article'>
+				<div class="sidebar-left">
+					<div class="sidebar-dot"></div>
+					<div class="sidebar-info">
+						<div class="sidebar-time">{{prop.time}}</div>
+						<div class="sidebar-title">{{prop.title}}</div>
+					</div>
+				</div>
+				<div class="sidebar-right">{{prop.lv}}</div>
+			</a>
+		`
+};
