@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>vue component emit</title>
+	<script src="./.tmp/assets/plugins/jquery/jquery.1.12.4.min.js"></script>
+	<script src="./.tmp/assets/plugins/vue/vue2.6.12.js"></script>
+	<link rel="stylesheet" href="./source/css/mylesson_2.css">
+	<style>
+		html, body{
+			padding: 0;
+			background-color: greenyellow
+		}
+		.fade-dot{
+			right: 0;
+			left: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="fade-dot">
+		<cpn-Fade-dot
+			:prop='item'
+			v-for='(item, i) in fade'
+			:req-index='i'
+			@connecter='fnDotOver'
+			@connecter2='cleanTimeOut'
+			:key='i'
+		></cpn-fade-dot>
+	</div>
+
+	<script>
+		const cpnFadeDot = {
+			props: ['prop', 'reqIndex'],
+			template: `
+				<div 
+					class="fade-dot-item"
+					:class="{'active': reqIndex==0}"
+					:data-index='reqIndex'
+					@mouseover='emitEvent'
+					@mouseout='emitEvent2'
+				></div>
+			`,
+			data: function(){
+				return {
+					cKey: this.reqIndex,
+				}
+			},
+			methods: {
+				emitEvent(){
+					this.$emit('connecter', this.reqIndex)
+				},
+				emitEvent2(){
+					this.$emit('connecter2')
+				}
+			}
+		};
+
+		new Vue({
+			el: '.fade-dot',
+			components: {
+				cpnFadeDot
+			},
+			data: {
+				fade: [
+					{
+						Tnews_tid: "0",
+						Tnews_tname: "0",
+						Tnews_today: "0",
+						articletype: "Trend",
+						ch_Slogan: "道瓊指數突破3萬點",
+						ch_article: "美國股市11月24日首度突破3萬點大關，川普總統在白宮記者室突然召開記者會。自從選舉敗給拜登後，川普漸漸不常在公開場合露面。川普總統在記者室發表談話時，副總統彭斯站在他後面，面無表情。川普在白宮跟記者說：「我只是想要恭賀大家。股市道瓊工業指數剛剛達到3萬點，這是歷史最高水準。我們從來沒有突破過3萬點，儘管許多事情跟著疫情發生。」他繼續說：「從未突破那個數字，那是神聖的數字，3萬點。」這位即將卸任的總統說：「這是2020年初以來第九次，也是川普政府任內第48次打破記錄。」川普曾誇耀股市大漲是他在白宮政績的證據，不過股市飆漲他就歸功於自己，股市週期性下跌就置之不理。外界推測他短暫露面可能是因為道瓊工業指數出現歷史性上漲而想要居功，試圖搶走拜登的鋒頭。他在道瓊工業指數突破3萬點大關約一小時後發表關於股市的談話。疫苗的樂觀情緒推動股市普遍上揚。拜登可能任命前聯準會主席葉倫擔任下一任財政部長，也支撐了股市上漲。在白宮記者室匆匆召開的記者會，川普講了65秒，然後沒有回答記者問題就離開。",
+						ch_class: "財經社會",
+						ch_subject: "川普公布神聖數字",
+						en_article: "US President Donald Trump called a surprise press conference in the White House briefing room as the stock market surpassed 30,000 points for the first time on November 24. Trump’s appearance came as he has increasingly been out of the public eye since his election defeat to Joe Biden. President Trump spoke in the briefing room as Vice President Mike Pence stood behind him, expressionless. “I just want to congratulate everybody. The stock market Dow Jones Industrial Average just hit 30,000, which is the highest in history. We have never broken 30,000 and that is despite everything that has taken place with the pandemic,” Trump told reporters at the White House. “Never been broken, that number. That’s a sacred number, 30,000,” he added. “That’s the ninth time since the beginning of 2020, and it’s the 48th time that we’ve broken records during the Trump administration,” said the outgoing president. Trump has bragged about a stunning run-up in the stock market as evidence of his success in the White House, taking credit for soaring highs and brushing off periodic dips. His brief appearance may have been an attempt to get credit for the historic rise on the Dow and to steal the spotlight from Biden. His remarks on the stock market were delivered roughly an hour after the Dow crossed the 30,000 milestone. Vaccine optimism drove a broad rally in stocks. The rally was also supported by the likelihood that former Federal Reserve Chair Janet Yellen will be Biden’s pick as the next Treasury Secretary. At a hurriedly convened media gathering in the White House press briefing room, Trump spoke for 65 seconds and then vanished without taking any questions from reporters. ",
+						en_class: "Money＆Society",
+						en_subject: "Trump Touts Dow Jones at 30,000",
+						ndate: "2020/12/3",
+						news_id: "19534",
+						pic: "201202img-newsC19534-1-1m.jpg",
+						read_count: "21",
+						score: "C1",
+						xml: "news20201203-19534v2.xml",
+					},
+					{
+						Tnews_tid: "0",
+						Tnews_tname: "0",
+						Tnews_today: "0",
+						articletype: "Trend",
+						ch_Slogan: "2020年關鍵字",
+						ch_article: "2020年有太多關鍵字了，以致牛津英語字典無法用一個單字總結這一年。所以它在為題《前所未有的年度熱詞》的報告書中擴充了詞彙表以列入更多的單字。該字典將挑選出來的單字分為五大類別：「新冠肺炎相關熱詞」、「科技與遠程學習」、「環境」、「社會運動與社交媒體」以及「政治與經濟」。與新冠疫情相關的單字從三月份開始激增，包括「lockdown（封城）」、「social distancing（保持社交距離）」與「reopening（重啟）」。「Covid-19」是個新詞，首次被記載是在世界衛生組織於2月11日發佈的報告中，其使用頻率已超過「coronavirus（新冠病毒）」。遠程辦公帶動了一些生僻字的使用，如：「unmute（解除靜音）」。「Waist-up（腰部以上）」在封城前只是偶爾出現，現在被大量用在片語中，如：「waist-up outfits（腰部以上的服裝）」。澳洲嚴重的森林大火，使「bushfire（森林大火）」入選年度熱詞。在中國主席習近平宣布中國將於2060年以前達到碳中和以後，「Net zero」在使用頻率上增加了，該詞意指以減少人類活動排放的溫室氣體為目標。「Black Lives Matter（黑人的命也是命）」因為黑人運動而成為熱門關鍵詞。相較於2019年，「mail-in（郵寄選票）」則在使用頻率上增加了3000成，反映出美國總統選舉的郵寄選票一事頗受關注。",
+						ch_class: "政治國際",
+						ch_subject: "牛津字典年度熱詞",
+						en_article: "2020 has too many keywords for the Oxford English Dictionary to sum up in just one word, so it has extended its wordlist to include a cluster of terms in its report titled “Words of an Unprecedented Year.” The chosen words were put into five categories: The Language of Covid-19, Technology and Remote Learning, The Environment, Social Movements and Social Media, and Politics and Economics. Use of terms related to the coronavirus pandemic starts to spike from March onward, including “lockdown,” “social distancing” and “reopening.” “Covid-19,” a new term first recorded on February 11 in a report by the World Health Organization, has overtaken “coronavirus” in frequency. Working remotely has spawned the use of several uncommon words, such as “unmute.” “Waist-up” emerged occasionally before the lockdown, now it has been commonly used in phrases like “waist-up outfits.” Australia’s worst wildfire puts “bushfire” on the list. “Net zero,” a target of reducing the emission of greenhouse gases produced by human activity, has seen a rise in its use after Chinese President Xi Jinping announced that China will be carbon neutral by 2060. “Black Lives Matter” has become a key phrase as a result of the movement campaign for the black population. “Mail-in” has increased by 3000% in use compared with 2019, reflecting the focus on the postal votes in the U.S. presidential election. ",
+						en_class: "Politics",
+						en_subject: "Words of an Unprecedented Year",
+						ndate: "2020/12/2",
+						news_id: "19530",
+						pic: "201201img-newsC19530-1-1m.jpg",
+						read_count: "242",
+						score: "B1",
+						xml: "news20201202-19530v2.xml",
+					},
+					{
+						Tnews_tid: "0",
+						Tnews_tname: "0",
+						Tnews_today: "0",
+						articletype: "Trend",
+						ch_Slogan: "道瓊指數突破3萬點",
+						ch_article: "美國股市11月24日首度突破3萬點大關，川普總統在白宮記者室突然召開記者會。自從選舉敗給拜登後，川普漸漸不常在公開場合露面。川普總統在記者室發表談話時，副總統彭斯站在他後面，面無表情。川普在白宮跟記者說：「我只是想要恭賀大家。股市道瓊工業指數剛剛達到3萬點，這是歷史最高水準。我們從來沒有突破過3萬點，儘管許多事情跟著疫情發生。」他繼續說：「從未突破那個數字，那是神聖的數字，3萬點。」這位即將卸任的總統說：「這是2020年初以來第九次，也是川普政府任內第48次打破記錄。」川普曾誇耀股市大漲是他在白宮政績的證據，不過股市飆漲他就歸功於自己，股市週期性下跌就置之不理。外界推測他短暫露面可能是因為道瓊工業指數出現歷史性上漲而想要居功，試圖搶走拜登的鋒頭。他在道瓊工業指數突破3萬點大關約一小時後發表關於股市的談話。疫苗的樂觀情緒推動股市普遍上揚。拜登可能任命前聯準會主席葉倫擔任下一任財政部長，也支撐了股市上漲。在白宮記者室匆匆召開的記者會，川普講了65秒，然後沒有回答記者問題就離開。",
+						ch_class: "財經社會",
+						ch_subject: "川普公布神聖數字",
+						en_article: "US President Donald Trump called a surprise press conference in the White House briefing room as the stock market surpassed 30,000 points for the first time on November 24. Trump’s appearance came as he has increasingly been out of the public eye since his election defeat to Joe Biden. President Trump spoke in the briefing room as Vice President Mike Pence stood behind him, expressionless. “I just want to congratulate everybody. The stock market Dow Jones Industrial Average just hit 30,000, which is the highest in history. We have never broken 30,000 and that is despite everything that has taken place with the pandemic,” Trump told reporters at the White House. “Never been broken, that number. That’s a sacred number, 30,000,” he added. “That’s the ninth time since the beginning of 2020, and it’s the 48th time that we’ve broken records during the Trump administration,” said the outgoing president. Trump has bragged about a stunning run-up in the stock market as evidence of his success in the White House, taking credit for soaring highs and brushing off periodic dips. His brief appearance may have been an attempt to get credit for the historic rise on the Dow and to steal the spotlight from Biden. His remarks on the stock market were delivered roughly an hour after the Dow crossed the 30,000 milestone. Vaccine optimism drove a broad rally in stocks. The rally was also supported by the likelihood that former Federal Reserve Chair Janet Yellen will be Biden’s pick as the next Treasury Secretary. At a hurriedly convened media gathering in the White House press briefing room, Trump spoke for 65 seconds and then vanished without taking any questions from reporters. ",
+						en_class: "Money＆Society",
+						en_subject: "Trump Touts Dow Jones at 30,000",
+						ndate: "2020/12/3",
+						news_id: "19534",
+						pic: "201202img-newsC19534-1-1m.jpg",
+						read_count: "21",
+						score: "C1",
+						xml: "news20201203-19534v2.xml",
+					},
+					{
+						Tnews_tid: "0",
+						Tnews_tname: "0",
+						Tnews_today: "0",
+						articletype: "Trend",
+						ch_Slogan: "2020年關鍵字",
+						ch_article: "2020年有太多關鍵字了，以致牛津英語字典無法用一個單字總結這一年。所以它在為題《前所未有的年度熱詞》的報告書中擴充了詞彙表以列入更多的單字。該字典將挑選出來的單字分為五大類別：「新冠肺炎相關熱詞」、「科技與遠程學習」、「環境」、「社會運動與社交媒體」以及「政治與經濟」。與新冠疫情相關的單字從三月份開始激增，包括「lockdown（封城）」、「social distancing（保持社交距離）」與「reopening（重啟）」。「Covid-19」是個新詞，首次被記載是在世界衛生組織於2月11日發佈的報告中，其使用頻率已超過「coronavirus（新冠病毒）」。遠程辦公帶動了一些生僻字的使用，如：「unmute（解除靜音）」。「Waist-up（腰部以上）」在封城前只是偶爾出現，現在被大量用在片語中，如：「waist-up outfits（腰部以上的服裝）」。澳洲嚴重的森林大火，使「bushfire（森林大火）」入選年度熱詞。在中國主席習近平宣布中國將於2060年以前達到碳中和以後，「Net zero」在使用頻率上增加了，該詞意指以減少人類活動排放的溫室氣體為目標。「Black Lives Matter（黑人的命也是命）」因為黑人運動而成為熱門關鍵詞。相較於2019年，「mail-in（郵寄選票）」則在使用頻率上增加了3000成，反映出美國總統選舉的郵寄選票一事頗受關注。",
+						ch_class: "政治國際",
+						ch_subject: "牛津字典年度熱詞",
+						en_article: "2020 has too many keywords for the Oxford English Dictionary to sum up in just one word, so it has extended its wordlist to include a cluster of terms in its report titled “Words of an Unprecedented Year.” The chosen words were put into five categories: The Language of Covid-19, Technology and Remote Learning, The Environment, Social Movements and Social Media, and Politics and Economics. Use of terms related to the coronavirus pandemic starts to spike from March onward, including “lockdown,” “social distancing” and “reopening.” “Covid-19,” a new term first recorded on February 11 in a report by the World Health Organization, has overtaken “coronavirus” in frequency. Working remotely has spawned the use of several uncommon words, such as “unmute.” “Waist-up” emerged occasionally before the lockdown, now it has been commonly used in phrases like “waist-up outfits.” Australia’s worst wildfire puts “bushfire” on the list. “Net zero,” a target of reducing the emission of greenhouse gases produced by human activity, has seen a rise in its use after Chinese President Xi Jinping announced that China will be carbon neutral by 2060. “Black Lives Matter” has become a key phrase as a result of the movement campaign for the black population. “Mail-in” has increased by 3000% in use compared with 2019, reflecting the focus on the postal votes in the U.S. presidential election. ",
+						en_class: "Politics",
+						en_subject: "Words of an Unprecedented Year",
+						ndate: "2020/12/2",
+						news_id: "19530",
+						pic: "201201img-newsC19530-1-1m.jpg",
+						read_count: "242",
+						score: "B1",
+						xml: "news20201202-19530v2.xml",
+					}
+				]
+			},
+			methods: {
+				cleanTimeOut() {
+				console.log('cleanTimeOut()');
+				let vm = this;
+				clearTimeout(vm.timeOutProcessId);
+				window.clearInterval(vm.timeOutRefresh);
+			},
+
+			fnDotOver(i){
+				console.log('i is ', i);
+				$('.fade-dot-item').removeClass('active').eq(i).addClass('active');
+				//$('.fade-dot').find('.fade-main-item').fadeOut().eq(i).fadeIn('active');
+				// ** ^ 可以不用「預先綁定」方式寫 v 用以下方式即可
+				$('.fade-main-item').fadeOut().eq(i).fadeIn('active');
+			},
+			}
+		});
+	</script>
+</body>
+</html>

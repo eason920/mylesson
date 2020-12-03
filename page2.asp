@@ -102,10 +102,10 @@ end if
 						<div class="grid-title">國際時事</div>
 						<div class="grid1-box">
 							<cpn-tread
-								:prop='key'
-								v-for='(key, i) in trend'
-								:req-url='key.news_id | filterArticleLink'
-								:req-pic='key.pic | filterSrc'
+								:prop='item'
+								v-for='(item, i) in trend'
+								:req-url='item.news_id | filterArticleLink'
+								:req-pic='item.pic | filterSrc'
 								:key='i'
 							></cpn-tread>
 						</div>
@@ -114,30 +114,31 @@ end if
 						<div id="fade">
 							<div class="fade-main">
 								<cpn-fade
-									:prop='key'
-									v-for='(key, i) in fade' 
-									:req-url='key.news_id | filterArticleLink' 
-									:req-pic='key.pic | filterSrc | filterBG'
+									:prop='item'
+									v-for='(item, i) in fade' 
+									:req-url='item.news_id | filterArticleLink' 
+									:req-pic='item.pic | filterSrc | filterBG'
 									:key='i'
+									@connecter='fnClearInterval'
+									@connecter2='fnSetInterval'
 								></cpn-fade>
 							</div>
 							<div class="fade-dot">
 								<cpn-Fade-dot
-									:prop='key'
-									v-for='(key, i) in fade'
+									:prop='item'
+									v-for='(item, i) in fade'
 									:req-index='i'
-									@connecter='fnDotOver'
-									@connecter2='cleanTimeOut'
+									@connecter='fnDotOver(i)'
 									:key='i'
 								></cpn-fade-dot>
 							</div>
 						</div>
 						<div class="grid22-box">
 							<cpn-mixin
-								:prop='key'
-								v-for='(key, i) in mixin' 
-								:req-url='key.news_id | filterArticleLink' 
-								:req-pic='key.pic | filterSrc | filterBG'
+								:prop='item'
+								v-for='(item, i) in mixin' 
+								:req-url='item.news_id | filterArticleLink' 
+								:req-pic='item.pic | filterSrc | filterBG'
 								:key='i'
 							></cpn-mixin>
 						</div>
@@ -154,9 +155,9 @@ end if
 						<div class="grid-title is-1">生活新知</div>
 						<div class="grid3-box">
 							<cpn-living
-								:prop='key'
-								v-for='(key, i) in living' 
-								:req-url='key.news_id | filterArticleLink'
+								:prop='item'
+								v-for='(item, i) in living' 
+								:req-url='item.news_id | filterArticleLink'
 								:key='i'
 								></cpn-living>
 						</div>
@@ -171,10 +172,10 @@ end if
 						<div class="grid-title is-1">商務情境</div>
 						<div class="grid4-box">
 							<cpn-office
-								:prop='key'
-								v-for='(key, i) in office' 
-								:req-url='key.news_id | filterArticleLink'
-								:req-category='key.en_category'
+								:prop='item'
+								v-for='(item, i) in office' 
+								:req-url='item.news_id | filterArticleLink'
+								:req-category='item.en_category'
 								:key='i'
 							></cpn-office>
 						</div>
@@ -185,10 +186,10 @@ end if
 						<div class="grid-title is-2">童話故事</div>
 						<div class="grid42-box">
 							<cpn-tales 
-								:prop='key'
-								v-for='(key, i) in tales' 
-								:req-url='key.indx | filterTalesLink' 
-								:req-pic='key.pic | filterBG'
+								:prop='item'
+								v-for='(item, i) in tales' 
+								:req-url='item.indx | filterTalesLink' 
+								:req-pic='item.pic | filterBG'
 								:key='i'
 							></cpn-tales>
 						</div>
@@ -213,10 +214,10 @@ end if
 					<div class="grid1">
 						<div class="grid1-box">
 							<cpn-blog
-								:prop='key'
-								v-for='(key, i) in blog'
-								:req-url='key.indx | filterBlogLink'
-								:req-pic='key.pic'
+								:prop='item'
+								v-for='(item, i) in blog'
+								:req-url='item.indx | filterBlogLink'
+								:req-pic='item.pic'
 								:key='i'
 							></cpn-blog>
 						</div>
@@ -233,19 +234,19 @@ end if
 					</div>
 					<div class="grid3">
 						<cpn-program
-							:prop='key'
-							v-for='(key, i) in program1'
-							:req-fn='key.indx | filterProgramFn'
-							:req-pic='key.pic | filterBG'
+							:prop='item'
+							v-for='(item, i) in program1'
+							:req-fn='item.indx | filterProgramFn'
+							:req-pic='item.pic | filterBG'
 							:key='i'
 						></cpn-program>
 					</div>
 					<div class="grid4">
 						<cpn-program
-							:prop='key'
-							v-for='(key, i) in program2'
-							:req-fn='key.indx | filterProgramFn'
-							:req-pic='key.pic | filterBG'
+							:prop='item'
+							v-for='(item, i) in program2'
+							:req-fn='item.indx | filterProgramFn'
+							:req-pic='item.pic | filterBG'
 							:key='i'
 						></cpn-program>
 					</div>
@@ -253,10 +254,10 @@ end if
 						<div class="grid5-title">唱歌學英文</div>
 						<div class="grid5-box">
 							<cpn-musicbox
-								:prop='key'
-								v-for='(key, i) in musicbox'
-								:req-fn='key.indx | filterMusicFn'
-								:req-pic='key.pic | filterBG'
+								:prop='item'
+								v-for='(item, i) in musicbox'
+								:req-fn='item.indx | filterMusicFn'
+								:req-pic='item.pic | filterBG'
 								:key='i'
 							></cpn-musicbox>
 						</div>
@@ -282,10 +283,10 @@ end if
 					<div id="sidebar-scroller-title">複習列表 REVIEW</div>
 					<div id="sidebar-list">
 						<cpn-side-item
-							:prop='key'
-							v-for='(key, i) in review' 
-							:req-sort='key.sort' 
-							:req-url='key.url'
+							:prop='item'
+							v-for='(item, i) in review' 
+							:req-sort='item.sort' 
+							:req-url='item.url'
 							:key='i'
 						></cpn-side-item>
 					</div>
@@ -551,11 +552,25 @@ end if
 					};
 
 					let fadeIndex = 0;
-					const fadeMax = 2;
+					const fadeMax = 2; // FADE-SHOW = 2 + 2
 					let fid = setInterval(fadePush, 0);
 					let mixinIndex = 0;
-					const mixinMax = 3;
+					const mixinMax = 3;// MIXIN = 3 + 3
 					let mid;
+
+
+					console.log('aaaaaaaaaaaaaaaaa', vm.mixin, vm.mixin[0]);
+					console.log('js', JSON.stringify(vm.mixin));
+					console.log('jjjjjjjjjjjjjjjjjj',   JSON.parse( JSON.stringify(vm.mixin) )  );
+
+					vm.mixin.sort(function(n, c){
+						console.log('next ', n.ndate, '/ current ', c.ndate, ' n > c ? ', n.ndate > c.ndate );
+						if( n.ndate > c.ndate ){ return -1 }else{ return 1 };
+					});
+
+					// artOffice.sort(function(n, c){
+					// 	if( n.news_id > c.news_id ){ return -1 }else{ return 1 };
+					// });
 
 					// --------------------------------
 					// -- PROGRAM v
@@ -596,34 +611,7 @@ end if
 					// ==========================================
 					// == FADE ANIMATION v
 					// ==========================================
-					const $item = $('.fade-main-item');
-					const $dot = $('.fade-dot-item');
-					
-
-					// vm.smax = $('#fade').find('.fade-main-item').length - 1;
-					console.log('smax is ', vm.smax);
-
-					// setTimeout(()=>{
-					// 	vm.sid= setInterval(vm.fnFadeAni, vm.fadeTimeDelay);
-					// }, 1000);
-
-					// $('#fade').find('.fade-main-item').hover(function(){
-					// 	console.log('fade in');
-					// 	// clearInterval(vm.sid);
-					// 	vm.sid = '';
-					// }, function(){
-					// 	console.log('fade out');
-					// 	vm.sid = setInterval(vm.fnFadeAni, vm.fadeTimeDelay);
-					// });
-
-					// $('.fade-dot-item').mouseover(function () {
-					// 	const idx = $(this).index();
-					// 	console.log('dot-item in', idx);
-					// 	$('#fade').find('.fade-main-item').fadeOut(vm.fadeTimeDotChange).eq(idx).fadeIn(vm.fadeTimeDotChange);
-					// 	$('.fade-dot-item').removeClass('active').eq(idx).addClass('active');
-					// });
-
-					vm.setTimeoutFun();
+					vm.fnSetInterval();
 				}
 			});
 
@@ -633,27 +621,30 @@ end if
 			$(window).resize(()=>{ vm.fnGiveHeight() });
 		},
 		methods: {
-			cleanTimeOut() {
-				console.log('cleanTimeOut()');
+			fnClearInterval() {
 				let vm = this;
-				clearTimeout(vm.timeOutProcessId);
 				window.clearInterval(vm.timeOutRefresh);
 			},
 
-			setTimeoutFun() {
+			fnSetInterval() {
 				let vm = this;
-				this.timeOutProcessId = setTimeout(() => {
-					console.log('一小時後要做的事');
-				}, 1000 * 60 * 60);
 				this.timeOutRefresh = window.setInterval(() => {
-					console.log('每一秒要做的事');
-				}, 1000);
+					vm.sIndex ++;
+					if( vm.sIndex >= vm.sMax ){ vm.sIndex = 0 };
+					//
+					vm.fnFadeAni(vm.sIndex, 1500);
+				}, vm.fadeTimeDelay);
 			},
 
-			fnDotOver(key){
-				console.log('key is ', key);
-				$('.fade-dot-item').removeClass('active').eq(key).addClass('active');
-				$('#fade').find('.fade-main-item').fadeOut().eq(key).fadeIn('active');
+			fnDotOver(i){
+				const vm = this;
+				if( i != vm.sIndex ){ vm.fnFadeAni(i, 300) };
+				vm.sIndex = i;
+			},
+
+			fnFadeAni(i, duration){
+				$('.fade-dot-item').removeClass('active').eq(i).addClass('active');
+				$('.fade-main-item').fadeOut(duration).eq(i).fadeIn(duration);
 			},
 
 			addAry(){
@@ -767,14 +758,6 @@ end if
 					$('#app').css('transform', 'translateX(' + vm.transX + 'px)');
 				};
 			},
-
-			fnFadeAni(){
-				const vm = this;
-				vm.si < vm.smax ? vm.si++ : vm.si = 0;
-				console.log('si is ', vm.si);
-				$('#fade').find('.fade-main-item').fadeOut(vm.fadeTimeChange).eq(vm.si).fadeIn(vm.fadeTimeChange);
-				$('.fade-dot-item').removeClass('active').eq(vm.si).addClass('active');
-			},
 			
 			fnOpenSideBar(){
 				const vm = this;
@@ -789,13 +772,10 @@ end if
 			}
 		},
 		data: {
-			// SIDE-BAR v
-			si: 0,
-			smax: 3,
-			sid: '',
+			// FADE-SHOW v
+			sIndex: 0,
+			sMax: 4,
 			fadeTimeDelay: 2000,
-			fadeTimeChange: 1500,
-			fadeTimeDotChange: 300,
 
 			// PROGRAM SINGLE v
 			program: {

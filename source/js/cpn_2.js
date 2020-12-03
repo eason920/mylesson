@@ -17,69 +17,41 @@ Vue.filter('filterMagazineFn', (id) => {return 'https://funday.asia/self-study/M
 const cpnTread = {
 	props: ['prop', 'reqUrl', 'reqPic'],
 	template: `
-	<a class="grid1-item add-hr" :href="reqUrl" target='article'>
-		<div class="grid-subtitle">{{prop.ch_subject}}</div>
-		<div class="grid-content"><img class="grid1-img" :src='reqPic'/>{{prop.ch_article}}</div>
-		<div class="grid-bottom">(繼續閱讀)
-			<div class="grid-view"> <img src="./2020/images/view.svg"/><span>{{prop.read_count}}</span></div>
-		</div>
-	</a>
+		<a class="grid1-item add-hr" :href="reqUrl" target='article'>
+			<div class="grid-subtitle">{{prop.ch_subject}}</div>
+			<div class="grid-content"><img class="grid1-img" :src='reqPic'/>{{prop.ch_article}}</div>
+			<div class="grid-bottom">
+				(繼續閱讀)
+				<div class="grid-view">{{prop.ndate}}</div>
+			</div>
+		</a>
 	`
+	// <div class="grid-view"><img src="./2020/images/view.svg"/><span>{{prop.read_count}}</span></div>
 }
-
-const cpnLiving = {
-	props: ['prop', 'reqUrl'],
-	template: `
-			<a class="grid3-item add-hr" :href="reqUrl" target='article'>
-				<div class="grid-subtitle">{{prop.ch_subject}}</div>
-				<div class="grid-content">{{prop.ch_article}}</div>
-				<div class="grid-bottom">(繼續閱讀)
-					<div class="grid-view"><img src="./2020/images/view.svg"/><span>{{prop.read_count}}</span></div>
-				</div>
-			</a>
-		`
-};
-
-const cpnOffice = {
-	props: ['prop', 'reqUrl', 'reqCategory'],
-	template: `
-			<a class="grid4-item add-hr" :href="reqUrl" :data-category="reqCategory"  target='article'>
-				<div class="grid4-sort">{{prop.ch_category}}</div>
-				<div class="grid4-right">
-					<div class="grid-subtitle">{{prop.ch_subject}}</div>
-					<div class="grid4-en">{{prop.en_subject}}</div>
-				</div>
-			</a>
-		`
-}
-
-const cpnMixin = {
-	props: ['prop', 'reqUrl', 'reqPic'],
-	template: `
-			<a class="grid22-item add-hr" :href="reqUrl" target='article'>
-				<div class="grid22-img" :style="reqPic"></div>
-				<div class="grid22-right">
-					<div class="grid22-above">
-						<div class="grid22-ch">{{prop.ch_subject}}</div>
-						<div class="grid22-en">{{prop.en_subject}}</div>
-						<div class="grid-content">{{prop.ch_article}}</div>
-					</div>
-					<div class="grid-bottom">(繼續閱讀)
-						<div class="grid-view"> <img src="./2020/images/view.svg"/><span>{{prop.read_count}}</span></div>
-					</div>
-				</div>
-			</a>
-		`
-};
 
 const cpnFade = {
 	props: ['prop', 'reqUrl', 'reqPic'],
 	template: `
-		<a class="fade-main-item" :href="reqUrl" :style="reqPic" target='article'>
+		<a
+			class="fade-main-item"
+			:href="reqUrl"
+			:style="reqPic"
+			target='article'
+			@mouseover='emitEvent'
+			@mouseout='emitEvent2'
+		>
 			<div class="grid-subtitle">{{prop.ch_subject}}</div>
 			<div class="fade-en">{{prop.en_subject}}</div>
 		</a>
-	`
+	`,
+	methods: {
+		emitEvent(){
+			this.$emit('connecter');
+		},
+		emitEvent2(){
+			this.$emit('connecter2')
+		}
+	}
 };
 
 const cpnFadeDot = {
@@ -88,9 +60,7 @@ const cpnFadeDot = {
 		<div 
 			class="fade-dot-item"
 			:class="{'active': reqIndex==0}"
-			:data-index='reqIndex'
 			@mouseover='emitEvent'
-			@mouseout='emitEvent2'
 		></div>
 	`,
 	data: function(){
@@ -100,12 +70,56 @@ const cpnFadeDot = {
 	},
 	methods: {
 		emitEvent(){
-			this.$emit('connecter', this.reqIndex)
+			this.$emit('connecter')
 		},
-		emitEvent2(){
-			this.$emit('connecter2')
-		}
 	}
+}
+
+const cpnMixin = {
+	props: ['prop', 'reqUrl', 'reqPic'],
+	template: `
+		<a class="grid22-item add-hr" :href="reqUrl" target='article'>
+			<div class="grid22-img" :style="reqPic"></div>
+			<div class="grid22-right">
+				<div class="grid22-above">
+					<div class="grid22-ch">{{prop.ch_subject}}</div>
+					<div class="grid22-en">{{prop.en_subject}}</div>
+					<div class="grid-content">{{prop.ch_article}}</div>
+				</div>
+				<div class="grid-bottom">
+					(繼續閱讀)
+					<div class="grid-view">{{prop.ndate}}</div>
+				</div>
+			</div>
+		</a>
+	`
+};
+
+const cpnLiving = {
+	props: ['prop', 'reqUrl'],
+	template: `
+		<a class="grid3-item add-hr" :href="reqUrl" target='article'>
+			<div class="grid-subtitle">{{prop.ch_subject}}</div>
+			<div class="grid-content">{{prop.ch_article}}</div>
+			<div class="grid-bottom">
+				(繼續閱讀)
+				<div class="grid-view">{{prop.ndate}}</div>
+			</div>
+		</a>
+	`
+};
+
+const cpnOffice = {
+	props: ['prop', 'reqUrl', 'reqCategory'],
+	template: `
+		<a class="grid4-item add-hr" :href="reqUrl" :data-category="reqCategory"  target='article'>
+			<div class="grid4-sort">{{prop.ch_category}}</div>
+			<div class="grid4-right">
+				<div class="grid-subtitle">{{prop.ch_subject}}</div>
+				<div class="grid4-en">{{prop.en_subject}}</div>
+			</div>
+		</a>
+	`
 }
 
 const cpnTales = {
