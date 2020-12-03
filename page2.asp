@@ -538,6 +538,19 @@ end if
 						};
 					};
 
+openModal(isNew, item){
+if (isNew) {
+	this.tempProduct = {};
+	this.isNew = true
+} else {
+	this.tempProduct = Object.assign({}, item);
+	// this.tempProduct = item;
+	this.isNew = false;
+}
+$('#productModal').modal('show');
+// console.log(this.tempProduct);
+},
+
 					const mixinPush = function(){
 						// vm.mixin.push(vm.trend[0]);
 						// vm.mixin = Object.assign( {}, vm.trend[0] );
