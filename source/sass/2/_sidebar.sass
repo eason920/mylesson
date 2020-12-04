@@ -73,15 +73,78 @@ $w-l: 250px
 	display: flex
 	width: 100%
 	text-decoration: none
+	// margin v
 	margin-bottom: 25px
 	&:last-child
 		margin: 0
+
+	// bg-color v
 	&[data-sort='1']
+		.sidebar-time span
+			color: $c-o1
 		.sidebar-dot
-			background-color: #20A0A0
-	&[data-sort='2']
+			background-color: $c-o1
+	&[data-sort='12']
+		.sidebar-time span
+			color: $c-o12
 		.sidebar-dot
-			background-color: #F74769
+			background-color: $c-o12
+	&[data-sort='3']
+		.sidebar-time span
+			color: $c-o3
+		.sidebar-dot
+			background-color: $c-o3
+	&[data-sort='4']
+		.sidebar-time span
+			color: $c-o4
+		.sidebar-dot
+			background-color: $c-o4
+	&[data-sort='5']
+		.sidebar-time span
+			color: $c-o5
+		.sidebar-dot
+			background-color: $c-o5
+	&[data-sort='6']
+		.sidebar-time span
+			color: $c-o6
+		.sidebar-dot
+			background-color: $c-o6
+	&[data-sort='7']
+		.sidebar-time span
+			color: $c-o7
+		.sidebar-dot
+			background-color: $c-o7
+	&[data-sort='8']
+		.sidebar-time span
+			color: $c-o8
+		.sidebar-dot
+			background-color: $c-o7
+	&[data-sort='9']
+		.sidebar-time span
+			color: $c-o9
+		.sidebar-dot
+			background-color: $c-o9
+	&[data-sort='10']
+		.sidebar-time span
+			color: $c-o10
+		.sidebar-dot
+			background-color: $c-o10
+	&[data-sort='11']
+		.sidebar-time span
+			color: $c-o11
+		.sidebar-dot
+			background-color: $c-o11
+
+	// column v
+	&.is-no-level
+		.sidebar-left
+			width: 100%
+		.sidebar-right
+			display: none
+
+.sidebar-time span
+	margin:
+		right: 5px
 
 .sidebar-left
 	width: $w-l

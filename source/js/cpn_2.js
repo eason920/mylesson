@@ -10,7 +10,23 @@ Vue.filter('filterBlogLink', (id) => { return 'https://funday.asia/blogDesktop/b
 Vue.filter('filterMusicFn', (id) => { return 'GoLink("MusicBoxPlay","whichStart=1&musicNo='+id+'")'});
 Vue.filter('filterProgramFn', (id) => { return 'GoLink("FunProgram","indx='+id+'")'});
 Vue.filter('filterMagazineFn', (id) => {return 'https://funday.asia/self-study/MZ/?SN='+id})
-
+Vue.filter('filterSort', (str) => {
+	let i;
+	switch( str ){
+		case '影片': i = 1;break;
+		case '測驗': i = 12;break;
+		case '寫作': i = 3;break;
+		case '童話': i = 4;break;
+		case '專欄': i = 5;break;
+		case '文章': i = 6;break;
+		case '音樂': i = 7;break;
+		case '會話': i = 8;break;
+		case '研習營': i = 9;break;
+		case '實力衝刺': i = 10;break;
+		case '朗讀練習': i = 11;break;
+	}
+	return i;
+})
 // ==========================================
 // == BLOCK 1 v
 // ==========================================
@@ -178,15 +194,19 @@ const cpnMusicbox = {
 const cpnSideItem = {
 	props: ['prop', 'reqUrl', 'reqSort'],
 	template: `
-			<a class="sidebar-item" :data-sort='reqSort' :href='reqUrl' target='article'>
+			<a class="sidebar-item" 
+				:class='{"is-no-level": !prop.level }'
+				:data-sort='reqSort'
+				:href='reqUrl'
+				target='article'>
 				<div class="sidebar-left">
 					<div class="sidebar-dot"></div>
 					<div class="sidebar-info">
-						<div class="sidebar-time">{{prop.time}}</div>
-						<div class="sidebar-title">{{prop.title}}</div>
+						<div class="sidebar-time"><span>{{prop.sort}}</span>{{prop.date}}</div>
+						<div class="sidebar-title">{{prop.level}} {{prop.subject}}</div>
 					</div>
 				</div>
-				<div class="sidebar-right">{{prop.lv}}</div>
+				<div class="sidebar-right">{{prop.level}}</div>
 			</a>
 		`
 };

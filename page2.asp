@@ -279,14 +279,14 @@ end if
 					<div id="sidebar-icon"><img src="./2020/images/member.svg" />個人等級</div>
 					<div id="sidebar-level">A2-3</div>
 				</div>
-				<div id="sidebar-scroller">
+				<div id="sidebar-scroller" @scroll='fnScroll'>
 					<div id="sidebar-scroller-title">複習列表 REVIEW</div>
 					<div id="sidebar-list">
 						<cpn-side-item
 							:prop='item'
 							v-for='(item, i) in review' 
-							:req-sort='item.sort' 
-							:req-url='item.url'
+							:req-sort='item.sort | filterSort' 
+							:req-url='item.id'
 							:key='i'
 						></cpn-side-item>
 					</div>
@@ -314,149 +314,43 @@ end if
 <script>
 	const vueSideBar = new Vue({
 		el: '#sidebar',
+		created(){},
+		methods: {
+			fnScroll(){
+				const vm = this;
+				const regexp1 = new RegExp(" ", "g");
+				const regexp2 = new RegExp(":", "g");
+				const regexp3 = new RegExp("px", "g");
+				const h = $('#sidebar-scroller').outerHeight();
+				const s = $('#sidebar-scroller .ps__thumb-y').attr('style').replace(regexp1, '').replace(regexp2, '').replace(regexp3, '').replace('top', '').replace('height', '').split(';');
+				console.log('scroll get h > ', h, ' / s >', s);
+				const sum = Number(s[0]) + Number(s[1]);
+				console.log('sum is ', sum, sum == h );
+				if( sum == h ){
+					
+					console.log('i is ', vm.getApi);
+					$.ajax({
+						type: 'GET',
+						url: 'https://funday.asia/mylesson/2020/api/reviewbar.asp?PG=' + vm.getApi,
+						success(res){
+							console.log('review page 1+ success >', JSON.parse(res));
+							const ary = JSON.parse(res);
+							ary.forEach(function(item){
+								vm.review.push(item);
+							})
+							console.log('1+ after review >', vm.review);
+							vm.getApi ++;
+						},
+						error(){
+							console.log('should be max');
+						}
+					});
+				}
+			},
+		},
 		data: {
-			review: [
-				{
-					sort: '1',
-					time: '2020/11/30',
-					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link1',
-					lv: 'B2-2'
-				},
-				{
-					sort: '2',
-					time: '2020/11/29',
-					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link2',
-					lv: 'A2-1'
-				},
-				{
-					sort: '1',
-					time: '2020/11/30',
-					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link1',
-					lv: 'B2-2'
-				},
-				{
-					sort: '2',
-					time: '2020/11/29',
-					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link2',
-					lv: 'A2-1'
-				},
-				{
-					sort: '1',
-					time: '2020/11/30',
-					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link1',
-					lv: 'B2-2'
-				},
-				{
-					sort: '2',
-					time: '2020/11/29',
-					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link2',
-					lv: 'A2-1'
-				},
-				{
-					sort: '1',
-					time: '2020/11/30',
-					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link1',
-					lv: 'B2-2'
-				},
-				{
-					sort: '2',
-					time: '2020/11/29',
-					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link2',
-					lv: 'A2-1'
-				},
-				{
-					sort: '1',
-					time: '2020/11/30',
-					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link1',
-					lv: 'B2-2'
-				},
-				{
-					sort: '2',
-					time: '2020/11/29',
-					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link2',
-					lv: 'A2-1'
-				},
-				{
-					sort: '1',
-					time: '2020/11/30',
-					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link1',
-					lv: 'B2-2'
-				},
-				{
-					sort: '2',
-					time: '2020/11/29',
-					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link2',
-					lv: 'A2-1'
-				},
-				{
-					sort: '1',
-					time: '2020/11/30',
-					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link1',
-					lv: 'B2-2'
-				},
-				{
-					sort: '2',
-					time: '2020/11/29',
-					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link2',
-					lv: 'A2-1'
-				},
-				{
-					sort: '1',
-					time: '2020/11/30',
-					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link1',
-					lv: 'B2-2'
-				},
-				{
-					sort: '2',
-					time: '2020/11/29',
-					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link2',
-					lv: 'A2-1'
-				},
-				{
-					sort: '1',
-					time: '2020/11/30',
-					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link1',
-					lv: 'B2-2'
-				},
-				{
-					sort: '2',
-					time: '2020/11/29',
-					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link2',
-					lv: 'A2-1'
-				},
-				{
-					sort: '1',
-					time: '2020/11/30',
-					title: 'cdn1桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link1',
-					lv: 'B2-2'
-				},
-				{
-					sort: '2',
-					time: '2020/11/29',
-					title: 'cdn2桃園機場計程車更加專業桃園機場計程車更加專業',
-					url: 's_link2',
-					lv: 'A2-1'
-				},
-			]
+			review: [],
+			getApi: 1,
 		},
 		components: {
 			cpnSideItem,
@@ -470,7 +364,7 @@ end if
 
 			$.ajax({
 				type: 'GET',
-				url: 'https://funday.asia/self-study/json/news_array.json',
+				url: 'https://funday.asia/mylesson/2020/api/Pg2Json.asp?levels=' + vm.memberLevel,
 				success: function(res){
 					console.log('success data is >', res);
 					const idxArt = res.findIndex(item => item.classify.toLowerCase() == 'article');
@@ -538,28 +432,11 @@ end if
 						};
 					};
 
-openModal(isNew, item){
-if (isNew) {
-	this.tempProduct = {};
-	this.isNew = true
-} else {
-	this.tempProduct = Object.assign({}, item);
-	// this.tempProduct = item;
-	this.isNew = false;
-}
-$('#productModal').modal('show');
-// console.log(this.tempProduct);
-},
-
 					const mixinPush = function(){
-						// vm.mixin.push(vm.trend[0]);
-						// vm.mixin = Object.assign( {}, vm.trend[0] );
-						vm.$set( vm.mixin, vm.trend[0] );
+						vm.mixin.push(vm.trend[0]);
 						vm.trend.splice(0,1);
 						//
-						// vm.mixin.push(vm.living[0]);
-						// vm.mixin = Object.assign( {}, vm.living[0] );
-						vm.$set( vm.mixin, vm.living[0] );
+						vm.mixin.push(vm.living[0]);
 						vm.living.splice(0,1);
 						//
 						mixinIndex ++;
@@ -575,18 +452,9 @@ $('#productModal').modal('show');
 					const mixinMax = 3;// MIXIN = 3 + 3
 					let mid;
 
-					// vm.mixin = Object.assign({}, vm.mixin);
-					console.log('aaaaaaaaaaaaaaaaa', vm.mixin, vm.mixin[0]);
-					console.log('js', JSON.stringify(vm.mixin));
-					console.log('jjjjjjjjjjjjjjjjjj',   JSON.parse( JSON.stringify(vm.mixin) )  );
-
-					vm.mixin.sort(function(n, c){
-						console.log('next ', n.ndate, '/ current ', c.ndate, ' n > c ? ', n.ndate > c.ndate );
-						if( n.ndate > c.ndate ){ return -1 }else{ return 1 };
-					});
-
-					// artOffice.sort(function(n, c){
-					// 	if( n.news_id > c.news_id ){ return -1 }else{ return 1 };
+					// vm.mixin.sort(function(n, c){
+					// 	console.log('next ', n.ndate, '/ current ', c.ndate, ' n > c ? ', n.ndate > c.ndate );
+					// 	if( n.ndate > c.ndate ){ return -1 }else{ return 1 };
 					// });
 
 					// --------------------------------
@@ -666,22 +534,22 @@ $('#productModal').modal('show');
 
 			addAry(){
 				const vm = this;
-				// TREAD
-				for(i=0; i<=2; i++){
-					vm.trend.push( vm.trend[i] );
-				}
-				// PROGRAM
-				for(i=0; i<=4; i++){
-					vm.program1.push( vm.program1[0] );
-				}
-				// MIXIN
-				for(i=0; i<=2; i++){
-					vm.mixin.push( vm.trend[i] );
-				};
-				// LIVING
-				for(i=0; i<=2; i++){
-					vm.living.push( vm.trend[i] );
-				};
+				// // TREAD
+				// for(i=0; i<=2; i++){
+				// 	vm.trend.push( vm.trend[i] );
+				// }
+				// // PROGRAM
+				// for(i=0; i<=4; i++){
+				// 	vm.program1.push( vm.program1[0] );
+				// }
+				// // MIXIN
+				// for(i=0; i<=2; i++){
+				// 	vm.mixin.push( vm.trend[i] );
+				// };
+				// // LIVING
+				// for(i=0; i<=2; i++){
+				// 	vm.living.push( vm.trend[i] );
+				// };
 				// OFFICE
 				vm.office[0].en_category = '1';
 				vm.office[0].ch_category = '書信';
@@ -785,10 +653,24 @@ $('#productModal').modal('show');
 					$('#sidebar').addClass('is-open');
 					if ($(window).width() < 1200) { vm.transX = vm.transX1199 }
 					$('#content .wrapper').css('transform', 'translateX('+ vm.transX +'px)');
-				}
+
+					console.log('getApi is ', vueSideBar._data.getApi );
+					$.ajax({
+						type: 'GET',
+						url: 'https://funday.asia/mylesson/2020/api/reviewbar.asp?PG=' + vueSideBar._data.getApi,
+						success(res){
+							// cpn-side-item
+							console.log('review success >', JSON.parse(res));
+							vueSideBar._data.review = JSON.parse(res);
+							console.log('vm.review', vm.review);
+							vueSideBar._data.getApi ++;
+						}
+					});
+				};
 			}
 		},
 		data: {
+			memberLevel: 5,
 			// FADE-SHOW v
 			sIndex: 0,
 			sMax: 4,
