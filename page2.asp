@@ -78,12 +78,12 @@ end if
 			</div>
 		</div>
 		<div id="content">
-			<div id="prev-page">
+			<a href='./intro.asp' id="prev-page">
 				<svg fill="none">
 					<path d="M19 2L2 23.5L19 45" stroke="white" stroke-width="4"></path>
 				</svg>
-			</div>
-			<div id="next-page">
+			</a>
+			<div id="next-page" style='display: none'>
 				<svg fill="none">
 					<path d="M2 2L19 23.5L2 45" stroke="white" stroke-width="4"></path>
 				</svg>
