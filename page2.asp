@@ -538,11 +538,28 @@ end if
 						};
 					};
 
+openModal(isNew, item){
+if (isNew) {
+	this.tempProduct = {};
+	this.isNew = true
+} else {
+	this.tempProduct = Object.assign({}, item);
+	// this.tempProduct = item;
+	this.isNew = false;
+}
+$('#productModal').modal('show');
+// console.log(this.tempProduct);
+},
+
 					const mixinPush = function(){
-						vm.mixin.push(vm.trend[0]);
+						// vm.mixin.push(vm.trend[0]);
+						// vm.mixin = Object.assign( {}, vm.trend[0] );
+						vm.$set( vm.mixin, vm.trend[0] );
 						vm.trend.splice(0,1);
 						//
-						vm.mixin.push(vm.living[0]);
+						// vm.mixin.push(vm.living[0]);
+						// vm.mixin = Object.assign( {}, vm.living[0] );
+						vm.$set( vm.mixin, vm.living[0] );
 						vm.living.splice(0,1);
 						//
 						mixinIndex ++;
@@ -558,7 +575,7 @@ end if
 					const mixinMax = 3;// MIXIN = 3 + 3
 					let mid;
 
-
+					// vm.mixin = Object.assign({}, vm.mixin);
 					console.log('aaaaaaaaaaaaaaaaa', vm.mixin, vm.mixin[0]);
 					console.log('js', JSON.stringify(vm.mixin));
 					console.log('jjjjjjjjjjjjjjjjjj',   JSON.parse( JSON.stringify(vm.mixin) )  );
