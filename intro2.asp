@@ -104,7 +104,7 @@ end if
 							<cpn-tread
 								:prop='item'
 								v-for='(item, i) in trend'
-								:req-url='item.news_id | filterArticleLink'
+								:req-fn='fnGoLink("News", item.xml)'
 								:req-pic='item.pic | filterSrc'
 								:key='i'
 							></cpn-tread>
@@ -116,7 +116,7 @@ end if
 								<cpn-fade
 									:prop='item'
 									v-for='(item, i) in fade' 
-									:req-url='item.news_id | filterArticleLink' 
+									:req-fn='fnGoLink("News", item.xml)' 
 									:req-pic='item.pic | filterSrc | filterBG'
 									:key='i'
 									@connecter='fnClearInterval'
@@ -137,7 +137,7 @@ end if
 							<cpn-mixin
 								:prop='item'
 								v-for='(item, i) in mixin' 
-								:req-url='item.news_id | filterArticleLink' 
+								:req-fn='fnGoLink("News", item.xml)' 
 								:req-pic='item.pic | filterSrc | filterBG'
 								:key='i'
 							></cpn-mixin>
@@ -146,7 +146,7 @@ end if
 					<div class="grid3">
 						<div class="grid3-video"
 							:style='program.above.pic | filterBG'
-							:onclick='program.above.indx | filterProgramFn'
+							:onclick='fnGoLink("FunProgram", program.above.indx)'
 						>
 							<!--iframe src="https://www.youtube.com/embed/Nw7wwHm4GxU?controls=0" frameborder="0"
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -157,15 +157,15 @@ end if
 							<cpn-living
 								:prop='item'
 								v-for='(item, i) in living' 
-								:req-url='item.news_id | filterArticleLink'
+								:req-fn='fnGoLink("News", item.xml)'
 								:key='i'
 								></cpn-living>
 						</div>
 						<div class="grid-title is-2">雜誌</div>
 						<a class="grid3-mgz"
-							:href='magazine.SN | filterMagazineFn'
+							href='#'
+							:onclick='fnGoLink("MZ", magazine.SN)'
 							:style='magazine.pic | filterBG '
-							target='magazine'
 						></a>
 					</div>
 					<div class="grid4">
@@ -174,7 +174,7 @@ end if
 							<cpn-office
 								:prop='item'
 								v-for='(item, i) in office' 
-								:req-url='item.news_id | filterArticleLink'
+								:req-fn='fnGoLink("News", item.xml)'
 								:req-category='item.en_category'
 								:key='i'
 							></cpn-office>
@@ -188,7 +188,7 @@ end if
 							<cpn-tales 
 								:prop='item'
 								v-for='(item, i) in tales' 
-								:req-url='item.indx | filterTalesLink' 
+								:req-fn='fnGoLink("FairyTales", item.indx)'
 								:req-pic='item.pic | filterBG'
 								:key='i'
 							></cpn-tales>
@@ -216,7 +216,7 @@ end if
 							<cpn-blog
 								:prop='item'
 								v-for='(item, i) in blog'
-								:req-url='item.indx | filterBlogLink'
+								:req-fn='fnGoLink("Blog", item.indx)'
 								:req-pic='item.pic'
 								:key='i'
 							></cpn-blog>
@@ -225,7 +225,7 @@ end if
 					<div class="grid2">
 						<div class="grid2-video"
 							:style='program.under.pic | filterBG'
-							:onclick='program.under.indx | filterProgramFn'
+							:onclick='fnGoLink("FunProgram", program.under.indx)'
 						>
 							<!--iframe src="https://www.youtube.com/embed/Nw7wwHm4GxU?controls=0" frameborder="0"
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -236,7 +236,7 @@ end if
 						<cpn-program
 							:prop='item'
 							v-for='(item, i) in program1'
-							:req-fn='item.indx | filterProgramFn'
+							:req-fn='fnGoLink("FunProgram", item.indx)'
 							:req-pic='item.pic | filterBG'
 							:key='i'
 						></cpn-program>
@@ -245,7 +245,7 @@ end if
 						<cpn-program
 							:prop='item'
 							v-for='(item, i) in program2'
-							:req-fn='item.indx | filterProgramFn'
+							:req-fn='fnGoLink("FunProgram", item.indx)'
 							:req-pic='item.pic | filterBG'
 							:key='i'
 						></cpn-program>
@@ -256,7 +256,7 @@ end if
 							<cpn-musicbox
 								:prop='item'
 								v-for='(item, i) in musicbox'
-								:req-fn='item.indx | filterMusicFn'
+								:req-fn='fnGoLink("MusicBoxPlay", item.indx)'
 								:req-pic='item.pic | filterBG'
 								:key='i'
 							></cpn-musicbox>
@@ -350,7 +350,7 @@ end if
 		},
 		data: {
 			review: [],
-			getApi: 1,
+			getApi: 0,
 		},
 		components: {
 			cpnSideItem,
@@ -449,7 +449,7 @@ end if
 					const fadeMax = 2; // FADE-SHOW = 2 + 2
 					let fid = setInterval(fadePush, 0);
 					let mixinIndex = 0;
-					const mixinMax = 3;// MIXIN = 3 + 3
+					const mixinMax = 4;// MIXIN = 4 + 4
 					let mid;
 
 					// vm.mixin.sort(function(n, c){
@@ -506,6 +506,33 @@ end if
 			$(window).resize(()=>{ vm.fnGiveHeight() });
 		},
 		methods: {
+			fnGoLink(from, id){
+				let value;
+				switch( from ){
+					case 'News':
+						value = "xml=" + id;
+						break;
+					case 'MZ':
+						value = 'SN=' + id;
+						break;
+					case 'FunProgram':
+						value = 'indx='+id;
+						break;
+					case 'FairyTales':
+						value = "sid=" + id;
+						break;
+					case 'Blog':
+						value = "classify=life&blog=" + id;
+						break;
+					case 'MusicBoxPlay':
+						value = "whichStart=1&musicNo=" + id;
+						break;
+					default:
+						value = id;
+				}
+				return 'GoLink("'+ from +'", "' + value + '")';
+			},
+			
 			fnClearInterval() {
 				let vm = this;
 				window.clearInterval(vm.timeOutRefresh);
@@ -551,16 +578,20 @@ end if
 				// 	vm.living.push( vm.trend[i] );
 				// };
 				// OFFICE
-				vm.office[0].en_category = '1';
-				vm.office[0].ch_category = '書信';
-				vm.office[1].en_category = '2';
-				vm.office[1].ch_category = '對話';
-				vm.office[2].en_category = '3';
-				vm.office[2].ch_category = '公告';
-				vm.office[3].en_category = '4';
-				vm.office[3].ch_category = '報告';
-				vm.office[4].en_category = '1';
-				vm.office[4].ch_category = '書信';
+				// vm.office[0].en_category = '1';
+				// vm.office[0].ch_category = '書信';
+				// vm.office[1].en_category = '2';
+				// vm.office[1].ch_category = '對話';
+				// vm.office[2].en_category = '3';
+				// vm.office[2].ch_category = '公告';
+				// vm.office[3].en_category = '4';
+				// vm.office[3].ch_category = '報告';
+				// vm.office[4].en_category = '1';
+				// vm.office[4].ch_category = '書信';
+				for(i=0; i<=4; i++){
+					vm.office[i].en_category = '2';
+					vm.office[i].ch_category = '商務';
+				}
 			},
 
 			fnGiveHeight(){
@@ -654,18 +685,20 @@ end if
 					if ($(window).width() < 1200) { vm.transX = vm.transX1199 }
 					$('#content .wrapper').css('transform', 'translateX('+ vm.transX +'px)');
 
-					console.log('getApi is ', vueSideBar._data.getApi );
-					$.ajax({
-						type: 'GET',
-						url: 'https://funday.asia/mylesson/2020/api/reviewbar.asp?PG=' + vueSideBar._data.getApi,
-						success(res){
-							// cpn-side-item
-							console.log('review success >', JSON.parse(res));
-							vueSideBar._data.review = JSON.parse(res);
-							console.log('vm.review', vm.review);
-							vueSideBar._data.getApi ++;
-						}
-					});
+					console.log('getApi is (add if )', vueSideBar._data.getApi );
+					if( vueSideBar._data.getApi == 0 ){
+						$.ajax({
+							type: 'GET',
+							url: 'https://funday.asia/mylesson/2020/api/reviewbar.asp?PG=' + vueSideBar._data.getApi,
+							success(res){
+								// cpn-side-item
+								console.log('review success >', JSON.parse(res));
+								vueSideBar._data.review = JSON.parse(res);
+								console.log('vm.review', vm.review);
+								vueSideBar._data.getApi ++;
+							}
+						});
+					};
 				};
 			}
 		},
