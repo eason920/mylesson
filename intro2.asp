@@ -6,8 +6,8 @@ response.Buffer = true
 session.Codepage =65001
 response.Charset = "utf-8"  
 
-mindx=Get_mid()  '--使用者ID
-cindx=Get_cid()  '--customer ID
+mindx=session("indx")  '--使用者ID
+cindx=session("ip_indx")  '--customer ID
 enddate=Get_enddate()  '--使用者到期日
 
 if session("indx")="" then
@@ -15,6 +15,16 @@ if session("indx")="" then
 	response.end()
 end if
 
+
+sql="select * from member_Levels where member_id="&mindx&" and customer_id="&cindx
+set rs=connection2.execute(sql)
+if not rs.eof then	  
+	asp_lv=rs("Levels")
+	asp_step=rs("Levels_step")
+else
+	asp_lv="2"
+	asp_step="1"
+end if
 
 %>
 <!DOCTYPE html>
@@ -99,7 +109,7 @@ end if
 				</div>
 				<div id="block1">
 					<div class="grid1">
-						<div class="grid-title">國際時事</div>
+						<div class="grid-title" onclick="GoLink('SearchArticle')">國際 ‧ 時事</div>
 						<div class="grid1-box">
 							<cpn-tread
 								:prop='item'
@@ -152,7 +162,7 @@ end if
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 								allowfullscreen="allowfullscreen"></iframe-->
 						</div>
-						<div class="grid-title is-1">生活新知</div>
+						<div class="grid-title is-1" onclick="GoLink('SearchArticle')">生活 ‧ 新知</div>
 						<div class="grid3-box">
 							<cpn-living
 								:prop='item'
@@ -169,7 +179,7 @@ end if
 						></a>
 					</div>
 					<div class="grid4">
-						<div class="grid-title is-1">商務情境</div>
+						<div class="grid-title is-1" onclick="GoLink('SearchArticle')">商務 ‧ 情境</div>
 						<div class="grid4-box">
 							<cpn-office
 								:prop='item'
@@ -183,7 +193,7 @@ end if
 						<a class="grid4-wt" href="#" style="background-image: url(./2020/images/wt.png)">
 							<div class="grid4-week">2020/11/20~2020/11/27</div>
 						</a>
-						<div class="grid-title is-2">童話故事</div>
+						<div class="grid-title is-2" onclick="GoLink('SearchStory')">童話故事</div>
 						<div class="grid42-box">
 							<cpn-tales 
 								:prop='item'
@@ -197,16 +207,16 @@ end if
 				</div>
 				<div id="block-title">
 					<div class="grid1">
-						<div class="grid-title">部落格</div>
+						<a href="https://funday.asia/blogDesktop/" class="grid-title">部落格</a>
 					</div>
 					<div class="grid2">
-						<div class="grid-title">看影片學英文</div>
+						<div class="grid-title" onclick="GoLink('SearchVideo')">看影片學英文</div>
 					</div>
 					<div class="grid3">
-						<div class="grid-title">賞電影 / 聊新知</div>
+						<div class="grid-title" onclick="GoLink('SearchVideo')">賞電影 / 聊新知</div>
 					</div>
 					<div class="grid4">
-						<div class="grid-title">北捷微電影</div>
+						<div class="grid-title" onclick="GoLink('SearchVideo')">北捷微電影</div>
 					</div>
 					<div class="title-group"></div>
 				</div>
@@ -251,7 +261,7 @@ end if
 						></cpn-program>
 					</div>
 					<div class="grid5">
-						<div class="grid5-title">唱歌學英文</div>
+						<div class="grid5-title" onclick="GoLink('SearchMusicbox')">唱歌學英文</div>
 						<div class="grid5-box">
 							<cpn-musicbox
 								:prop='item'
@@ -277,7 +287,7 @@ end if
 			<div id="sidebar">
 				<div id="sidebar-title">
 					<div id="sidebar-icon"><img src="./2020/images/member.svg" />個人等級</div>
-					<div id="sidebar-level">A2-3</div>
+					<div id="sidebar-level">{{memberLvStep}}</div>
 				</div>
 				<div id="sidebar-scroller" @scroll='fnScroll'>
 					<div id="sidebar-scroller-title">複習列表 REVIEW</div>
@@ -286,9 +296,10 @@ end if
 							:prop='item'
 							v-for='(item, i) in review' 
 							:req-sort='item.sort | filterSort' 
-							:req-url='item.id'
+							:req-fn='fnGoLinkSide(item.sort, item.id)'
 							:key='i'
 						></cpn-side-item>
+						<!-- :req-fn='item.id' -->
 					</div>
 				</div>
 				<div id="sidebar-under">
@@ -314,8 +325,117 @@ end if
 <script>
 	const vueSideBar = new Vue({
 		el: '#sidebar',
-		created(){},
+		created(){
+			const vm = this;
+			let transEn;
+			switch( <%=asp_lv%> ){
+				case 1:
+					transEn = 'A1'; break;
+				case 2:
+					transEn = 'A2'; break;
+				case 3:
+					transEn = 'B1'; break;
+				case 4:
+					transEn = 'B2'; break;
+				case 5:
+					transEn = 'C1'; break;
+				default:
+			};
+
+			vm.memberLvStep = transEn + '-' + <%=asp_step%>;
+		},
 		methods: {
+			fnGoLinkSide(from, id){
+				console.log('from', from, '/ id ', id);
+				let transEn;
+				let value;
+				let type;
+
+				switch(from){
+					// type 1 v
+					case '文章':
+						transEn = 'News';
+						value = 'xml=';
+						type = 1;
+						break;
+					case '影片':
+						transEn = 'FunProgram';
+						value = 'indx=';
+						type = 1;
+						break;
+					case '專欄':
+						transEn = 'Column';
+						value = 'xml=';
+						type = 1;
+						break;
+					case '音樂':
+						transEn = 'MusicBoxPlay';
+						value = 'whichStart=1&musicNo=';
+						type = 1;
+						break;
+					case '童話':
+						transEn = 'FairyTales';
+						value = 'sid=';
+						type = 1;
+						break;
+					// type 2 v
+					case '測驗':
+						transEn = 'FunTest';
+						value = 'PG=funtest.asp%3Findx%3D';
+						type = 2;
+						break;
+					case '實力衝刺':
+						transEn = 'Tutro';
+						type = 2;
+						break;
+					case '會話':
+						transEn = 'Practice';
+						type = 2;
+						break;
+					case '研習營':
+						transEn = 'Conference';
+						type = 2;
+						break;
+					// type 3 v
+					default:
+						// 寫作 & 朗讀練習
+						type = 3;
+				};
+
+				if( type == 1 ){
+					return "GoLink('"+ transEn + "', '"+ value + id + "')";
+				}else if(type == 2){
+					return 'is type 2 '+transEn;
+				}else{
+					return '';
+				}
+				// switch( from ){
+				// 	case 'News':
+				// 		value = "xml=" + id;
+				// 		break;
+				// 	case 'MZ':
+				// 		value = 'SN=' + id;
+				// 		break;
+				// 	case 'FunProgram':
+				// 		value = 'indx='+id;
+				// 		break;
+				// 	case 'FairyTales':
+				// 		value = "sid=" + id;
+				// 		break;
+				// 	case 'Blog':
+				// 		value = "classify=life&blog=" + id;
+				// 		break;
+				// 	case 'MusicBoxPlay':
+				// 		value = "whichStart=1&musicNo=" + id;
+				// 		break;
+				// 	case 'default':
+				// 		value = id;
+				// 	default:
+
+				// }
+				// return 'GoLink("'+ from +'", "' + value + '")';
+			},
+
 			fnScroll(){
 				const vm = this;
 				const regexp1 = new RegExp(" ", "g");
@@ -331,7 +451,7 @@ end if
 					console.log('i is ', vm.getApi);
 					$.ajax({
 						type: 'GET',
-						url: 'https://funday.asia/mylesson/2020/api/reviewbar.asp?PG=' + vm.getApi,
+						url: './2020/api/reviewbar.asp?PG=' + vm.getApi,
 						success(res){
 							console.log('review page 1+ success >', JSON.parse(res));
 							const ary = JSON.parse(res);
@@ -351,6 +471,7 @@ end if
 		data: {
 			review: [],
 			getApi: 0,
+			memberLvStep: '',
 		},
 		components: {
 			cpnSideItem,
@@ -364,7 +485,7 @@ end if
 
 			$.ajax({
 				type: 'GET',
-				url: 'https://funday.asia/mylesson/2020/api/Pg2Json.asp?levels=' + vm.memberLevel,
+				url: './2020/api/Pg2Json.asp?levels=' + vm.memberLevel,
 				success: function(res){
 					console.log('success data is >', res);
 					const idxArt = res.findIndex(item => item.classify.toLowerCase() == 'article');
@@ -689,7 +810,7 @@ end if
 					if( vueSideBar._data.getApi == 0 ){
 						$.ajax({
 							type: 'GET',
-							url: 'https://funday.asia/mylesson/2020/api/reviewbar.asp?PG=' + vueSideBar._data.getApi,
+							url: './2020/api/reviewbar.asp?PG=' + vueSideBar._data.getApi,
 							success(res){
 								// cpn-side-item
 								console.log('review success >', JSON.parse(res));
@@ -703,7 +824,7 @@ end if
 			}
 		},
 		data: {
-			memberLevel: 5,
+			memberLevel: <%=asp_lv%>,
 			// FADE-SHOW v
 			sIndex: 0,
 			sMax: 4,

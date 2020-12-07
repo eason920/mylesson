@@ -219,7 +219,8 @@ const cpnSideItem = {
 				:data-sort='reqSort'
 				:onclick='reqFn'
 				href='#'
-				target='article'>
+				@click.prevent
+			>
 				<div class="sidebar-left">
 					<div class="sidebar-dot"></div>
 					<div class="sidebar-info">
