@@ -139,6 +139,7 @@ end if
 									v-for='(item, i) in fade'
 									:req-index='i'
 									@connecter='fnDotOver(i)'
+									@connecter2='fnClearInterval'
 									:key='i'
 								></cpn-fade-dot>
 							</div>
@@ -346,7 +347,6 @@ end if
 		},
 		methods: {
 			fnGoLinkSide(from, id){
-				console.log('from', from, '/ id ', id);
 				let transEn;
 				let value;
 				let type;
@@ -443,22 +443,14 @@ end if
 				const regexp3 = new RegExp("px", "g");
 				const h = $('#sidebar-scroller').outerHeight();
 				const s = $('#sidebar-scroller .ps__thumb-y').attr('style').replace(regexp1, '').replace(regexp2, '').replace(regexp3, '').replace('top', '').replace('height', '').split(';');
-				console.log('scroll get h > ', h, ' / s >', s);
 				const sum = Number(s[0]) + Number(s[1]);
-				console.log('sum is ', sum, sum == h );
 				if( sum == h ){
-					
-					console.log('i is ', vm.getApi);
 					$.ajax({
 						type: 'GET',
 						url: './2020/api/reviewbar.asp?PG=' + vm.getApi,
 						success(res){
-							console.log('review page 1+ success >', JSON.parse(res));
 							const ary = JSON.parse(res);
-							ary.forEach(function(item){
-								vm.review.push(item);
-							})
-							console.log('1+ after review >', vm.review);
+							ary.forEach(function(item){	vm.review.push(item) })
 							vm.getApi ++;
 						},
 						error(){
@@ -553,16 +545,24 @@ end if
 						};
 					};
 
+
+					let mm = 0;
 					const mixinPush = function(){
-						vm.mixin.push(vm.trend[0]);
+						vm.mixin[mm] = vm.trend[0];
 						vm.trend.splice(0,1);
+						mm ++
 						//
-						vm.mixin.push(vm.living[0]);
+						vm.mixin[mm] =vm.living[0];
 						vm.living.splice(0,1);
+						mm ++;
 						//
 						mixinIndex ++;
 						if( mixinIndex >= mixinMax ){ 
 							clearInterval(mid);
+							//
+							vm.mixin.sort(function(n, c){
+								if( n.ndate > c.ndate ){ return -1 }else{ return 1 };
+							});			
 						};
 					};
 
@@ -572,11 +572,6 @@ end if
 					let mixinIndex = 0;
 					const mixinMax = 4;// MIXIN = 4 + 4
 					let mid;
-
-					// vm.mixin.sort(function(n, c){
-					// 	console.log('next ', n.ndate, '/ current ', c.ndate, ' n > c ? ', n.ndate > c.ndate );
-					// 	if( n.ndate > c.ndate ){ return -1 }else{ return 1 };
-					// });
 
 					// --------------------------------
 					// -- PROGRAM v
@@ -806,16 +801,13 @@ end if
 					if ($(window).width() < 1200) { vm.transX = vm.transX1199 }
 					$('#content .wrapper').css('transform', 'translateX('+ vm.transX +'px)');
 
-					console.log('getApi is (add if )', vueSideBar._data.getApi );
 					if( vueSideBar._data.getApi == 0 ){
 						$.ajax({
 							type: 'GET',
 							url: './2020/api/reviewbar.asp?PG=' + vueSideBar._data.getApi,
 							success(res){
 								// cpn-side-item
-								console.log('review success >', JSON.parse(res));
 								vueSideBar._data.review = JSON.parse(res);
-								console.log('vm.review', vm.review);
 								vueSideBar._data.getApi ++;
 							}
 						});
@@ -851,7 +843,7 @@ end if
 			// BLOCK 1 v
 			trend: [],
 			fade: [],
-			mixin: [],
+			mixin: [{},{},{},{},{},{},{},{}],
 			living: [],
 			office: [],
 			tales: [],

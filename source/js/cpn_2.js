@@ -76,7 +76,7 @@ const cpnFadeDot = {
 		<div 
 			class="fade-dot-item"
 			:class="{'active': reqIndex==0}"
-			@mouseover='emitEvent'
+			@mouseover='emitEvent(), emitEvent2()'
 		></div>
 	`,
 	data: function(){
@@ -88,6 +88,12 @@ const cpnFadeDot = {
 		emitEvent(){
 			this.$emit('connecter')
 		},
+		emitEvent2(){
+			this.$emit('connecter2')
+		},
+		emitEvent3(){
+			this.$emit('connecter3')
+		}
 	}
 }
 
