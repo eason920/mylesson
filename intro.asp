@@ -156,14 +156,14 @@ end if
         <div id="main">
           <div id="prev-page" style="display: none">
             <svg fill="none">
-              <path d="M19 2L2 23.5L19 45" stroke="white" stroke-width="4"></path>
+              <path d="M19 2L2 23.5L19 45" stroke="#354e85" stroke-width="4"></path>
             </svg>
           </div>
-          <div id="next-page" style="display: none">
+          <a href="intro2.asp" id="next-page" style="display: none">
             <svg fill="none">
-              <path d="M2 2L19 23.5L2 45" stroke="white" stroke-width="4"></path>
+              <path d="M2 2L19 23.5L2 45" stroke="#354e85" stroke-width="4"></path>
             </svg>
-          </div>
+          </a>
           <div id="member"></div>
           <div id="right">
             <div id="above">
@@ -437,9 +437,12 @@ end if
     'response.Write  "DIYLightBox('ajax','1280px','720px','../../../library/AD.asp?Full=1')"
     response.write " var Login_guided="&session("Login_guided")
     session("Login_guided")=""
+  else
+	response.write " var Login_guided=0"
   end if
   %>
-
+  
+/*
   if(Login_guided==3){
     if(parseInt($(window).height())>720){
       DIYLightBox('ajax','1280px','720px','../../../library/AD.asp?Full=1')
@@ -447,5 +450,18 @@ end if
       DIYLightBox('ajax','980px','592px','../../../library/AD.asp')    
     }    
   } 
+*/
 
+  <%if  session("Login_guided")="4"  then%>
+    if(parseInt($(window).height())>720){
+      DIYLightBox('iframe','1280px','720px','../../../KOBO/detail.asp')    
+    }else if(parseInt($(window).height())>592){
+      DIYLightBox('iframe','980px','592px','../../../KOBO/detail.asp')    
+    }else{
+      DIYLightBox('iframe','880px','492px','../../../KOBO/detail.asp')  
+    }   
+  <%
+  session("Login_guided")=""
+  end if%>
+  
 </script>

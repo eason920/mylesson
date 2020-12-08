@@ -87,6 +87,7 @@ end if
 				<!-- #include virtual="Self-Study/header_mylesson.asp"-->
 			</div>
 		</div>
+		<img src="./2020/images/loading_ bigger.gif" id="ms2-loading">
 		<div id="content">
 			<a href='./intro.asp' id="prev-page">
 				<svg fill="none">
@@ -122,6 +123,7 @@ end if
 					</div>
 					<div class="grid2">
 						<div id="fade">
+							<img src="./2020/images/empty.png">
 							<div class="fade-main">
 								<cpn-fade
 									:prop='item'
@@ -528,50 +530,7 @@ end if
 					vm.living = artLiving;
 					vm.office = artOffice;
 
-					// --------------------------------
-					// -- FADE & MIXIN v
-					// --------------------------------
-					const fadePush = function(){
-						vm.fade.push(vm.trend[0]);
-						vm.trend.splice(0,1);
-						//
-						vm.fade.push(vm.living[0]);
-						vm.living.splice(0,1);
-						//
-						fadeIndex ++;
-						if( fadeIndex >= fadeMax ){ 
-							clearInterval(fid);
-							mid = setInterval(mixinPush, 0);
-						};
-					};
-
-
-					let mm = 0;
-					const mixinPush = function(){
-						vm.mixin[mm] = vm.trend[0];
-						vm.trend.splice(0,1);
-						mm ++
-						//
-						vm.mixin[mm] =vm.living[0];
-						vm.living.splice(0,1);
-						mm ++;
-						//
-						mixinIndex ++;
-						if( mixinIndex >= mixinMax ){ 
-							clearInterval(mid);
-							//
-							vm.mixin.sort(function(n, c){
-								if( n.ndate > c.ndate ){ return -1 }else{ return 1 };
-							});			
-						};
-					};
-
-					let fadeIndex = 0;
-					const fadeMax = 2; // FADE-SHOW = 2 + 2
-					let fid = setInterval(fadePush, 0);
-					let mixinIndex = 0;
-					const mixinMax = 4;// MIXIN = 4 + 4
-					let mid;
+					
 
 					// --------------------------------
 					// -- PROGRAM v
@@ -607,12 +566,66 @@ end if
 					// ==========================================
 					new PerfectScrollbar('#content .wrapper');
 					new PerfectScrollbar('#sidebar-scroller');
-					setTimeout(()=>{vm.fnGiveHeight()}, 800);
 
-					// ==========================================
-					// == FADE ANIMATION v
-					// ==========================================
-					vm.fnSetInterval();
+					// --------------------------------
+					// -- FADE & MIXIN v
+					// --------------------------------
+					let fadeIndex = 0;
+					const fadeMax = 2; // FADE-SHOW = 2 + 2
+					let fid;
+					let mixinIndex = 0;
+					const mixinMax = 4;// MIXIN = 4 + 4
+					let mid;
+					let mm = 0;
+
+					const fadePush = function(){
+						vm.fade.push(vm.trend[0]);
+						vm.trend.splice(0,1);
+						//
+						vm.fade.push(vm.living[0]);
+						vm.living.splice(0,1);
+						//
+						fadeIndex ++;
+						if( fadeIndex >= fadeMax ){ 
+							clearInterval(fid);
+							mid = setInterval(mixinPush, 0);
+						};
+					};
+
+					const mixinPush = function(){
+						vm.mixin[mm] = vm.trend[0];
+						vm.trend.splice(0,1);
+						mm ++
+						//
+						vm.mixin[mm] =vm.living[0];
+						vm.living.splice(0,1);
+						mm ++;
+						//
+						mixinIndex ++;
+						if( mixinIndex >= mixinMax ){ 
+							clearInterval(mid);
+							//
+							vm.mixin.sort(function(n, c){
+								if( n.ndate > c.ndate ){ return -1 }else{ return 1 };
+							});
+
+							// ==========================================
+							// == RENDER END v
+							// ==========================================
+							$('#ms2-loading').fadeOut(200);
+							$('#content').fadeIn(200);
+							setTimeout(()=>{
+								vm.fnGiveHeight();
+							}, 0);
+
+							// ==========================================
+							// == FADE ANIMATION v
+							// ==========================================
+							vm.fnSetInterval();
+						};
+					};
+
+					fid = setInterval(fadePush, 0);
 				}
 			});
 
@@ -677,22 +690,6 @@ end if
 
 			addAry(){
 				const vm = this;
-				// // TREAD
-				// for(i=0; i<=2; i++){
-				// 	vm.trend.push( vm.trend[i] );
-				// }
-				// // PROGRAM
-				// for(i=0; i<=4; i++){
-				// 	vm.program1.push( vm.program1[0] );
-				// }
-				// // MIXIN
-				// for(i=0; i<=2; i++){
-				// 	vm.mixin.push( vm.trend[i] );
-				// };
-				// // LIVING
-				// for(i=0; i<=2; i++){
-				// 	vm.living.push( vm.trend[i] );
-				// };
 				// OFFICE
 				// vm.office[0].en_category = '1';
 				// vm.office[0].ch_category = '書信';
@@ -722,8 +719,8 @@ end if
 
 				// --------------------------------
 				// BLOCK1 GRID2 v
-				const hFade = $('#fade').width() * rate6;
-				$('#fade').css('height', hFade);
+				// const hFade = $('#fade').width() * rate6;
+				// $('#fade').css('height', hFade);
 
 				const hFadeOuter = $('#fade').outerHeight(true);
 				$('#block1 .grid22-box').css('height', 'calc(100% - ' + hFadeOuter +'px)');

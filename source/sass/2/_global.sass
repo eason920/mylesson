@@ -4,13 +4,27 @@
 html
 	font-size: 16px
 	overflow-y: hidden
+
+body
+	height: 100vh
 	
 #nav
 	// margin-bottom: 15px
 	position: relative
 	z-index: 2
 
+#ms2-loading
+	// display: none
+	position: fixed
+	top: 0
+	right: 0
+	bottom: 0
+	left: 0
+	margin: auto
+	width: 100px
+
 #content
+	display: none
 	height: calc( 100vh - 96px )
 	overflow:
 		y: auto
@@ -75,6 +89,9 @@ html
 		size: 1.125rem
 		weight: bold
 	@include title-deco
+	display: block
+	text-decoration: none
+	cursor: pointer
 
 .grid-subtitle
 	color: #000
