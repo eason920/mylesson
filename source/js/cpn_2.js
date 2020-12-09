@@ -1,9 +1,11 @@
 // ==========================================
 // == FILTER v
 // ==========================================
+const prefix = 'https://funday.asia/';
 Vue.filter('filterBG', (str) => { return 'background-image: url(' + str + ')' });
-Vue.filter('filterSrc', (str) => { return 'https://funday.asia/en/pic/'+str });
-Vue.filter('filterMagazineSrc', (str) => { return 'https://funday.asia/funMz/'+str });
+Vue.filter('filterSrc', (str) => { return prefix + 'en/pic/'+str });
+Vue.filter('filterMagazineSrc', (str) => { return prefix + 'funMz/'+str });
+Vue.filter('filterColumnSrc', (str) => { return prefix + 'column/pic/' + str });
 //
 Vue.filter('filterSort', (str) => {
 	let i;
@@ -138,6 +140,27 @@ const cpnLiving = {
 		</a>
 	`
 };
+
+const cpnColumns = {
+	props: ['prop', 'reqFn', 'reqPic'],
+	template: `
+		<a class="grid32-item add-hr"
+			:onclick='reqFn'
+			@click.prevent 
+			href='#'
+		>
+			<div class="grid-subtitle">{{prop.columns_ChSubject}}</div>
+			<div class="grid-content">
+				<div class="grid32-img" :style='reqPic'></div>
+				{{prop.columns_Ch}}
+			</div>
+			<div class="grid-bottom">
+				(繼續閱讀)
+				<div class="grid-view">{{prop.columns_udate}}</div>
+			</div>
+		</a>
+	`
+}
 
 const cpnOffice = {
 	props: ['prop', 'reqFn', 'reqCategory'],

@@ -100,9 +100,10 @@
 		.grid-title
 			&.is-1
 				margin-bottom: 10px
+			&.is-3,
 			&.is-2
 				margin: 
-					top: $g-hr + 15
+					top: $g-hr + 10
 					bottom: $g-hr
 
 		.grid-subtitle
@@ -120,7 +121,7 @@
 		cursor: pointer
 
 	// ====================================
-	// == 3-2 LIST
+	// == 3-2 LIVING v
 	// ====================================
 	.grid3-box
 		display: flex
@@ -133,9 +134,34 @@
 			border: none
 		.grid-content
 			@include row(3)
+
+	// ====================================
+	// == 3-2 COLUMN
+	// ====================================
+	.grid32-box
+		display: flex
+		flex-direction: column
+		justify-content: space-between
+
+	.grid32-item
+		&:first-child
+			padding: 0
+			border: none
+		.grid-content
+			@include row(5)
+
+	.grid32-img
+		width: 80px
+		height: 55px
+		background:
+			size: cover
+			position: center
+		float: right
+		margin-left: 10px
+		transform: translateY(5px)
 	
 	// ====================================
-	// == 3-3 MAGAZINE
+	// == 3-4 MAGAZINE
 	// ====================================
 	.grid3-mgz
 		display: block
@@ -161,7 +187,6 @@
 	// == 4-1 LIST
 	// ====================================
 	.grid4-box
-		height: 310px
 		padding-bottom: $g-hr
 		display: flex
 		flex-direction: column
@@ -229,9 +254,11 @@
 		position: relative
 		background:
 			size: cover
-			position: center -15px
+			position: center 8px
 		& + .grid4-wt
-			margin-top: 10px
+			margin-top: 20px
+		&.is-ad
+			background-position: center
 
 	.grid4-week
 		position: absolute
@@ -240,7 +267,7 @@
 		text-align: center
 		margin: auto
 		color: #fff
-		bottom: 10%
+		bottom: 15%
 
 	// ====================================
 	// == 4-2 LIST

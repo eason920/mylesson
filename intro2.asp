@@ -78,7 +78,6 @@ end if
 		<!---->
 		<script src="../js/Uinfo.js"></script>
 		<script src="./2020/js/lightBoxDIY-V2.js?<%=Timer%>"></script>    
-		<script src="./2020/js/tool.js?dd=<%=Timer%>"></script> 
 	</head>
 
 	<body>
@@ -91,21 +90,31 @@ end if
 		<div id="content">
 			<a href='./intro.asp' id="prev-page">
 				<svg fill="none">
-					<path d="M19 2L2 23.5L19 45" stroke="white" stroke-width="4"></path>
+					<path d="M19 2L2 23.5L19 45" stroke="#354E85" stroke-width="4"></path>
 				</svg>
 			</a>
 			<div id="next-page" style='display: none'>
 				<svg fill="none">
-					<path d="M2 2L19 23.5L2 45" stroke="white" stroke-width="4"></path>
+					<path d="M2 2L19 23.5L2 45" stroke="#354E85" stroke-width="4"></path>
 				</svg>
 			</div>
 			<div class="wrapper" id="app">
 				<div id="block0">
-					<div id="block0-title">閱讀與聽力課程</div>
-					<div id="circle-box">
-						<!-- <div class="circle-item" data-type="cursor"><img src="./2020/images/cursor.svg" /></div> -->
-						<!-- <div class="circle-item" data-type="noti"><img src="./2020/images/noti.svg" /></div> -->
-						<div class="circle-item" @click='fnOpenSideBar' data-type="side"><img src="./2020/images/sidebar_open.svg" /></div>
+					<div class="grid1">
+						<div id="block0-title">閱讀與聽力課程</div>
+					</div>
+					<div class="grid2"></div>
+					<div class="grid3"></div>
+					<div class="grid4">
+						<div id="searchart">
+							<input type="text" id="searchart-input" placeholder="輸入文章編號或標題..." v-model='search_text'/>
+							<div id="searchart-send" title="文章搜尋" @click="fnGoSearch"></div>
+						</div>
+						<div id="circle-box">
+							<!-- <div class="circle-item" data-type="cursor"><img src="./2020/images/cursor.svg" /></div> -->
+							<!-- <div class="circle-item" data-type="noti"><img src="./2020/images/noti.svg" /></div> -->
+							<div class="circle-item" @click='fnOpenSideBar' data-type="side"><img src="./2020/images/sidebar_open.svg" /></div>
+						</div>
 					</div>
 				</div>
 				<div id="block1">
@@ -174,6 +183,16 @@ end if
 								:key='i'
 								></cpn-living>
 						</div>
+						<a href='https://funday.asia/self-study/column/' class="grid-title is-3" target='column'>專欄</a>
+						<div class="grid32-box">
+							<cpn-columns
+								:prop='item'
+								v-for='(item, i) in columns'
+								:req-fn='fnGoLink("Column", item.columns_id)'
+								:req-pic='item.columns_pic | filterColumnSrc | filterBG'
+								:key='i'
+							></cpn-columns>
+						</div>
 						<div class="grid-title is-2">雜誌</div>
 						<a class="grid3-mgz"
 							href='#'
@@ -192,9 +211,9 @@ end if
 								:key='i'
 							></cpn-office>
 						</div>
-						<a class="grid4-wt" href="#" style="background-image: url(./2020/images/wt.png)"></a>
-						<a class="grid4-wt" href="#" style="background-image: url(./2020/images/wt.png)">
-							<div class="grid4-week">2020/11/20~2020/11/27</div>
+						<a class="grid4-wt is-ad" href="https://life.funday.asia/" target="_blank" style="background-image: url(./2020/images/ad.jpg)"></a>
+						<a class="grid4-wt" href="#" style="background-image: url(./2020/images/wt.png)" :onclick='fnGoLink("FunTest", WeeklyTest.link)' >
+							<div class="grid4-week">{{ WeeklyTest.subject }}</div>
 						</a>
 						<div class="grid-title is-2" onclick="GoLink('SearchStory')">童話故事</div>
 						<div class="grid42-box">
@@ -325,6 +344,7 @@ end if
 		</div>
 	</body>
 </html>
+		<script src="./2020/js/tool.js?dd=<%=Timer%>"></script> 
 <script>
 	const vueSideBar = new Vue({
 		el: '#sidebar',
@@ -383,19 +403,22 @@ end if
 					// type 2 v
 					case '測驗':
 						transEn = 'FunTest';
-						value = 'PG=funtest.asp%3Findx%3D';
+						value = 'PG=answer_page.asp?indx=';
 						type = 2;
 						break;
 					case '實力衝刺':
-						transEn = 'Tutro';
+						transEn = 'TutorIndx';
+						value = 'indx=';						
 						type = 2;
 						break;
 					case '會話':
-						transEn = 'Practice';
+						transEn = 'PracticeIndx';
+						value = 'indx=';						
 						type = 2;
 						break;
 					case '研習營':
 						transEn = 'Conference';
+						value = 'indx=';	
 						type = 2;
 						break;
 					// type 3 v
@@ -407,35 +430,10 @@ end if
 				if( type == 1 ){
 					return "GoLink('"+ transEn + "', '"+ value + id + "')";
 				}else if(type == 2){
-					return 'is type 2 '+transEn;
+					return "GoLink('"+ transEn + "', '"+ value + id + "')";
 				}else{
 					return '';
 				}
-				// switch( from ){
-				// 	case 'News':
-				// 		value = "xml=" + id;
-				// 		break;
-				// 	case 'MZ':
-				// 		value = 'SN=' + id;
-				// 		break;
-				// 	case 'FunProgram':
-				// 		value = 'indx='+id;
-				// 		break;
-				// 	case 'FairyTales':
-				// 		value = "sid=" + id;
-				// 		break;
-				// 	case 'Blog':
-				// 		value = "classify=life&blog=" + id;
-				// 		break;
-				// 	case 'MusicBoxPlay':
-				// 		value = "whichStart=1&musicNo=" + id;
-				// 		break;
-				// 	case 'default':
-				// 		value = id;
-				// 	default:
-
-				// }
-				// return 'GoLink("'+ from +'", "' + value + '")';
 			},
 
 			fnScroll(){
@@ -489,6 +487,8 @@ end if
 					const idxMus = res.findIndex(item => item.classify.toLowerCase() == 'musicbox');
 					const idxMaz = res.findIndex(item => item.classify.toLowerCase() == 'magazine');
 					const idxBlo = res.findIndex(item => item.classify.toLowerCase() == 'blog');
+					const idxAD = res.findIndex(item => item.classify.toLowerCase() == 'ad');
+					const idxWeeklyTest = res.findIndex(item => item.classify.toLowerCase() == 'weeklytest');
 
 					// --------------------------------
 					// -- MUTIPLE v
@@ -496,7 +496,12 @@ end if
 					vm.blog = res[idxBlo].data;
 					vm.tales = res[idxSto].data;
 					vm.musicbox = res[idxMus].data;
-					
+					vm.WeeklyTest=res[idxWeeklyTest].data;
+
+					vm.WeeklyTest.subject=vm.WeeklyTest[0].subject
+					vm.WeeklyTest.link=vm.WeeklyTest[0].link;
+
+
 					// --------------------------------
 					// -- ARTICLE v
 					// --------------------------------
@@ -530,7 +535,8 @@ end if
 					vm.living = artLiving;
 					vm.office = artOffice;
 
-					
+					// console.log('trend ', vm.trend);
+					// console.log('living ', vm.living);	
 
 					// --------------------------------
 					// -- PROGRAM v
@@ -556,6 +562,11 @@ end if
 					vm.program1.splice(0, 2);
 
 					// --------------------------------
+					// -- COLUMNS v
+					// --------------------------------
+					vm.columns = res[idxCol].data
+
+					// --------------------------------
 					// -- MAGAZINE v
 					// --------------------------------
 					vm.magazine.pic = res[idxMaz].data[0].pic;
@@ -574,7 +585,7 @@ end if
 					const fadeMax = 2; // FADE-SHOW = 2 + 2
 					let fid;
 					let mixinIndex = 0;
-					const mixinMax = 4;// MIXIN = 4 + 4
+					const mixinMax = 5;// MIXIN = 5+5
 					let mid;
 					let mm = 0;
 
@@ -635,6 +646,13 @@ end if
 			$(window).resize(()=>{ vm.fnGiveHeight() });
 		},
 		methods: {
+			fnGoSearch(){
+				const vm = this;
+				console.log('fnGoSearch ', vm.search_text);
+				const href = 'https://funday.asia/search/article/intro.asp?key=' + vm.search_text;
+				window.open(href, 'search')
+			},
+
 			fnGoLink(from, id){
 				let value;
 				switch( from ){
@@ -656,6 +674,11 @@ end if
 					case 'MusicBoxPlay':
 						value = "whichStart=1&musicNo=" + id;
 						break;
+					case 'FunTest':
+						value = "PG=" +id;
+						break;
+					case 'Column':
+						value = "xml=" + id;						
 					default:
 						value = id;
 				}
@@ -701,10 +724,18 @@ end if
 				// vm.office[3].ch_category = '報告';
 				// vm.office[4].en_category = '1';
 				// vm.office[4].ch_category = '書信';
-				for(i=0; i<=4; i++){
+				for(i=0; i<=5; i++){
 					vm.office[i].en_category = '2';
 					vm.office[i].ch_category = '商務';
-				}
+					vm.office.push( vm.office[i] );
+				};
+
+				// TALES
+				// vm.tales.push(vm.tales[0]);
+
+				// MIXIN 
+				// vm.mixin[9] = vm.mixin[0];
+				// vm.mixin[10] = vm.mixin[0];
 			},
 
 			fnGiveHeight(){
@@ -718,33 +749,37 @@ end if
 				const rate8 = 0.566;
 
 				// --------------------------------
-				// BLOCK1 GRID2 v
+				// FADE SHOW v
 				// const hFade = $('#fade').width() * rate6;
 				// $('#fade').css('height', hFade);
 
+				// --------------------------------
+				// MIXIN v
 				const hFadeOuter = $('#fade').outerHeight(true);
 				$('#block1 .grid22-box').css('height', 'calc(100% - ' + hFadeOuter +'px)');
 
-				// --------------------------------
-				// BLOCK1 GRID22
+				// MIXIN IMG v
 				const hb1g2img = $('.grid22-img').width() * rate5;
 				$('.grid22-img').css('height', hb1g2img);
 
 				// --------------------------------
-				// BOX1 GRID3 MAGAZINE v
+				// MAGAZINE v
 				const hb1mgz = $('#block1 .grid3-mgz').width() * rate3;
 				$('#block1 .grid3-mgz').css('height', hb1mgz);
 
-				// BOX1 GRID3 LIST v
+				// --------------------------------
+				// LIVING v
 				const hb1g3v = $('#block1 .grid3-video').outerHeight(true);
 				const hb1g3t1 = $('#block1 .grid-title.is-1').outerHeight(true);
 				const hb1g3t2 = $('#block1 .grid-title.is-2').outerHeight(true);
-				const hb1g3subtract = hb1g3v + hb1g3t1 + hb1g3t2 + hb1mgz;
-				$('#block1 .grid3-box').css('height', 'calc( 100% - ' + hb1g3subtract + 'px )');
+				const hb1g3t3 = $('#block1 .grid-title.is-3').outerHeight(true);
+				const hCol = $('.grid32-box').height();
+				const hb1g3subtract = hb1g3v + hb1g3t1 + hb1g3t2 + hb1g3t3 + hCol + hb1mgz;
+				$('#block1 .grid3-box').css('height', 'calc( 100% - ' + hb1g3subtract + 'px )');				
 
 				// --------------------------------
-				// BLOCK 1 WEEK TEST v
-				const hb1g4wt = $('#block1 .grid4-wt').width() * 1;
+				// WEEKLY TEST v
+				const hb1g4wt = $('#block1 .grid4-wt').width() * rate7;
 				$('#block1 .grid4-wt').css('height', hb1g4wt);
 
 				// BOX1 GRID4-2 LIST v
@@ -813,6 +848,8 @@ end if
 			}
 		},
 		data: {
+			search_text: '',
+			//
 			memberLevel: <%=asp_lv%>,
 			// FADE-SHOW v
 			sIndex: 0,
@@ -836,12 +873,16 @@ end if
 				pic: '',
 				SN: ''
 			},
-			
+			WeeklyTest:{
+				link:'',
+				subject:''
+			},
 			// BLOCK 1 v
 			trend: [],
 			fade: [],
-			mixin: [{},{},{},{},{},{},{},{}],
+			mixin: [{},{},{},{},{},{},{},{},{},{}],
 			living: [],
+			columns: [],
 			office: [],
 			tales: [],
 
@@ -867,6 +908,7 @@ end if
 			cpnMixin,
 			cpnFade,
 			cpnFadeDot,
+			cpnColumns,
 			cpnTales,
 			// 2 v
 			cpnBlog,
