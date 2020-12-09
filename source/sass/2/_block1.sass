@@ -28,9 +28,12 @@
 		justify-content: space-between
 
 		.grid-content
-			@include row(5)
+			@include row(6)
 
 	.grid1-item
+		position: relative
+		&.add-hr
+			padding-top: 8px
 		&.add-hr:first-child
 			padding: 0
 			border: none
@@ -70,10 +73,13 @@
 		margin-right: 15px
 
 	.grid22-right
+		position: relative
 		width: calc( 100% - #{$w2} - #{$g2} )
 		display: flex
 		flex-direction: column
 		justify-content: space-between
+		.grid-view
+			bottom: 5px
 
 	.grid22-ch
 		@extend %row1
@@ -86,11 +92,13 @@
 		color: $c-t1
 		margin: $g2-2 0
 		font:
-			size: 1.125rem
+			size: 1rem
 			weight: bold
+			family: system-ui
+		letter-spacing: .5px
 		max-height: 46px
 		align-items: center
-		line-height: 1.2
+		line-height: 1.25
 		// display: flex
 
 	// ====================================
@@ -129,11 +137,12 @@
 		justify-content: space-between
 
 	.grid3-item
+		position: relative
 		&.add-hr:first-child
 			padding: 0
 			border: none
 		.grid-content
-			@include row(3)
+			@include row(4)
 
 	// ====================================
 	// == 3-2 COLUMN
@@ -144,11 +153,17 @@
 		justify-content: space-between
 
 	.grid32-item
+		position: relative
+		&.add-hr
+			padding-top: 5px
 		&:first-child
 			padding: 0
 			border: none
 		.grid-content
-			@include row(5)
+			@include row(6)
+		&.is-repeat
+			.grid32-img
+				display: none
 
 	.grid32-img
 		width: 80px
@@ -278,6 +293,7 @@
 		justify-content: space-between
 		.grid-subtitle
 			padding-top: 8px
+			text-align: center
 
 	.grid42-item
 		padding-bottom: 10px
@@ -308,7 +324,7 @@
 
 		.grid22-item
 			.grid-content
-				@include row(2)
+				@include row(3)
 
 		.grid4-week
 			font:
@@ -319,10 +335,11 @@
 	#block1
 		.grid22-en
 			@include row(2)
+			min-height: 42px
 
 		.grid22-item
 			.grid-content
-				@include row(3)
+				@include row(4)
 
 		.grid4-week
 			font:

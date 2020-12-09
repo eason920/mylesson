@@ -190,6 +190,7 @@ end if
 								v-for='(item, i) in columns'
 								:req-fn='fnGoLink("Column", item.columns_id)'
 								:req-pic='item.columns_pic | filterColumnSrc | filterBG'
+								:req-repeat='item.repeat'
 								:key='i'
 							></cpn-columns>
 						</div>
@@ -564,7 +565,9 @@ end if
 					// --------------------------------
 					// -- COLUMNS v
 					// --------------------------------
-					vm.columns = res[idxCol].data
+					vm.columns = res[idxCol].data;
+					if( vm.columns[1].columns_En == vm.columns[0].columns_En ){ vm.columns[1].repeat = true };
+					if( vm.columns[2].columns_En == vm.columns[1].columns_En ){ vm.columns[2].repeat = true };
 
 					// --------------------------------
 					// -- MAGAZINE v
@@ -678,7 +681,8 @@ end if
 						value = "PG=" +id;
 						break;
 					case 'Column':
-						value = "xml=" + id;						
+						value = "xml=" + id;
+						break;					
 					default:
 						value = id;
 				}
@@ -802,7 +806,8 @@ end if
 
 				// BLOCK2
 				const hb2gutter = 13;
-				const hb2g5 = $('#block2 .grid5-title').outerHeight() + hb2g5img + $('#block2 .grid5-under').outerHeight(true);
+				const mgb2g5row1 = 30;
+				const hb2g5 = $('#block2 .grid5-title').outerHeight() + ( hb2g5img + $('#block2 .grid5-under').outerHeight(true) ) * 2 + mgb2g5row1;
 				const h2 = hb2g2v + hb2g5 + hb2gutter;
 
 				$('#block2 .grid1').css('height', h2);
@@ -882,7 +887,7 @@ end if
 			fade: [],
 			mixin: [{},{},{},{},{},{},{},{},{},{}],
 			living: [],
-			columns: [],
+			columns: [{},{},{}],
 			office: [],
 			tales: [],
 

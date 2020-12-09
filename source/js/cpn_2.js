@@ -39,10 +39,7 @@ const cpnTread = {
 		>
 			<div class="grid-subtitle">{{prop.ch_subject}}</div>
 			<div class="grid-content"><img class="grid1-img" :src='reqPic'/>{{prop.ch_article}}</div>
-			<div class="grid-bottom">
-				(繼續閱讀)
-				<div class="grid-view">{{prop.ndate}}</div>
-			</div>
+			<div class="grid-view">...｜ {{prop.ndate}}</div>
 		</a>
 	`
 	// <div class="grid-view"><img src="./2020/images/view.svg"/><span>{{prop.read_count}}</span></div>
@@ -114,10 +111,7 @@ const cpnMixin = {
 					<div class="grid22-en">{{prop.en_subject}}</div>
 					<div class="grid-content">{{prop.ch_article}}</div>
 				</div>
-				<div class="grid-bottom">
-					(繼續閱讀)
-					<div class="grid-view">{{prop.ndate}}</div>
-				</div>
+				<div class="grid-view">...｜ {{prop.ndate}}</div>
 			</div>
 		</a>
 	`
@@ -133,18 +127,16 @@ const cpnLiving = {
 		>
 			<div class="grid-subtitle">{{prop.ch_subject}}</div>
 			<div class="grid-content">{{prop.ch_article}}</div>
-			<div class="grid-bottom">
-				(繼續閱讀)
-				<div class="grid-view">{{prop.ndate}}</div>
-			</div>
+			<div class="grid-view">...｜ {{prop.ndate}}</div>
 		</a>
 	`
 };
 
 const cpnColumns = {
-	props: ['prop', 'reqFn', 'reqPic'],
+	props: ['prop', 'reqFn', 'reqPic', 'reqRepeat'],
 	template: `
 		<a class="grid32-item add-hr"
+			:class='{"is-repeat": reqRepeat}'
 			:onclick='reqFn'
 			@click.prevent 
 			href='#'
@@ -154,10 +146,7 @@ const cpnColumns = {
 				<div class="grid32-img" :style='reqPic'></div>
 				{{prop.columns_Ch}}
 			</div>
-			<div class="grid-bottom">
-				(繼續閱讀)
-				<div class="grid-view">{{prop.columns_udate}}</div>
-			</div>
+			<div class="grid-view">...｜ {{prop.columns_udate}}</div>
 		</a>
 	`
 }
