@@ -26,6 +26,7 @@ else
 	asp_step="1"
 end if
 
+response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -566,8 +567,8 @@ end if
 					// -- COLUMNS v
 					// --------------------------------
 					vm.columns = res[idxCol].data;
-					if( vm.columns[1].columns_En == vm.columns[0].columns_En ){ vm.columns[1].repeat = true };
-					if( vm.columns[2].columns_En == vm.columns[1].columns_En ){ vm.columns[2].repeat = true };
+					if( vm.columns[1].columns_EnSubject == vm.columns[0].columns_EnSubject ){ vm.columns[1].repeat = true };
+					if( vm.columns[2].columns_EnSubject == vm.columns[1].columns_EnSubject ){ vm.columns[2].repeat = true };
 
 					// --------------------------------
 					// -- MAGAZINE v
@@ -859,7 +860,7 @@ end if
 			// FADE-SHOW v
 			sIndex: 0,
 			sMax: 4,
-			fadeTimeDelay: 2000,
+			fadeTimeDelay: 4000,
 
 			// PROGRAM SINGLE v
 			program: {
