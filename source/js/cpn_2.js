@@ -23,6 +23,13 @@ Vue.filter('filterSort', (str) => {
 		case '朗讀練習': i = 11;break;
 	}
 	return i;
+});
+//
+Vue.filter('filterOffice14Name', (str) => {
+	if(str == '淺談職場'){ return '公告' }else{ return str};
+});
+Vue.filter('filterOffice14Class', (id) => {
+	if( id == '14'){ return '37-14' }else{ return id }
 })
 
 
@@ -32,15 +39,13 @@ Vue.filter('filterSort', (str) => {
 const cpnTread = {
 	props: ['prop', 'reqFn', 'reqPic'],
 	template: `
-		<a class="grid1-item add-hr"
+		<div class="grid1-item add-hr"
 			:onclick='reqFn'
-			@click.prevent 
-			href='#'
 		>
 			<div class="grid-subtitle">{{prop.ch_subject}}</div>
 			<div class="grid-content"><img class="grid1-img" :src='reqPic'/>{{prop.ch_article}}</div>
 			<div class="grid-view">...｜ {{prop.ndate}}</div>
-		</a>
+		</div>
 	`
 	// <div class="grid-view"><img src="./2020/images/view.svg"/><span>{{prop.read_count}}</span></div>
 }
@@ -48,16 +53,15 @@ const cpnTread = {
 const cpnFade = {
 	props: ['prop', 'reqFn', 'reqPic'],
 	template: `
-		<a class="fade-main-item"
+		<div class="fade-main-item"
 			:onclick='reqFn'
-			href='#'
 			:style="reqPic"
 			@mouseover='emitEvent'
 			@mouseout='emitEvent2'
 		>
 			<div class="grid-subtitle">{{prop.ch_subject}}</div>
 			<div class="fade-en">{{prop.en_subject}}</div>
-		</a>
+		</div>
 	`,
 	methods: {
 		emitEvent(){
@@ -99,10 +103,8 @@ const cpnFadeDot = {
 const cpnMixin = {
 	props: ['prop', 'reqFn', 'reqPic'],
 	template: `
-		<a class="grid22-item add-hr"
+		<div class="grid22-item add-hr"
 			:onclick='reqFn'
-			href='#'
-			@click.prevent
 		>
 			<div class="grid22-img" :style="reqPic"></div>
 			<div class="grid22-right">
@@ -113,33 +115,29 @@ const cpnMixin = {
 				</div>
 				<div class="grid-view">...｜ {{prop.ndate}}</div>
 			</div>
-		</a>
+		</div>
 	`
 };
 
 const cpnLiving = {
 	props: ['prop', 'reqFn'],
 	template: `
-		<a class="grid3-item add-hr"
-			@click.prevent
+		<div class="grid3-item add-hr"
 			:onclick='reqFn'
-			href='#'
 		>
 			<div class="grid-subtitle">{{prop.ch_subject}}</div>
 			<div class="grid-content">{{prop.ch_article}}</div>
 			<div class="grid-view">...｜ {{prop.ndate}}</div>
-		</a>
+		</div>
 	`
 };
 
 const cpnColumns = {
 	props: ['prop', 'reqFn', 'reqPic', 'reqRepeat'],
 	template: `
-		<a class="grid32-item add-hr"
+		<div class="grid32-item add-hr"
 			:class='{"is-repeat": reqRepeat}'
 			:onclick='reqFn'
-			@click.prevent 
-			href='#'
 		>
 			<div class="grid-subtitle">{{prop.columns_ChSubject}}</div>
 			<div class="grid-content">
@@ -147,39 +145,42 @@ const cpnColumns = {
 				{{prop.columns_Ch}}
 			</div>
 			<div class="grid-view">...｜ {{prop.columns_udate}}</div>
-		</a>
+		</div>
 	`
 }
 
 const cpnOffice = {
 	props: ['prop', 'reqFn', 'reqCategory'],
 	template: `
-		<a class="grid4-item add-hr" 
+		<div class="grid4-item add-hr" 
 			:onclick='reqFn' 
-			href='#'
 			:data-category="reqCategory"  
-			@click.prevent
 		>
-			<div class="grid4-sort">{{prop.ch_category}}</div>
+			<div class="grid4-sort" v-text='fnFilterCategory(prop.ch_class)'></div>
 			<div class="grid4-right">
 				<div class="grid-subtitle">{{prop.ch_subject}}</div>
 				<div class="grid4-en">{{prop.en_subject}}</div>
 			</div>
-		</a>
-	`
+		</div>
+	`,
+	methods: {
+		fnFilterCategory(str){
+			console.log('cpn off ', str, str == '淺談職場');
+			if( str == '淺談職場'){ return '公告'};
+			return str;
+		}
+	}
 }
 
 const cpnTales = {
 	props: ['prop', 'reqFn', 'reqPic'],
 	template: `
-		<a class="grid42-item add-hr" 
+		<div class="grid42-item add-hr" 
 			:onclick='reqFn'
-			href='#'
-			@click.prevent
 		>
 			<div class="grid42-img" :style="reqPic"></div>
 			<div class="grid-subtitle">{{prop.subject}}</div>
-		</a>
+		</div>
 	`
 };
 
@@ -189,13 +190,12 @@ const cpnTales = {
 const cpnBlog = {
 	props: ['prop', 'reqFn', 'reqPic'],
 	template: `
-	<a class="grid1-item add-hr" 
+	<div class="grid1-item add-hr" 
 		:onclick='reqFn'
-		href='#'
 	>
 		<img :src="reqPic" />
 		<div class="grid-subtitle">{{prop.subject}}</div>
-	</a>
+	</div>
 	`
 };
 
@@ -232,12 +232,10 @@ const cpnMusicbox = {
 const cpnSideItem = {
 	props: ['prop', 'reqFn', 'reqSort'],
 	template: `
-			<a class="sidebar-item" 
+			<div class="sidebar-item" 
 				:class='{"is-no-level": !prop.level }'
 				:data-sort='reqSort'
 				:onclick='reqFn'
-				href='#'
-				@click.prevent
 			>
 				<div class="sidebar-left">
 					<div class="sidebar-dot"></div>
@@ -247,6 +245,6 @@ const cpnSideItem = {
 					</div>
 				</div>
 				<div class="sidebar-right">{{prop.level}}</div>
-			</a>
+			</div>
 		`
 };

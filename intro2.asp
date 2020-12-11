@@ -120,7 +120,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				</div>
 				<div id="block1">
 					<div class="grid1">
-						<div class="grid-title" onclick="GoLink('SearchArticle')">國際 ‧ 時事</div>
+						<a class="grid-title" href="https://funday.asia/search/article/?category=1">國際 ‧ 時事</a>
 						<div class="grid1-box">
 							<cpn-tread
 								:prop='item'
@@ -175,7 +175,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 								allowfullscreen="allowfullscreen"></iframe-->
 						</div>
-						<div class="grid-title is-1" onclick="GoLink('SearchArticle')">生活 ‧ 新知</div>
+						<a class="grid-title is-1" href="https://funday.asia/search/article/?category=2">生活 ‧ 新知</a>
 						<div class="grid3-box">
 							<cpn-living
 								:prop='item'
@@ -184,7 +184,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 								:key='i'
 								></cpn-living>
 						</div>
-						<a href='https://funday.asia/self-study/column/' class="grid-title is-3" target='column'>專欄</a>
+						<a href='https://funday.asia/self-study/column/' class="grid-title is-3">專欄</a>
 						<div class="grid32-box">
 							<cpn-columns
 								:prop='item'
@@ -195,7 +195,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 								:key='i'
 							></cpn-columns>
 						</div>
-						<div class="grid-title is-2">雜誌</div>
+						<a href="https://funday.asia/self-study/?scroll=magazine" class="grid-title is-2">雜誌</a>
 						<a class="grid3-mgz"
 							href='#'
 							:onclick='fnGoLink("MZ", magazine.SN)'
@@ -203,17 +203,17 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						></a>
 					</div>
 					<div class="grid4">
-						<div class="grid-title is-1" onclick="GoLink('SearchArticle')">商務 ‧ 情境</div>
+						<a class="grid-title is-1" href="https://funday.asia/search/article/?category=3">商務 ‧ 情境</a>
 						<div class="grid4-box">
 							<cpn-office
 								:prop='item'
 								v-for='(item, i) in office' 
 								:req-fn='fnGoLink("News", item.xml)'
-								:req-category='item.en_category'
+								:req-category='item.class_id | filterOffice14Class'
 								:key='i'
 							></cpn-office>
 						</div>
-						<a class="grid4-wt is-ad" href="https://life.funday.asia/" target="_blank" style="background-image: url(./2020/images/ad.jpg)"></a>
+						<a class="grid4-wt is-ad" href="https://funday.asia/lifeWeb" target="_blank" style="background-image: url(./2020/images/ad.jpg)"></a>
 						<a class="grid4-wt" href="#" style="background-image: url(./2020/images/wt.png)" :onclick='fnGoLink("FunTest", WeeklyTest.link)' >
 							<div class="grid4-week">{{ WeeklyTest.subject }}</div>
 						</a>
@@ -237,10 +237,10 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						<div class="grid-title" onclick="GoLink('SearchVideo')">看影片學英文</div>
 					</div>
 					<div class="grid3">
-						<div class="grid-title" onclick="GoLink('SearchVideo')">賞電影 / 聊新知</div>
+						<a href="https://funday.asia/search/Program/?category=1" class="grid-title">賞電影 / 聊新知</a>
 					</div>
 					<div class="grid4">
-						<div class="grid-title" onclick="GoLink('SearchVideo')">北捷微電影</div>
+						<a href="https://funday.asia/search/Program/?category=2" class="grid-title">北捷微電影</a>
 					</div>
 					<div class="title-group"></div>
 				</div>
@@ -338,7 +338,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						</li>
 						<li class="sidebar-under-hr"></li>
 						<li class="sidebar-under-item">
-							<a href="https://funday.asia/search/article/#Course?collect" target='_blank' @click.prev ><img src="./2020/images/under3.svg" />文章</a>
+							<a href="https://funday.asia/search/article/?collect" target='_blank' @click.prev ><img src="./2020/images/under3.svg" />文章</a>
 						</li>
 					</ul>
 				</div>
@@ -554,7 +554,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					});
 
 					// JUST FOR DEMO v
-					vm.addAry();
+					// vm.addAry();
 
 					// PROGRAM ABOVE & UNDER v
 					vm.program.above.indx = vm.program1[0].indx;
@@ -653,7 +653,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			fnGoSearch(){
 				const vm = this;
 				console.log('fnGoSearch ', vm.search_text);
-				const href = 'https://funday.asia/search/article/intro.asp?key=' + vm.search_text;
+				const href = 'https://funday.asia/search/article/?key=' + vm.search_text;
 				window.open(href, 'search')
 			},
 
