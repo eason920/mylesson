@@ -36,77 +36,68 @@ Vue.filter('filterOffice14Class', (id) => {
 // ==========================================
 // == BLOCK 1 v
 // ==========================================
-const cpnTread = {
-	props: ['prop', 'reqFn', 'reqPic'],
+const cpn_tread = {
+	props: ['prop', 'req_fn', 'req_pic'],
 	template: `
 		<div class="grid1-item add-hr"
-			:onclick='reqFn'
+			:onclick='req_fn'
 		>
 			<div class="grid-subtitle">{{prop.ch_subject}}</div>
-			<div class="grid-content"><img class="grid1-img" :src='reqPic'/>{{prop.ch_article}}</div>
+			<div class="grid-content"><img class="grid1-img" :src='req_pic'/>{{prop.ch_article}}</div>
 			<div class="grid-view">...｜ {{prop.ndate}}</div>
 		</div>
 	`
 	// <div class="grid-view"><img src="./2020/images/view.svg"/><span>{{prop.read_count}}</span></div>
 }
 
-const cpnFade = {
-	props: ['prop', 'reqFn', 'reqPic'],
+const cpn_fade = {
+	props: ['prop', 'req_fn', 'req_pic'],
 	template: `
 		<div class="fade-main-item"
-			:onclick='reqFn'
-			:style="reqPic"
-			@mouseover='emitEvent'
-			@mouseout='emitEvent2'
+			:onclick='req_fn'
+			:style="req_pic"
+			@mouseover='emit_mouseover'
+			@mouseout='emit_mouseout'
 		>
 			<div class="grid-subtitle">{{prop.ch_subject}}</div>
 			<div class="fade-en">{{prop.en_subject}}</div>
 		</div>
 	`,
 	methods: {
-		emitEvent(){
-			this.$emit('connecter');
+		emit_mouseover(){
+			this.$emit('connect_mouseover');
 		},
-		emitEvent2(){
-			this.$emit('connecter2')
+		emit_mouseout(){
+			this.$emit('connect_mouseout')
 		}
 	}
 };
 
-const cpnFadeDot = {
-	props: ['prop', 'reqIndex'],
+const cpn_fade_dot = {
+	props: ['prop'],
 	template: `
 		<div 
 			class="fade-dot-item"
-			:class="{'active': reqIndex==0}"
-			@mouseover='emitEvent(), emitEvent2()'
+			@mouseover='emit_mouseover(), emit_mouseover2()'
 		></div>
 	`,
-	data: function(){
-		return {
-			cKey: this.reqIndex,
-		}
-	},
 	methods: {
-		emitEvent(){
-			this.$emit('connecter')
+		emit_mouseover(){
+			this.$emit('connect_mouseover')
 		},
-		emitEvent2(){
-			this.$emit('connecter2')
+		emit_mouseover2(){
+			this.$emit('connect_mouseover2')
 		},
-		emitEvent3(){
-			this.$emit('connecter3')
-		}
 	}
 }
 
-const cpnMixin = {
-	props: ['prop', 'reqFn', 'reqPic'],
+const cpn_mixin = {
+	props: ['prop', 'req_fn', 'req_pic'],
 	template: `
 		<div class="grid22-item add-hr"
-			:onclick='reqFn'
+			:onclick='req_fn'
 		>
-			<div class="grid22-img" :style="reqPic"></div>
+			<div class="grid22-img" :style="req_pic"></div>
 			<div class="grid22-right">
 				<div class="grid22-above">
 					<div class="grid22-ch">{{prop.ch_subject}}</div>
@@ -119,11 +110,11 @@ const cpnMixin = {
 	`
 };
 
-const cpnLiving = {
-	props: ['prop', 'reqFn'],
+const cpn_living = {
+	props: ['prop', 'req_fn'],
 	template: `
 		<div class="grid3-item add-hr"
-			:onclick='reqFn'
+			:onclick='req_fn'
 		>
 			<div class="grid-subtitle">{{prop.ch_subject}}</div>
 			<div class="grid-content">{{prop.ch_article}}</div>
@@ -132,16 +123,16 @@ const cpnLiving = {
 	`
 };
 
-const cpnColumns = {
-	props: ['prop', 'reqFn', 'reqPic', 'reqRepeat'],
+const cpn_columns = {
+	props: ['prop', 'req_fn', 'req_pic', 'req_repeat'],
 	template: `
 		<div class="grid32-item add-hr"
-			:class='{"is-repeat": reqRepeat}'
-			:onclick='reqFn'
+			:class='{"is-repeat": req_repeat}'
+			:onclick='req_fn'
 		>
 			<div class="grid-subtitle">{{prop.columns_ChSubject}}</div>
 			<div class="grid-content">
-				<div class="grid32-img" :style='reqPic'></div>
+				<div class="grid32-img" :style='req_pic'></div>
 				{{prop.columns_Ch}}
 			</div>
 			<div class="grid-view">...｜ {{prop.columns_udate}}</div>
@@ -149,12 +140,12 @@ const cpnColumns = {
 	`
 }
 
-const cpnOffice = {
-	props: ['prop', 'reqFn', 'reqCategory'],
+const cpn_office = {
+	props: ['prop', 'req_fn', 'req_category'],
 	template: `
 		<div class="grid4-item add-hr" 
-			:onclick='reqFn' 
-			:data-category="reqCategory"  
+			:onclick='req_fn' 
+			:data-category="req_category"
 		>
 			<div class="grid4-sort" v-text='fnFilterCategory(prop.ch_class)'></div>
 			<div class="grid4-right">
@@ -172,13 +163,13 @@ const cpnOffice = {
 	}
 }
 
-const cpnTales = {
-	props: ['prop', 'reqFn', 'reqPic'],
+const cpn_tales = {
+	props: ['prop', 'req_fn', 'req_pic'],
 	template: `
 		<div class="grid42-item add-hr" 
-			:onclick='reqFn'
+			:onclick='req_fn'
 		>
-			<div class="grid42-img" :style="reqPic"></div>
+			<div class="grid42-img" :style="req_pic"></div>
 			<div class="grid-subtitle">{{prop.subject}}</div>
 		</div>
 	`
@@ -187,23 +178,23 @@ const cpnTales = {
 // ==========================================
 // == BLOCK 2 v
 // ==========================================
-const cpnBlog = {
-	props: ['prop', 'reqFn', 'reqPic'],
+const cpn_blog = {
+	props: ['prop', 'req_fn', 'req_pic'],
 	template: `
 	<div class="grid1-item add-hr" 
-		:onclick='reqFn'
+		:onclick='req_fn'
 	>
-		<img :src="reqPic" />
+		<img :src="req_pic" />
 		<div class="grid-subtitle">{{prop.subject}}</div>
 	</div>
 	`
 };
 
-const cpnProgram = {
-	props: ['prop', 'reqFn', 'reqPic'],
+const cpn_program = {
+	props: ['prop', 'req_fn', 'req_pic'],
 	template: `
-	<div class="grid3-item" :onclick="reqFn">
-		<div class="grid3-img" :style="reqPic"></div>
+	<div class="grid3-item" :onclick="req_fn">
+		<div class="grid3-img" :style="req_pic"></div>
 		<div class="grid3-box">
 			<div class="grid3-sort">{{prop.classify}}</div>
 			<div class="grid3-ch">{{prop.subject}}</div>
@@ -212,11 +203,11 @@ const cpnProgram = {
 	`
 };
 
-const cpnMusicbox = {
-	props: ['prop', 'reqFn', 'reqPic'],
+const cpn_musicbox = {
+	props: ['prop', 'req_fn', 'req_pic'],
 	template: `
-	<div class="grid5-item" :onclick='reqFn'>
-		<div class="grid5-img" :style="reqPic"></div>
+	<div class="grid5-item" :onclick='req_fn'>
+		<div class="grid5-img" :style="req_pic"></div>
 		<div class="grid5-under">
 			<div class="grid5-actor">{{prop.singer}}</div>
 			<div class="grid5-subtitle">{{prop.song}}</div>
@@ -229,13 +220,13 @@ const cpnMusicbox = {
 // =============================
 // == SIDE-BAR v
 // =============================
-const cpnSideItem = {
-	props: ['prop', 'reqFn', 'reqSort'],
+const cpn_side_item = {
+	props: ['prop', 'req_fn', 'req_sort'],
 	template: `
 			<div class="sidebar-item" 
 				:class='{"is-no-level": !prop.level }'
-				:data-sort='reqSort'
-				:onclick='reqFn'
+				:data-sort='req_sort'
+				:onclick='req_fn'
 			>
 				<div class="sidebar-left">
 					<div class="sidebar-dot"></div>

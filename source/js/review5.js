@@ -25,6 +25,17 @@ const cpnFadeDot = {
 	`,
 };
 
+//** 組件，其
+// 1.「行為事件」「應」寫在 cpn 中，並配合「$emit」作用
+//    不可寫在 view 中直接引用函式
+//    =>cpn 行為必走遠路
+// 2.「:class」(不是在說沒「:」的「class」)則可以在 view 中
+//    => :class 可超捷徑
+// 3. 命名
+//   js 接受 camel case & 底線連結 兩種命名
+//   html 不接受 camel case , 但可用 底線連結
+//   ==> 組件中統一使用「底線連結」(但其自用的 methods 仍使用 camel case 吧!)
+
 //-----------------------------
 // 2. Vue 響應式原理 (Reactivity system)  v
 // 預先綁定、vm.$set、Object.assign()

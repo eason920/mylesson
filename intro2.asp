@@ -122,48 +122,49 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					<div class="grid1">
 						<a class="grid-title" href="https://funday.asia/search/article/?category=1">國際 ‧ 時事</a>
 						<div class="grid1-box">
-							<cpn-tread
+							<cpn_tread
 								:prop='item'
 								v-for='(item, i) in trend'
-								:req-fn='fnGoLink("News", item.xml)'
-								:req-pic='item.pic | filterSrc'
+								:req_fn='fnGoLink("News", item.xml)'
+								:req_pic='item.pic | filterSrc'
 								:key='i'
-							></cpn-tread>
+							></cpn_tread>
 						</div>
 					</div>
 					<div class="grid2">
 						<div id="fade">
 							<img src="./2020/images/empty.png">
 							<div class="fade-main">
-								<cpn-fade
+								<cpn_fade
 									:prop='item'
+									:class='{"active": reactiveFade == i}'
 									v-for='(item, i) in fade' 
-									:req-fn='fnGoLink("News", item.xml)' 
-									:req-pic='item.pic | filterSrc | filterBG'
+									:req_fn='fnGoLink("News", item.xml)' 
+									:req_pic='item.pic | filterSrc | filterBG'
+									@connect_mouseover='fnClearInterval'
+									@connect_mouseout='fnSetInterval'
 									:key='i'
-									@connecter='fnClearInterval'
-									@connecter2='fnSetInterval'
-								></cpn-fade>
+								></cpn_fade>
 							</div>
 							<div class="fade-dot">
-								<cpn-Fade-dot
+								<cpn_fade_dot
+									:class='{"active": reactiveFade == i}'
 									:prop='item'
 									v-for='(item, i) in fade'
-									:req-index='i'
-									@connecter='fnDotOver(i)'
-									@connecter2='fnClearInterval'
+									@connect_mouseover='fnDotOver(i)'
+									@connect_mouseover2='fnClearInterval'
 									:key='i'
-								></cpn-fade-dot>
+								></cpn_fade_dot>
 							</div>
 						</div>
 						<div class="grid22-box">
-							<cpn-mixin
+							<cpn_mixin
 								:prop='item'
 								v-for='(item, i) in mixin' 
-								:req-fn='fnGoLink("News", item.xml)' 
-								:req-pic='item.pic | filterSrc | filterBG'
+								:req_fn='fnGoLink("News", item.xml)' 
+								:req_pic='item.pic | filterSrc | filterBG'
 								:key='i'
-							></cpn-mixin>
+							></cpn_mixin>
 						</div>
 					</div>
 					<div class="grid3">
@@ -177,23 +178,23 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						</div>
 						<a class="grid-title is-1" href="https://funday.asia/search/article/?category=2">生活 ‧ 新知</a>
 						<div class="grid3-box">
-							<cpn-living
+							<cpn_living
 								:prop='item'
 								v-for='(item, i) in living' 
-								:req-fn='fnGoLink("News", item.xml)'
+								:req_fn='fnGoLink("News", item.xml)'
 								:key='i'
-								></cpn-living>
+								></cpn_living>
 						</div>
 						<a href='https://funday.asia/self-study/column/' class="grid-title is-3">專欄</a>
 						<div class="grid32-box">
-							<cpn-columns
+							<cpn_columns
 								:prop='item'
 								v-for='(item, i) in columns'
-								:req-fn='fnGoLink("Column", item.columns_id)'
-								:req-pic='item.columns_pic | filterColumnSrc | filterBG'
-								:req-repeat='item.repeat'
+								:req_fn='fnGoLink("Column", item.columns_id)'
+								:req_pic='item.columns_pic | filterColumnSrc | filterBG'
+								:req_repeat='item.repeat'
 								:key='i'
-							></cpn-columns>
+							></cpn_columns>
 						</div>
 						<a href="https://funday.asia/self-study/?scroll=magazine" class="grid-title is-2">雜誌</a>
 						<a class="grid3-mgz"
@@ -205,13 +206,13 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					<div class="grid4">
 						<a class="grid-title is-1" href="https://funday.asia/search/article/?category=3">商務 ‧ 情境</a>
 						<div class="grid4-box">
-							<cpn-office
+							<cpn_office
 								:prop='item'
 								v-for='(item, i) in office' 
-								:req-fn='fnGoLink("News", item.xml)'
-								:req-category='item.class_id | filterOffice14Class'
+								:req_fn='fnGoLink("News", item.xml)'
+								:req_category='item.class_id | filterOffice14Class'
 								:key='i'
-							></cpn-office>
+							></cpn_office>
 						</div>
 						<a class="grid4-wt is-ad" href="https://funday.asia/lifeWeb" target="_blank" style="background-image: url(./2020/images/ad.jpg)"></a>
 						<a class="grid4-wt" href="#" style="background-image: url(./2020/images/wt.png)" :onclick='fnGoLink("FunTest", WeeklyTest.link)' >
@@ -219,13 +220,13 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						</a>
 						<div class="grid-title is-2" onclick="GoLink('SearchStory')">童話故事</div>
 						<div class="grid42-box">
-							<cpn-tales 
+							<cpn_tales 
 								:prop='item'
 								v-for='(item, i) in tales' 
-								:req-fn='fnGoLink("FairyTales", item.indx)'
-								:req-pic='item.pic | filterBG'
+								:req_fn='fnGoLink("FairyTales", item.indx)'
+								:req_pic='item.pic | filterBG'
 								:key='i'
-							></cpn-tales>
+							></cpn_tales>
 						</div>
 					</div>
 				</div>
@@ -247,13 +248,13 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				<div id="block2">
 					<div class="grid1">
 						<div class="grid1-box">
-							<cpn-blog
+							<cpn_blog
 								:prop='item'
 								v-for='(item, i) in blog'
-								:req-fn='fnGoLink("Blog", item.indx)'
-								:req-pic='item.pic'
+								:req_fn='fnGoLink("Blog", item.indx)'
+								:req_pic='item.pic'
 								:key='i'
-							></cpn-blog>
+							></cpn_blog>
 						</div>
 					</div>
 					<div class="grid2">
@@ -267,33 +268,33 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						</div>
 					</div>
 					<div class="grid3">
-						<cpn-program
+						<cpn_program
 							:prop='item'
 							v-for='(item, i) in program1'
-							:req-fn='fnGoLink("FunProgram", item.indx)'
-							:req-pic='item.pic | filterBG'
+							:req_fn='fnGoLink("FunProgram", item.indx)'
+							:req_pic='item.pic | filterBG'
 							:key='i'
-						></cpn-program>
+						></cpn_program>
 					</div>
 					<div class="grid4">
-						<cpn-program
+						<cpn_program
 							:prop='item'
 							v-for='(item, i) in program2'
-							:req-fn='fnGoLink("FunProgram", item.indx)'
-							:req-pic='item.pic | filterBG'
+							:req_fn='fnGoLink("FunProgram", item.indx)'
+							:req_pic='item.pic | filterBG'
 							:key='i'
-						></cpn-program>
+						></cpn_program>
 					</div>
 					<div class="grid5">
 						<div class="grid5-title" onclick="GoLink('SearchMusicbox')">唱歌學英文</div>
 						<div class="grid5-box">
-							<cpn-musicbox
+							<cpn_musicbox
 								:prop='item'
 								v-for='(item, i) in musicbox'
-								:req-fn='fnGoLink("MusicBoxPlay", item.indx)'
-								:req-pic='item.pic | filterBG'
+								:req_fn='fnGoLink("MusicBoxPlay", item.indx)'
+								:req_pic='item.pic | filterBG'
 								:key='i'
-							></cpn-musicbox>
+							></cpn_musicbox>
 						</div>
 					</div>
 				</div>
@@ -316,14 +317,14 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				<div id="sidebar-scroller" @scroll='fnScroll'>
 					<div id="sidebar-scroller-title">複習列表 REVIEW</div>
 					<div id="sidebar-list">
-						<cpn-side-item
+						<cpn_side_item
 							:prop='item'
 							v-for='(item, i) in review' 
-							:req-sort='item.sort | filterSort' 
-							:req-fn='fnGoLinkSide(item.sort, item.id)'
+							:req_sort='item.sort | filterSort' 
+							:req_fn='fnGoLinkSide(item.sort, item.id)'
 							:key='i'
-						></cpn-side-item>
-						<!-- :req-fn='item.id' -->
+						></cpn_side_item>
+						<!-- :req_fn='item.id' -->
 					</div>
 				</div>
 				<div id="sidebar-under">
@@ -468,7 +469,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			memberLvStep: '',
 		},
 		components: {
-			cpnSideItem,
+			cpn_side_item,
 		}
 	});
 
@@ -649,6 +650,11 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			// ==========================================
 			$(window).resize(()=>{ vm.fnGiveHeight() });
 		},
+		computed: {
+			reactiveFade(){
+				return this.sIndex;
+			}
+		},
 		methods: {
 			fnGoSearch(){
 				const vm = this;
@@ -691,29 +697,19 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			},
 			
 			fnClearInterval() {
-				let vm = this;
-				window.clearInterval(vm.timeOutRefresh);
+				window.clearInterval(this.fadeControl);
 			},
 
 			fnSetInterval() {
 				let vm = this;
-				this.timeOutRefresh = window.setInterval(() => {
+				vm.fadeControl = window.setInterval(() => {
 					vm.sIndex ++;
 					if( vm.sIndex >= vm.sMax ){ vm.sIndex = 0 };
-					//
-					vm.fnFadeAni(vm.sIndex, 1500);
 				}, vm.fadeTimeDelay);
 			},
 
 			fnDotOver(i){
-				const vm = this;
-				if( i != vm.sIndex ){ vm.fnFadeAni(i, 300) };
-				vm.sIndex = i;
-			},
-
-			fnFadeAni(i, duration){
-				$('.fade-dot-item').removeClass('active').eq(i).addClass('active');
-				$('.fade-main-item').fadeOut(duration).eq(i).fadeIn(duration);
+				if( i != this.sIndex ){ this.sIndex = i };
 			},
 
 			addAry(){
@@ -861,6 +857,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			sIndex: 0,
 			sMax: 4,
 			fadeTimeDelay: 4000,
+			fadeControl: '',
 
 			// PROGRAM SINGLE v
 			program: {
@@ -907,19 +904,21 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		},
 		components: {
 			// 1 v
-			cpnTread,
-			cpnLiving,
-			cpnOffice,
-			cpnSideItem,
-			cpnMixin,
-			cpnFade,
-			cpnFadeDot,
-			cpnColumns,
-			cpnTales,
+			cpn_tread,
+			cpn_fade,
+			cpn_fade_dot,
+			cpn_mixin,
+			cpn_living,
+			cpn_columns,
+			cpn_office,
+			cpn_tales,
 			// 2 v
-			cpnBlog,
-			cpnProgram,
-			cpnMusicbox
+			cpn_blog,
+			cpn_program,
+			cpn_musicbox,
+			// side v
+			cpn_side_item,
+
 		},
 		el: '#app',
 	});

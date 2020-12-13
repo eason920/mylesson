@@ -23,7 +23,11 @@
 	background:
 		size: cover
 		position: center center
-	display: none
+	cursor: pointer
+	opacity: 0
+	transition: opacity 1.5s
+	&.active
+		opacity: 1
 	&:first-child
 		display: block
 	&:before
