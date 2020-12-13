@@ -108,7 +108,11 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					<div class="grid3"></div>
 					<div class="grid4">
 						<div id="searchart">
-							<input type="text" id="searchart-input" placeholder="輸入文章編號或標題..." v-model='search_text'/>
+							<input type="text" 
+								id="searchart-input" 
+								placeholder="輸入文章編號或標題..." 
+								v-model='search_text' 
+								@keyup.enter='fnGoSearch'/>
 							<div id="searchart-send" title="文章搜尋" @click="fnGoSearch"></div>
 						</div>
 						<div id="circle-box">
@@ -656,6 +660,10 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			}
 		},
 		methods: {
+			fnSearch(){
+
+			},
+
 			fnGoSearch(){
 				const vm = this;
 				console.log('fnGoSearch ', vm.search_text);
