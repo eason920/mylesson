@@ -159,7 +159,7 @@ end if
               <path d="M19 2L2 23.5L19 45" stroke="#354e85" stroke-width="4"></path>
             </svg>
           </div>
-          <a href="intro2.asp" id="next-page" style="display: none">
+          <a href="intro2.asp" id="next-page">
             <svg fill="none">
               <path d="M2 2L19 23.5L2 45" stroke="#354e85" stroke-width="4"></path>
             </svg>
