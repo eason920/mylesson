@@ -1,0 +1,550 @@
+/*course
+
+#member
+  padding: 50px 0 0 0
+
+  /*height: 100%;
+  width: 100%
+  margin-right: 1%
+  display: flex
+
+  .time-left
+    padding: 0
+    width: 5%
+    margin: 10px 0 0 0
+
+    /*box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    /*border-radius: 10px;
+    /*border:1px solid #20A0A0;
+    display: flex
+    flex-direction: column
+
+    /*justify-content: center;
+    align-items: center
+
+    .date
+      margin: 20% 0
+      top: 50%
+      left: 0
+      font-size: 22px
+      font-weight: 700
+      line-height: 20px
+
+      /*position: absolute;
+
+  .course-all
+    width: 100%
+    display: inline-block
+    flex-direction: unset
+
+    .course
+      padding: 0 20px 20px
+      width: calc( 100% / 4 - 24px)
+      margin: 20px 10px
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2)
+      border-radius: 10px
+      border: 1px solid #20A0A0
+      display: inline-block
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      background: #fff
+
+      .itemA
+        margin: auto
+        background: #20A0A0
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2)
+        border-radius: 100px
+        border: 1px solid #20A0A0
+        color: #fff
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        width: 70px
+        height: 70px
+        margin: -30px auto -20px
+
+      .itemB
+        margin: auto
+        background: #fff
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2)
+        border-radius: 100px
+        border: 1px solid #20A0A0
+        color: #20A0A0
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        width: 70px
+        height: 70px
+        margin: -30px auto -20px
+
+      .card
+        position: relative
+        display: -webkit-box
+        display: -ms-flexbox
+        display: flex
+        -webkit-box-orient: vertical
+        -webkit-box-direction: normal
+        -ms-flex-direction: column
+        flex-direction: column
+        min-width: 0
+        word-wrap: break-word
+        background-clip: border-box
+
+        /*border: 1px solid rgba(0, 0, 0, 0.125);
+        /*border-radius: 0.25rem;
+
+      .card-body
+        -webkit-box-flex: 1
+        -ms-flex: 1 1 auto
+        flex: 1 1 auto
+        display: inline-flex
+
+      .img-fluid
+        max-width: 100%
+        height: auto
+        border-radius: 50%
+        margin-top: -46%
+
+      .about-in
+        .card
+          .card-titleF
+            font-size: 20px
+            font-weight: bold
+            color: #000
+            padding: 8px 0
+            line-height: 1.4
+            text-align: justify
+            text-justify: auto
+            display: -webkit-box
+            -webkit-line-clamp: 2
+            -webkit-box-orient: vertical
+            overflow: hidden
+            height: 66px
+
+          .card-titleN
+            font-size: 20px
+            color: #000
+            margin: auto
+
+          .card-titleR
+            font-size: 20px
+            color: #000
+            margin: auto 0
+            text-align: justify
+            text-justify: auto
+            text-align: right
+            padding: 0
+
+          .card-titleB
+            font-size: 16px
+            color: #000
+            padding: 8px 0
+            text-align: left
+            width: 100%
+            display: flex
+
+          .card-titleA
+            font-size: 14px
+            color: rgb(73, 73, 73)
+            padding: 10px
+            text-align: left
+
+        .starbox
+          display: inline-flex
+          justify-content: flex-end
+          align-items: baseline
+          width: 100%
+
+.starBox
+  padding: 0
+  height: 30px
+  overflow: hidden
+  display: inline-block
+
+.peopleBox
+  padding: 0
+  height: 18px
+  overflow: hidden
+  margin-left: 2px
+
+  /*display: inline-block;
+
+.star1, .star2, .star3
+  color: #ff9100
+  font-size: 16px
+  display: none
+
+.people1, .people2, .people3, .people4, .people5, .people6
+  color: #7e7e7e
+  font-size: 16px
+  display: none
+
+.peopleBox
+  &.is-people1 .people1, &.is-people2 .people2, &.is-people3 .people3, &.is-people4 .people4, &.is-people5 .people5, &.is-people6 .people6
+    display: block
+
+.starBox
+  &.is-star1 .star1, &.is-star2 .star2, &.is-star3 .star3
+    display: block
+
+#member .course-all .course .about-in .card
+  .itembox
+    width: 100%
+    display: flex
+    padding: 6px 0 0
+
+    .card-title-j
+      font-size: 16px
+      text-align: center
+      color: #fff
+      background: #FF3A46
+      padding: 10px
+      text-align: center
+      opacity: .9
+      cursor: pointer
+      border-radius: 5px
+      width: 100%
+      display: inline-block
+
+  .card-title-j:hover
+    opacity: 1
+
+  .card-title-s
+    font-size: 16px
+    text-align: center
+    color: #fff
+    background: #ec8e00
+    padding: 10px
+    text-align: center
+    opacity: .9
+    cursor: pointer
+    border-radius: 5px
+    width: 100%
+    display: inline-block
+
+    &:hover
+      opacity: 1
+
+  .card-title-p
+    font-size: 16px
+    text-align: center
+    color: #fff
+    background: #59B0CB
+    padding: 10px
+    text-align: center
+    opacity: .9
+    cursor: pointer
+    border-radius: 5px
+    width: 100%
+    display: inline-block
+
+    &:hover
+      opacity: 1
+
+/*** checked state **
+
+.radio input + i:after, .radio1 input + i:after, .radio2 input + i:after, .radio3 input + i:after
+  content: ''
+  background: url("../images/tick-mark1.png") no-repeat -1px -1px
+  top: 3px
+  left: 3px
+  width: 6.5px
+  height: 6px
+  text-align: center
+  border-radius: 100%
+  color: #ff7700
+
+.radio input:checked + i, .radio1 input:checked + i, .radio2 input:checked + i, .radio3 input:checked + i
+  border: 3px solid #ff7700
+  background: #fff
+
+.swit
+  margin-bottom: 30px
+
+span .starRating
+  margin: 0
+
+.starRating
+  &:not(old)
+    display: inline-block
+    width: 5.7em
+    height: 1.5em
+    overflow: hidden
+    vertical-align: bottom
+    font-size: 16px
+    padding: 0 0 30px
+
+    >
+      input
+        margin-right: -100%
+        opacity: 0
+
+      label:hover
+        &:before, ~ label:before
+          opacity: 1
+
+  &:not(:hover) > :checked ~ label:before
+    opacity: 1
+
+/*-- //starRating --
+
+/*** checked peopie **
+
+.swit
+  margin-bottom: 30px
+
+span.peopleRating
+  margin: 0
+
+.peopleRating
+  &:not(old)
+    display: inline-block
+    width: 6em
+    height: 1.2em
+    overflow: hidden
+    vertical-align: bottom
+
+    >
+      input
+        margin-right: -100%
+        opacity: 0
+
+      label
+        display: block
+        float: right
+        position: relative
+        background: url('../images/people-off.png')
+        background-size: contain
+
+        &:before
+          content: ''
+          display: block
+          width: 1.5em
+          height: 1.5em
+          background: url('../images/people-on.png')
+          background-size: contain
+          opacity: 0
+          transition: opacity 0.2s linear
+
+        &:hover
+          &:before, ~ label:before
+            opacity: 1
+
+  &:not(:hover) > :checked ~ label:before
+    opacity: 1
+
+/*-- //peopleRating --
+
+#member .course-all .course
+  .about-in .bg-clr-w3l
+    width: 60px
+    height: 30px
+    -webkit-border-radius: 50%
+    -o-border-radius: 50%
+    -moz-border-radius: 50%
+    -ms-border-radius: 50%
+    border-radius: 50%
+    display: block
+
+  .left-div
+    position: relative
+
+  .top-div
+    position: relative
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin: 0 auto
+
+    .circle
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: center
+      width: 95px
+      height: 95px
+      border: 1px solid #20A0A0
+      border-radius: 50%
+
+    .subTitleA
+      width: 100%
+      height: 14px
+      text-align: center
+      font-weight: 600
+      font-size: 20px
+      line-height: 14px
+      color: #fff
+
+    .subTitleB
+      width: 100%
+      height: 14px
+      text-align: center
+      font-weight: 600
+      font-size: 20px
+      line-height: 14px
+      color: #20A0A0
+
+  .photoimg
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    width: 95px
+    height: 95px
+    border: 1px solid #20A0A0
+    border-radius: 50%
+
+/*rwd
+@media (max-width: 1920px)
+  .slideout_inner
+    background: #354E85
+    color: #fff
+    width: 20%
+
+  .section.is-open
+    right: 200px
+
+@media (max-width: 1680px)
+  #member .course-all .course .about-in .card
+    .itembox
+      .card-title-j, .card-title-s
+        width: 85%
+
+    .card-title-p
+      width: 85%
+
+  .slideout_inner
+    background: #354E85
+    color: #fff
+    width: 24%
+
+  .section.is-open
+    right: 360px
+
+@media (max-width: 1536px)
+  #member .course-all .course .about-in .card
+    .itembox
+      .card-title-j, .card-title-s
+        width: 70%
+
+    .card-title-p
+      width: 70%
+
+  .tgnav-group-dropdown, .tgnav-group-down
+    width: 330px
+
+@media (max-width: 1440px)
+  #member .course-all .course .about-in .card
+    .itembox
+      .card-title-j, .card-title-s
+        width: 55%
+
+    .card-title-p
+      width: 55%
+
+    .card-titleS
+      padding: 10px 20px
+
+  .starRating:not(old)
+    font-size: 14px
+
+  #member .course-all .course .about-in .card
+    .card-titleP
+      padding: 10px 20px
+
+    .card-titleF
+      font-size: 18px
+      height: 60px
+
+  .tgnav-group-dropdown, .tgnav-group-down
+    width: 300px
+
+  .bulletinToolbox1:after
+    bottom: 16px
+    left: 43%
+
+  .bulletinToolbox2:after
+    bottom: 16px
+    left: 75%
+
+  .bulletinCnt
+    font-size: 14px
+
+  .bulletinToolbox2:after
+    position: absolute
+    content: ""
+    bottom: 16px
+    left: 75%
+
+  .gradeCnt
+    width: 80%
+    font-size: 14px
+
+  .gradeline
+    margin: 20px 0 0px
+
+  .gradeN, .gradeR
+    font-size: 14px
+
+@media (max-width: 1366px)
+  #member .course-all .course
+    width: calc( 100% / 3 - 24px)
+
+  .slideout_inner
+    background: #354E85
+    color: #fff
+    width: 30%
+
+  .section.is-open
+    right: 400px
+
+  .tgnav-group-dropdown
+    position: absolute
+    top: 100%
+    visibility: hidden
+    display: none
+    opacity: 0
+
+    /* min-width: 450px;
+    left: -15%
+
+    /* padding: 20px;
+    background: #2B447E
+    transition: opacity 1.3s ease-in-out .3s, visibility 1s ease-out
+    text-align: left
+    padding: 20px
+    margin: 8% 0 0 0
+    width: 390px
+
+  .tgnav-groups
+    display: flex
+    justify-content: center
+    width: 34%
+    right: 2%
+
+  .bulletinToolbox1:after
+    bottom: 16px
+    left: 43%
+
+  .bulletinToolbox2:after
+    position: absolute
+    content: ""
+    bottom: 16px
+    left: 72%
+
+  .tgnav-group-dropdown, .tgnav-group-down
+    width: 380px
+
+  .bulletinToolbox2:after
+    position: absolute
+    content: ""
+    bottom: 16px
+    left: 72%
+
+  .gradeline
+    margin: 6px 0 0px
+
+/*course end

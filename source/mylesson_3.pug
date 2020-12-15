@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		title My Lesson Page 3
+		link(href='./assets/plugins/bootstrap/bootstrap.4.0.css', rel="stylesheet")
+		link(href="./assets/plugins/font-awesome/font-awesome.4.7.0.css", rel="stylesheet")
+		link(href="./css/style.css", rel="stylesheet")
+		link(href="./css/mylesson_3.css", rel="stylesheet")
+		//- link(href='./assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css' rel='stylesheet')
+		link(rel="stylesheet", href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css")
+		style. 
+			/* v scrollbar 是否永遠顥示的跟據 v */
+			.ps__rail-x{
+				opacity: 0!important;
+			}
+			.ps__rail-y {
+				opacity: 0.6;
+			}
+			/* ^ scrollbar 是否永遠顥示的跟據 ^ */
+		//-
+		script(src='./assets/plugins/jquery/jquery.1.12.4.min.js')
+		script(src='./assets/plugins/perfect-scrollbar-master/perfect-scrollbar.min.js')
+		script(src='./assets/plugins/vue/vue2.6.12.js')
+		//- script(src='./js/mylesson_2.js')
+	body
+		#nav
+			.wrapper
+				.box nav
+		#content(style='height: 100%')
+			#prev-page
+				svg(fill='none')
+					path(d='M19 2L2 23.5L19 45' stroke='white' stroke-width='4')
+			#next-page
+				svg(fill='none')
+					path(d='M2 2L19 23.5L2 45' stroke='white' stroke-width='4')
+			.wrapper
+				section.section
+					// course-nav
+					nav.tgnav
+						.tgnav-elements
+							.tgnav-cart 真人視訊課程
+							ul.tgnav-groups
+								li.tgnav-group.itemB
+									a(href='https://funday.asia/Tutor/Schedule/' target='new')
+										svg(width='22' height='22' viewBox='0 0 17 16' fill='none' xmlns='http://www.w3.org/2000/svg')
+											path(d='M5.1 9.26316C5.56944 9.26316 5.95 8.88614 5.95 8.42105C5.95 7.95597 5.56944 7.57895 5.1 7.57895C4.63056 7.57895 4.25 7.95597 4.25 8.42105C4.25 8.88614 4.63056 9.26316 5.1 9.26316Z' fill='white')
+											path(d='M9.35 8.42105C9.35 8.88614 8.96944 9.26316 8.5 9.26316C8.03056 9.26316 7.65 8.88614 7.65 8.42105C7.65 7.95597 8.03056 7.57895 8.5 7.57895C8.96944 7.57895 9.35 7.95597 9.35 8.42105Z' fill='white')
+											path(d='M11.9 9.26316C12.3694 9.26316 12.75 8.88614 12.75 8.42105C12.75 7.95597 12.3694 7.57895 11.9 7.57895C11.4306 7.57895 11.05 7.95597 11.05 8.42105C11.05 8.88614 11.4306 9.26316 11.9 9.26316Z' fill='white')
+											path(d='M5.95 11.7895C5.95 12.2546 5.56944 12.6316 5.1 12.6316C4.63056 12.6316 4.25 12.2546 4.25 11.7895C4.25 11.3244 4.63056 10.9474 5.1 10.9474C5.56944 10.9474 5.95 11.3244 5.95 11.7895Z' fill='white')
+											path(d='M8.5 12.6316C8.96944 12.6316 9.35 12.2546 9.35 11.7895C9.35 11.3244 8.96944 10.9474 8.5 10.9474C8.03056 10.9474 7.65 11.3244 7.65 11.7895C7.65 12.2546 8.03056 12.6316 8.5 12.6316Z' fill='white')
+											path(fill-rule='evenodd' clip-rule='evenodd' d='M5.1 0.842105C5.1 0.377023 4.71944 0 4.25 0C3.78056 0 3.4 0.377023 3.4 0.842105H1.7C0.761116 0.842105 0 1.59615 0 2.52632V14.3158C0 15.246 0.761116 16 1.7 16H15.3C16.2389 16 17 15.246 17 14.3158V2.52632C17 1.59615 16.2389 0.842105 15.3 0.842105H13.6C13.6 0.377023 13.2194 0 12.75 0C12.2806 0 11.9 0.377023 11.9 0.842105H5.1ZM1.7 4.21053V2.52632H15.3V4.21053H1.7ZM1.7 5.89474V14.3158H10.3459L15.3 9.40766V5.89474H1.7ZM15.3 11.7895L12.75 14.3158H15.3V11.7895Z' fill='white')
+								li.tgnav-group.itemB
+									a.nav-group-link
+										svg(width='22' height='22' viewBox='0 0 18 20' fill='none' xmlns='http://www.w3.org/2000/svg')
+											path(fill-rule='evenodd' clip-rule='evenodd' d='M9.91442 1.81464C9.91591 1.79328 9.91667 1.77172 9.91667 1.74998C9.91667 1.24372 9.50626 0.833313 9 0.833313C8.49374 0.833313 8.08333 1.24372 8.08333 1.74998C8.08333 1.77172 8.08409 1.79328 8.08558 1.81464C4.97488 2.25847 2.58333 4.93327 2.58333 8.16665V14.5833H1.66667C1.16041 14.5833 0.75 14.9937 0.75 15.5C0.75 16.0062 1.16041 16.4166 1.66667 16.4166H6.25C6.25 17.9354 7.48122 19.1666 9 19.1666C10.5188 19.1666 11.75 17.9354 11.75 16.4166H16.3333C16.8396 16.4166 17.25 16.0062 17.25 15.5C17.25 14.9937 16.8396 14.5833 16.3333 14.5833H15.4167V8.16665C15.4167 4.93327 13.0251 2.25847 9.91442 1.81464ZM13.5833 8.16665V14.5833H4.41667V8.16665C4.41667 5.63534 6.4687 3.58331 9 3.58331C11.5313 3.58331 13.5833 5.63534 13.5833 8.16665ZM9 17.3333C8.49374 17.3333 8.08333 16.9229 8.08333 16.4166H9.91667C9.91667 16.9229 9.50626 17.3333 9 17.3333Z' fill='white')
+									ul.tgnav-group-dropdown
+										.bulletinToolbox1
+										.bulletinIconDiv
+											.bulletinTxt1
+												i.fa.fa-thumb-tack(aria-hidden='true')
+												|           Bulletin
+											.bulletinDate 2020.11.20
+										.bulletinCntDiv(data-val='0')
+											.bulletinCnt
+												i.fa.fa-clock-o(aria-hidden='true')
+												|             Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。
+											.gradeline
+											.bulletinCnt
+												i.fa.fa-clock-o(aria-hidden='true')
+												|             Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。
+											.gradeline
+											.bulletinCnt
+												i.fa.fa-clock-o(aria-hidden='true')
+												|             Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。
+											.gradeline
+											.bulletinCnt
+												i.fa.fa-clock-o(aria-hidden='true')
+												|             Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。
+										#bulletinDiv
+								li.tgnav-group.itemC
+									a.tgnav-group-link
+										svg(width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg')
+											path(fill-rule='evenodd' clip-rule='evenodd' d='M7.15948 2.60016H17.5995C18.5565 2.60016 19.3395 3.35616 19.3395 4.28016V14.3602C19.3395 15.2842 18.5565 16.0402 17.5995 16.0402H7.15948C6.20248 16.0402 5.41948 15.2842 5.41948 14.3602V4.28016C5.41948 3.35616 6.20248 2.60016 7.15948 2.60016ZM1.93945 5.96024H3.67945V17.7202H15.8595V19.4002H3.67945C2.72245 19.4002 1.93945 18.6442 1.93945 17.7202V5.96024ZM17.5994 14.3603H7.1594V4.28028H17.5994V14.3603ZM15.8596 8.48019H8.8996V10.1602H15.8596V8.48019ZM8.8996 11.0002H12.3796V12.6802H8.8996V11.0002ZM15.8596 5.96024H8.8996V7.64024H15.8596V5.96024Z' fill='white')
+					// 18:00 member
+					#member
+						.time-left
+							span.date 18:00
+							ul#timeline
+								li.work
+									input#work5.radio(name='works' type='radio' checked='')
+									.relative
+										span.circle
+						.course-all
+							.course
+								.itemA
+									.top-div.circle
+										.subTitleA 實力
+								.about-in
+									.starbox
+										.starBox.is-star1
+											.star1
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star2
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star3
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+									.card
+										.card-body
+											.bg-clr-w3l
+												img.funday.img-fluid(src='images/demo/te1.jpg' alt='')
+											h5.card-titleN Mason
+											h5.card-titleR 正規教室 A1
+										h2.card-titleF Funday文章回顧:NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪?
+										.itembox
+											h5.card-titleB
+												| 候位
+												.peopleBox
+													.peopleBox.is-people1
+														.people1
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+											span.card-title-j 加入課程
+							.course
+								.itemB
+									.top-div.circle
+										.subTitleB 會話
+								.about-in
+									.starbox
+										.starBox.is-star2
+											.star1
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star2
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star3
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+									.card
+										.card-body
+											.bg-clr-w3l
+												img.funday.img-fluid(src='images/demo/te2.jpg' alt='')
+											h5.card-titleN Mason
+											h5.card-titleR 正規教室 A1
+										h2.card-titleF Funday文章回顧:NBA放棄林書豪NBA放棄林書豪?
+										.itembox
+											h5.card-titleB
+												| 候位
+												.peopleBox
+													.peopleBox.is-people2
+														.people2
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+											span.card-title-s 我要候位
+							.course
+								.itemA
+									.top-div.circle
+										.subTitleA 實力
+								.about-in
+									.starbox
+										.starBox.is-star1
+											.star1
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star2
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star3
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+									.card
+										.card-body
+											.bg-clr-w3l
+												img.funday.img-fluid(src='images/demo/te3.jpg' alt='')
+											h5.card-titleN Mason
+											h5.card-titleR 正規教室 A1
+										h2.card-titleF Funday文章回顧:NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪?
+										.itembox
+											h5.card-titleB
+												| 候位
+												.peopleBox
+													.peopleBox.is-people3
+														.people3
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+											span.card-title-j 加入課程
+							.course
+								.itemA
+									.top-div.circle
+										.subTitleA 實力
+								.about-in
+									.starbox
+										.starBox.is-star1
+											.star1
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star2
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star3
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+									.card
+										.card-body
+											.bg-clr-w3l
+												img.funday.img-fluid(src='images/demo/te3.jpg' alt='')
+											h5.card-titleN Mason
+											h5.card-titleR 正規教室 A1
+										h2.card-titleF Funday文章回顧:NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪?
+										.itembox
+											h5.card-titleB
+												| 候位
+												.peopleBox
+													.peopleBox.is-people4
+														.people4
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+											span.card-title-j 加入課程
+							.course
+								.itemB
+									.top-div.circle
+										.subTitleB 會話
+								.about-in
+									.starbox
+										.starBox.is-star2
+											.star1
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star2
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star3
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+									.card
+										.card-body
+											.bg-clr-w3l
+												img.funday.img-fluid(src='images/demo/te2.jpg' alt='')
+											h5.card-titleN Mason
+											h5.card-titleR 正規教室 A1
+										h2.card-titleF Funday文章回顧:NBA放棄林書豪NBA放棄林書豪?
+										.itembox
+											h5.card-titleB
+												| 候位
+												.peopleBox
+													.peopleBox.is-people5
+														.people5
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+											span.card-title-s 我要候位
+					// //member
+					// 19:00 member
+					#member
+						.time-left
+							span.date 19:00
+							ul#timeline
+								li.work
+									input#work5.radio(name='works' type='radio' checked='')
+									.relative
+										span.circle
+						.course-all
+							.course
+								.itemA
+									.top-div.circle
+										.subTitleA 實力
+								.about-in
+									.starbox
+										.starBox.is-star1
+											.star1
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star2
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star3
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+									.card
+										.card-body
+											.bg-clr-w3l
+												img.funday.img-fluid(src='images/demo/te3.jpg' alt='')
+											h5.card-titleN Mason
+											h5.card-titleR 正規教室 A1
+										h2.card-titleF Funday文章回顧:NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪?
+										.itembox
+											h5.card-titleB
+												| 候位
+												.peopleBox
+													.peopleBox.is-people6
+														.people6
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+											span.card-title-j 加入課程
+							.course
+								.itemB
+									.top-div.circle
+										.subTitleB 會話
+								.about-in
+									.starbox
+										.starBox.is-star2
+											.star1
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star2
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star3
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+									.card
+										.card-body
+											.bg-clr-w3l
+												img.funday.img-fluid(src='images/demo/te2.jpg' alt='')
+											h5.card-titleN Mason
+											h5.card-titleR 正規教室 A1
+										h2.card-titleF Funday文章回顧:NBA放棄林書豪NBA放棄林書豪?
+										.itembox
+											h5.card-titleB
+												| 候位
+												.peopleBox
+													.peopleBox.is-people1
+														.people1
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+											span.card-title-j 加入課程
+							.course
+								.itemA
+									.top-div.circle
+										.subTitleA 實力
+								.about-in
+									.starbox
+										.starBox.is-star1
+											.star1
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star2
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star3
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+									.card
+										.card-body
+											.bg-clr-w3l
+												img.funday.img-fluid(src='images/demo/te3.jpg' alt='')
+											h5.card-titleN Mason
+											h5.card-titleR 正規教室 A1
+										h2.card-titleF Funday文章回顧:NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪?
+										.itembox
+											h5.card-titleB
+												| 候位
+												.peopleBox
+													.peopleBox.is-people2
+														.people2
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+											span.card-title-j 加入課程
+							.course
+								.itemB
+									.top-div.circle
+										.subTitleB 會話
+								.about-in
+									.starbox
+										.starBox.is-star2
+											.star1
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star2
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star3
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+									.card
+										.card-body
+											.bg-clr-w3l
+												img.funday.img-fluid(src='images/demo/te2.jpg' alt='')
+											h5.card-titleN Mason
+											h5.card-titleR 正規教室 A1
+										h2.card-titleF Funday文章回顧:NBA放棄林書豪NBA放棄林書豪?
+										.itembox
+											h5.card-titleB
+												| 候位
+												.peopleBox
+													.peopleBox.is-people3
+														.people3
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+											span.card-title-j 加入課程
+							.course
+								.itemA
+									.top-div.circle
+										.subTitleA 實力
+								.about-in
+									.starbox
+										.starBox.is-star1
+											.star1
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star2
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star3
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+									.card
+										.card-body
+											.bg-clr-w3l
+												img.funday.img-fluid(src='images/demo/te3.jpg' alt='')
+											h5.card-titleN Mason
+											h5.card-titleR 正規教室 A1
+										h2.card-titleF Funday文章回顧:NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪?
+										.itembox
+											h5.card-titleB
+												| 候位
+												.peopleBox
+													.peopleBox.is-people4
+														.people4
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+											span.card-title-j 加入課程
+							.course
+								.itemB
+									.top-div.circle
+										.subTitleB 會話
+								.about-in
+									.starbox
+										.starBox.is-star2
+											.star1
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star2
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star3
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+									.card
+										.card-body
+											.bg-clr-w3l
+												img.funday.img-fluid(src='images/demo/te2.jpg' alt='')
+											h5.card-titleN Mason
+											h5.card-titleR 正規教室 A1
+										h2.card-titleF Funday文章回顧:NBA放棄林書豪NBA放棄林書豪?
+										.itembox
+											h5.card-titleB
+												| 候位
+												.peopleBox
+													.peopleBox.is-people5
+														.people5
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+											span.card-title-j 加入課程
+					// //member
+					// 20:00 member
+					#member
+						.time-left
+							span.date 20:00
+							ul#timeline
+								li.work
+									input#work5.radio(name='works' type='radio' checked='')
+									.relative
+										span.circle
+						.course-all
+							.course
+								.itemA
+									.top-div.circle
+										.subTitleA 實力
+								.about-in
+									.starbox
+										.starBox.is-star1
+											.star1
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star2
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star3
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+									.card
+										.card-body
+											.bg-clr-w3l
+												img.funday.img-fluid(src='images/demo/te3.jpg' alt='')
+											h5.card-titleN Mason
+											h5.card-titleR 正規教室 A1
+										h2.card-titleF Funday文章回顧:NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪?
+										.itembox
+											h5.card-titleB
+												| 候位
+												.peopleBox
+													.peopleBox.is-people3
+														.people3
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+											span.card-title-p 準備中
+							.course
+								.itemB
+									.top-div.circle
+										.subTitleB 會話
+								.about-in
+									.starbox
+										.starBox.is-star2
+											.star1
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star2
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star3
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+									.card
+										.card-body
+											.bg-clr-w3l
+												img.funday.img-fluid(src='images/demo/te2.jpg' alt='')
+											h5.card-titleN Mason
+											h5.card-titleR 正規教室 A1
+										h2.card-titleF Funday文章回顧:NBA放棄林書豪NBA放棄林書豪?
+										.itembox
+											h5.card-titleB
+												| 候位
+												.peopleBox
+													.peopleBox.is-people4
+														.people4
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+											span.card-title-p 準備中
+							.course
+								.itemA
+									.top-div.circle
+										.subTitleA 實力
+								.about-in
+									.starbox
+										.starBox.is-star1
+											.star1
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star2
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star3
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+									.card
+										.card-body
+											.bg-clr-w3l
+												img.funday.img-fluid(src='images/demo/te3.jpg' alt='')
+											h5.card-titleN Mason
+											h5.card-titleR 正規教室 A1
+										h2.card-titleF Funday文章回顧:NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪?
+										.itembox
+											h5.card-titleB
+												| 候位
+												.peopleBox
+													.peopleBox.is-people6
+														.people6
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+											span.card-title-p 準備中
+							.course
+								.itemB
+									.top-div.circle
+										.subTitleB 會話
+								.about-in
+									.starbox
+										.starBox.is-star2
+											.star1
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star2
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star3
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+									.card
+										.card-body
+											.bg-clr-w3l
+												img.funday.img-fluid(src='images/demo/te2.jpg' alt='')
+											h5.card-titleN Mason
+											h5.card-titleR 正規教室 A1
+										h2.card-titleF Funday文章回顧:NBA放棄林書豪NBA放棄林書豪?
+										.itembox
+											h5.card-titleB
+												| 候位
+												.peopleBox
+													.peopleBox.is-people1
+														.people1
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+											span.card-title-p 準備中
+							.course
+								.itemA
+									.top-div.circle
+										.subTitleA 實力
+								.about-in
+									.starbox
+										.starBox.is-star1
+											.star1
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star2
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star3
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+									.card
+										.card-body
+											.bg-clr-w3l
+												img.funday.img-fluid(src='images/demo/te3.jpg' alt='')
+											h5.card-titleN Mason
+											h5.card-titleR 正規教室 A1
+										h2.card-titleF Funday文章回顧:NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪NBA放棄林書豪?
+										.itembox
+											h5.card-titleB
+												| 候位
+												.peopleBox
+													.peopleBox.is-people3
+														.people3
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+															i.fa.fa-user-o(aria-hidden='true')
+											span.card-title-p 準備中
+							.course
+								.itemB
+									.top-div.circle
+										.subTitleB 會話
+								.about-in
+									.starbox
+										.starBox.is-star2
+											.star1
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star2
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star-o(aria-hidden='true')
+											.star3
+												| 難度
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+												i.fa.fa-star(aria-hidden='true')
+									.card
+										.card-body
+											.bg-clr-w3l
+												img.funday.img-fluid(src='images/demo/te2.jpg' alt='')
+											h5.card-titleN Mason
+											h5.card-titleR 正規教室 A1
+										h2.card-titleF Funday文章回顧:NBA放棄林書豪NBA放棄林書豪?
+										.itembox
+											h5.card-titleB
+												| 候位
+												.peopleBox
+													.peopleBox.is-people6
+														.people6
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+															i.fa.fa-user(aria-hidden='true')
+											span.card-title-p 準備中
+					// //member
+					// //
+					// //wrapper
+					// 側邊欄
+					.slideout
+						.slideout_inner
+							.bulletin-topbox
+								.bulletinTxt1
+									i.fa.fa-graduation-cap(aria-hidden='true')
+									|             個人等級
+								.bulletinGrade B1
+							.bulletin-item
+								.bulletinTxt2 複習列表REVIEW
+								h5.gradeN A2正規教室
+								h5.gradeR 2020/07/30
+								.gradeCnt Funday文章回顧:NBA放棄林書豪NBA放棄林書豪?
+								h5.gradeR
+									i.fa.fa-play-circle-o(aria-hidden='true')
+									i.fa.fa-cloud-download(aria-hidden='true')
+								.gradeline
+								h5.gradeN A2正規教室
+								h5.gradeR 2020/07/30
+								.gradeCnt Funday文章回顧:NBA放棄林書豪NBA放棄林書豪?
+								h5.gradeR
+									i.fa.fa-play-circle-o(aria-hidden='true')
+									i.fa.fa-cloud-download(aria-hidden='true')
+								.gradeline
+								h5.gradeN A2正規教室
+								h5.gradeR 2020/07/30
+								.gradeCnt Funday文章回顧:NBA放棄林書豪NBA放棄林書豪?
+								h5.gradeR
+									i.fa.fa-play-circle-o(aria-hidden='true')
+									i.fa.fa-cloud-download(aria-hidden='true')
+								.gradeline
+								h5.gradeN A2正規教室
+								h5.gradeR 2020/07/30
+								.gradeCnt Funday文章回顧:NBA放棄林書豪NBA放棄林書豪?
+								h5.gradeR
+									i.fa.fa-play-circle-o(aria-hidden='true')
+									i.fa.fa-cloud-download(aria-hidden='true')
+								.gradeline
+								h5.gradeN A2正規教室
+								h5.gradeR 2020/07/30
+								.gradeCnt Funday文章回顧:NBA放棄林書豪NBA放棄林書豪?
+								h5.gradeR
+									i.fa.fa-play-circle-o(aria-hidden='true')
+									i.fa.fa-cloud-download(aria-hidden='true')
+								.gradeline
+								h5.gradeN A2正規教室
+								h5.gradeR 2020/07/30
+								.gradeCnt Funday文章回顧:NBA放棄林書豪NBA放棄林書豪?
+								h5.gradeR
+									i.fa.fa-play-circle-o(aria-hidden='true')
+									i.fa.fa-cloud-download(aria-hidden='true')
+								.gradeline
+								h5.gradeN A2正規教室
+								h5.gradeR 2020/07/30
+								.gradeCnt Funday文章回顧:NBA放棄林書豪NBA放棄林書豪?
+								h5.gradeR
+									i.fa.fa-play-circle-o(aria-hidden='true')
+									i.fa.fa-cloud-download(aria-hidden='true')
+								.gradeline
+								h5.gradeN A2正規教室
+								h5.gradeR 2020/07/30
+								.gradeCnt Funday文章回顧:NBA放棄林書豪NBA放棄林書豪?
+								h5.gradeR
+									i.fa.fa-play-circle-o(aria-hidden='true')
+									i.fa.fa-cloud-download(aria-hidden='true')
+								.gradeline
+							.bulletin-homework
+								.bulletinTxt2 家庭作業HOMEWORK
+								h5.gradeN 寫作練習
+								i.fa.fa-circle(aria-hidden='true')
+								i.fa.fa-circle(aria-hidden='true')
+								i.fa.fa-circle(aria-hidden='true')
+								i.fa.fa-circle(aria-hidden='true')
+								i.fa.fa-circle(aria-hidden='true')
+								br
+								h5.gradeN 朗讀練習
+								i.fa.fa-circle(aria-hidden='true')
+								i.fa.fa-circle(aria-hidden='true')
+								i.fa.fa-circle(aria-hidden='true')
+								i.fa.fa-circle(aria-hidden='true')
+								i.fa.fa-circle(aria-hidden='true')
+							#bulletinDiv
+					// //側邊欄slideout
+		#foo
+			.f1
+				| 需要其他協助嗎?  請聯絡我們
+				.msg-board(onclick="GoLink('MessageBoard')" title='留言版')
+			.f2
+				span.f2-1
+					| 服務時間：週一～週六 10:00~12:30、13:30~17:30、18:30~22:00  |  02-2523-9777 / 0800-023-777 (限市話)
+				span.f2-2
+					| © 2020 Brainstorm Digital Communications Corp. All rights reserved. Privacy Policy
+
+		#sidebar
+			#sidebar-title
+				#sidebar-icon
+					img(src='./images/member.svg')
+					|個人等級
+				#sidebar-level A2-3
+			#sidebar-scroller
+				#sidebar-scroller-title 複習列表 REVIEW
+				#sidebar-list
+					include partials/2/side_item
+					include partials/2/side_item
+					include partials/2/side_item
+					include partials/2/side_item
+					include partials/2/side_item
+					include partials/2/side_item
+					include partials/2/side_item
+					include partials/2/side_item
+					include partials/2/side_item
+					include partials/2/side_item
+					include partials/2/side_item
+					include partials/2/side_item
+			#sidebar-under
+				#sidebar-under-title 個人收錄
+				ul#sidebar-under-list
+					li.sidebar-under-item
+						img(src='./images/under1.svg')
+						|單字
+					li.sidebar-under-hr
+					li.sidebar-under-item
+						img(src='./images/under2.svg')
+						|片語
+					li.sidebar-under-hr
+					li.sidebar-under-item
+						img(src='./images/under3.svg')
+						|文章
+		script. 
+			$(function(){
+				console.log('got jq cdn');
+				$('.tgnav-group.itemC').click(function(){
+					$('.slideout').toggleClass('is-open');
+				});
+
+				$('.section').click(function(){
+					$('.section').toggleClass('is-open');
+				});
+			});

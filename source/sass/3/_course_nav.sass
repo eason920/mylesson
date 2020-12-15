@@ -1,0 +1,509 @@
+/*course-nav
+
+.tgnav
+  display: block
+  left: 0
+  position: fixed
+  top: 0
+  width: 100%
+  padding: 0 30px
+  position: relative
+  margin: 4rem auto 0
+  font-size: 1.2rem
+
+  /*box-shadow: -2px 4px 12px #ededed;
+  /*background: #292F36;
+  /*max-width: 1400px;
+
+  a
+    cursor: pointer
+    padding: 1.5rem 2rem
+    display: inline-block
+
+.tgnav-elements
+  display: flex
+
+.tgnav
+  .itemB, .itemC
+    margin: auto
+    background: #354E85
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2)
+    border-radius: 100px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    width: 60px
+    height: 60px
+
+.slideout
+  position: absolute
+  top: 0px
+  width: 100%
+  display: block
+  height: 100%
+  top: 0px
+  right: -450px
+  overflow-y: auto
+  user-select: none
+  -webkit-transition-duration: 0.3s
+  -moz-transition-duration: 0.3s
+  -o-transition-duration: 0.3s
+  transition-duration: 0.3s
+
+  &.is-open
+    right: 0px
+    display: block
+
+.section.is-open
+  right: 0px
+
+.slideout_inner
+  background: #354E85
+  color: #fff
+  width: 17%
+  display: block
+  height: 100%
+  position: absolute
+  top: 0px
+  right: 0px
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2)
+
+  /*padding-top: 80px;
+   *padding-right: 30px;
+   *padding-left: 30px;
+  overflow-y: auto
+  user-select: none
+  -webkit-transition-duration: 0.3s
+  -moz-transition-duration: 0.3s
+  -o-transition-duration: 0.3s
+  transition-duration: 0.3s
+
+.slideout:hover .slideout_inner
+  right: 0px
+
+.skin2 .close_btn
+  background-position: 0 -54px
+  background-size: auto 871px
+  background-repeat: no-repeat
+  width: 30px
+  height: 30px
+  background-color: transparent
+
+.section
+  width: 100%
+  height: 100%
+  display: block
+  position: relative
+  z-index: 10
+  transition: all 0.6s
+  right: 0
+  padding: 0 0 30px 0
+
+.tgnav-cart
+  display: inline-block
+  font-size: 24px
+  font-weight: bold
+  letter-spacing: .02rem
+  text-transform: uppercase
+  color: #354E85
+  padding: 0px 20px
+  align-self: center
+  width: 100%
+  border-left: solid 5px #354E85
+
+.tgnav-groups
+  display: flex
+  justify-content: center
+  width: 26%
+
+.tgnav-group
+  z-index: 2
+
+  > a
+    display: block
+    font: 700 1.1rem Oswald
+    letter-spacing: .02rem
+    text-transform: uppercase
+    color: #354E85
+
+  &:first-child > a
+    padding-left: 2rem
+
+  &:last-child > a
+    padding-right: 2rem
+
+.tgnav-group-dropdown
+  position: absolute
+  top: 100%
+  visibility: hidden
+  display: none
+  opacity: 0
+
+  /*min-width: 450px;
+  /*left: -20%;
+  /*padding: 20px;
+  background: #2B447E
+  transition: opacity 1.3s ease-in-out .3s, visibility 1s ease-out
+  text-align: left
+  padding: 26px
+  margin: 8% 0 0 0
+  width: 350px
+
+  nav ul
+    padding: 0
+
+.tgnav-group-down
+  position: absolute
+  top: 100%
+  visibility: hidden
+  display: none
+  opacity: 0
+
+  /*min-width: 450px;
+  /*left: -20%;
+  /*padding: 20px;
+  background: #2B447E
+  transition: opacity 1.3s ease-in-out .3s, visibility 1s ease-out
+  text-align: left
+  padding: 26px
+  margin: 8% 67% 0 0
+  width: 350px
+
+  nav ul
+    padding: 0
+
+/*訊息通知
+
+.bulletinIconDiv
+  justify-content: center
+  display: flex
+
+.bulletin-topbox
+  justify-content: center
+  display: flex
+  background: #354E85
+  padding: 20px
+
+.bulletin-item
+  justify-content: center
+  display: block
+  padding: 20px
+  background: #11244F
+
+.bulletin-homework
+  justify-content: center
+  display: block
+  padding: 20px
+
+.bulletinToolbox1, .bulletinToolbox2
+  /*width: 300px;
+  /*height: 175px;
+  /*background-color: #5a5;
+  position: relative
+
+.bulletinToolbox1:after
+  position: absolute
+  content: ""
+  bottom: 20px
+  left: 44%
+  transform: translateX(-50%)
+  transform: rotate(180deg)
+  width: 0
+  height: 0
+  margin: auto
+  border-width: 20px
+  border-style: solid
+  border-top-color: #2B447E
+  border-right-color: transparent
+  border-bottom-color: transparent
+  border-left-color: transparent
+
+.bulletinToolbox2:after
+  position: absolute
+  content: ""
+  bottom: 20px
+  left: 77%
+  transform: translateX(-50%)
+  transform: rotate(180deg)
+  width: 0
+  height: 0
+  margin: auto
+  border-width: 20px
+  border-style: solid
+  border-top-color: #2B447E
+  border-right-color: transparent
+  border-bottom-color: transparent
+  border-left-color: transparent
+
+.bulletinTxt1
+  font-size: 18px
+  font-weight: bold
+  color: #fff
+  padding: 0 20px 0 0
+  text-align: center
+
+.bulletinTxt2
+  font-size: 18px
+  font-weight: bold
+  color: #fff
+  padding: 8px 0
+  text-align: left
+
+.gradeN
+  color: #fff
+  float: left
+  font-size: 16px
+  display: flex
+  padding: 4px 0
+
+.gradeR
+  color: #fff
+  font-size: 16px
+  opacity: .7
+
+  /* justify-content: center;
+  display: flex
+  justify-content: flex-end
+  padding: 4px 0
+
+.gradeCnt
+  position: relative
+  flex: 1
+  -webkit-flex: 1
+  margin: 0
+  font-size: 16px
+  line-height: 1.4
+  text-align: justify
+  color: #fff
+  padding: 0 0 6px 0
+  float: left
+  width: 85%
+
+i.fa.fa-play-circle-o
+  padding: 0 6px
+
+.fa-user-o:before
+  content: "\f2c0"
+  font-size: 14px
+
+i.fa.fa-circle
+  color: #fff
+  font-size: 14px
+  opacity: .7
+  padding: 7px 3px
+
+.gradeline
+  border-top: 1px solid #fff
+  padding: 0px
+  display: inline-block
+  margin: 10px auto
+  width: 100%
+
+.bulletinDate, .bulletinGrade
+  font-size: 18px
+  line-height: 1.4
+  font-weight: bold
+  color: #fff
+  text-align: center
+
+.bulletinCnt
+  position: relative
+  flex: 1
+  -webkit-flex: 1
+  margin: 0
+
+  /* margin-left: 20px;
+  /* margin-right: 20px;
+  font-size: 16px
+  line-height: 1.4
+
+  /*letter-spacing: 2px;
+  text-align: justify
+  color: #fff
+
+  /*border-top: 1px solid #fff;
+   *border-bottom: 1px solid #fff;
+   *border-width: 1px 0 1px 0;
+   *padding: 10px;
+
+.bulletinIKnowDiv
+  position: relative
+  height: 45px
+  margin: auto
+
+.bulletinIKnowBtn
+  position: relative
+  float: right
+  width: 106px
+  height: 25px
+  border-radius: 12.5px
+  background-color: #41e1b6
+  box-shadow: 1.5px 2.6px 1px 0 rgba(255, 255, 255, 0.13)
+  font-size: 14.3px
+  font-weight: bold
+  line-height: 25px
+  letter-spacing: 1.2px
+  text-align: center
+  color: #ffffff
+
+.bulletinCntDiv
+  position: relative
+  width: 100%
+
+  /*display: -webkit-flex;
+   *display: flex;
+  flex-direction: column
+  margin-top: 10px
+
+  /*background-color: #11244F;
+
+.contentRight
+  position: relative
+  float: left
+  font-size: 16px
+  width: calc(100% - 20px)
+  height: 100%
+
+.bulletinSroller
+  position: relative
+  margin: auto
+  width: 200px
+  height: 300px
+  margin-top: 10px
+  overflow-y: scroll
+
+.bulletinItem
+  position: relative
+  padding-top: 8px
+  padding-bottom: 12px
+
+.bulletinClose
+  position: absolute
+  right: 18px
+  top: 33px
+  width: 13px
+  height: 13px
+  background-image: url(../images/close.png)
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: center
+
+/*訊息通知 end
+
+.product-list
+  flex: 1
+  min-width: 15rem
+  padding-right: 1rem
+
+  a
+    padding: .5rem 0
+    transition: .2s ease
+    position: relative
+    z-index: 2
+
+    &:before
+      content: ''
+      left: 0
+      top: 85%
+      width: 0
+      transition: width .3s ease
+      height: 3px
+      position: absolute
+      background: #292F36
+
+    &:hover
+      color: #292F36
+
+      &:before
+        width: 30px
+
+.product-list-link
+  padding-right: .5rem
+
+.product-list-title
+  width: 100%
+
+.product-list.multi
+  display: flex
+  flex-wrap: wrap
+
+  .product-list-link
+    flex: 1 1 50%
+
+.title
+  margin: 1.2rem 0 0.8rem
+  text-transform: uppercase
+  font: 700 1.1rem Oswald
+  letter-spacing: .02rem
+
+.multi-column
+  display: flex
+  flex-wrap: wrap
+  align-items: flex-start
+
+.article-list
+  width: 100%
+  padding-right: 30%
+  display: flex
+  flex-wrap: wrap
+  margin-top: 1.3rem
+
+.article-lis-title
+  width: 100%
+
+.article-list-link
+  flex: 1
+  min-width: 11rem
+  margin-right: 2rem
+  position: relative
+  transition: transform .3s ease
+
+  &:before
+    content: ''
+    width: 3.5px
+    height: 0
+    background: #292F36
+    transition: height .3s ease
+    position: absolute
+    top: .8rem
+    left: -.9rem
+
+  &:hover
+    transform: translateX(10px)
+
+    a
+      color: #292F36
+
+.article-lis-link:hover:before
+  height: 30px
+
+.article-list a
+  padding: .4rem 0
+
+.tgnav-group
+  a:hover + .tgnav-group-dropdown, .tgnav-group-dropdown:hover, li:hover > .tgnav-group-dropdown, a:hover + .tgnav-group-down, .tgnav-group-down:hover, li:hover > .tgnav-group-down
+    display: block
+    opacity: 1
+    visibility: visible
+
+.product-image
+  position: absolute
+  max-width: 33%
+  height: 250px
+  object-fit: contain
+  object-position: bottom right
+  bottom: 0
+  right: 0
+  transition: 1.3s ease
+  opacity: 0
+  z-index: 1
+
+  &[data-match="table"], &[data-match="floor"], &[data-match="plant"]
+    opacity: 1
+
+.product-list
+  &[data-type="chair"]:hover ~ .product-image[data-match="chair"], &[data-type="support"]:hover ~ .product-image[data-match="support"], &[data-type="chair"]:hover ~ .product-image[data-match="chair"], &[data-type="wall"]:hover ~ .product-image[data-match="wall"], &[data-type="window"]:hover ~ .product-image[data-match="window"], &[data-type="cool"]:hover ~ .product-image[data-match="cool"], &[data-type="buddy"]:hover ~ .product-image[data-match="buddy"], &[data-type="items"]:hover ~ .product-image[data-match="items"], &[data-type="pets"]:hover ~ .product-image[data-match="pets"]
+    opacity: 1
+
+/*end course-nav
