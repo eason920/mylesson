@@ -25,8 +25,6 @@ else
   enddatechk=0
 end if
 
-
-
 select case target
    case "MusicBox"
       Redirect_str="window.open('../../newpage2/dashboard/?type=m1','_blank')"
@@ -51,7 +49,9 @@ select case target
    case "TutorIndx"
       Redirect_str="location.href='../../teaching/?cls=Formal&index=" & request("indx")&"'"
    case "PracticeIndx"	 
-      Redirect_str="location.href='../../teaching/?cls=Life&index=" & request("indx")&"'"      
+      Redirect_str="location.href='../../teaching/?cls=Life&index=" & request("indx")&"'"   
+   case "Conference"
+      Redirect_str="location.href='../../teaching/tutorConference/?cls=Conference&index=" & request("indx")&"'"            
    case "Mylesson"
       Redirect_str="location.href='../../self-study/mylesson/'" 
       VIP3=Request.Cookies("product") 
@@ -153,7 +153,7 @@ select case target
       VIP=1
       VIP2=1    
    case "Track"
-      Redirect_str="location.href='../../mylesson'"
+      Redirect_str="location.href='../../mylesson/intro2.asp'"
       VIP3=Request.Cookies("product")   
    case "MZ"
       Redirect_str="location.href='../../self-study/MZ?SN="&request("SN")&"'"
