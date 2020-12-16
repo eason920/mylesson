@@ -1,15 +1,18 @@
 /*course-nav
 
 .tgnav
-  display: block
+  display: flex
   left: 0
-  position: fixed
   top: 0
   width: 100%
   padding: 0 30px
   position: relative
-  margin: 4rem auto 0
   font-size: 1.2rem
+  height: 40px
+  align-items: center
+  margin: 
+    top: 15px
+    bottom: 18px
 
   /*box-shadow: -2px 4px 12px #ededed;
   /*background: #292F36;
@@ -17,7 +20,7 @@
 
   a
     cursor: pointer
-    padding: 1.5rem 2rem
+    // padding: 1.5rem 2rem
     display: inline-block
 
 .tgnav-elements
@@ -25,7 +28,7 @@
 
 .tgnav
   .itemB, .itemC
-    margin: auto
+    // margin: auto
     background: #354E85
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2)
     border-radius: 100px
@@ -33,8 +36,8 @@
     flex-direction: column
     justify-content: center
     align-items: center
-    width: 60px
-    height: 60px
+    width: 40px
+    height: 40px
 
 .slideout
   position: absolute
@@ -115,40 +118,35 @@
 .tgnav-groups
   display: flex
   justify-content: center
-  width: 26%
+  // width: 26%
 
 .tgnav-group
-  z-index: 2
+  margin-left: 15px
 
   > a
-    display: block
-    font: 700 1.1rem Oswald
-    letter-spacing: .02rem
-    text-transform: uppercase
-    color: #354E85
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 100%
+    height: 100%
 
   &:first-child > a
-    padding-left: 2rem
+    // padding-left: 2rem
 
   &:last-child > a
-    padding-right: 2rem
+    // padding-right: 2rem
 
 .tgnav-group-dropdown
   position: absolute
-  top: 100%
-  visibility: hidden
-  display: none
-  opacity: 0
-
-  /*min-width: 450px;
-  /*left: -20%;
-  /*padding: 20px;
+  top: 168px
+  right: 0
   background: #2B447E
   transition: opacity 1.3s ease-in-out .3s, visibility 1s ease-out
   text-align: left
   padding: 26px
-  margin: 8% 0 0 0
   width: 350px
+  z-index: 10
+  display: none
 
   nav ul
     padding: 0
@@ -289,9 +287,12 @@ i.fa.fa-play-circle-o
 
 i.fa.fa-circle
   color: #fff
-  font-size: 14px
+  font-size: 17px
   opacity: .7
-  padding: 7px 3px
+  padding: 7px 5px 0
+  &:nth-child(12n)
+    padding-right: 0
+
 
 .gradeline
   border-top: 1px solid #fff
@@ -311,21 +312,19 @@ i.fa.fa-circle
   position: relative
   flex: 1
   -webkit-flex: 1
-  margin: 0
-
-  /* margin-left: 20px;
-  /* margin-right: 20px;
+  margin:
+    bottom: 10px
+  padding:
+    bottom: 10px
+  border-bottom: solid 1px #fff
   font-size: 16px
   line-height: 1.4
-
-  /*letter-spacing: 2px;
   text-align: justify
   color: #fff
-
-  /*border-top: 1px solid #fff;
-   *border-bottom: 1px solid #fff;
-   *border-width: 1px 0 1px 0;
-   *padding: 10px;
+  &:last-child
+    border: none
+    padding: 0
+    margin: 0
 
 .bulletinIKnowDiv
   position: relative
@@ -481,11 +480,11 @@ i.fa.fa-circle
 .article-list a
   padding: .4rem 0
 
-.tgnav-group
-  a:hover + .tgnav-group-dropdown, .tgnav-group-dropdown:hover, li:hover > .tgnav-group-dropdown, a:hover + .tgnav-group-down, .tgnav-group-down:hover, li:hover > .tgnav-group-down
-    display: block
-    opacity: 1
-    visibility: visible
+// .tgnav-group
+//   a:hover + .tgnav-group-dropdown, .tgnav-group-dropdown:hover, li:hover > .tgnav-group-dropdown, a:hover + .tgnav-group-down, .tgnav-group-down:hover, li:hover > .tgnav-group-down
+    // display: block
+    // opacity: 1
+    // visibility: visible
 
 .product-image
   position: absolute

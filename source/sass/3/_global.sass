@@ -1,0 +1,134 @@
+// ====================================
+// == ALL v
+// ====================================
+html
+	font-size: 16px
+	overflow-y: hidden
+
+body
+	height: 100vh
+	
+#nav
+	// margin-bottom: 15px
+	position: relative
+	z-index: 2
+
+#ms2-loading
+	// display: none
+	position: fixed
+	top: 0
+	right: 0
+	bottom: 0
+	left: 0
+	margin: auto
+	width: 100px
+
+#content
+	display: none
+	height: calc( 100vh - 96px )
+	overflow:
+		y: auto
+		x: hidden!important
+	overflow: hidden
+	padding: 0 70px
+
+	.wrapper
+		position: relative
+		overflow:
+			y: auto
+			x: hidden!important
+		height: calc( 100vh - 96px )
+		height: 100%
+		padding: 0 20px 0 0
+		max-width: 1540px
+		transition: .3s
+		
+		//is-white
+		// background-color: $c-main
+		// padding: 0 40px
+
+		// margin: 0 70px
+
+		position: relative
+		&.is-open
+			transform: translateX(-300px)
+	// overflow: auto
+
+@media screen and (max-width: 1280px)
+	#content .wrapper
+		min-width: 1000px
+
+@media screen and (min-width: 1680px)
+	$sum: calc( 50% - #{$w-max-width} / 2 + 21px )
+	#prev-page
+		left: $sum
+
+	#next-page
+		right: $sum
+
+// ====================================
+// == BLOCK1 & BLOCK2 v
+// ====================================
+.grid1, .grid3
+	width: calc( #{$w-g13} - #{$g} )
+	margin-right: $g
+
+.grid2
+	width: calc( #{$w-g2} - #{$g} )
+	margin-right: $g
+
+.grid4
+	width: $w-g4
+	
+.grid-title
+	color: #000
+	position: relative
+	line-height: $h-title
+	text-align: center
+	font:
+		size: 1.125rem
+		weight: bold
+	@include title-deco
+	display: block
+	text-decoration: none
+	cursor: pointer
+
+.grid-subtitle
+	color: #000
+	@extend %row1
+	font:
+		size: 1rem
+		weight: bold
+
+.grid-content
+	line-height: 1.5
+	font-size: .875rem
+	color: $c-t2
+
+// --------------------------------
+.grid-bottom
+	margin-top: 10px
+	position: relative
+
+.grid-view
+	font-size: .75rem
+	color: $c-t2
+	background-color: $c-main
+	padding-left: 5px
+	display: flex
+	position: absolute
+	right: 0
+	bottom: 3px
+	letter-spacing: 1px
+	line-height: 17px
+	img
+		margin-right: 3px
+	span
+
+.add-hr
+	border-top: solid 1px $c-t2
+	padding-top: $g-hr
+	&:last-child
+		// border: none
+		// padding: 0
+	

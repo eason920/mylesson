@@ -1,17 +1,26 @@
 /*course
 
-#member
+#foo
+  margin-top: 100px
+  padding:
+    left: 40px
+    bottom: 12px
+
+.memberbox
   padding: 50px 0 0 0
 
   /*height: 100%;
   width: 100%
   margin-right: 1%
   display: flex
+  &.is-first
+    padding-top: 15px
 
   .time-left
     padding: 0
     width: 5%
     margin: 10px 0 0 0
+    // position: relative
 
     /*box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
     /*border-radius: 10px;
@@ -23,14 +32,14 @@
     align-items: center
 
     .date
-      margin: 20% 0
-      top: 50%
+      // margin: 20% 0
+      top: -15px
       left: 0
       font-size: 22px
       font-weight: 700
       line-height: 20px
-
-      /*position: absolute;
+      position: relative
+      color: #354E85
 
   .course-all
     width: 100%
@@ -128,9 +137,13 @@
             font-size: 20px
             color: #000
             margin: auto
+            width: calc( 100% - 60px - 90px)
+            text-align: center
+            @extend %row1
 
           .card-titleR
-            font-size: 20px
+            font-size: 16px
+            width: 90px
             color: #000
             margin: auto 0
             text-align: justify
@@ -163,19 +176,24 @@
   height: 30px
   overflow: hidden
   display: inline-block
+  & > div > i
+    margin-left: 3px
 
 .peopleBox
   padding: 0
   height: 18px
   overflow: hidden
   margin-left: 2px
+  color: #7e7e7e
+  i
+    margin-right: 3px
+  .fa-user
+    transform: translateY(1px)
 
-  /*display: inline-block;
-
-.star1, .star2, .star3
+.starBox-ul
   color: #ff9100
   font-size: 16px
-  display: none
+  // display: none
 
 .people1, .people2, .people3, .people4, .people5, .people6
   color: #7e7e7e
@@ -190,7 +208,7 @@
   &.is-star1 .star1, &.is-star2 .star2, &.is-star3 .star3
     display: block
 
-#member .course-all .course .about-in .card
+.memberbox .course-all .course .about-in .card
   .itembox
     width: 100%
     display: flex
@@ -338,16 +356,25 @@ span.peopleRating
 
 /*-- //peopleRating --
 
-#member .course-all .course
+.memberbox .course-all .course
   .about-in .bg-clr-w3l
     width: 60px
     height: 30px
-    -webkit-border-radius: 50%
-    -o-border-radius: 50%
-    -moz-border-radius: 50%
-    -ms-border-radius: 50%
     border-radius: 50%
     display: block
+    position: relative
+    & > div
+      width: 60px
+      height: 60px
+      position: absolute
+      left: 0
+      bottom: 0
+      border-radius: 50%
+      overflow: hidden
+      background:
+        size: cover
+        position: center
+        
 
   .left-div
     position: relative
@@ -369,22 +396,20 @@ span.peopleRating
       border: 1px solid #20A0A0
       border-radius: 50%
 
-    .subTitleA
+    .subTitle
       width: 100%
       height: 14px
       text-align: center
       font-weight: 600
       font-size: 20px
       line-height: 14px
+
+  .itemA
+    .subTitle
       color: #fff
 
-    .subTitleB
-      width: 100%
-      height: 14px
-      text-align: center
-      font-weight: 600
-      font-size: 20px
-      line-height: 14px
+  .itemB
+    .subTitle
       color: #20A0A0
 
   .photoimg
@@ -408,7 +433,7 @@ span.peopleRating
     right: 200px
 
 @media (max-width: 1680px)
-  #member .course-all .course .about-in .card
+  .memberbox .course-all .course .about-in .card
     .itembox
       .card-title-j, .card-title-s
         width: 85%
@@ -425,7 +450,7 @@ span.peopleRating
     right: 360px
 
 @media (max-width: 1536px)
-  #member .course-all .course .about-in .card
+  .memberbox .course-all .course .about-in .card
     .itembox
       .card-title-j, .card-title-s
         width: 70%
@@ -434,10 +459,10 @@ span.peopleRating
       width: 70%
 
   .tgnav-group-dropdown, .tgnav-group-down
-    width: 330px
+    // width: 330px
 
 @media (max-width: 1440px)
-  #member .course-all .course .about-in .card
+  .memberbox .course-all .course .about-in .card
     .itembox
       .card-title-j, .card-title-s
         width: 55%
@@ -451,7 +476,7 @@ span.peopleRating
   .starRating:not(old)
     font-size: 14px
 
-  #member .course-all .course .about-in .card
+  .memberbox .course-all .course .about-in .card
     .card-titleP
       padding: 10px 20px
 
@@ -460,7 +485,7 @@ span.peopleRating
       height: 60px
 
   .tgnav-group-dropdown, .tgnav-group-down
-    width: 300px
+    // width: 300px
 
   .bulletinToolbox1:after
     bottom: 16px
@@ -471,7 +496,7 @@ span.peopleRating
     left: 75%
 
   .bulletinCnt
-    font-size: 14px
+    // font-size: 14px
 
   .bulletinToolbox2:after
     position: absolute
@@ -484,13 +509,18 @@ span.peopleRating
     font-size: 14px
 
   .gradeline
-    margin: 20px 0 0px
+    margin: 10px 0
 
   .gradeN, .gradeR
     font-size: 14px
 
+@media (max-width: 1080px)
+  .course
+    .card
+      padding: 0 !important
+
 @media (max-width: 1366px)
-  #member .course-all .course
+  .memberbox .course-all .course
     width: calc( 100% / 3 - 24px)
 
   .slideout_inner
@@ -502,22 +532,22 @@ span.peopleRating
     right: 400px
 
   .tgnav-group-dropdown
-    position: absolute
-    top: 100%
-    visibility: hidden
-    display: none
-    opacity: 0
+    // position: absolute
+    // top: 100%
+    // visibility: hidden
+    // display: none
+    // opacity: 0
 
-    /* min-width: 450px;
-    left: -15%
+    // /* min-width: 450px;
+    // left: -15%
 
-    /* padding: 20px;
-    background: #2B447E
-    transition: opacity 1.3s ease-in-out .3s, visibility 1s ease-out
-    text-align: left
-    padding: 20px
-    margin: 8% 0 0 0
-    width: 390px
+    // /* padding: 20px;
+    // background: #2B447E
+    // transition: opacity 1.3s ease-in-out .3s, visibility 1s ease-out
+    // text-align: left
+    // padding: 20px
+    // margin: 8% 0 0 0
+    // width: 390px
 
   .tgnav-groups
     display: flex
@@ -536,7 +566,7 @@ span.peopleRating
     left: 72%
 
   .tgnav-group-dropdown, .tgnav-group-down
-    width: 380px
+    // width: 380px
 
   .bulletinToolbox2:after
     position: absolute
@@ -545,6 +575,6 @@ span.peopleRating
     left: 72%
 
   .gradeline
-    margin: 6px 0 0px
+    margin: 10px 0
 
 /*course end

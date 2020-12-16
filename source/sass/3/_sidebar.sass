@@ -1,0 +1,70 @@
+$h: 150px
+#sidebar-scroller
+	// height: calc( 100% - 68px - #{$h} )
+	height: 400px
+
+#sidebar-under
+	height: auto
+
+#sidebar-under-title
+	margin-bottom: 10px
+	&:after
+		left: 185px
+
+.sidebar-under-box
+	padding-bottom: 12px
+	&:nth-child(3)
+		padding: 0
+
+.sidebar-list-item
+	position: relative
+	border-bottom: solid 1px #fff
+	overflow: hidden
+	padding-bottom: 6px
+	margin-bottom: 10px
+	&:last-child
+		padding: 0
+		margin: 0
+		border: none
+
+	.gradeR.is-download
+		position: absolute
+		bottom: 6px
+		right: 0
+		i
+			font-size: 20px
+			margin-left: 5px
+
+.gradeN
+	font:
+		size: 1rem!important
+		weight: bold
+	span
+		margin-right: 5px
+
+.gradeCnt
+	color: #ddd!important
+	
+.gradeCnt, .gradeR.is-download i
+	cursor: pointer
+
+.sidebar-under-subtitle
+	color: #fff
+	font:
+		size: .875rem
+
+.sidebar-under-dot
+	.fa.fa-circle
+		&[data-status='1'], &[data-status='2'], &[data-status='3'], 
+		&[data-status='4'], &[data-status='5']
+			opacity: 1
+		&[data-status='1']
+			color: $c-o1
+		&[data-status='2']
+			color: $c-o7
+		&[data-status='3']
+			color: $c-o3
+		&[data-status='4']
+			color: $c-o4
+		&[data-status='5']
+			color: $c-o5
