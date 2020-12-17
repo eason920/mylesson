@@ -1,0 +1,7 @@
+JoinCheck = "7" '可候位                5min <-time         
+JoinCheck = "1" 'Join                        time-> 3min 內  + 有候位者 | time -> 5min 後~ 15 min開課前 仍有空位、未候位者
+JoinCheck = "4" '課程準備中                   time-> 3min 內有候位者本可 join 但老師未準備好 | time -> 5min 後~ 15 min開課前仍 有空位、未候位者(即全部人)
+JoinCheck = "3" '上課中                       time-> 15min 後
+JoinCheck = "5" '本課程因故未開課              time-> 3min 內 老師都未點下「準備好了」鈕
+JoinCheck = "0" '時間未到         未定時日內 <-time
+JoinCheck = "8" '本課程已結束

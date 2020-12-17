@@ -3,8 +3,10 @@ $(()=>{
 	new PerfectScrollbar('#content .wrapper');
 	new PerfectScrollbar('#sidebar-scroller');
 
-	$('.nav-group-link').click(function(){
-		$('.tgnav-group-dropdown').toggle();
+	$('.nav-group-link, .tgnav-group-dropdown').hover(function(){
+		$('.tgnav-group-dropdown').show();
+	}, function(){
+		$('.tgnav-group-dropdown').hide();
 	});
 
 	$('.tgnav-group-link, #sidebar-icon').click(function(){

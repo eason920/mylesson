@@ -946,12 +946,25 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 	end if
 	%>
 	
-	<%if  session("Login_guided")="4"  then%>
-		if(parseInt($(window).height())>720){
-			DIYLightBox('iframe','1280px','720px','../../../KOBO/detail.asp')    
-		}else{
-			DIYLightBox('iframe','980px','592px','../../../KOBO/detail.asp')    
-		}   
-	<%end if%>
+  if(Login_guided==3){
+    if(parseInt($(window).height())>720){
+      DIYLightBox('ajax','1280px','720px','../../../library/AD.asp?Full=1')
+    }else{
+      DIYLightBox('ajax','980px','592px','../../../library/AD.asp')    
+    }
+  } 
+
+
+  <%if  session("Login_guided")="4"  then%>
+    if(parseInt($(window).height())>720){
+      DIYLightBox('iframe','1280px','720px','../../../KOBO/detail.asp')    
+    }else if(parseInt($(window).height())>592){
+      DIYLightBox('iframe','980px','592px','../../../KOBO/detail.asp')    
+    }else{
+      DIYLightBox('iframe','880px','492px','../../../KOBO/detail.asp')  
+    }   
+  <%
+  session("Login_guided")=""
+  end if%>
 	
 </script>

@@ -5,7 +5,6 @@ html(lang="en")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		title My Lesson Page 3
 		link(href='./assets/plugins/bootstrap/bootstrap.4.0.css', rel="stylesheet")
-		link(href="./assets/plugins/font-awesome/font-awesome.4.7.0.css", rel="stylesheet")
 		link(href="./css/style.css", rel="stylesheet")
 		link(href="./css/mylesson_3.css", rel="stylesheet")
 		link(href='./assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css' rel='stylesheet')
@@ -35,7 +34,7 @@ html(lang="en")
 			#next-page
 				svg(fill='none')
 					path(d='M2 2L19 23.5L2 45' stroke='#354E85' stroke-width='4')
-			.wrapper
+			.wrapper#app
 				section.section
 					// course-nav
 					nav.tgnav
@@ -62,11 +61,10 @@ html(lang="en")
 					.memberbox.is-first
 						.time-left
 							span.date 18:00
-							ul#timeline
+							ul.timeline
 								li.work
-									input#work5.radio(name='works' type='radio' checked='')
 									.relative
-										span.circle
+										span.timeline-circle
 						.course-all
 							include partials/3/card1
 							include partials/3/card2
@@ -78,11 +76,10 @@ html(lang="en")
 					.memberbox
 						.time-left
 							span.date 19:00
-							ul#timeline
+							ul.timeline
 								li.work
-									input#work5.radio(name='works' type='radio' checked='')
 									.relative
-										span.circle
+										span.timeline-circle
 						.course-all
 							include partials/3/card1
 							include partials/3/card2
@@ -94,11 +91,10 @@ html(lang="en")
 					.memberbox
 						.time-left
 							span.date 20:00
-							ul#timeline
+							ul.timeline
 								li.work
-									input#work5.radio(name='works' type='radio' checked='')
 									.relative
-										span.circle
+										span.timeline-circle
 						.course-all
 							include partials/3/card1
 							include partials/3/card2
@@ -106,6 +102,27 @@ html(lang="en")
 							include partials/3/card2
 							include partials/3/card1
 					include partials/footer
+				.tgnav-group-dropdown
+					.bulletinToolbox1
+					.bulletinIconDiv
+						.bulletinTxt1
+							i.fa.fa-thumb-tack(aria-hidden='true')
+							|Bulletin
+						.bulletinDate 2020.11.20
+					.bulletinCntDiv(data-val='0')
+						.bulletinCnt
+							i.fa.fa-clock-o(aria-hidden='true')
+							|Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。
+						.bulletinCnt
+							i.fa.fa-clock-o(aria-hidden='true')
+							|Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。
+						.bulletinCnt
+							i.fa.fa-clock-o(aria-hidden='true')
+							|Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。
+						.bulletinCnt
+							i.fa.fa-clock-o(aria-hidden='true')
+							|Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。
+					#bulletinDiv
 			//- 側邊欄 by w
 			//- include partials/3/slideout
 			#sidebar
@@ -161,24 +178,4 @@ html(lang="en")
 							i.fa.fa-circle(aria-hidden='true')
 							i.fa.fa-circle(aria-hidden='true')
 					
-		.tgnav-group-dropdown
-			.bulletinToolbox1
-			.bulletinIconDiv
-				.bulletinTxt1
-					i.fa.fa-thumb-tack(aria-hidden='true')
-					|           Bulletin
-				.bulletinDate 2020.11.20
-			.bulletinCntDiv(data-val='0')
-				.bulletinCnt
-					i.fa.fa-clock-o(aria-hidden='true')
-					|             Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。
-				.bulletinCnt
-					i.fa.fa-clock-o(aria-hidden='true')
-					|             Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。
-				.bulletinCnt
-					i.fa.fa-clock-o(aria-hidden='true')
-					|             Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。
-				.bulletinCnt
-					i.fa.fa-clock-o(aria-hidden='true')
-					|             Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。
-			#bulletinDiv
+		
