@@ -1,5 +1,6 @@
 /*course
-
+$w-waiting: 90px
+$w-course: 113px
 #foo
   margin-top: 100px
   padding:
@@ -13,7 +14,7 @@
   width: 100%
   margin-right: 1%
   display: flex
-  &.is-first
+  &:first-child
     padding-top: 15px
 
   .time-left
@@ -137,13 +138,13 @@
             font-size: 20px
             color: #000
             margin: auto
-            width: calc( 100% - 60px - 90px)
+            width: calc( 100% - 60px - #{$w-course})
             text-align: center
             @extend %row1
 
           .card-titleR
             font-size: 16px
-            width: 90px
+            width: $w-course
             color: #000
             margin: auto 0
             text-align: justify
@@ -156,7 +157,7 @@
             color: #000
             padding: 8px 0
             text-align: left
-            width: 100%
+            width: calc( 100% - #{$w-waiting})!important
             display: flex
 
           .card-titleA
@@ -213,54 +214,32 @@
     width: 100%
     display: flex
     padding: 6px 0 0
+    justify-content: space-between
 
-    .card-title-j
-      font-size: 16px
-      text-align: center
-      color: #fff
-      background: #FF3A46
-      padding: 10px
-      text-align: center
-      opacity: .9
-      cursor: pointer
-      border-radius: 5px
-      width: 100%
-      display: inline-block
-
-  .card-title-j:hover
-    opacity: 1
-
-  .card-title-s
+  .card-title
+    width: 90px!important
     font-size: 16px
-    text-align: center
+    text:
+      align: center
+      decoration: none
     color: #fff
-    background: #ec8e00
     padding: 10px
-    text-align: center
     opacity: .9
     cursor: pointer
     border-radius: 5px
-    width: 100%
-    display: inline-block
-
+    background-color: #888 // 時間未到 / 本課程因故未開
     &:hover
-      opacity: 1
+      opacity: 1 
 
-  .card-title-p
-    font-size: 16px
-    text-align: center
-    color: #fff
-    background: #59B0CB
-    padding: 10px
-    text-align: center
-    opacity: .9
-    cursor: pointer
-    border-radius: 5px
-    width: 100%
-    display: inline-block
+    &[data-check='7'] // 可候位 
+      background-color: #59B0CB
+      //background-color: #FF3A46
 
-    &:hover
-      opacity: 1
+    &[data-check='1'] // Join
+      background-color: #4cc407
+
+    &[data-check='4'] // 課程準備中
+      background-color: orange
 
 /*** checked state **
 
@@ -433,14 +412,6 @@ span.peopleRating
     right: 200px
 
 @media (max-width: 1680px)
-  .memberbox .course-all .course .about-in .card
-    .itembox
-      .card-title-j, .card-title-s
-        width: 85%
-
-    .card-title-p
-      width: 85%
-
   .slideout_inner
     background: #354E85
     color: #fff
@@ -450,26 +421,11 @@ span.peopleRating
     right: 360px
 
 @media (max-width: 1536px)
-  .memberbox .course-all .course .about-in .card
-    .itembox
-      .card-title-j, .card-title-s
-        width: 70%
-
-    .card-title-p
-      width: 70%
-
   .tgnav-group-dropdown, .tgnav-group-down
     // width: 330px
 
 @media (max-width: 1440px)
   .memberbox .course-all .course .about-in .card
-    .itembox
-      .card-title-j, .card-title-s
-        width: 55%
-
-    .card-title-p
-      width: 55%
-
     .card-titleS
       padding: 10px 20px
 
