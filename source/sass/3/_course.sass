@@ -59,6 +59,31 @@ $w-course: 113px
       justify-content: center
       align-items: center
       background: #fff
+      &.is-camp
+        .itembox
+          justify-content: flex-end!important
+        .card-titleB
+          display: none!important
+      &.is-empty
+        background-color: #eee
+        border: none
+        position: relative
+        height: 211px
+        margin-bottom: -130px
+        &:after
+          content: 'No Schedule'
+          position: absolute
+          margin: auto
+          top: 0
+          right: 0
+          bottom: 0
+          left: 0
+          text-align: center
+          height: 20px
+          line-height: 20px
+          color: #ccc
+        .itemA, .itemB, .about-in
+          display: none
 
       .itemA
         margin: auto

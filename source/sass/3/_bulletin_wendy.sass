@@ -1,0 +1,134 @@
+.tgnav-group-dropdown
+	position: absolute
+	top: 50px
+	right: -40px
+	display: none
+	opacity: 0
+	background: #2B447E
+	transition: opacity 1.3s ease-in-out .3s, visibility 1s ease-out
+	text-align: left
+	padding: 26px
+	width: 350px
+	z-index: 1
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2), 0px 0px 10px rgba(0, 0, 0, 0.2)
+	transition: .3s
+
+	nav ul
+		padding: 0
+
+	&.is-open
+		display: block
+		opacity: 1
+
+	i
+		margin-right: 5px
+
+.bulletinToolbox1
+	position: relative
+
+.bulletinToolbox1:after
+	position: absolute
+	content: ""
+	bottom: 20px
+	right: 68px
+	transform: translateX(-50%)
+	transform: rotate(180deg)
+	width: 0
+	height: 0
+	margin: auto
+	border-width: 15px
+	border-style: solid
+	border-top-color: #2B447E
+	border-right-color: transparent
+	border-bottom-color: transparent
+	border-left-color: transparent
+
+
+.bulletinIconDiv
+	justify-content: center
+	display: flex
+	align-items: center
+
+.bulletinTxt1
+	font-size: 18px
+	font-weight: bold
+	color: #fff
+	padding: 0 20px 0 0
+	text-align: center
+
+
+
+.bulletinDate, .bulletinGrade
+	font-size: 18px
+	line-height: 1.4
+	font-weight: bold
+	color: #fff
+	text-align: center
+
+.bulletinCntDiv
+	position: relative
+	width: 100%
+
+	*display: flex
+	flex-direction: column
+	margin-top: 10px
+
+
+.bulletinCnt
+	position: relative
+	flex: 1
+	-webkit-flex: 1
+	margin: 0
+	font-size: 16px
+	line-height: 1.4
+	text-align: justify
+	color: #fff
+	border-bottom: 1px solid #fff
+	border-width: 1px 0 1px 0
+	padding: 10px
+
+
+.tgnav-group
+	a:hover + .tgnav-group-dropdown, .tgnav-group-dropdown:hover, li:hover > .tgnav-group-dropdown, a:hover + .tgnav-group-down, .tgnav-group-down:hover, li:hover > .tgnav-group-down
+		display: block
+		opacity: 1
+		visibility: visible
+
+
+@media screen and (max-width: 1366px)
+	.tgnav-group-dropdown
+		position: absolute
+		top: 100%
+		visibility: hidden
+		display: none
+		opacity: 0
+		left: -15%
+		background: #2B447E
+		transition: opacity 1.3s ease-in-out .3s, visibility 1s ease-out
+		text-align: left
+		padding: 20px
+		margin: 8% 0 0 0
+		width: 390px
+		width: 380px
+
+	.tgnav-group-down
+		width: 380px
+
+	.bulletinToolbox1:after
+		bottom: 16px
+		left: 43%
+
+@media screen and (max-width: 1536px)
+	.tgnav-group-dropdown, .tgnav-group-down
+		width: 330px
+
+@media screen and (max-width: 1440px)
+	.tgnav-group-dropdown, .tgnav-group-down
+		width: 300px
+
+	.bulletinToolbox1:after
+		bottom: 16px
+		left: 43%
+
+	.bulletinCnt
+		font-size: 14px

@@ -3,7 +3,9 @@ Vue.filter('filterBg', (str) => { return 'background-image: url('+ str +')'});
 const cpn_card = {
 	props: ['prop', 'req_pic'],
 	template: `
-		<div class="course">
+		<div class="course" 
+			:class='{"is-camp": camp, "is-empty": empty}'
+		>
 			<div :class="category.skin">
 				<div class="top-div">
 					<div class="subTitle">{{category.text}}</div>
@@ -54,8 +56,14 @@ const cpn_card = {
 	`,
 	created() {
 		const vm = this;
+		// IS EMPTY 
+		if(vm.prop.empty){ vm.empty = true };
+
+		// CAMP
+		const c = vm.prop.Class_Group;
+		if (c == '研習營'){vm.camp = true}
+
 		// CATEGORY v	
-		const c = vm.prop.Class_Group
 		if( c == '生活會話教室' || c == '咖啡廳' || c == '脫口說英文' || c == '語感教室' || c == '研習營' ){
 			vm.category.text = '會話'
 			vm.category.skin = 'itemB';
@@ -67,7 +75,11 @@ const cpn_card = {
 		// STARS v
 		let star;
 		for( i=0; i< 3; i++ ){
-			star = i < vm.prop.Stars ? 'fa fa-star' : 'fa fa-star-o';
+			if (c != '研習營'){
+				star = i < vm.prop.Stars ? 'fa fa-star' : 'fa fa-star-o';
+			}else{
+				star = 'fa fa-star'
+			}
 			vm.star.push(star)
 		};
 
@@ -110,6 +122,8 @@ const cpn_card = {
 				text: ''
 			},
 			course: '',
+			camp: false,
+			empty: false,
 			star: [], room: [],
 			link: {
 				href: '', text: '',

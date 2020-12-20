@@ -102,7 +102,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			</a>
 
 			<!-- MAIN -->
-			<div id="app" class="wrapper">
+			<div id="app" class="wrapper" @scroll='fnScroll'>
 				<section class="section">
 					<!-- course-nav-->
 					<nav class="tgnav">
@@ -141,9 +141,9 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						<cpn_block
 							:prop='item'
 							v-for='(item, i) in timeBlock'
-							v-if='item.ary.length != 0'
 							:key='i'
 							:req_ary='item.ary'
+							v-if='item.ary.length != 0'
 						></cpn_block>
 					</div>
 					<div id="foo">
@@ -190,7 +190,11 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			<!-- BULLETIN -->
 			<div id='bulletinbox' class="tgnav-group-dropdown"
 				v-if='reactiveBulletinShow == 1'
-				@mouseout='show = 0'>
+				:style='reactive'
+				@mouseout='fnCheckOut'
+				@mouseover='fnCheckIn'
+			>
+				<div class="addarea"></div>
 				<div class="bulletinToolbox1"></div>
 				<div class="bulletinIconDiv">
 					<div class="bulletinTxt1"><i class="fa fa-thumb-tack" aria-hidden="true"></i>Bulletin</div>
@@ -208,18 +212,42 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 <script>
 	const vueBulletin = new Vue({
 		created(){
-			$(window).resize(function(){
-				
-			});
+			const vm = this;
+			$(window).resize(function(){ vm.show= 0 });
+		},
+		methods: {
+			fnCheckOut(){
+				console.log('mouse out');
+				const vm = this;
+				vm.hideControl = window.setInterval(()=>{
+					vm.hide ++;
+					if( vm.hide == 3 ){ 
+						vm.show = 0;
+						vm.hide = 0;
+					};
+				}, 50);
+			},
+			fnCheckIn(){
+				console.log('mouse in');
+				const vm = this;
+				vm.show = 1;
+				window.clearInterval(vm.hideControl);
+			}
 		},
 		computed: {
+			
 			reactiveBulletinShow(){
 				return this.show;
+			},
+			reactive(){
+				return 'top:' + vueMain._data.bulletinTop + 'px;left:' + vueMain._data.bulletinLeft +'px';
 			}
 		},
 		data: {
 			show: 0,
-			ary: []
+			hideControl: '',
+			hide: 0,
+			ary: [],
 		},
 		el: '#bulletinbox',
 	});
@@ -264,26 +292,12 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			// SIDE v
 			const ww = $(window).width();
 			vm.sideBarWidth = $('#sidebar').width();
-			// if( ww >= 1200 ){
-			// 	vm.uiGutter = ( ww - $('#app').outerWidth() ) / 2;
-			// 	vm.transX = vm.uiGutter - vm.sideBarWidth - vm.gutter;
-			// }else{
-			// 	vm.transX = vm.transX1199;
-			// };
-			// if( $('#sidebar').hasClass('is-open') ){
-			// 	$('#app').css('transform', 'translateX(' + vm.transX + 'px)');
-			// };
 
 			//
 			$.ajax({
 				type: 'GET',
 				url: './2020/api/classList.asp?levels=' + vm.memberLevel,
 				success(res){
-					vm.ary = res.data;
-					console.log('ary is ', vm.ary);
-					$('#ms2-loading').fadeOut();
-					$('#content').fadeIn();
-
 					for( a in res.data ){
 						const resTime = res.data[a].class_btime.split(':')[0];
 						for( b in vm.timeBlock ){
@@ -299,47 +313,79 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 									if( dDate == today){
 										if( vm.timeBlock[b].isToday ){
 											vm.timeBlock[b].ary.push(res.data[a]);
-										}
+										};
 									}else{
 										if( !vm.timeBlock[b].isToday ){
 											vm.timeBlock[b].ary.push(res.data[a]);
-										}
-									}
+										};
+									};
 								};
+							};
+							// console.log(a, res.data.length - 1, b, vm.timeBlock.length -1);
+							if( a == res.data.length - 1 && b == vm.timeBlock.length -1 ){
+								vm.fnAfterAry();
 							}
-						}
-					};
-
-					setTimeout(()=>{
-						console.log('finish is ', vm.timeBlock);
-					},1000);
-
-					new PerfectScrollbar('#content .wrapper');
-					new PerfectScrollbar('#sidebar-scroller');
+						};
+					};		
 				}
 			});
 
 			
 		},
 		methods: {
-			fnBulletinShow(){
-				vueBulletin._data.show = 1;
+			fnAfterAry(){
+				const vm = this;
+				console.log('finish is ', vm.timeBlock);
 				//
-				const left1 = $('.nav-group-link').offset().left;
-				const w = ( $('.tgnav-group-dropdown').innerWidth() )/2;
-				const left = left1 - w + 25 - 4;// 25 = :before 50 / 2 , 4 = fix
-				console.log( 'left', left1, ' / ', w , ' / ', left );
-				$('.tgnav-group-dropdown').css({'left': left});
+				new PerfectScrollbar('#content .wrapper');
+				new PerfectScrollbar('#sidebar-scroller');
+				//
+				$('#ms2-loading').fadeOut();
+				$('#content').fadeIn();
+				//
+				setTimeout(()=>{
+					$('#content .wrapper').scrollTop(1);
+					$('#sidebar-scroller').scrollTop(1);
+				},0);
+				//
+				const max = $(window).width() > 1366 ? 4 : 3;
+				console.log(max,'max');
+				for( a in vm.timeBlock ){
+					console.log( vm.timeBlock[a].ary.length );
+					const l = vm.timeBlock[a].ary.length;
+					if( l != 0 && l%max > 0 ){
+						const addNum = max - (l%max);
+						for( i=0;i<addNum;i++ ){
+							vm.timeBlock[a].ary.push({empty: true});
+						};
+					}
+				}
+			},
+			fnBulletinShow(){
+				const vm = this;
+				//
+				const buttonLeft = $('.nav-group-link').offset().left;
+				const left = buttonLeft - vm.bulletinWidth / 2 + 25 - 4;// 25 = :before 50 / 2 , 4 = fix
+				console.log( 'left', buttonLeft, ' / ' , ' / ', left );
+				// $('.tgnav-group-dropdown').css({'left': left});
+				vm.bulletinLeft = left;
+
+				//
+				vueBulletin._data.show = 1;
 			},
 
 			fnOpenSideBar(){
 				const vm = this;
+				const ww = $(window).width();
 				if( $('#sidebar').hasClass('is-open') ){
 					$('#sidebar').removeClass('is-open');
 					$('#content .wrapper').removeAttr('style')
 				}else{
 					$('#sidebar').addClass('is-open');
-					if ($(window).width() < 1200) { vm.transX = vm.transX1199 }
+					if ( ww < 1200) { vm.transX = vm.transX1199 }else{
+						vm.uiGutter = ( ww - $('#app').outerWidth() ) / 2;
+						vm.transX = vm.uiGutter - vm.sideBarWidth - vm.gutter;
+					}
 					$('#content .wrapper').css('transform', 'translateX('+ vm.transX +'px)');
 
 					// if( vueSideBar._data.getApi == 0 ){
@@ -354,10 +400,25 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					// 	});
 					// };
 				};
-			}
+			},
+
+			fnScroll(){
+				const vm = this;
+				const st = $('#app').scrollTop();
+				const top = 30 + 40 - st;
+				// const top = 0 - st;
+				console.log('b:',b,'/st:',st,'/top:',top);
+
+				// $('#bulletinbox').css({top});
+				vm.bulletinTop = top;
+				console.log('main bulletinTop:',vm.bulletinTop);
+			},
 		},
 		
 		data: {
+			bulletinWidth: 350,
+			bulletinTop: 70,// = .tgnav.padding-top + .tgnav-group.itemB.height
+			bulletinLeft: 0,
 			memberLevel: <%=asp_lv%>,
 			// SIDE-BAR v
 			uiGutter: 0,
@@ -366,10 +427,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			sideBarWidth: 0,
 			gutter: 5,
 			//
-			ary: [],
-			// ary00: [], ary01: [], ary08: [], ary09: [], ary10: [], ary11: [], ary12: [], //7
-			// ary13: [], ary14: [], ary15: [], ary16: [], ary17: [], ary18: [], //6
-			// ary19: [], ary20: [], ary21: [], ary22: [], ary23: [], ary24: [], //6
 			timeBlock: [
 				{time: '00', ary: [], isToday: true}, 
 				{time: '01', ary: []}, {time: '08', ary: []}, {time: '09', ary: []}, 

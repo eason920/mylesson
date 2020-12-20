@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="./.tmp/assets/plugins/jquery/jquery.1.12.4.min.js"></script>
+	<script src="./.tmp/assets/plugins/vue/vue2.6.12.js"></script>
+	<link rel="stylesheet" href="./source/css/mylesson_3.css">
+
+</head>
+<body>
+	<div id="nav">
+		<div class="wrapper">
+			<h1 style='color: red'>跨 app (const vueMain = new Vue({} & const vueBulletin = new Vue({}))) 的 data可作另一 app 的 computed 指標</h1>
+			(範例結構矢敗，請回 intro3.asp 看)
+		</div>
+	</div>
+	<div id="content">
+		<!-- MAIN -->
+		<div id="app" class="wrapper" @scroll='fnScroll'>
+			<section class="section">
+				<!-- course-nav-->
+				<nav class="tgnav">
+					<div class="tgnav-cart">真人視訊課程</div>
+					<ul class="tgnav-groups">
+						<li class="tgnav-group itemB" @mouseover='fnBulletinShow'><a class="nav-group-link">
+								<svg width="17" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" clip-rule="evenodd"
+										d="M9.91442 1.81464C9.91591 1.79328 9.91667 1.77172 9.91667 1.74998C9.91667 1.24372 9.50626 0.833313 9 0.833313C8.49374 0.833313 8.08333 1.24372 8.08333 1.74998C8.08333 1.77172 8.08409 1.79328 8.08558 1.81464C4.97488 2.25847 2.58333 4.93327 2.58333 8.16665V14.5833H1.66667C1.16041 14.5833 0.75 14.9937 0.75 15.5C0.75 16.0062 1.16041 16.4166 1.66667 16.4166H6.25C6.25 17.9354 7.48122 19.1666 9 19.1666C10.5188 19.1666 11.75 17.9354 11.75 16.4166H16.3333C16.8396 16.4166 17.25 16.0062 17.25 15.5C17.25 14.9937 16.8396 14.5833 16.3333 14.5833H15.4167V8.16665C15.4167 4.93327 13.0251 2.25847 9.91442 1.81464ZM13.5833 8.16665V14.5833H4.41667V8.16665C4.41667 5.63534 6.4687 3.58331 9 3.58331C11.5313 3.58331 13.5833 5.63534 13.5833 8.16665ZM9 17.3333C8.49374 17.3333 8.08333 16.9229 8.08333 16.4166H9.91667C9.91667 16.9229 9.50626 17.3333 9 17.3333Z"
+										fill="white"></path>
+								</svg>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</section>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		</div>
+
+		<!-- BULLETIN -->
+		<div id='bulletinbox' class="tgnav-group-dropdown" v-if='reactiveBulletinShow == 1' :style='reactive'>
+			<div class="bulletinToolbox1"></div>
+			<div class="bulletinIconDiv">
+				<div class="bulletinTxt1"><i class="fa fa-thumb-tack" aria-hidden="true"></i>Bulletin</div>
+				<div class="bulletinDate">2020.11.20</div>
+			</div>
+			<div class="bulletinCntDiv" data-val="0">
+				<div class="bulletinCnt"><i class="fa fa-clock-o"
+						aria-hidden="true"></i>Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。</div>
+			</div>
+			<div id="bulletinDiv"></div>
+		</div>
+	</div>
+<script>
+	
+
+	const vueMain = new Vue({
+		created(){
+			$('#ms2-loading').fadeOut();
+			$('#content').fadeIn();
+		},
+		methods: {
+			fnScroll() {
+				const vm = this;
+				const st = $('#app').scrollTop();
+				const top = 30 + 40 - st;
+				console.log('b:',b,'/st:',st,'/top:',top);
+
+				// $('#bulletinbox').css({top});
+				vm.bulletinTop = top;
+				console.log('main bulletinTop:',vm.bulletinTop);
+			},
+		},
+		data: {
+			bulletinTop: 70,// = .tgnav.padding-top + .tgnav-group.itemB.height
+		},
+	});
+
+	const vueBulletin = new Vue({
+		computed: {
+			reactiveBulletinShow() {
+				return this.show;
+			},
+			reactive() {
+				return 'top:' + vueMain._data.bulletinTop + 'px';
+			}
+		},
+		el: '#bulletinbox',
+		data: {
+			show: 1,
+		}
+	});
+
+</script>
+</body>
+</html>
