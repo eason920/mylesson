@@ -45,7 +45,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		<link href="./2020/assets/plugins/bootstrap/bootstrap.4.0.css" rel="stylesheet"/>
 		<link href="./2020/css/mylesson_3.css?<%=Timer%>" rel="stylesheet"/>
 		<link href="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css?<%=Timer%>" rel="stylesheet"/>
-		<link href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/>
 		<style>
 			.wd {
 				position: fixed;
@@ -79,7 +78,9 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		<script src="../js/MessageVer2/alert.js" type="text/javascript"></script>        
 		<!---->
 		<script src="../js/Uinfo.js"></script>
-		<script src="./2020/js/lightBoxDIY-V2.js?<%=Timer%>"></script>    
+		<script src="./2020/js/lightBoxDIY-V2.js?<%=Timer%>"></script>   
+		<!---->
+		<script src="https://kit.fontawesome.com/506022d22e.js" crossorigin="anonymous"></script> 
 	</head>
 
 	<body>
@@ -102,7 +103,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			</a>
 
 			<!-- MAIN -->
-			<div id="app" class="wrapper" @scroll='fnScroll'>
+			<div id="app" class="wrapper" @scroll='fnBulletinTop'>
 				<section class="section">
 					<!-- course-nav-->
 					<nav class="tgnav">
@@ -128,7 +129,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 									</svg>
 								</a>
 							</li>
-							<li class="tgnav-group itemC" @click='fnOpenSideBar'>
+							<li class="tgnav-group itemC" @click='fnSideBarToggle'>
 								<a class="tgnav-group-link">
 									<svg width="17" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<path fill-rule="evenodd" clip-rule="evenodd" d="M7.15948 2.60016H17.5995C18.5565 2.60016 19.3395 3.35616 19.3395 4.28016V14.3602C19.3395 15.2842 18.5565 16.0402 17.5995 16.0402H7.15948C6.20248 16.0402 5.41948 15.2842 5.41948 14.3602V4.28016C5.41948 3.35616 6.20248 2.60016 7.15948 2.60016ZM1.93945 5.96024H3.67945V17.7202H15.8595V19.4002H3.67945C2.72245 19.4002 1.93945 18.6442 1.93945 17.7202V5.96024ZM17.5994 14.3603H7.1594V4.28028H17.5994V14.3603ZM15.8596 8.48019H8.8996V10.1602H15.8596V8.48019ZM8.8996 11.0002H12.3796V12.6802H8.8996V11.0002ZM15.8596 5.96024H8.8996V7.64024H15.8596V5.96024Z" fill="white"></path>
@@ -166,23 +167,41 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				<div id="sidebar-scroller">
 					<div id="sidebar-scroller-title">複習列表 REVIEW</div>
 					<div id="sidebar-list">
-						<div class="sidebar-list-item">
-							<h5 class="gradeN"> <span>A2</span>正規教室</h5>
-							<h5 class="gradeR">2020/07/30</h5>
-							<div class="gradeCnt">Funday文章回顧:NBA放棄林書豪NBA放棄林書豪?</div>
-							<h5 class="gradeR is-download"><i class="fa fa-play-circle-o" aria-hidden="true"></i><i class="fa fa-cloud-download" aria-hidden="true"></i></h5>
-						</div>
+						<cpn_side_item
+							v-for='(item, i) in review'
+							:prop='item'
+							:key='i'
+							:req_pdf='item.PPTlink'
+							:req_online='item.playlink'
+							:req_download='item.downloadlink'
+						></cpn_side_item>
 					</div>
 				</div>
 				<div id="sidebar-under">
 					<div id="sidebar-under-title">家庭作業HOMEWORK</div>
 					<div class="sidebar-under-box">
 						<div class="sidebar-under-subtitle">寫作練習</div>
-						<div class="sidebar-under-dot"><i class="fa fa-circle" aria-hidden="true" data-status="1"></i><i class="fa fa-circle" aria-hidden="true" data-status="2"></i><i class="fa fa-circle" aria-hidden="true" data-status="3"></i><i class="fa fa-circle" aria-hidden="true" data-status="4"></i><i class="fa fa-circle" aria-hidden="true" data-status="5"></i><i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i></div>
+						<div class="sidebar-under-dot">
+							<div class="sidebar-under-circle" data-status="2" title="批改中"></div>
+							<div class="sidebar-under-circle" data-status="1">+</div>
+							<div class="sidebar-under-circle" data-status="0"></div>
+							<div class="sidebar-under-circle" data-status="0"></div>
+							<div class="sidebar-under-circle" data-status="0"></div>
+							<div class="sidebar-under-circle" data-status="0"></div>
+							<div class="sidebar-under-circle" data-status="0"></div>
+							<div class="sidebar-under-circle" data-status="0"></div>
+							<div class="sidebar-under-circle" data-status="0"></div>
+							<div class="sidebar-under-circle" data-status="0"></div>
+							<div class="sidebar-under-circle" data-status="0"></div>
+							<div class="sidebar-under-circle" data-status="0"></div>
+							<div class="sidebar-under-circle" data-status="0"></div>
+						</div>
 					</div>
 					<div class="sidebar-under-box">
 						<div class="sidebar-under-subtitle">朗讀練習</div>
-						<div class="sidebar-under-dot"><i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i><i class="fa fa-circle" aria-hidden="true"></i></div>
+						<div class="sidebar-under-dot">
+							<div class="sidebar-under-circle" data-status="1">+</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -191,19 +210,23 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			<div id='bulletinbox' class="tgnav-group-dropdown"
 				v-if='reactiveBulletinShow == 1'
 				:style='reactive'
-				@mouseout='fnCheckOut'
-				@mouseover='fnCheckIn'
+				@mouseover='fnBulletinMouseOver'
+				@mouseout='fnBulletinMouseOut'
 			>
 				<div class="addarea"></div>
 				<div class="bulletinToolbox1"></div>
 				<div class="bulletinIconDiv">
-					<div class="bulletinTxt1"><i class="fa fa-thumb-tack" aria-hidden="true"></i>Bulletin</div>
-					<div class="bulletinDate">2020.11.20</div>
+					<div class="bulletinTxt1">
+						<i class="fa fa-thumb-tack" aria-hidden="true"></i>
+						Bulletin
+					</div>
 				</div>
-				<div class="bulletinCntDiv" data-val="0">
-					<div class="bulletinCnt"><i class="fa fa-clock-o" aria-hidden="true"></i>Lillian老師因身體不適，原訂11/21+晚上21:00~22:50課程將由Honnie老師和Joy老師代為授課，造成您的不便，敬請見諒。</div>
-				</div>
-				<div id="bulletinDiv"></div>
+				<cpn_bulletin
+					:prop='item'
+					v-for='(item, i) in ary'
+					:key='i'
+					v-if='i<4'
+				></cpn_bulletin>
 			</div>
 		</div>
 	</body>
@@ -214,25 +237,33 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		created(){
 			const vm = this;
 			$(window).resize(function(){ vm.show= 0 });
+
+			$.ajax({
+				type: 'GET',
+				url: './2020/api/bulletin.asp',
+				success(res){
+					vm.ary = res.bulletin;
+					console.log('bulletin ary', vm.ary, ' / 1 / ', decodeURIComponent(vm.ary[0].content) );
+				}
+			});
 		},
 		methods: {
-			fnCheckOut(){
-				console.log('mouse out');
-				const vm = this;
-				vm.hideControl = window.setInterval(()=>{
-					vm.hide ++;
-					if( vm.hide == 3 ){ 
-						vm.show = 0;
-						vm.hide = 0;
-					};
-				}, 50);
-			},
-			fnCheckIn(){
-				console.log('mouse in');
+			fnBulletinMouseOver(){
 				const vm = this;
 				vm.show = 1;
 				window.clearInterval(vm.hideControl);
-			}
+			},
+
+			fnBulletinMouseOut(){
+				const vm = this;
+				vm.hideControl = window.setInterval(()=>{
+					vm.hide ++;
+					if( vm.hide == 2 ){ 
+						vm.show = 0;
+						vm.hide = 0;
+					};
+				}, 50);// 50 * 2
+			},
 		},
 		computed: {
 			
@@ -250,14 +281,16 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			ary: [],
 		},
 		el: '#bulletinbox',
+		components: {
+			cpn_bulletin
+		}
 	});
 
 	const vueSideBar = new Vue({
 		created(){
 			const vm = this;
-			
 
-			//
+			// LEVEL v
 			let transEn;
 			switch( <%=asp_lv%> ){
 				case 1:
@@ -272,8 +305,9 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					transEn = 'C1'; break;
 				default:
 			};
-
 			vm.memberLvStep = transEn + '-' + <%=asp_step%>;
+
+			//
 		},
 		methods: {
 			
@@ -281,8 +315,16 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		data: {
 			//
 			memberLvStep: '',
+			getApi: 0,
+			review: [],
+			writing: [],
+			speech: [],
 		},
 		el: '#sidebar',
+		components: {
+			cpn_side_item,
+			cpn_homework
+		}
 	});
 
 	const vueMain = new Vue({
@@ -324,12 +366,17 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 							// console.log(a, res.data.length - 1, b, vm.timeBlock.length -1);
 							if( a == res.data.length - 1 && b == vm.timeBlock.length -1 ){
 								vm.fnAfterAry();
+
+								//for demo
+								// vm.fnSideBarToggle();
+								$('.tgnav-group.itemC').click();
 							}
 						};
 					};		
 				}
 			});
 
+			
 			
 		},
 		methods: {
@@ -338,16 +385,15 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				console.log('finish is ', vm.timeBlock);
 				//
 				new PerfectScrollbar('#content .wrapper');
-				new PerfectScrollbar('#sidebar-scroller');
 				//
 				$('#ms2-loading').fadeOut();
 				$('#content').fadeIn();
 				//
 				setTimeout(()=>{
 					$('#content .wrapper').scrollTop(1);
-					$('#sidebar-scroller').scrollTop(1);
 				},0);
-				//
+
+				// 補齊未滿 3n / 4n v
 				const max = $(window).width() > 1366 ? 4 : 3;
 				console.log(max,'max');
 				for( a in vm.timeBlock ){
@@ -361,6 +407,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					}
 				}
 			},
+
 			fnBulletinShow(){
 				const vm = this;
 				//
@@ -369,12 +416,11 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				console.log( 'left', buttonLeft, ' / ' , ' / ', left );
 				// $('.tgnav-group-dropdown').css({'left': left});
 				vm.bulletinLeft = left;
-
 				//
 				vueBulletin._data.show = 1;
 			},
 
-			fnOpenSideBar(){
+			fnSideBarToggle(){
 				const vm = this;
 				const ww = $(window).width();
 				if( $('#sidebar').hasClass('is-open') ){
@@ -388,21 +434,46 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					}
 					$('#content .wrapper').css('transform', 'translateX('+ vm.transX +'px)');
 
-					// if( vueSideBar._data.getApi == 0 ){
-					// 	$.ajax({
-					// 		type: 'GET',
-					// 		url: './2020/api/reviewbar.asp?PG=' + vueSideBar._data.getApi,
-					// 		success(res){
-					// 			// cpn-side-item
-					// 			vueSideBar._data.review = JSON.parse(res);
-					// 			vueSideBar._data.getApi ++;
-					// 		}
-					// 	});
-					// };
+					if( vueSideBar._data.getApi == 0 ){
+						// HISTORY PAGE 1 v
+						$.ajax({
+							type: 'GET',
+							// url: './2020/api/reviewbar.asp?PG=' + vueSideBar._data.getApi,
+							url: './2020/api/reviewClassbar.asp?member_id=260238',
+							success(res){
+								// cpn_side_item
+								vueSideBar._data.review = JSON.parse(res);
+								vueSideBar._data.getApi ++;
+
+								//
+								new PerfectScrollbar('#sidebar-scroller');
+								setTimeout(()=>{
+									$('#sidebar-scroller').scrollTop(1);
+								},0);
+							}
+						});
+
+						// HOME-WORK v
+						$.ajax({
+							type: 'GET',
+							url: './2020/api/homework.asp?member_id=227332',
+							success(res){
+								console.log('home work ', res, 'writing', vueSideBar._data.writing, 'speech', vueSideBar._data.speech);
+								// SH = speech, HW = writing
+								for( a in res.data ){
+									if( res.data[a].type != 'SH' ){
+										vueSideBar._data.writing.push( res.data[a] );
+									}else{
+										vueSideBar._data.speech.push( res.data[a] );
+									};
+								};
+							}
+						});
+					};
 				};
 			},
 
-			fnScroll(){
+			fnBulletinTop(){
 				const vm = this;
 				const st = $('#app').scrollTop();
 				const top = 30 + 40 - st;

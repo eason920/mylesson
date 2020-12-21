@@ -32,7 +32,7 @@ const cpn_card = {
 						<h5 class="card-titleN">{{prop.Tutor}}</h5>
 						<h5 class="card-titleR">{{course}}</h5>
 					</div>
-					<h2 class="card-titleF">{{prop.class_cname}}</h2>
+					<h2 class="card-titleF">{{title}}</h2>
 					<div class="itembox">
 						<h5 class="card-titleB">候位
 							<div class="peopleBox">
@@ -76,9 +76,9 @@ const cpn_card = {
 		let star;
 		for( i=0; i< 3; i++ ){
 			if (c != '研習營'){
-				star = i < vm.prop.Stars ? 'fa fa-star' : 'fa fa-star-o';
+				star = i < vm.prop.Stars ? 'fas fa-star' : 'far fa-star';
 			}else{
-				star = 'fa fa-star'
+				star = 'fas fa-star'
 			}
 			vm.star.push(star)
 		};
@@ -97,7 +97,7 @@ const cpn_card = {
 		// ROOM & WAITING v
 		let room;
 		for( i=0; i< vm.prop.RoomCont; i++ ){
-			room = i < vm.prop.Pre_join ? 'fa fa-user' : 'fa fa-user-o';
+			room = i < vm.prop.Pre_join ? 'fas fa-user' : 'far fa-user';
 			vm.room.push(room)
 		};
 
@@ -114,6 +114,14 @@ const cpn_card = {
 			case "8": vm.link.text = '課程結束';break;//本課程已結束
 			default:
 		};
+
+		// TITLE
+		if( !/&quot;/i.test( vm.prop.class_cname ) ){
+			vm.title = vm.prop.class_cname;
+		}else{
+			const regexp = new RegExp('&quot;', 'g');
+			vm.title = vm.prop.class_cname.replace(regexp, '"');
+		};
 	},
 	data(){
 		return {
@@ -127,7 +135,8 @@ const cpn_card = {
 			star: [], room: [],
 			link: {
 				href: '', text: '',
-			}
+			},
+			title: '',
 		}
 	},
 	methods: {
@@ -162,5 +171,68 @@ const cpn_block = {
 	`,
 	components: {
 		cpn_card
+	}
+}
+
+const cpn_bulletin = {
+	props: ['prop'],
+	template: `
+	<div class="bulletinCntDiv">
+		<div class="bulletinCnt">
+			<i class="fa fa-clock-o" aria-hidden="true"></i>
+			{{ decodeURIComponent(prop.content) }}
+		</div>
+		<div class="bulletin-date">{{ prop.date }} </div>
+	</div>
+	`,
+};
+
+const cpn_side_item = {
+	props: ['prop', 'req_online', 'req_download', 'req_pdf'],
+	template: `
+		<div class="sidebar-list-item">
+			<h5 class="gradeN"><span>{{prop.level}}</span>{{prop.sort}}</h5>
+			<h5 class="gradeR">{{prop.date}}</h5>
+			<div class="gradeCnt">{{prop.subject}}</div>
+			<div class="gradeR is-download">
+				<a target='window_pdf'
+					v-if='req_pdf'
+					:href='req_pdf'
+				>
+					<i class="fas fa-file-alt"></i>
+				</a>
+				<a
+					v-if='req_download'
+					:href='req_download'
+				>
+					<i class="fas fa-play-circle"></i>
+				</a>
+				<a target='window_play'
+					v-if='req_online'
+					:href='req_online'
+				>
+					<i class="fas fa-cloud-download-alt"></i>
+				</a>
+			</div>
+		</div>
+	`
+}
+
+const cpn_homework = {
+	prop: ['prop'],
+	template: `
+		<div class="sidebar-under-circle" 
+			:data-status="status" 
+			:title="批改中"
+		></div>
+	`,
+	created(){
+		const vm = this;
+		// vm.
+	},
+	data(){
+		return {
+			status: '',
+		}
 	}
 }

@@ -101,6 +101,7 @@
   transition: all 0.6s
   right: 0
   padding: 0 0 30px 0
+  background-color: #eceef3
 
 .tgnav-cart
   display: inline-block
@@ -137,14 +138,13 @@
 
 .tgnav-group-dropdown
   position: absolute
-  // top: 75px
-  // right: 0
   background: #2B447E
   transition: opacity 1.3s ease-in-out .3s, visibility 1s ease-out
   text-align: left
   padding: 26px
   width: 350px
   z-index: 10
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2)
   // display: none
   // opacity: 0
   &.is-open
@@ -153,6 +153,9 @@
 
   nav ul
     padding: 0
+
+  i
+    margin-right: 7px
 
 .tgnav-group-down
   position: absolute
@@ -211,7 +214,7 @@
   /*height: 175px;
   /*background-color: #5a5;
   position: relative
-
+  
 .bulletinToolbox1
   &:after
     position: absolute
@@ -271,13 +274,12 @@
 
 .gradeR
   color: #fff
-  font-size: 16px
+  font-size: 14px
+  padding-top: 5px
+  letter-spacing: 1px
   opacity: .7
-
-  /* justify-content: center;
   display: flex
   justify-content: flex-end
-  padding: 4px 0
 
 .gradeCnt
   position: relative
@@ -288,9 +290,9 @@
   line-height: 1.4
   text-align: justify
   color: #fff
-  padding: 0 0 6px 0
+  // padding: 0 0 6px 0
   float: left
-  width: 85%
+  width: 74%
 
 i.fa.fa-play-circle-o
   padding: 0 6px
@@ -326,20 +328,10 @@ i.fa.fa-circle
   position: relative
   flex: 1
   -webkit-flex: 1
-  margin:
-    bottom: 10px
-  padding:
-    bottom: 10px
-  border-bottom: solid 1px #fff
-  font-size: 16px
+  font-size: 15px
   line-height: 1.4
   text-align: justify
   color: #fff
-  cursor: pointer
-  &:last-child
-    border: none
-    padding: 0
-    margin: 0
 
 .bulletinIKnowDiv
   position: relative
@@ -364,14 +356,28 @@ i.fa.fa-circle
 .bulletinCntDiv
   position: relative
   width: 100%
-
-  /*display: -webkit-flex;
-   *display: flex;
   flex-direction: column
-  margin-top: 10px
+  margin:
+    top: 10px
+    bottom: 10px
+  padding:
+    bottom: 10px
+  border-bottom: solid 1px #fff
+  &:last-child
+    border: none
+    padding: 0
+    margin: 0
 
-  /*background-color: #11244F;
-
+.bulletin-date
+  position: absolute
+  right: 0
+  bottom: 10px
+  background-color: #2B447E
+  color: #fff
+  font-size: 15px
+  padding:
+    left: 10px
+  
 .contentRight
   position: relative
   float: left

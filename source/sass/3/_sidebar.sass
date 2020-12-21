@@ -20,7 +20,7 @@ $h: 150px
 	position: relative
 	border-bottom: solid 1px #fff
 	overflow: hidden
-	padding-bottom: 6px
+	padding-bottom: 10px
 	margin-bottom: 10px
 	&:last-child
 		padding: 0
@@ -29,11 +29,12 @@ $h: 150px
 
 	.gradeR.is-download
 		position: absolute
-		bottom: 6px
+		bottom: 12px
 		right: 0
 		i
-			font-size: 20px
-			margin-left: 5px
+			font-size: 16px
+			margin-left: 7px
+			color: #fff
 
 .gradeN
 	font:
@@ -53,7 +54,39 @@ $h: 150px
 	font:
 		size: .875rem
 
+.sidebar-under-circle
+	width: 18px
+	height: 18px
+	margin: 7px 5px 0
+	border-radius: 50%
+	opacity: .7
+	background-color: #fff
+	font-size: 15px
+	line-height: 15px
+	text-align: center
+	cursor: default
+	&[data-status='1'], &[data-status='2']
+		opacity: 1
+	&[data-status='1']
+		background-color: #f74768
+		color: #fff
+		cursor: pointer
+		animation: ani-dot 3s linear infinite forwards
+	&[data-status='2']
+		background-color: #7bbd03
+
+@keyframes ani-dot
+	50%
+		opacity: 1
+	75%
+		opacity: .5
+	100%
+		opacity: 1
+
 .sidebar-under-dot
+	padding-top: 1px
+	display: flex
+	flex-wrap: wrap
 	.fa.fa-circle
 		&[data-status='1'], &[data-status='2'], &[data-status='3'], 
 		&[data-status='4'], &[data-status='5']

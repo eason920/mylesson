@@ -64,3 +64,8 @@ window.open(href, 'search')
 // 4. 網址傳「中文」值的轉碼 V
 // 中文網址在帶到該頁面時會被 browser 轉譯成碼，要轉
 const chURI = decodeURI(urlValue)
+
+//----------------------------
+// 5. 正規式 + replace
+const myRegExp = new RegExp('&quot;', 'g');
+vm.title = vm.prop.class_cname.replace(myRegExp, '"');
