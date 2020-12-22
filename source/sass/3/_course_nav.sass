@@ -114,6 +114,12 @@
   align-self: center
   width: 100%
   border-left: solid 5px #354E85
+  display: flex
+  align-items: center
+  span
+    font-size: 15px
+    padding-left: 8px
+
 
 .tgnav-groups
   display: flex
@@ -136,14 +142,14 @@
   &:last-child > a
     // padding-right: 2rem
 
-.tgnav-group-dropdown
+#bulletinbox
   position: absolute
   background: #2B447E
   transition: opacity 1.3s ease-in-out .3s, visibility 1s ease-out
   text-align: left
   padding: 26px
   width: 350px
-  z-index: 10
+  z-index: 1
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2)
   // display: none
   // opacity: 0
@@ -257,6 +263,8 @@
   color: #fff
   padding: 0 20px 0 0
   text-align: center
+  i
+    font-size: 15px
 
 .bulletinTxt2
   font-size: 18px
@@ -275,7 +283,9 @@
 .gradeR
   color: #fff
   font-size: 14px
-  padding-top: 5px
+  padding:
+    top: 5px
+    bottom: 6px
   letter-spacing: 1px
   opacity: .7
   display: flex
@@ -292,7 +302,7 @@
   color: #fff
   // padding: 0 0 6px 0
   float: left
-  width: 74%
+  width: 215px!important
 
 i.fa.fa-play-circle-o
   padding: 0 6px
@@ -328,9 +338,8 @@ i.fa.fa-circle
   position: relative
   flex: 1
   -webkit-flex: 1
-  font-size: 15px
+  font-size: 14px
   line-height: 1.4
-  text-align: justify
   color: #fff
 
 .bulletinIKnowDiv
@@ -367,16 +376,19 @@ i.fa.fa-circle
     border: none
     padding: 0
     margin: 0
+    .bulletin-date
+      bottom: 2px
 
 .bulletin-date
   position: absolute
   right: 0
-  bottom: 10px
+  bottom: 12px
   background-color: #2B447E
   color: #fff
-  font-size: 15px
+  font-size: 13px
   padding:
-    left: 10px
+    left: 12px
+  opacity: .8
   
 .contentRight
   position: relative

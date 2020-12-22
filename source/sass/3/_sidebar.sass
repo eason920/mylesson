@@ -1,10 +1,13 @@
 $h: 150px
+#sidebar
+	z-index: 1
 #sidebar-scroller
 	// height: calc( 100% - 68px - #{$h} )
 	height: 400px
 
-#sidebar-under
-	height: auto
+#sidebar-under3
+	padding: 20px
+	background-color: rgba(28,28,28, .55)
 
 #sidebar-under-title
 	margin-bottom: 10px
@@ -23,14 +26,13 @@ $h: 150px
 	padding-bottom: 10px
 	margin-bottom: 10px
 	&:last-child
-		padding: 0
-		margin: 0
 		border: none
 
 	.gradeR.is-download
 		position: absolute
 		bottom: 12px
 		right: 0
+		padding: 0
 		i
 			font-size: 16px
 			margin-left: 7px
@@ -46,7 +48,7 @@ $h: 150px
 .gradeCnt
 	color: #ddd!important
 	
-.gradeCnt, .gradeR.is-download i
+.gradeR.is-download i
 	cursor: pointer
 
 .sidebar-under-subtitle
@@ -63,10 +65,13 @@ $h: 150px
 	background-color: #fff
 	font-size: 15px
 	line-height: 15px
-	text-align: center
+	text:
+		align: center
+		decoration: none
 	cursor: default
 	&[data-status='1'], &[data-status='2']
 		opacity: 1
+		text-decoration: none
 	&[data-status='1']
 		background-color: #f74768
 		color: #fff
@@ -74,6 +79,7 @@ $h: 150px
 		animation: ani-dot 3s linear infinite forwards
 	&[data-status='2']
 		background-color: #7bbd03
+		cursor: pointer
 
 @keyframes ani-dot
 	50%

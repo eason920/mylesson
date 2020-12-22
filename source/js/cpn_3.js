@@ -179,8 +179,9 @@ const cpn_bulletin = {
 	template: `
 	<div class="bulletinCntDiv">
 		<div class="bulletinCnt">
-			<i class="fa fa-clock-o" aria-hidden="true"></i>
+		<i class="far fa-clock"></i>
 			{{ decodeURIComponent(prop.content) }}
+			<img src='./2020/images/bulletin_empty.png'>
 		</div>
 		<div class="bulletin-date">{{ prop.date }} </div>
 	</div>
@@ -195,19 +196,19 @@ const cpn_side_item = {
 			<h5 class="gradeR">{{prop.date}}</h5>
 			<div class="gradeCnt">{{prop.subject}}</div>
 			<div class="gradeR is-download">
-				<a target='window_pdf'
+				<a title='下載「課程教材」'
 					v-if='req_pdf'
 					:href='req_pdf'
 				>
 					<i class="fas fa-file-alt"></i>
 				</a>
-				<a
+				<a title='下載「課程影片」'
 					v-if='req_download'
 					:href='req_download'
 				>
 					<i class="fas fa-play-circle"></i>
 				</a>
-				<a target='window_play'
+				<a target='window_play' title='線上觀看課程影片'
 					v-if='req_online'
 					:href='req_online'
 				>
@@ -215,24 +216,62 @@ const cpn_side_item = {
 				</a>
 			</div>
 		</div>
-	`
-}
-
-const cpn_homework = {
-	prop: ['prop'],
-	template: `
-		<div class="sidebar-under-circle" 
-			:data-status="status" 
-			:title="批改中"
-		></div>
 	`,
 	created(){
 		const vm = this;
-		// vm.
+		const c = vm.prop.sort;
+		if( c == '生活會話教室' || c == '咖啡廳' || c == '脫口說英文' || c == '語感教室' || c == '研習營' ){
+			vm.category='Life'
+		}else{
+			vm.category='Formal'
+		}
+		vm.link = '../teaching/?cls=' + vm.category +'&index=' + vm.prop.id;
+		//==> 點了只會有「課程未開課」結果，故不放連結
+	},
+	data(){
+		return {
+			category: '',
+			link: '',
+		}
+	},
+}
+
+const cpn_homework = {
+	props: ['prop'],
+	template: `
+		<a class="sidebar-under-circle"
+			:href="link"
+			:data-status="status"
+			v-text='text'
+			:title='title'
+		></a>
+	`,
+	created(){
+		const vm = this;
+		const id = vm.prop.id;
+		const link = vm.prop.link;
+		console.log('id', id, ' /link ');
+		switch(true){
+			case id!='' && link!='':
+				vm.status = 2;
+				vm.title = vm.prop.Rating;
+				break
+			case id=='' && link!='':
+				vm.status = 1;
+				vm.title = '繳交新作業'
+				vm.text = vm.prop.Rating;
+				break;
+			default:
+				vm.status = 0;
+		};
+		vm.link = link;
 	},
 	data(){
 		return {
 			status: '',
+			link: '',
+			text: '',
+			title: ''
 		}
 	}
 }
