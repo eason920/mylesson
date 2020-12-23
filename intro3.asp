@@ -229,7 +229,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				url: './2020/api/bulletin.asp',
 				success(res){
 					vm.ary = res.bulletin;
-					console.log('bulletin ary', vm.ary, ' / 1 / ', decodeURIComponent(vm.ary[0].content) );
 				}
 			});
 		},
@@ -363,10 +362,8 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 								if( resTime != '00' ){
 									vm.timeBlock[b].ary.push(res.data[a]);
 								}else{
-									console.log('is 00');
 									const dDate = res.data[a].classdate.split('/')[2];
 									const today = new Date().getDate();
-									console.log(a, dDate, today, dDate == today);
 									if( dDate == today){
 										if( vm.timeBlock[b].isToday ){
 											vm.timeBlock[b].ary.push(res.data[a]);
@@ -378,7 +375,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 									};
 								};
 							};
-							// console.log(a, res.data.length - 1, b, vm.timeBlock.length -1);
 							if( a == res.data.length - 1 && b == vm.timeBlock.length -1 ){
 								vm.fnAfterAry();
 
@@ -397,22 +393,20 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		methods: {
 			fnAfterAry(){
 				const vm = this;
-				console.log('finish is ', vm.timeBlock);
-				//
+				console.log('timeBlock ', vm.timeBlock);
+				
+				// 加載 scroll 套件 v
 				new PerfectScrollbar('#content .wrapper');
-				//
-				$('#ms2-loading').fadeOut();
-				$('#content').fadeIn();
-				//
 				setTimeout(()=>{
 					$('#content .wrapper').scrollTop(1);
 				},0);
-
+				//
+				$('#ms2-loading').fadeOut();
+				$('#content').fadeIn();
+				
 				// 補齊未滿 3n / 4n v
 				const max = $(window).width() > 1366 ? 4 : 3;
-				console.log(max,'max');
 				for( a in vm.timeBlock ){
-					console.log( vm.timeBlock[a].ary.length );
 					const l = vm.timeBlock[a].ary.length;
 					if( l != 0 && l%max > 0 ){
 						const addNum = max - (l%max);
@@ -428,7 +422,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				//
 				const buttonLeft = $('.nav-group-link').offset().left;
 				const left = buttonLeft - vm.bulletinWidth / 2 + 25 - 4;// 25 = :before 50 / 2 , 4 = fix
-				console.log( 'left', buttonLeft, ' / ' , ' / ', left );
 				// $('.tgnav-group-dropdown').css({'left': left});
 				vm.bulletinLeft = left;
 				//
@@ -438,17 +431,24 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			fnSideBarToggle(){
 				const vm = this;
 				const ww = $(window).width();
+
 				if( $('#sidebar').hasClass('is-open') ){
+					// OPEN > CLOSE
 					$('#sidebar').removeClass('is-open');
 					$('#content .wrapper').removeAttr('style')
 				}else{
+					// CLOSE > OPEN
 					$('#sidebar').addClass('is-open');
 					if ( ww < 1200) { vm.transX = vm.transX1199 }else{
 						vm.uiGutter = ( ww - $('#app').outerWidth() ) / 2;
 						vm.transX = vm.uiGutter - vm.sideBarWidth - vm.gutter;
 					}
 					$('#content .wrapper').css('transform', 'translateX('+ vm.transX +'px)');
+					
+					// SCROLLER HEIGHT v
+					vm.fnScrollerHeight();
 
+					// API v
 					if( vueSideBar._data.getApi == 0 ){
 						// HOME-WORK v
 						$.ajax({
@@ -471,10 +471,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 
 								// SCROLLER HEIGHT v
 								setTimeout(()=>{
-									const th = $('#sidebar-title').height();
-									const bh = $('#sidebar-under3').innerHeight();
-									const subtract = th + bh;
-									$('#sidebar-scroller').css('height', 'calc( 100% - ' + subtract + 'px)')
+									vm.fnScrollerHeight();
 								}, 0);
 							}
 						});
@@ -486,12 +483,10 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 							// url: './2020/api/reviewClassbar.asp?member_id=141091',
 							url: './2020/api/reviewClassbar.asp',
 							success(res){
-								console.log('list ', res);
-								// cpn_side_item
 								vueSideBar._data.review = JSON.parse(res);
 								vueSideBar._data.getApi ++;
 
-								//
+								// 加載 scroll 套件 v
 								new PerfectScrollbar('#sidebar-scroller');
 								setTimeout(()=>{
 									$('#sidebar-scroller').scrollTop(1);
@@ -502,16 +497,18 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				};
 			},
 
+			fnScrollerHeight(){
+				const th = $('#sidebar-title').height();
+				const bh = $('#sidebar-under3').innerHeight();
+				const subtract = th + bh;
+				$('#sidebar-scroller').css('height', 'calc( 100% - ' + subtract + 'px)')
+			},
+
 			fnBulletinTop(){
 				const vm = this;
 				const st = $('#app').scrollTop();
 				const top = 30 + 40 - st;
-				// const top = 0 - st;
-				console.log('b:',b,'/st:',st,'/top:',top);
-
-				// $('#bulletinbox').css({top});
 				vm.bulletinTop = top;
-				console.log('main bulletinTop:',vm.bulletinTop);
 			},
 		},
 		
