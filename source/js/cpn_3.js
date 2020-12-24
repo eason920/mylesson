@@ -4,7 +4,7 @@ const cpn_card = {
 	props: ['prop', 'req_pic'],
 	template: `
 		<div class="course" 
-			:class='{"is-camp": camp, "is-empty": empty}'
+			:class='{"is-camp": camp, "is-talk": talk, "is-empty": empty}'
 		>
 			<div :class="category.skin">
 				<div class="top-div">
@@ -62,6 +62,9 @@ const cpn_card = {
 		// CAMP
 		const c = vm.prop.Class_Group;
 		if (c == '研習營'){vm.camp = true}
+
+		// TALK
+		if( c == '脫口說英文' ){vm.talk = true}
 
 		// CATEGORY v	
 		if( c == '生活會話教室' || c == '咖啡廳' || c == '脫口說英文' || c == '語感教室' || c == '研習營' ){
@@ -131,6 +134,7 @@ const cpn_card = {
 			},
 			course: '',
 			camp: false,
+			talk: false,
 			empty: false,
 			star: [], room: [],
 			link: {
@@ -189,13 +193,19 @@ const cpn_bulletin = {
 };
 
 const cpn_side_item = {
-	props: ['prop', 'req_online', 'req_download', 'req_pdf'],
+	props: ['prop', 'req_online', 'req_download', 'req_pdf', 'req_pdf2'],
 	template: `
 		<div class="sidebar-list-item">
 			<h5 class="gradeN"><span>{{prop.level}}</span>{{prop.sort}}</h5>
 			<h5 class="gradeR">{{prop.date}}</h5>
 			<div class="gradeCnt">{{prop.subject}}</div>
 			<div class="gradeR is-download">
+				<a title='下載「課程補充教材」'
+					v-if='req_pdf2'
+					:href='req_pdf2'
+				>
+					<i class="far fa-file-alt"></i>
+				</a>
 				<a title='下載「課程教材」'
 					v-if='req_pdf'
 					:href='req_pdf'
@@ -253,8 +263,8 @@ const cpn_homework = {
 		console.log('id', id, ' /link ');
 		switch(true){
 			case id!='' && link!='':
-				vm.status = 2;
 				vm.title = vm.prop.Rating;
+				vm.status = vm.prop.Rating == '批改中' ? 3 : 2;
 				break
 			case id=='' && link!='':
 				vm.status = 1;

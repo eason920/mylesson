@@ -69,3 +69,28 @@ const chURI = decodeURI(urlValue)
 // 5. 正規式 + replace
 const myRegExp = new RegExp('&quot;', 'g');
 vm.title = vm.prop.class_cname.replace(myRegExp, '"');
+
+//------------------------------
+// 6. 
+<div class="sidebar-under-dot"
+	v-if='speech.length != 0'  //< 可以1. v-if 應寫這 // 可以2. ary.length == 0
+>
+	<cpn_homework
+		v-for='(item, i ) in speech'
+		:prop='item'
+		:key='i'
+	></cpm_homework>
+</div>
+<div class="sidebar-under-dot" v-else>
+	<span>(未例入此次升級評量)</span>
+</div>
+//==== O ^v X ======
+<div class="sidebar-under-dot">
+	<cpn_homework
+		v-for='(item, i ) in speech'
+		:prop='item'
+		:key='i'
+		v-if='speech.length != 0' // < v-if 不行在這
+	></cpm_homework>
+	<span v-else>(未例入此次升級評量)</span>
+</div>

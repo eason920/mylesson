@@ -158,17 +158,21 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 							v-for='(item, i) in review'
 							:prop='item'
 							:key='i'
-							:req_pdf='item.PPTlink'
+							:req_pdf2='item.PPT2link'
+							:req_pdf='item.PPT1link'
 							:req_online='item.playlink'
 							:req_download='item.downloadlink'
 						></cpn_side_item>
 					</div>
+					<img src="./2020/images/loading_small.gif" id="sidebar-loading">
 				</div>
 				<div id="sidebar-under3">
 					<div id="sidebar-under-title">家庭作業HOMEWORK</div>
 					<div class="sidebar-under-box">
 						<div class="sidebar-under-subtitle">寫作練習</div>
-						<div class="sidebar-under-dot">
+						<div class="sidebar-under-dot"
+							v-if='writing.length != 0'
+						>
 							<!--div class="sidebar-under-circle" data-status="2" title="批改中"></div>
 							<div class="sidebar-under-circle" data-status="1">+</div>
 							<div class="sidebar-under-circle" data-status="0"></div-->
@@ -178,15 +182,23 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 								:key='i'
 							></cpm_homework>
 						</div>
+						<div class="sidebar-under-dot" v-else>
+							<span>(未例入此次升級評量)</span>
+						</div>
 					</div>
 					<div class="sidebar-under-box">
 						<div class="sidebar-under-subtitle">朗讀練習</div>
-						<div class="sidebar-under-dot">
+						<div class="sidebar-under-dot"
+							v-if='speech.length != 0'
+						>
 							<cpn_homework
 								v-for='(item, i ) in speech'
 								:prop='item'
 								:key='i'
 							></cpm_homework>
+						</div>
+						<div class="sidebar-under-dot" v-else>
+							<span>(未例入此次升級評量)</span>
 						</div>
 					</div>
 				</div>
@@ -305,8 +317,8 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				const s = $('#sidebar-scroller .ps__thumb-y').attr('style').replace(regexp1, '').replace(regexp2, '').replace(regexp3, '').replace('top', '').replace('height', '').split(';');
 				const sum = Number(s[0]) + Number(s[1]);
 				if( sum == h ){
-					// const url = './2020/api/reviewClassbar.asp?member_id=141091&PG=' + vm.getApi;
-					const url = './2020/api/reviewClassbar.asp?PG=' + vm.getApi;
+					const url = './2020/api/reviewClassbar.asp?member_id=141091&PG=' + vm.getApi;
+					// const url = './2020/api/reviewClassbar.asp?PG=' + vm.getApi;
 					$.ajax({
 						type: 'GET',
 						url,
@@ -449,14 +461,17 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					vm.fnScrollerHeight();
 
 					// API v
+					console.log('%c'+vueSideBar._data.getApi == 0,'color:yellow');
 					if( vueSideBar._data.getApi == 0 ){
 						// HOME-WORK v
 						$.ajax({
 							type: 'GET',
-							// url: './2020/api/homework.asp?member_id=227332',
+							// url: './2020/api/homework.asp?member_id=1179',
 							url: './2020/api/homework.asp',
 							success(res){
-								console.log('home work ', res, 'writing', vueSideBar._data.writing, 'speech', vueSideBar._data.speech);
+								console.log('home work ', res);
+								console.log('writing', vueSideBar._data.writing);
+								console.log('speech', vueSideBar._data.speech);
 								// SH = speech, HW = writing
 								for( a in res.data ){
 									if( res.data[a].type != 'SH' ){
@@ -473,26 +488,32 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 								setTimeout(()=>{
 									vm.fnScrollerHeight();
 								}, 0);
+
+
+								// HISTORY PREV 20 v
+								$.ajax({
+									type: 'GET',
+									// url: './2020/api/reviewbar.asp?PG=' + vueSideBar._data.getApi,
+									url: './2020/api/reviewClassbar.asp?member_id=141091',
+									// url: './2020/api/reviewClassbar.asp',
+									success(res){
+										vueSideBar._data.review = JSON.parse(res);
+										vueSideBar._data.getApi ++;
+										$('#sidebar-loading').fadeOut();
+
+										// 加載 scroll 套件 v
+										new PerfectScrollbar('#sidebar-scroller');
+										setTimeout(()=>{
+											$('#sidebar-scroller').scrollTop(1);
+										},0);
+									}
+								});
+
+
 							}
 						});
 
-						// HISTORY PREV 20 v
-						$.ajax({
-							type: 'GET',
-							// url: './2020/api/reviewbar.asp?PG=' + vueSideBar._data.getApi,
-							// url: './2020/api/reviewClassbar.asp?member_id=141091',
-							url: './2020/api/reviewClassbar.asp',
-							success(res){
-								vueSideBar._data.review = JSON.parse(res);
-								vueSideBar._data.getApi ++;
-
-								// 加載 scroll 套件 v
-								new PerfectScrollbar('#sidebar-scroller');
-								setTimeout(()=>{
-									$('#sidebar-scroller').scrollTop(1);
-								},0);
-							}
-						});
+						
 					};
 				};
 			},

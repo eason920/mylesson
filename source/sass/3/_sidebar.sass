@@ -1,6 +1,15 @@
 $h: 150px
 #sidebar
 	z-index: 1
+
+#sidebar-loading
+	position: absolute
+	top: 0
+	right: 0
+	bottom: 0
+	left: 0
+	margin: auto
+
 #sidebar-scroller
 	// height: calc( 100% - 68px - #{$h} )
 	height: 400px
@@ -80,6 +89,9 @@ $h: 150px
 	&[data-status='2']
 		background-color: #7bbd03
 		cursor: pointer
+	&[data-status='3']
+		background-color: #fff000
+		cursor: pointer
 
 @keyframes ani-dot
 	50%
@@ -90,9 +102,15 @@ $h: 150px
 		opacity: 1
 
 .sidebar-under-dot
-	padding-top: 1px
+	padding:
+		top: 1px
+		left: 9px
 	display: flex
 	flex-wrap: wrap
+	span
+		margin-top: 7px
+		font-size: 12px
+		color: #aaa
 	.fa.fa-circle
 		&[data-status='1'], &[data-status='2'], &[data-status='3'], 
 		&[data-status='4'], &[data-status='5']
