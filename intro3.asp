@@ -356,9 +356,9 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		created(){
 			const vm = this;
 			const date = new Date();
-			const hours = date.getHours().length < 2 ? '0'+date.getHours() : date.getHours();
-			const minutes = date.getMinutes().length < 2 ? '0'+date.getMinutes() : date.getMinutes();
-			const seconds = date.getSeconds().length < 2 ? '0'+date.getSeconds() : date.getSeconds();
+			const hours = String(date.getHours()).length < 2 ? '0'+date.getHours() : date.getHours();
+			const minutes = String(date.getMinutes()).length < 2 ? '0'+date.getMinutes() : date.getMinutes();
+			const seconds = String(date.getSeconds()).length < 2 ? '0'+date.getSeconds() : date.getSeconds();
 			vm.nowTime = '以下結果取自 ' + hours + ' 點 ' + minutes +' 分 ' + seconds + ' 秒';
 			// SIDE v
 			const ww = $(window).width();
@@ -367,42 +367,48 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			//
 			$.ajax({
 				type: 'GET',
+				// url: './2020/api/classList.asp?levels=2',
 				url: './2020/api/classList.asp?levels=' + vm.memberLevel,
 				success(res){
-					console.log(res.data, res.data.length, res.data.length == 0, res.data[0].id == 0);
-					if( res.data[0].id == 0 ){
-						$('#allEmpty').append( $('<div>', {'class':'all-empty'}).text('今日己無合適您等級 (' + vueSideBar._data.transEn + ') 的課程') )
-					}
-					for( a in res.data ){
-						const resTime = res.data[a].class_btime.split(':')[0];
-						for( b in vm.timeBlock ){
-							const vueTime = vm.timeBlock[b].time;
-							if( resTime == vueTime ){
-								if( resTime != '00' ){
-									vm.timeBlock[b].ary.push(res.data[a]);
-								}else{
-									const dDate = res.data[a].classdate.split('/')[2];
-									const today = new Date().getDate();
-									if( dDate == today){
-										if( vm.timeBlock[b].isToday ){
-											vm.timeBlock[b].ary.push(res.data[a]);
-										};
+					console.log(res.data, res.data.length, res.data.length == 0);
+					if( res.data.length != 0 ){
+						for( a in res.data ){
+							const resTime = res.data[a].class_btime.split(':')[0];
+							for( b in vm.timeBlock ){
+								const vueTime = vm.timeBlock[b].time;
+								if( resTime == vueTime ){
+									if( resTime != '00' ){
+										vm.timeBlock[b].ary.push(res.data[a]);
 									}else{
-										if( !vm.timeBlock[b].isToday ){
-											vm.timeBlock[b].ary.push(res.data[a]);
+										const dDate = res.data[a].classdate.split('/')[2];
+										const today = new Date().getDate();
+										if( dDate == today){
+											if( vm.timeBlock[b].isToday ){
+												vm.timeBlock[b].ary.push(res.data[a]);
+											};
+										}else{
+											if( !vm.timeBlock[b].isToday ){
+												vm.timeBlock[b].ary.push(res.data[a]);
+											};
 										};
 									};
 								};
-							};
-							if( a == res.data.length - 1 && b == vm.timeBlock.length -1 ){
-								vm.fnAfterAry();
+								if( a == res.data.length - 1 && b == vm.timeBlock.length -1 ){
+									vm.fnAfterAry();
 
-								//for demo
-								// vm.fnSideBarToggle();
-								// $('.tgnav-group.itemC').click();
-							}
+									//for demo
+									// vm.fnSideBarToggle();
+									// $('.tgnav-group.itemC').click();
+								}
+							};
 						};
-					};		
+					}else{
+						$('#ms2-loading').fadeOut();
+						$('#content').fadeIn();
+						$('#app').css('overflow', 'hidden');
+						//
+						$('#allEmpty').append( $('<div>', {'class':'all-empty'}).text('今日己無合適您等級 (' + vueSideBar._data.transEn + ') 的課程') )
+					};
 				}
 			});
 
