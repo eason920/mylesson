@@ -473,8 +473,8 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						// HOME-WORK v
 						$.ajax({
 							type: 'GET',
-							// url: './2020/api/homework.asp?member_id=1179',
-							url: './2020/api/homework.asp',
+							url: './2020/api/homework.asp?member_id=1179',
+							// url: './2020/api/homework.asp',
 							success(res){
 								console.log('home work ', res);
 								console.log('writing', vueSideBar._data.writing);
