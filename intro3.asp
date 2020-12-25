@@ -134,6 +134,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 							v-if='item.ary.length != 0'
 						></cpn_block>
 					</div>
+					<div id='allEmpty'></div>
 					<div id="foo">
 						<div id="foo-left"></div>
 						<div id="foo-right"></div>
@@ -304,6 +305,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					transEn = 'C1'; break;
 				default:
 			};
+			vm.transEn = transEn;
 			vm.memberLvStep = transEn + '-' + <%=asp_step%>;
 
 		},
@@ -336,6 +338,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		},
 		data: {
 			//
+			transEn: '',
 			memberLvStep: '',
 			getApi: 0,
 			review: [],
@@ -366,6 +369,10 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				type: 'GET',
 				url: './2020/api/classList.asp?levels=' + vm.memberLevel,
 				success(res){
+					console.log(res.data, res.data.length, res.data.length == 0, res.data[0].id == 0);
+					if( res.data[0].id == 0 ){
+						$('#allEmpty').append( $('<div>', {'class':'all-empty'}).text('今日己無合適您等級 (' + vueSideBar._data.transEn + ') 的課程') )
+					}
 					for( a in res.data ){
 						const resTime = res.data[a].class_btime.split(':')[0];
 						for( b in vm.timeBlock ){
@@ -466,8 +473,8 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						// HOME-WORK v
 						$.ajax({
 							type: 'GET',
-							// url: './2020/api/homework.asp?member_id=1179',
-							url: './2020/api/homework.asp',
+							url: './2020/api/homework.asp?member_id=1179',
+							// url: './2020/api/homework.asp',
 							success(res){
 								console.log('home work ', res);
 								console.log('writing', vueSideBar._data.writing);
