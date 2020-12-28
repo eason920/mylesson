@@ -106,18 +106,24 @@ const fnPrintWeekMap = function(id){
 	let editStatus = false;
 	let passToday = false;
 	const subtract = Number(data.dt_week) - Number(currentWeek);
-	// 「週」為單位的 editStatus v
-	switch(true){
-		case data.dt_week >= currentWeek:
-			// 同一年 v
-			editStatus = true; break;
-		case data.dt_week < currentWeek && subtract <= -1:
-			// 同一年 v
-			editStatus = false; break;
-		case data.dt_week < currentWeek && subtract >= 1:
-			// 跨年 v
-			editStatus = true; break;
-		default:
+
+	// 「年」為單位的 editStatus v
+	if( data.dt_year <= currentWeekYear ){
+		// 「週」為單位的 editStatus v
+		switch(true){
+			case data.dt_week >= currentWeek:
+				// 同一年 v
+				editStatus = true; break;
+			case data.dt_week < currentWeek && subtract <= -1:
+				// 同一年 v
+				editStatus = false; break;
+			case data.dt_week < currentWeek && subtract >= 1:
+				// 跨年 v
+				editStatus = true; break;
+			default:
+		}
+	}else{
+		editStatus = true;
 	}
 	//
 	const hours = new Date().getHours();
@@ -210,11 +216,10 @@ const fnPrintWeekMap = function(id){
 
 const fnGetPrevViewWeekId = function(){
 	viewWeek = Number(viewWeek) - 1;
-	const viewPreYear = viewYear - 1;
-	const preIsMax53 = bus.weekMax53.findIndex( item => item == viewPreYear );
 	if( viewWeek == 0 ){
-		viewYear --;
-		preIsMax53 >= 0 ? viewWeek = 53 : viewWeek = 52;
+		viewYear = Number(viewYear) - 1;
+		const preIsMax53 = bus.weekMax53.findIndex( item => item == viewYear );
+		viewWeek = preIsMax53 >= 0 ? 53 : 52;
 	}
 
 	// 取得前一個 viewWeekId v
@@ -242,8 +247,10 @@ const fnGeViewWeekMonthAry_prev_next = function(target){
 	};
 
 	// 取值 v
-	viewYear = $('#datepicker .ui-datepicker-year:eq(0)').text();
+	// 月 v
 	viewMonth = $('#datepicker .ui-datepicker-month:eq(0)').text().replace(' 月', '');
+
+	// Ary v
 	viewWeekAry = fnGetViewWeekAry(viewWeek);
 }
 
@@ -286,8 +293,6 @@ const fnRecordWeekData = function () {
 }
 
 const fnRecordWeekData_finish = function(){
-	console.log('finish record', weekData);
-
 	// DATE-PICKER v
 	fnDatepickerJump(currentWeekYear, currentWeekMonth);
 
@@ -322,17 +327,12 @@ const fnRecordWeekData_finish = function(){
 const fnGetNextViewWeekId = function(){
 	// WEEK  & YEAR v
 	viewWeek = Number(viewWeek) + 1;
-	const nextIsMax53 = bus.weekMax53.findIndex( item => item == viewYear );
-	if( nextIsMax53 >= 0 ){
-		if( viewWeek == 54 ){ 
-			viewWeek = 1;
-			viewYear ++;
-		};
-	}else{
-		if( viewWeek == 53 ){ 
-			viewWeek = 1;
-			viewYear ++;
-		};
+	const currentIsMax53 = bus.weekMax53.findIndex( item => item == viewYear );
+	const maxWeek = currentIsMax53 < 0 ? 53 : 54
+
+	if( viewWeek == maxWeek ){
+		viewWeek = 1;
+		viewYear = Number(viewYear) + 1;
 	}
 
 	// ID OF MONTH MUST BE LENGTH = 2 v
@@ -370,16 +370,17 @@ $(()=>{
 	// 取得後一週的 viewWeekMonth、viewWeekAry v
 	fnGetNextViewWeekId();
 	fnGeViewWeekMonthAry_prev_next('next');
-
+	
 	// 紀錄未來一週的 date v
 	nextWeekAry = viewWeekAry;
 	nextMonth1 = viewMonth;
+	console.log('nm1, ', nextMonth1, viewMonth);
 	if( (Number(nextWeekAry[0]) - Number(nextWeekAry[6])) > 20 ){
 		const month = Number(nextMonth1) + 1;
 		month == 13 ? nextMonth2 = 1 : nextMonth2 = month;
 	}else{ nextMonth2 = nextMonth1 };
 	
-	// 繼續收集 weekData v
+	// 收集次週 weekData v
 	$.ajax({
 		type:"POST",
 		url:"./2020/api/Wschedule.asp",
@@ -389,10 +390,14 @@ $(()=>{
 		dataType:"json",
 		success:function(data){	
 			weekData[viewWeekId] = data;
+
+			//繼續收集 weekData (本週&往前) v
 			fnRecordWeekData();
 		},
 		error:function(){
 			weekData[viewWeekId] = fnCreateViewObj(viewWeekAry, viewYear, viewMonth, viewWeek);
+
+			// 繼續收集 weekData (本週&往前)v
 			fnRecordWeekData();
 		}
 	});
