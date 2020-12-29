@@ -154,11 +154,11 @@ end if
     <div id="content">
       <div class="wrapper">
         <div id="main">
-          <div id="prev-page" style="display: none">
+          <a href='intro3.asp' id="prev-page" style="display: none">
             <svg fill="none">
               <path d="M19 2L2 23.5L19 45" stroke="#354e85" stroke-width="4"></path>
             </svg>
-          </div>
+          </a>
           <a href="intro2.asp" id="next-page">
             <svg fill="none">
               <path d="M2 2L19 23.5L2 45" stroke="#354e85" stroke-width="4"></path>
@@ -442,15 +442,15 @@ end if
   end if
   %>
   
-/*
+
   if(Login_guided==3){
     if(parseInt($(window).height())>720){
       DIYLightBox('ajax','1280px','720px','../../../library/AD.asp?Full=1')
     }else{
       DIYLightBox('ajax','980px','592px','../../../library/AD.asp')    
-    }    
+    }
   } 
-*/
+
 
   <%if  session("Login_guided")="4"  then%>
     if(parseInt($(window).height())>720){

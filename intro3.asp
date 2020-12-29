@@ -107,7 +107,12 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				<section class="section">
 					<!-- course-nav-->
 					<nav class="tgnav">
-						<div class="tgnav-cart">真人視訊課程<span>{{nowTime}}</span></div>
+						<div class="tgnav-cart">
+							真人視訊課程
+							<span>{{reactiveNowTime}}</span>
+							<a href='intro3.asp'> 手動刷新開課狀態</a>
+							<!--span>{{reactiveRefreshTimer}}</span-->
+						</div>
 						<ul class="tgnav-groups">
 							<li class="tgnav-group itemB" @mouseover='fnBulletinShow'>
 								<a class="nav-group-link" title="公告">
@@ -319,8 +324,8 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				const s = $('#sidebar-scroller .ps__thumb-y').attr('style').replace(regexp1, '').replace(regexp2, '').replace(regexp3, '').replace('top', '').replace('height', '').split(';');
 				const sum = Number(s[0]) + Number(s[1]);
 				if( sum == h ){
-					const url = './2020/api/reviewClassbar.asp?member_id=141091&PG=' + vm.getApi;
-					// const url = './2020/api/reviewClassbar.asp?PG=' + vm.getApi;
+					// const url = './2020/api/reviewClassbar.asp?member_id=141091&PG=' + vm.getApi;
+					const url = './2020/api/reviewClassbar.asp?PG=' + vm.getApi;
 					$.ajax({
 						type: 'GET',
 						url,
@@ -355,11 +360,86 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 	const vueMain = new Vue({
 		created(){
 			const vm = this;
-			const date = new Date();
-			const hours = String(date.getHours()).length < 2 ? '0'+date.getHours() : date.getHours();
-			const minutes = String(date.getMinutes()).length < 2 ? '0'+date.getMinutes() : date.getMinutes();
-			const seconds = String(date.getSeconds()).length < 2 ? '0'+date.getSeconds() : date.getSeconds();
-			vm.nowTime = '以下結果取自 ' + hours + ' 點 ' + minutes +' 分 ' + seconds + ' 秒';
+			vm.fnGetTime();
+			
+			// REFRESH-IMTER
+			window.setInterval(()=>{
+				console.log('%c====================', 'color:yellow');
+
+				const minutes = new Date().getMinutes();
+				// const refresh = vm.refresh.setting.findIndex(function(item){
+					// 	return item == minutes;
+				// });
+
+				// if( refresh >= 0 ){
+				if( minutes >= 55 || minutes <= 15 ){
+					vm.fnGetTime();
+					// window.location.reload()
+					if( minutes != 15 ){
+						// ON-TIME HOURSE v
+						let hours;
+						if( minutes >= 55 ){
+							// 55 ~ 59 v
+							console.log('>=15');
+							hours = new Date().getHours();
+							hours = hours + 1;
+							// Number( new Date().gethours() ) + 1;
+						}else{
+							// 0 ~ 14, 15己在第一層篩除在外 v
+							console.log('<15');
+							hours = new Date().getHours();
+						};
+
+						// ON-TIME INDEX OF ARY v
+						let index;
+						for( a in vm.timeBlock ){
+							if( vm.timeBlock[a].time == hours ){ index = a };
+						};
+
+						// ON-TIME API v
+						const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + hours;
+						console.log('block', vm.timeBlock[index]);
+						console.log('minutes is >> ', minutes, ' / minutes >= 15 ? >> ' , (minutes >= 15), ' / hours is >>', hours, ' / index is >>', index, ' / time is >>',vm.timeBlock[index].time , ' / ajax url >>', url );
+						$.ajax({
+							type: 'GET',
+							url,
+							success(res){
+								console.log('api >>',res.data);
+								// 1 
+								vm.timeBlock[index].ary = [];
+
+								// 2
+								setTimeout(()=>{
+									vm.timeBlock[index].ary = res.data;
+
+									// 補齊未滿 3n / 4n v
+									const max = $(window).width() > 1366 ? 4 : 3;
+									const l = vm.timeBlock[index].ary.length;
+									// console.log('after 1000', l);
+									if( l != 0 && l%max > 0 ){
+										const addNum = max - (l%max);
+										for( i=0;i<addNum;i++ ){
+											console.log('i is >>', i);
+											vm.timeBlock[index].ary.push({empty: true});
+										};
+									}
+								},200);
+							}
+						});
+
+					}else{
+						// 歸零 v
+						//* 15 整，API 己無該時段的資料 v
+						const vm = this;
+						if( vm.fiftemReload ){
+							window.location.reload();
+							vm.fiftemReload = false;
+						}
+					}
+				};
+				// vm.refresh.timer = minutes + ' / ' + refresh + ' / refresh ? ' + (refresh >= 0);
+			}, 1000 * 10);
+			
 			// SIDE v
 			const ww = $(window).width();
 			vm.sideBarWidth = $('#sidebar').width();
@@ -411,11 +491,28 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					};
 				}
 			});
-
-			
-			
 		},
+
+		computed: {
+			// 	reactiveRefreshTimer(){
+			// 		return this.refresh.timer;
+			// 	},
+
+			reactiveNowTime(){
+				return this.nowTime;
+			},
+		},
+
 		methods: {
+			fnGetTime(){
+				const vm = this;
+				const date = new Date();
+				const hours = String(date.getHours()).length < 2 ? '0'+date.getHours() : date.getHours();
+				const minutes = String(date.getMinutes()).length < 2 ? '0'+date.getMinutes() : date.getMinutes();
+				const seconds = String(date.getSeconds()).length < 2 ? '0'+date.getSeconds() : date.getSeconds();
+				vm.nowTime = '以下結果取自 ' + hours + ' 點 ' + minutes +' 分 ' + seconds + ' 秒';
+			},
+
 			fnAfterAry(){
 				const vm = this;
 				console.log('timeBlock ', vm.timeBlock);
@@ -479,8 +576,8 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						// HOME-WORK v
 						$.ajax({
 							type: 'GET',
-							url: './2020/api/homework.asp?member_id=1179',
-							// url: './2020/api/homework.asp',
+							// url: './2020/api/homework.asp?member_id=1179',
+							url: './2020/api/homework.asp',
 							success(res){
 								console.log('home work ', res);
 								console.log('writing', vueSideBar._data.writing);
@@ -507,8 +604,8 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 								$.ajax({
 									type: 'GET',
 									// url: './2020/api/reviewbar.asp?PG=' + vueSideBar._data.getApi,
-									url: './2020/api/reviewClassbar.asp?member_id=141091',
-									// url: './2020/api/reviewClassbar.asp',
+									// url: './2020/api/reviewClassbar.asp?member_id=141091',
+									url: './2020/api/reviewClassbar.asp',
 									success(res){
 										vueSideBar._data.review = JSON.parse(res);
 										vueSideBar._data.getApi ++;
@@ -547,7 +644,13 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		},
 		
 		data: {
+
 			nowTime: '',
+			refresh:{
+				setting: [55, 56, 57, 58, 59, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 , 14, 15],
+				timer: '',
+			},
+			fiftemReload: true,
 			//
 			bulletinWidth: 350,
 			bulletinTop: 70,// = .tgnav.padding-top + .tgnav-group.itemB.height
@@ -578,7 +681,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		}
 	});
 
-	Vue.config.devtools = false;
+	// Vue.config.devtools = false;
 	
 	// ==========================================
 	// == SYSTEN (BACK-END) v

@@ -216,13 +216,13 @@ const cpn_side_item = {
 					v-if='req_download'
 					:href='req_download'
 				>
-					<i class="fas fa-play-circle"></i>
+					<i class="fas fa-cloud-download-alt"></i>
 				</a>
 				<a target='window_play' title='線上觀看課程影片'
 					v-if='req_online'
 					:href='req_online'
 				>
-					<i class="fas fa-cloud-download-alt"></i>
+					<i class="fas fa-play-circle"></i>
 				</a>
 			</div>
 		</div>

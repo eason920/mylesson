@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>vue component emit</title>
+	<script src="./.tmp/assets/plugins/jquery/jquery.1.12.4.min.js"></script>
+	<script src="./.tmp/assets/plugins/vue/vue2.6.12.js"></script>
+	<style>
+		html, body{
+			padding: 0;
+			background-color: greenyellow
+		}
+	</style>
+</head>
+<body>
+	<div id='app'>
+		<span>{{reactiveRefreshTimer}}</span>
+	</div>
+
+	<script>
+		const app = new Vue({
+			created(){
+				const vm = this;
+				// REFRESH-IMTER
+				window.setInterval(()=>{
+					const minutes = new Date().getMinutes();
+					const refresh = vm.refresh.setting.findIndex(function(item){
+						return item == minutes;
+					});
+					if( refresh >= 0 ){ window.location.reload() };
+					vm.refresh.timer = minutes + ' / ' + refresh + ' / refresh ? ' + (refresh >= 0);
+				}, 1000 * 1);
+			},
+
+			computed: {
+				reactiveRefreshTimer(){
+					return this.refresh.timer;
+				}
+			},
+
+			data: {
+				refresh:{
+					setting: [0, 3, 15, 55],
+					timer: '',
+				},
+			},
+
+			el: '#app'
+		});
+
+		// *** 使 dev tool vue 不能檢視 v
+		// Vue.config.devtools = false; 
+	</script>
+</body>
+</html>

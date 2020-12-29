@@ -94,11 +94,11 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					<path d="M19 2L2 23.5L19 45" stroke="#354E85" stroke-width="4"></path>
 				</svg>
 			</a>
-			<div id="next-page" style='display: none'>
+			<a href="intro3.asp" id="next-page" style='display: none'>
 				<svg fill="none">
 					<path d="M2 2L19 23.5L2 45" stroke="#354E85" stroke-width="4"></path>
 				</svg>
-			</div>
+			</a>
 			<div class="wrapper" id="app">
 				<div id="block0">
 					<div class="grid1">
