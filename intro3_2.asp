@@ -105,6 +105,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			/* ^ scrollbar 是否永遠顥示的跟據 ^ */
 		</style>
 		<!---->
+		<script src="./2020/assets/plugins/js_cookie/3.0.0.js"></script>
 		<script src="./2020/assets/plugins/jquery/jquery.1.12.4.min.js"></script>
 		<script src="./2020/assets/plugins/vue/vue2.6.12.js"></script>
 		<script src="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.min.js"></script>
@@ -516,12 +517,29 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				// 多次性判斷式( REFRESH-TIMTER ) v
 				vm.refreshControl =window.setInterval(()=>{
 					minutes = new Date().getMinutes();
-					if( minutes >= 55 || minutes <= 15 ){
-						console.log('%c====================', 'color:yellow');
-						vm.fnGetTime();
-						vm.fnRefresh(minutes);
-					}
-				}, 1000 * 50);
+					switch(true){
+						case minutes >= 55 || minutes <= 14:
+							Cookies.set('fifteenRefresh', false);
+							console.log('%c====================', 'color:yellow');
+							vm.fnGetTime();
+							vm.fnRefresh(minutes);
+							break;
+						case minutes == 15:
+							// 時段尾段 15 分
+							if( Cookies.get('fifteenRefresh') == 'false' ){
+								Cookies.set('fifteenRefresh', true);
+								window.location.reload();
+								// window.clearinterval(vm.refreshControl);
+							}
+							break;
+						default:
+					};
+					// if( minutes >= 55 || minutes <= 14 ){
+						
+					// }else if( minutes == 15 ){
+						
+					// }
+				}, 1000 * 4);
 
 			},
 
@@ -536,18 +554,18 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 
 			fnRefresh(minutes){
 				const vm = this;
-				if( minutes != 15 ){
+				// if( minutes != 15 ){
 					// 非時段尾段 15 分時 v
 					let hours;
 					if( minutes >= 55 ){
 						// 55 ~ 59 v
-						console.log('>=15');
+						console.log('>=55');
 						hours = new Date().getHours();
 						hours = hours + 1;
 						// Number( new Date().gethours() ) + 1;
 					}else{
 						// 0 ~ 14, 15己在第一層篩除在外 v
-						console.log('<15');
+						console.log('<=14');
 						hours = new Date().getHours();
 					};
 
@@ -595,14 +613,15 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						}
 					});
 
-				}else{
-					// 時段尾段 15 分
-					const vm = this;
-					window.location.reload();
-					if( vm.refreshControl != '' ){
-						window.clearinterval(vm.refreshControl);
-					}
-				}
+				// }else{
+				// 	// 時段尾段 15 分
+				// 	const vm = this;
+				// 	if( Cookies.get('fifteenRefresh') == 'false' ){
+				// 		Cookies.set('fifteenRefresh', true);
+				// 		window.location.reload();
+				// 		// window.clearinterval(vm.refreshControl);
+				// 	}
+				// }
 			},
 
 			fnBulletinShow(){
