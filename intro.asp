@@ -52,6 +52,7 @@ end if
     <script src="./2020/js/lightBoxDIY-V2.js?<%=Timer%>"></script>    
     <script src="./2020/js/tool.js?dd=<%=now%>"></script>    
   <style>
+    .nav-float-item.is-announce{display: none}
     .wd2{
       position:fixed;
       width:100%;
@@ -154,7 +155,7 @@ end if
     <div id="content">
       <div class="wrapper">
         <div id="main">
-          <a href='intro3.asp' id="prev-page" style="display: none">
+          <a href='intro3.asp' id="prev-page">
             <svg fill="none">
               <path d="M19 2L2 23.5L19 45" stroke="#354e85" stroke-width="4"></path>
             </svg>

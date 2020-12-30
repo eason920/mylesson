@@ -46,6 +46,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		<link href="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css?<%=Timer%>" rel="stylesheet"/>
 		<!--link href="./2020/css/memberbar.css?<%=Timer%>" rel="stylesheet"/-->
 		<style>
+			.nav-float-item.is-announce{display: none}
 			.wd {
 				position: fixed;
 				width: 100%;
@@ -94,7 +95,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					<path d="M19 2L2 23.5L19 45" stroke="#354E85" stroke-width="4"></path>
 				</svg>
 			</a>
-			<a href="intro3.asp" id="next-page" style='display: none'>
+			<a href="intro3.asp" id="next-page">
 				<svg fill="none">
 					<path d="M2 2L19 23.5L2 45" stroke="#354E85" stroke-width="4"></path>
 				</svg>
