@@ -105,7 +105,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			/* ^ scrollbar 是否永遠顥示的跟據 ^ */
 		</style>
 		<!---->
-		<script src="./2020/assets/plugins/js_cookie/3.0.0.js"></script>
 		<script src="./2020/assets/plugins/jquery/jquery.1.12.4.min.js"></script>
 		<script src="./2020/assets/plugins/vue/vue2.6.12.js"></script>
 		<script src="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.min.js"></script>
@@ -148,7 +147,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						<div class="tgnav-cart">
 							真人視訊課程
 							<span>{{reactiveNowTime}}</span>
-							<a href='javascript:window.location.href=window.location.href'> 手動刷新開課狀態</a>
+							<a href='intro3.asp'> 手動刷新開課狀態</a>
 							<!--span>{{reactiveRefreshTimer}}</span-->
 						</div>
 						<ul class="tgnav-groups">
@@ -398,34 +397,94 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 	const vueMain = new Vue({
 		created(){
 			const vm = this;
+			vm.fnGetTime();
 			
+			// REFRESH-IMTER
+			window.setInterval(()=>{
+				console.log('%c====================', 'color:yellow');
 
+				const minutes = new Date().getMinutes();
+				// const refresh = vm.refresh.setting.findIndex(function(item){
+					// 	return item == minutes;
+				// });
+
+				// if( refresh >= 0 ){
+				if( minutes >= 55 || minutes <= 15 ){
+					vm.fnGetTime();
+					// window.location.reload()
+					if( minutes != 15 ){
+						// ON-TIME HOURSE v
+						let hours;
+						if( minutes >= 55 ){
+							// 55 ~ 59 v
+							console.log('>=15');
+							hours = new Date().getHours();
+							hours = hours + 1;
+							// Number( new Date().gethours() ) + 1;
+						}else{
+							// 0 ~ 14, 15己在第一層篩除在外 v
+							console.log('<15');
+							hours = new Date().getHours();
+						};
+
+						// ON-TIME INDEX OF ARY v
+						let index;
+						for( a in vm.timeBlock ){
+							if( vm.timeBlock[a].time == hours ){ index = a };
+						};
+
+						// ON-TIME API v
+						const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + hours;
+						console.log('block', vm.timeBlock[index]);
+						console.log('minutes is >> ', minutes, ' / minutes >= 15 ? >> ' , (minutes >= 15), ' / hours is >>', hours, ' / index is >>', index, ' / time is >>',vm.timeBlock[index].time , ' / ajax url >>', url );
+						$.ajax({
+							type: 'GET',
+							url,
+							success(res){
+								console.log('api >>',res.data);
+								// 1 
+								vm.timeBlock[index].ary = [];
+
+								// 2
+								setTimeout(()=>{
+									vm.timeBlock[index].ary = res.data;
+
+									// 補齊未滿 3n / 4n v
+									const max = $(window).width() > 1366 ? 4 : 3;
+									const l = vm.timeBlock[index].ary.length;
+									// console.log('after 1000', l);
+									if( l != 0 && l%max > 0 ){
+										const addNum = max - (l%max);
+										for( i=0;i<addNum;i++ ){
+											console.log('i is >>', i);
+											vm.timeBlock[index].ary.push({empty: true});
+										};
+									}
+								},200);
+							}
+						});
+
+					}else{
+						// 歸零 v
+						//* 15 整，API 己無該時段的資料 v
+						window.location.reload();
+					}
+				};
+				// vm.refresh.timer = minutes + ' / ' + refresh + ' / refresh ? ' + (refresh >= 0);
+			}, 1000 * 50);
+			
 			// SIDE v
 			const ww = $(window).width();
 			vm.sideBarWidth = $('#sidebar').width();
 
-			// 1.json
-			// 2-1.json-success ->> 今日仍有課 -->> fnAfterAry()
-			// 2-2.json-success ->> 今日己無課 #allEmpty append message ->> END
-			// 3-1.fnAfterAry() ->> ON-TIME  ->> fnRefresh first
-			// 3-2.fnAfterAry() ->> OFF-TIME ->> show content first
-			// 3.setInterval ->> WHEN ON-TIME ->> fnRefresh
-			// ***********
-			// 只會在 55 ~ 15 分間進入此段 v
-			// a. on time 時的預設第一刷
-			// b. setIterval 重覆執行函式
-			// ***********
-			// 4-1. fnRefresh ->> 不等於15 ->> 每50秒以 api 刷新 on time 時段的課表
-			// 4-2. fnRefresh ->> 等於15時 ->> reload + clearInterval
+			//
 			$.ajax({
 				type: 'GET',
 				// url: './2020/api/classList.asp?levels=2',
-				// url: './2020/api/classList.asp?levels=' + vm.memberLevel,
-				url: './2020/json/classList-' + vm.memberLevel + '.json',
+				url: './2020/api/classList.asp?levels=' + vm.memberLevel,
 				success(res){
 					console.log(res.data, res.data.length, res.data.length == 0);
 					if( res.data.length != 0 ){
-						// 全時段仍有課程 v
 						for( a in res.data ){
 							const resTime = res.data[a].class_btime.split(':')[0];
 							for( b in vm.timeBlock ){
@@ -449,11 +508,14 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 								};
 								if( a == res.data.length - 1 && b == vm.timeBlock.length -1 ){
 									vm.fnAfterAry();
+
+									//for demo
+									// vm.fnSideBarToggle();
+									// $('.tgnav-group.itemC').click();
 								}
 							};
 						};
 					}else{
-						// 全時段己無課程 (尤其高等級 22:00 後) v
 						$('#ms2-loading').fadeOut();
 						$('#content').fadeIn();
 						$('#app').css('overflow', 'hidden');
@@ -475,6 +537,15 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		},
 
 		methods: {
+			fnGetTime(){
+				const vm = this;
+				const date = new Date();
+				const hours = String(date.getHours()).length < 2 ? '0'+date.getHours() : date.getHours();
+				const minutes = String(date.getMinutes()).length < 2 ? '0'+date.getMinutes() : date.getMinutes();
+				const seconds = String(date.getSeconds()).length < 2 ? '0'+date.getSeconds() : date.getSeconds();
+				vm.nowTime = '以下結果取自 ' + hours + ' 點 ' + minutes +' 分 ' + seconds + ' 秒';
+			},
+
 			fnAfterAry(){
 				const vm = this;
 				console.log('timeBlock ', vm.timeBlock);
@@ -484,7 +555,10 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				setTimeout(()=>{
 					$('#content .wrapper').scrollTop(1);
 				},0);
-								
+				//
+				$('#ms2-loading').fadeOut();
+				$('#content').fadeIn();
+				
 				// 補齊未滿 3n / 4n v
 				const max = $(window).width() > 1366 ? 4 : 3;
 				for( a in vm.timeBlock ){
@@ -496,132 +570,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						};
 					}
 				}
-
-				//--------------------------------------
-				// 一次性判斷式 v
-				vm.fnGetTime();
-
-				let minutes = new Date().getMinutes();
-				if( minutes >= 55 || minutes <= 15 ){
-					// ON-TIME v
-					vm.fnRefresh(minutes);
-				}else{
-					// OFF-TIME v
-					// 顯示 content v
-					if( $('#content').is(':hidden') ){
-						$('#ms2-loading').hide(100);
-						$('#content').show(100);
-					};
-				};
-
-				// 多次性判斷式( REFRESH-TIMTER ) v
-				vm.refreshControl =window.setInterval(()=>{
-					minutes = new Date().getMinutes();
-					switch(true){
-						case minutes >= 55 || minutes <= 14:
-							Cookies.set('fifteenRefresh', false);
-							console.log('%c====================', 'color:yellow');
-							vm.fnGetTime();
-							vm.fnRefresh(minutes);
-							break;
-						case minutes == 15:
-							// 時段尾段 15 分
-							if( Cookies.get('fifteenRefresh') == 'false' ){
-								Cookies.set('fifteenRefresh', true);
-								window.location.reload();
-								// window.clearinterval(vm.refreshControl);
-							}
-							break;
-						default:
-					};
-					// if( minutes >= 55 || minutes <= 14 ){
-						
-					// }else if( minutes == 15 ){
-						
-					// }
-				}, 1000 * 4);
-
-			},
-
-			fnGetTime(){
-				const vm = this;
-				const date = new Date();
-				const hours = String(date.getHours()).length < 2 ? '0'+date.getHours() : date.getHours();
-				const minutes = String(date.getMinutes()).length < 2 ? '0'+date.getMinutes() : date.getMinutes();
-				const seconds = String(date.getSeconds()).length < 2 ? '0'+date.getSeconds() : date.getSeconds();
-				vm.nowTime = '以下結果取自 ' + hours + ' 點 ' + minutes +' 分 ' + seconds + ' 秒';
-			},
-
-			fnRefresh(minutes){
-				const vm = this;
-				// if( minutes != 15 ){
-					// 非時段尾段 15 分時 v
-					let hours;
-					if( minutes >= 55 ){
-						// 55 ~ 59 v
-						console.log('>=55');
-						hours = new Date().getHours();
-						hours = hours + 1;
-						// Number( new Date().gethours() ) + 1;
-					}else{
-						// 0 ~ 14, 15己在第一層篩除在外 v
-						console.log('<=14');
-						hours = new Date().getHours();
-					};
-
-					// ON-TIME INDEX OF ARY v
-					let index;
-					for( a in vm.timeBlock ){
-						if( vm.timeBlock[a].time == hours ){ index = a };
-					};
-
-					// ON-TIME API v
-					const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + hours;
-					console.log('block', vm.timeBlock[index]);
-					console.log('minutes is >> ', minutes, ' / minutes >= 15 ? >> ' , (minutes >= 15), ' / hours is >>', hours, ' / index is >>', index, ' / time is >>',vm.timeBlock[index].time , ' / ajax url >>', url );
-					$.ajax({
-						type: 'GET',
-						url,
-						success(res){
-							console.log('api >>',res.data);
-							// 1 
-							vm.timeBlock[index].ary = [];
-
-							// 2
-							setTimeout(()=>{
-								vm.timeBlock[index].ary = res.data;
-
-								// 補齊未滿 3n / 4n v
-								const max = $(window).width() > 1366 ? 4 : 3;
-								const l = vm.timeBlock[index].ary.length;
-								// console.log('after 1000', l);
-								if( l != 0 && l%max > 0 ){
-									const addNum = max - (l%max);
-									for( i=0;i<addNum;i++ ){
-										console.log('i is >>', i);
-										vm.timeBlock[index].ary.push({empty: true});
-									};
-								}
-
-								// 顯示 content v
-								if( $('#content').is(':hidden') ){
-									// 顯示 content v
-									$('#ms2-loading').hide(100);
-									$('#content').show(100);
-								}
-							},200);
-						}
-					});
-
-				// }else{
-				// 	// 時段尾段 15 分
-				// 	const vm = this;
-				// 	if( Cookies.get('fifteenRefresh') == 'false' ){
-				// 		Cookies.set('fifteenRefresh', true);
-				// 		window.location.reload();
-				// 		// window.clearinterval(vm.refreshControl);
-				// 	}
-				// }
 			},
 
 			fnBulletinShow(){
@@ -729,7 +677,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		},
 		
 		data: {
-			refreshControl: '',
+
 			nowTime: '',
 			refresh:{
 				setting: [55, 56, 57, 58, 59, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 , 14, 15],

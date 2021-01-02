@@ -1,0 +1,13 @@
+// 1.json
+// 2-1.json-success ->> 今日仍有課 -->> fnAfterAry()
+// 2-2.json-success ->> 今日己無課 #allEmpty append message ->> END
+// 3-1a.fnAfterAry() -->> 一次性函式(二擇一執行) ->> ON-TIME  ->> fnRefresh first
+// 3-1b.fnAfterAry() -->> 一次性函式(二擇一執行) ->> OFF-TIME ->> show content first
+// 3-2. fnAfterAry() -->> 重覆性函式(一律執行  ) ->>  setInterval ->> WHEN ON-TIME ->> fnRefresh
+// ***********
+// 只會在 55 ~ 15 分間進入此段 v
+// a. on time 時的預設第一刷
+// b. setIterval 重覆執行函式
+// ***********
+// 4-1. fnRefresh ->> 不等於15 ->> 每50秒以 api 刷新 on time 時段的課表 + cookie(fifteenRefresh) = false;
+// 4-2. fnRefresh ->> 等於15時 ->> reload + clearInterval + cookie(fifteenRefresh) = true;
