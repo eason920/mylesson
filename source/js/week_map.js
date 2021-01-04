@@ -15,6 +15,7 @@ let viewWeekMin = -16;// +1 -16 = -15
 // ^ 為取得 faceData 近三月完整 data, 需超出以逹目的，而在「face_map.js-fnRecordFaceData」函式完成後回歸 -11** 
 //
 let nextWeekAry;
+let nextWeekId;
 let nextMonth1;
 let nextMonth2;
 //
@@ -112,30 +113,31 @@ const fnPrintWeekMap = function(id){
 	console.log('year', data.dt_year, currentWeekYear);
 	console.log('week', data.dt_week, currentWeek);
 	console.log('viewWeekIndex', viewWeekIndex);
-	switch(true){
-		case data.dt_year == currentWeekYear:
-			// 「週」為單位的 editStatus v
-			// switch(true){
-			// 	case data.dt_week >= currentWeek:
-			// 		editStatus = true;
-			// 		break;
-			// 	case data.dt_week < currentWeek:
-			// 		editStatus = false;
-			// 		break;
-			// 	default:
-			// };
-			editStatus = true;
-			break;
-		case data.dt_year > currentWeekYear:
-			// 跨年度-年未(12)的未來週 v
-			editStatus = true;
-			break;
-		case data.dt_year < currentWeekYear:
-			// 跨人度-年初(01)的過去週 v
-			editStatus = false;
-			break;
-		default:
-	}
+	// switch(true){
+	// 	case data.dt_year == currentWeekYear:
+	// 		// 「週」為單位的 editStatus v
+	// 		// switch(true){
+	// 		// 	case data.dt_week >= currentWeek:
+	// 		// 		editStatus = true;
+	// 		// 		break;
+	// 		// 	case data.dt_week < currentWeek:
+	// 		// 		editStatus = false;
+	// 		// 		break;
+	// 		// 	default:
+	// 		// };
+	// 		editStatus = true;
+	// 		break;
+	// 	case data.dt_year > currentWeekYear:
+	// 		// 跨年度-年未(12)的未來週 v
+	// 		editStatus = true;
+	// 		break;
+	// 	case data.dt_year < currentWeekYear:
+	// 		// 跨人度-年初(01)的過去週 v
+	// 		editStatus = false;
+	// 		break;
+	// 	default:
+	// }
+	if( id == currentWeekId || id == nextWeekId ){ editStatus = true };
 	// --------------------------------
 	// --------------------------------
 	// switch(true){
@@ -410,6 +412,7 @@ $(()=>{
 	fnGeViewWeekMonthAry_prev_next('next');
 	
 	// 紀錄未來一週的 date v
+	nextWeekId = viewWeekId;
 	nextWeekAry = viewWeekAry;
 	nextMonth1 = viewMonth;
 	console.log('nm1, ', nextMonth1, viewMonth);
