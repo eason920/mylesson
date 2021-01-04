@@ -145,6 +145,7 @@ $(()=>{
 			url:"./2020/api/WscheduleUpdate.asp",
 			data,
 			dataType:"html",
+			contentType: "application/json",
 			success:function(data){	
 				console.log('update');
 				console.log('success', data);

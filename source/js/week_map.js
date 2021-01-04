@@ -67,6 +67,7 @@ const fnPrintWeekMap = function(id){
 	let week = -1;
 	const ary = data.date_list;
 	//
+	console.log('Number(data.dt_month)-1]', Number(data.dt_month)-1);
 	$('.weekmap-title').text( bus.monthAry[Number(data.dt_month)-1] + ', ' + data.dt_year );
 	
 	// --------------------------------
@@ -108,23 +109,43 @@ const fnPrintWeekMap = function(id){
 	const subtract = Number(data.dt_week) - Number(currentWeek);
 
 	// 「年」為單位的 editStatus v
-	if( data.dt_year <= currentWeekYear ){
-		// 「週」為單位的 editStatus v
-		switch(true){
-			case data.dt_week >= currentWeek:
-				// 同一年 v
-				editStatus = true; break;
-			case data.dt_week < currentWeek && subtract <= -1:
-				// 同一年 v
-				editStatus = false; break;
-			case data.dt_week < currentWeek && subtract >= 1:
-				// 跨年 v
-				editStatus = true; break;
-			default:
-		}
-	}else{
-		editStatus = true;
+	console.log('year', data.dt_year, currentWeekYear);
+	console.log('week', data.dt_week, currentWeek);
+	console.log('viewWeekIndex', viewWeekIndex);
+	switch(true){
+		case data.dt_year == currentWeekYear:
+			// 「週」為單位的 editStatus v
+			// switch(true){
+			// 	case data.dt_week >= currentWeek:
+			// 		editStatus = true;
+			// 		break;
+			// 	case data.dt_week < currentWeek:
+			// 		editStatus = false;
+			// 		break;
+			// 	default:
+			// };
+			editStatus = true;
+			break;
+		case data.dt_year > currentWeekYear:
+			// 跨年度-年未(12)的未來週 v
+			editStatus = true;
+			break;
+		case data.dt_year < currentWeekYear:
+			// 跨人度-年初(01)的過去週 v
+			editStatus = false;
+			break;
+		default:
 	}
+	// --------------------------------
+	// --------------------------------
+	// switch(true){
+	// 	case viewWeekIndex < 0:
+	// 		editStatus = false;
+	// 		break;
+	// 	default:
+	// 		editStatus = true;
+	// }
+
 	//
 	const hours = new Date().getHours();
 	$('.weekmap-date').html('');
@@ -361,6 +382,23 @@ const fnPrevNextCheck = function(id){
 
 $(()=>{
 	// ==========================================
+	// == TEST
+	// ==========================================
+	$.ajax({
+		type:"POST",
+		url:"./2020/api/Wschedule.asp",
+		data:{
+			dt_id: 202044
+		},
+		dataType:"json",
+		success:function(data){	
+			console.log('202044 data is ', data);
+		},
+		error:function(){
+			console.log('error');
+		}
+	});
+	// ==========================================
 	// == INIT VAR v
 	// ==========================================
 	viewInit();
@@ -415,10 +453,11 @@ $(()=>{
 			fnGeViewWeekMonthAry_prev_next('prev');
 			
 			// 渲染週曆 v
+			console.log('prev-week', viewWeekId);
 			if( weekDataCollected ){ fnPrintWeekMap(viewWeekId) };
 
 			// VISION LOGICS v
-			viewWeekIndex --;
+			viewWeekIndex = Number(viewWeekIndex) -1;
 			fnPrevNextCheck(viewWeekId);
 			if( viewWeekIndex == viewWeekMin ){ $('#prev-week').fadeOut() };
 		}
@@ -434,10 +473,11 @@ $(()=>{
 			fnGeViewWeekMonthAry_prev_next('next');
 			
 			// 渲染週曆 v
+			console.log('next-week', viewWeekId);
 			fnPrintWeekMap( viewWeekId );
 
 			// VISION LOGICS v
-			viewWeekIndex ++;
+			viewWeekIndex = Number(viewWeekIndex) + 1;
 			fnPrevNextCheck(viewWeekId);
 			if( viewWeekIndex == veiwWeekMax ){ $('#next-week').fadeOut(); }
 		}
