@@ -47,7 +47,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		<!--link href="./2020/css/memberbar.css?<%=Timer%>" rel="stylesheet"/-->
 		<style>
 			.nav-float-item.is-announce{display: none}
-			#DVLight{
+			/* #DVLight{
 				height: 100vh;
 				display: block;
 			}
@@ -83,7 +83,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 
 			#DIYBoxContent > div:nth-child(2) img{
 				display: none
-			}
+			} */
 			.wd {
 				position: fixed;
 				width: 100%;
