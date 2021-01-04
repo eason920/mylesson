@@ -47,6 +47,43 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		<!--link href="./2020/css/memberbar.css?<%=Timer%>" rel="stylesheet"/-->
 		<style>
 			.nav-float-item.is-announce{display: none}
+			#DVLight{
+				height: 100vh;
+				display: block;
+			}
+
+			#DIYBoxContent{
+				padding: 0!important;
+				width: 100vw!important;
+				background-image: linear-gradient(to right, #c12011, #9c1215);
+				position: fixed;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 100vh!important;
+				margin: auto!important;
+			}
+
+			#close{
+				background: white!important;
+				height: 29px;
+				line-height: 19px;
+				top: 40px!important;
+				right: 40px;
+				left: auto!important;
+			}
+
+			#DIYBoxContent > div:nth-child(2){
+				background-image: url(../../subscription/AD/mylesson_pop_macbook.gif);
+				background-size: contain;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+
+			#DIYBoxContent > div:nth-child(2) img{
+				display: none
+			}
 			.wd {
 				position: fixed;
 				width: 100%;
