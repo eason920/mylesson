@@ -53,10 +53,20 @@ const fnRecordFaceData = function(){
 
 		faceData[faceId].week_list[i].date = [];
 		faceData[faceId].week_list[i].daily_done = [];
+
+		// YEAR v
+		let year = fnGetThisYear();
+		const month = Number(fnGetThisMonth());
+		// 年初時點，三個月內的「一月月曆」中有「去年未週」時，年應-1 v
+		if( month == 1 && Number(week) - Number(currentWeek) > 40 ){ year = Number(year) - 1 };
+		// 年未時點，三個月內的「十二月月曆」中有「未來年初週」時，年應+1 v
+		if( month == 12 && Number(week) - Number(currentWeek) < -40 ){ year = Number(year) + 1 };
+
+		// 取得 weekId v
 		if (String(week).length < 2) {
-			weekId = viewYear + '0' + String(week);
+			weekId = year + '0' + String(week);
 		} else {
-			weekId = viewYear + String(week);
+			weekId = year + String(week);
 		};
 
 		// 給值 v
@@ -70,11 +80,12 @@ const fnRecordFaceData = function(){
 		faceData[faceId].week_length = weekLength;
 	});
 
+	
 	// ==========================================
-	// == 前往前一月 v
+	// == 往前一月 v
 	// ==========================================
 	$('#datepicker .ui-icon-circle-triangle-w').click();
-
+	
 	recordFaceMonth ++;
 	if( recordFaceMonth <= recordFaceMonthMax ){ 
 		fnRecordFaceData();
@@ -117,6 +128,7 @@ const fnRecordFaceData = function(){
 		console.log(faceData);
 		console.log(weekData);
 		console.log(completeObj);
+		console.log('viewWeekIndex is ', viewWeekIndex);
 	}
 };
 
@@ -135,9 +147,10 @@ const fnfaceDataCheck = function(){
 				faceData[id].week_list[i].daily_done[date] = 0;
 			} // if
 		} // date
-	}
+	};
+	
 	for( id in faceData ){
-		// 過去月份 v
+		// 過去(二個)月份 v
 		if ( id < currentFaceId ) {
 			for (i in faceData[id].week_list) {
 				// 1. 補視覺空白 (0 改作 3) v
@@ -306,7 +319,6 @@ $(()=>{
 					default:
 				}
 			};
-			console.log( 'seasonData ', completeObj );
 
 			// play.js v
 			playInit();
@@ -343,7 +355,8 @@ $(()=>{
 			$('#completebox-30 .completebox-text').text( text ).addClass('is-un');
 		}else{
 			// HTML v
-			fnPrintFaceMap( fnGetThisYear() + fnGetThisMonth() );
+			const id = fnGetThisYear() + fnGetThisMonth();
+			fnPrintFaceMap(id);
 
 			// CIRCLE ANIMATE v
 			fnCircle(30, completeObj.monthy[id]/100 );

@@ -68,7 +68,6 @@ const fnPrintWeekMap = function(id){
 	let week = -1;
 	const ary = data.date_list;
 	//
-	console.log('Number(data.dt_month)-1]', Number(data.dt_month)-1);
 	$('.weekmap-title').text( bus.monthAry[Number(data.dt_month)-1] + ', ' + data.dt_year );
 	
 	// --------------------------------
@@ -110,43 +109,7 @@ const fnPrintWeekMap = function(id){
 	const subtract = Number(data.dt_week) - Number(currentWeek);
 
 	// 「年」為單位的 editStatus v
-	console.log('year', data.dt_year, currentWeekYear);
-	console.log('week', data.dt_week, currentWeek);
-	console.log('viewWeekIndex', viewWeekIndex);
-	// switch(true){
-	// 	case data.dt_year == currentWeekYear:
-	// 		// 「週」為單位的 editStatus v
-	// 		// switch(true){
-	// 		// 	case data.dt_week >= currentWeek:
-	// 		// 		editStatus = true;
-	// 		// 		break;
-	// 		// 	case data.dt_week < currentWeek:
-	// 		// 		editStatus = false;
-	// 		// 		break;
-	// 		// 	default:
-	// 		// };
-	// 		editStatus = true;
-	// 		break;
-	// 	case data.dt_year > currentWeekYear:
-	// 		// 跨年度-年未(12)的未來週 v
-	// 		editStatus = true;
-	// 		break;
-	// 	case data.dt_year < currentWeekYear:
-	// 		// 跨人度-年初(01)的過去週 v
-	// 		editStatus = false;
-	// 		break;
-	// 	default:
-	// }
 	if( id == currentWeekId || id == nextWeekId ){ editStatus = true };
-	// --------------------------------
-	// --------------------------------
-	// switch(true){
-	// 	case viewWeekIndex < 0:
-	// 		editStatus = false;
-	// 		break;
-	// 	default:
-	// 		editStatus = true;
-	// }
 
 	//
 	const hours = new Date().getHours();
@@ -155,7 +118,7 @@ const fnPrintWeekMap = function(id){
 	ary.forEach(function(item, i){
 		// 「日」為單位的 editStatus v
 		const date = Number(item.date);
-		if( data.dt_week == currentWeek ){
+		if( Number(data.dt_week) == Number(currentWeek) ){
 			switch(true){
 				case date < currentDate:
 					editStatus = false;
@@ -175,15 +138,15 @@ const fnPrintWeekMap = function(id){
 		dateStr += 'data-daily_done="' + ary[i].daily_done + '">';
 		for( h in item.hours ){
 			// 「時區」為單位的 editStatus v
-			if( item.date === currentDate && data.dt_week == currentWeek ){
+			if( Number(item.date) == Number(currentDate) && Number(data.dt_week) == Number(currentWeek) ){
 				switch(true){
-					case h === 'm' && hours >= 4:
+					case h == 'm' && hours >= 4:
 						editStatus = false;
 						break;
-					case h === 'a' && hours >= 12:
+					case h == 'a' && hours >= 12:
 						editStatus = false;
 						break;
-					case h === 'e' && hours >= 18:
+					case h == 'e' && hours >= 18:
 						editStatus = false;
 						break;
 					default:
@@ -300,6 +263,7 @@ const fnRecordWeekData = function () {
 				weekData[viewWeekId] = data;
 				//
 				viewWeekIndex --;
+				console.log('record api', viewWeekIndex);
 				viewWeekIndex > viewWeekMin ? fnRecordWeekData() : fnRecordWeekData_finish();
 			},
 			// 設立虛擬 v
@@ -309,6 +273,7 @@ const fnRecordWeekData = function () {
 				weekData[viewWeekId] = fnCreateViewObj(viewWeekAry, viewYear, viewMonth, viewWeek);
 				//
 				viewWeekIndex --;
+				console.log('record empty obj', viewWeekIndex);
 				viewWeekIndex > viewWeekMin ? fnRecordWeekData() : fnRecordWeekData_finish();
 			}
 		});		
@@ -369,37 +334,26 @@ const fnGetNextViewWeekId = function(){
 const fnPrevNextCheck = function(id){
 	fnCircle(7, weekData[id].weekly_rate/100);
 	$('#completebox-7 .completebox-text').text( fnMathRound10(weekData[id].weekly_rate) + '%' ).removeClass('is-un');
-	//
-	if( viewWeekIndex < 0 ){
-		$('#edit-week').addClass('is-muted');
-	}else{
-		$('#edit-week').removeClass('is-muted');
-	}
-	if (viewWeekIndex < 1) {
-		$('#week-clone').removeClass('is-muted');
-	}else{
-		$('#week-clone').addClass('is-muted');
-	}
 }
 
 $(()=>{
 	// ==========================================
 	// == TEST
 	// ==========================================
-	$.ajax({
-		type:"POST",
-		url:"./2020/api/Wschedule.asp",
-		data:{
-			dt_id: 202044
-		},
-		dataType:"json",
-		success:function(data){	
-			console.log('202044 data is ', data);
-		},
-		error:function(){
-			console.log('error');
-		}
-	});
+	// $.ajax({
+	// 	type:"POST",
+	// 	url:"./2020/api/Wschedule.asp",
+	// 	data:{
+	// 		dt_id: 202044
+	// 	},
+	// 	dataType:"json",
+	// 	success:function(data){	
+	// 		console.log('202044 data is ', data);
+	// 	},
+	// 	error:function(){
+	// 		console.log('error');
+	// 	}
+	// });
 	// ==========================================
 	// == INIT VAR v
 	// ==========================================
@@ -415,7 +369,6 @@ $(()=>{
 	nextWeekId = viewWeekId;
 	nextWeekAry = viewWeekAry;
 	nextMonth1 = viewMonth;
-	console.log('nm1, ', nextMonth1, viewMonth);
 	if( (Number(nextWeekAry[0]) - Number(nextWeekAry[6])) > 20 ){
 		const month = Number(nextMonth1) + 1;
 		month == 13 ? nextMonth2 = 1 : nextMonth2 = month;
@@ -456,10 +409,10 @@ $(()=>{
 			fnGeViewWeekMonthAry_prev_next('prev');
 			
 			// 渲染週曆 v
-			console.log('prev-week', viewWeekId);
 			if( weekDataCollected ){ fnPrintWeekMap(viewWeekId) };
 
 			// VISION LOGICS v
+			console.log('(p)same with print is ', viewWeekIndex);
 			viewWeekIndex = Number(viewWeekIndex) -1;
 			fnPrevNextCheck(viewWeekId);
 			if( viewWeekIndex == viewWeekMin ){ $('#prev-week').fadeOut() };
@@ -476,10 +429,10 @@ $(()=>{
 			fnGeViewWeekMonthAry_prev_next('next');
 			
 			// 渲染週曆 v
-			console.log('next-week', viewWeekId);
 			fnPrintWeekMap( viewWeekId );
 
 			// VISION LOGICS v
+			console.log('(n)same with print is ', viewWeekIndex);
 			viewWeekIndex = Number(viewWeekIndex) + 1;
 			fnPrevNextCheck(viewWeekId);
 			if( viewWeekIndex == veiwWeekMax ){ $('#next-week').fadeOut(); }
@@ -554,7 +507,6 @@ $(()=>{
 					// 4. PRINT & FINISH v
 					const reg = new RegExp(',null', 'g')
 					const data = JSON.stringify(obj).replace(reg, '');
-					console.log(data);
 
 					$.ajax({
 						type:"POST",

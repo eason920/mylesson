@@ -347,8 +347,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						<div class="msg-board" onclick="GoLink('MessageBoard')" title="留言版"></div>
 					</div>
 					<div class="f2"><span class="f2-1">服務時間：週一～週六 10:00~12:30、13:30~17:30、18:30~22:00 | 02-2523-9777 / 0800-023-777
-							(限市話)</span><span class="f2-2">© 2020 Brainstorm Digital Communications Corp. All rights reserved. Privacy
-							Policy</span></div>
+							(限市話)</span><span class="f2-2">{{copyright}}</span></div>
 				</div>
 			</div>
 			<div id="sidebar">
@@ -518,6 +517,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 	const vueMain = new Vue({
 		created() {
 			const vm = this;
+			vm.copyright = '© ' + new Date().getFullYear() + ' Brainstorm Digital Communications Corp. All rights reserved. Privacy Policy';
 			vm.sideBarWidth = $('#sidebar').width();
 
 			$.ajax({
@@ -896,6 +896,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			}
 		},
 		data: {
+			copyright: '',
 			search_text: '',
 			//
 			memberLevel: <%=asp_lv%>,
