@@ -46,13 +46,12 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		<link href="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css?<%=Timer%>" rel="stylesheet"/>
 		<!--link href="./2020/css/memberbar.css?<%=Timer%>" rel="stylesheet"/-->
 		<style>
-			.nav-float-item.is-announce{display: none}
-			/* #DVLight{
+			.lightBoxAD #DVLight{
 				height: 100vh;
 				display: block;
 			}
 
-			#DIYBoxContent{
+			.lightBoxAD #DIYBoxContent{
 				padding: 0!important;
 				width: 100vw!important;
 				background-image: linear-gradient(to right, #c12011, #9c1215);
@@ -65,7 +64,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				margin: auto!important;
 			}
 
-			#close{
+			.lightBoxAD #close{
 				background: white!important;
 				height: 29px;
 				line-height: 19px;
@@ -74,16 +73,19 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				left: auto!important;
 			}
 
-			#DIYBoxContent > div:nth-child(2){
+			.lightBoxAD #DIYBoxContent > div:nth-child(2){
 				background-image: url(../../subscription/AD/mylesson_pop_macbook.gif);
 				background-size: contain;
 				background-position: center;
 				background-repeat: no-repeat;
 			}
 
-			#DIYBoxContent > div:nth-child(2) img{
+			.lightBoxAD #DIYBoxContent > div:nth-child(2) img{
 				display: none
-			} */
+			}
+			/**/
+			.nav-float-item.is-announce{display: none}
+			/**/
 			.wd {
 				position: fixed;
 				width: 100%;
@@ -987,20 +989,20 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 	
   if(Login_guided==3){
     if(parseInt($(window).height())>720){
-      DIYLightBox('ajax','1280px','720px','../../../library/AD.asp?Full=1')
+      DIYLightBoxAD('ajax','1280px','720px','../../../library/AD.asp?Full=1')
     }else{
-      DIYLightBox('ajax','980px','592px','../../../library/AD.asp')    
+      DIYLightBoxAD('ajax','980px','592px','../../../library/AD.asp')    
     }
   } 
 
 
   <%if  session("Login_guided")="4"  then%>
     if(parseInt($(window).height())>720){
-      DIYLightBox('iframe','1280px','720px','../../../KOBO/detail.asp')    
+      DIYLightBoxAD('iframe','1280px','720px','../../../KOBO/detail.asp')    
     }else if(parseInt($(window).height())>592){
-      DIYLightBox('iframe','980px','592px','../../../KOBO/detail.asp')    
+      DIYLightBoxAD('iframe','980px','592px','../../../KOBO/detail.asp')    
     }else{
-      DIYLightBox('iframe','880px','492px','../../../KOBO/detail.asp')  
+      DIYLightBoxAD('iframe','880px','492px','../../../KOBO/detail.asp')  
     }   
   <%
   session("Login_guided")=""
