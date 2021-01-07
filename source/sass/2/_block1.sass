@@ -23,7 +23,12 @@
 		justify-content: space-between
 
 		.grid-content
-			@include row(6)
+			// @include row(6)
+			// ^v為 text-wrap 而取捨(在moz必需要是block)
+			height: 126px
+			overflow: hidden
+			//
+			word-wrap: break-word
 
 	.grid1-item
 		position: relative
@@ -155,7 +160,12 @@
 			padding: 0
 			border: none
 		.grid-content
-			@include row(6)
+			// @include row(6)
+			// ^v為 text-wrap 而取捨(在moz必需要是block)
+			height: 126px
+			overflow: hidden
+			//
+			word-wrap: break-word
 		&.is-repeat
 			.grid32-img
 				display: none

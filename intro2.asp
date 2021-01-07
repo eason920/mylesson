@@ -171,6 +171,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 								v-for='(item, i) in trend'
 								:req_fn='fnGoLink("News", item.xml)'
 								:req_pic='item.pic | filterSrc'
+								:req_style='textWrap'
 								:key='i'
 							></cpn_tread>
 						</div>
@@ -689,6 +690,13 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				}
 			});
 
+			// TEXT-WRAP 文遶圖 hack with safari & firefox
+			const nua = navigator.userAgent;
+			const isSafari = /^((?!chrome|android).)*safari/i.test(nua);
+			const isFirefox = /firefox/i.test(nua);
+			if( isSafari ){ vm.textWrap = 'white-space: pre' };
+			if( isFirefox ){ vm.textWrap = 'word-break: break-all' };
+
 			// ==========================================
 			// == EVENT v
 			// ==========================================
@@ -898,6 +906,8 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			}
 		},
 		data: {
+			textWrap: '',
+			//
 			copyright: '',
 			search_text: '',
 			//

@@ -37,13 +37,18 @@ Vue.filter('filterOffice14Class', (id) => {
 // == BLOCK 1 v
 // ==========================================
 const cpn_tread = {
-	props: ['prop', 'req_fn', 'req_pic'],
+	props: ['prop', 'req_fn', 'req_pic', 'req_style'],
 	template: `
 		<div class="grid1-item add-hr"
 			:onclick='req_fn'
 		>
 			<div class="grid-subtitle">{{prop.ch_subject}}</div>
-			<div class="grid-content"><img class="grid1-img" :src='req_pic'/>{{prop.ch_article}}</div>
+			<div class="grid-content">
+				<img class="grid1-img" :src='req_pic'/>
+				<div class="grid1-text"
+					:style='req_style'
+				>{{prop.ch_article}}</div>
+			</div>
 			<div class="grid-view">...｜ {{prop.ndate}}</div>
 		</div>
 	`
@@ -133,7 +138,7 @@ const cpn_columns = {
 			<div class="grid-subtitle">{{prop.columns_ChSubject}}</div>
 			<div class="grid-content">
 				<div class="grid32-img" :style='req_pic'></div>
-				{{prop.columns_Ch}}
+				<div class="grid32-text">{{prop.columns_Ch}}</div>
 			</div>
 			<div class="grid-view">...｜ {{prop.columns_udate}}</div>
 		</div>
