@@ -45,44 +45,9 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		<link href="./2020/css/mylesson_2.css?<%=Timer%>" rel="stylesheet"/>
 		<link href="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css?<%=Timer%>" rel="stylesheet"/>
 		<!--link href="./2020/css/memberbar.css?<%=Timer%>" rel="stylesheet"/-->
+		<link href="./2020/css/lightbox_ad.css" rel="stylesheet"/>
 		<style>
-			.lightBoxAD #DVLight{
-				height: 100vh;
-				display: block;
-			}
-
-			.lightBoxAD #DIYBoxContent{
-				padding: 0!important;
-				width: 100vw!important;
-				background-image: linear-gradient(to right, #c12011, #9c1215);
-				position: fixed;
-				top: 0;
-				bottom: 0;
-				left: 0;
-				right: 0;
-				height: 100vh!important;
-				margin: auto!important;
-			}
-
-			.lightBoxAD #close{
-				background: white!important;
-				height: 29px;
-				line-height: 19px;
-				top: 40px!important;
-				right: 40px;
-				left: auto!important;
-			}
-
-			.lightBoxAD #DIYBoxContent > div:nth-child(2){
-				background-image: url(../../subscription/AD/mylesson_pop_macbook.gif);
-				background-size: contain;
-				background-position: center;
-				background-repeat: no-repeat;
-			}
-
-			.lightBoxAD #DIYBoxContent > div:nth-child(2) img{
-				display: none
-			}
+			
 			/**/
 			.nav-float-item.is-announce{display: none}
 			/**/
