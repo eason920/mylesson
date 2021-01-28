@@ -167,13 +167,13 @@ $(()=>{
 						$('#calbox, #achive, #facemap-open').fadeIn();
 					},
 					error:function(){
-						alert('因網路不穩定造成更新失敗，請稍候再試');
+						alert('因網路不穩定造成更新失敗，請稍候再試 (from Wschedule)');
 					}
 				});
 
 			},
 			error:function(data){
-				alert('因網路不穩定造成更新失敗，請稍候再試');
+				alert('因網路不穩定造成更新失敗，請稍候再試 (from WscheduleUpdate)');
 			}
 		});
 

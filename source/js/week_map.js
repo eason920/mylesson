@@ -507,12 +507,14 @@ $(()=>{
 					// 4. PRINT & FINISH v
 					const reg = new RegExp(',null', 'g')
 					const data = JSON.stringify(obj).replace(reg, '');
+					console.log('point data >', data);
 
 					$.ajax({
 						type:"POST",
 						url:"./2020/api/WscheduleUpdate.asp",
 						data,
 						dataType:"html",
+						contentType: "application/json",
 						success:function(data){	
 							console.log('success', data);
 							$.ajax({
@@ -532,13 +534,13 @@ $(()=>{
 									$('#calbox, #achive, #facemap-open').fadeIn();
 								},
 								error:function(){
-									alert('因網路不穩定造成更新失敗，請稍候再試');
+									alert('因網路不穩定造成更新失敗，請稍候再試 (from Wschedule)');
 								}
 							});
 
 						},
 						error:function(data){
-							alert('因網路不穩定造成更新失敗，請稍候再試');
+							alert('因網路不穩定造成更新失敗，請稍候再試 (from WscheduleUpdate)');
 						}
 					});
 
