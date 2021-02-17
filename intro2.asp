@@ -45,7 +45,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		<link href="./2020/css/mylesson_2.css?<%=Timer%>" rel="stylesheet"/>
 		<link href="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css?<%=Timer%>" rel="stylesheet"/>
 		<!--link href="./2020/css/memberbar.css?<%=Timer%>" rel="stylesheet"/-->
-		<link href="./2020/css/lightbox_ad.css" rel="stylesheet"/>
+		<link href="./2020/css/lightbox_ad.css?1100217" rel="stylesheet"/>
 		<style>
 			
 			/**/

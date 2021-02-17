@@ -184,7 +184,7 @@ const cpn_bulletin = {
 	<div class="bulletinCntDiv">
 		<div class="bulletinCnt">
 		<i class="far fa-clock"></i>
-			{{ decodeURIComponent(prop.content) }}
+			<span v-html="decodeURIComponent(prop.content)"></span>
 			<img src='./2020/images/bulletin_empty.png'>
 		</div>
 		<div class="bulletin-date">{{ prop.date }} </div>
