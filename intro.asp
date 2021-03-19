@@ -143,6 +143,9 @@ end if
       }
       $('.wd2').remove();
     }
+    function weekly(id){
+      $('html').append('<div id="newsdiv" style="position:fixed; top:0px;left:0px; width:100%;height:100%;z-index:99;"><iframe src="../../funtest/Ans.asp?indx='+id+'"  width="100%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" ></iframe></div>')
+    }
   </script>
   </head>
 
@@ -281,7 +284,7 @@ end if
       <div class="f1">需要其他協助嗎?  請聯絡我們
         <div class="msg-board" onclick="GoLink('MessageBoard')" title="留言版"></div>
       </div>
-      <div class="f2"><span class="f2-1">服務時間：週一～週六 10:00~12:30、13:30~17:30、18:30~22:00  |  02-2523-9777 / 0800-023-777 (限市話)</span><span class="f2-2"></span></div>
+      <div class="f2"><span class="f2-1">服務時間：週一～週日14:00~17:30、18:30~22:00  |  02-2523-9777 / 0800-023-777 (限市話)</span><span class="f2-2"></span></div>
     </div>
     <div id="runway-masker"></div>
     <div id="runway-lb">
