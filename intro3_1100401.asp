@@ -415,7 +415,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				url: './2020/json/classList-' + vm.memberLevel + '.json', // << .json 版本
 				// url: './2020/api/classList2.asp?levels=' + vm.memberLevel + '&date=2021/4/1',// ** 應改回 .json 版本，A1、A2課多者的效能致久會需六秒
 				success(res){
-					console.log('%call >>' + './2020/api/classList2.asp?levels=' + vm.memberLevel + '&date=2021/4/1', 'color: greenyellow');
+					// console.log('%call >>' + './2020/api/classList2.asp?levels=' + vm.memberLevel + '&date=2021/4/1', 'color: greenyellow');
 					console.log(res.data, res.data.length, res.data.length == 0);
 					if( res.data.length != 0 ){
 						// 全時段仍有課程 v

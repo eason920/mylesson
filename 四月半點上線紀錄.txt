@@ -1,0 +1,30 @@
+<< **** 為重點
+
+1. 回憶: 
+./2020/json/classList-' + vm.memberLevel + '.json
+全時間是抓靜態 .json 渲染的
+因A1、A2課多者的效能致久會需六秒才會排程更新出 json、
+抓json使反應變快很多
+
+1-2
+以上 .json 己使用新的規則(有加入半點)
+因現在沒半點課、當然看不到
+4/1當天要再測試過 .json 是否正確作業 << ****
+
+2. 
+'./2020/api/classList2.asp?levels=' + vm.memberLevel + '&H=' + hours
+己在 intro3_2.asp 中
+
+2-1 (1100329) IT 會議
+kai 會將原 api (classList.asp)(沒有2) 以 classList2.asp 複蓋
+故上線前應改作 classList.asp (沒有2) << ****
+
+3.
+intro3_2.asp 己加入「半點時間的更新(25~45)」
+
+4.綜上
+應在最外層的 intro2.asp 中, 改引用「intro3_2.asp」 << ****
+
+n. kai 說 XX 是 .json，不是這個
+classList.asp (原本沒 2 的) 己經是與測試 classList2.asp 同化了
+事實未..(classList.asp 仍為 3/9、 classList2.asp(有2者)是3/24更新的)
