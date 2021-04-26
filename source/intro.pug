@@ -5,6 +5,7 @@ html(lang="en")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		title My Lesson page1
 		link(href="./css/mylesson_1.css", rel="stylesheet")
+		link(href="./css/mylesson_1_1100426.css", rel="stylesheet")
 		script(src='./assets/plugins/jquery/jquery.1.12.4.min.js')
 		//- datapicker v
 		script(src='./assets/plugins/jquery-ui/1.12.1.js')
@@ -16,6 +17,7 @@ html(lang="en")
 		//- for demo json v
 		script(src="./js/week_ary.js")
 		//- main v
+		script(src="./js/mylesson_status.js")
 		script(src="./js/mylesson.js")
 		//- WEEK v
 		script(src="./js/week_map.js")
@@ -46,6 +48,10 @@ html(lang="en")
 						|left
 						//- iframe(src='https://funday.asia/track/LessonIndex/intro2.asp')
 					#right
+						#label
+							.label-item.active(data-status='0') 每週課表
+							.label-item(data-status='1') 學習狀況
+						#status
 						#above
 							#facemap-open(style='display: none', title='觀看本月學習成效')
 								svg(viewBox='0 0 18 20' fill='none' xmlns='http://www.w3.org/2000/svg')
