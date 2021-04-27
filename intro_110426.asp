@@ -172,10 +172,7 @@ end if
           </a>
           <div id="member"></div>
           <div id="right">
-            <div id="label">
-              <div class="label-item active" data-status="0">每週課表</div>
-              <div class="label-item" data-status="1">學習狀況</div>
-            </div>
+            <div id="label"><div class="label-item active" data-status="0">每週課表</div><div class="label-item" data-status="1">學習狀況</div></div>
             <div id="status"></div>
             <div id="above">
               <div id="facemap-open" style="display: none" title="觀看本月學習成效">
