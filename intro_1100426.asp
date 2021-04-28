@@ -32,11 +32,20 @@ end if
     <meta property="og:keywords" content="看新聞學英文,英文閱讀,時事英文,線上英文,學習英文,看電影學英文,英語會話,雙語新聞,線上英文課程,英聽,聽力練習,線上英語,英文文法,聽音樂學英文,英文寫作,英語口說">    
     <title>My Lesson page1 + status</title>
     <link href="./2020/css/mylesson_1.css?<%=Timer%>" rel="stylesheet"/>
-    <link href="./2020/css/mylesson_1_1100426.css?<%=Timer%>" rel="stylesheet"/>
+    <link href="./2020/css/mylesson_1_status.css?<%=Timer%>" rel="stylesheet"/>
+    <link href="./2020/css/sasys_member.css?<%=Timer%>" rel="stylesheet"/>
     <!-- <script src="./2020/assets/plugins/jquery/jquery.1.12.4.min.js"></script> -->
     <!--JQ: ^ eason 1.12.4 v kai 3.5.1 -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
     <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script>
+      const time = '?' + new Date().getTime();
+      $.getJSON('./2020/data/radar.json' + time, function(data){
+      	renderFn(data);
+      });
+    </script>
+    <script src="./2020/assets/plugins/chart-js/Chart-2.7.2.min.js"></script>
+    <script src="./2020/js/mylesson_chart.js"></script>
     <script src="../../jquery.cookie.js"></script>    
     <script src="../../js/MessageVer2/alert.js" type="text/javascript"></script>        
     <!--script src="./2020/assets/plugins/jquery-ui/1.12.1.js"></script-->
@@ -173,7 +182,64 @@ end if
           <div id="member"></div>
           <div id="right">
             <div id="label"><div class="label-item active" data-status="0">每週課表</div><div class="label-item" data-status="1">學習狀況</div></div>
-            <div id="status"></div>
+            <div id="status">
+              <div id="level">
+                <div class="level-item">a1</div>
+                <div class="level-item">a2</div>
+                <div class="level-item">b1</div>
+                <div class="level-item active">b2</div>
+                <div class="level-item">c1</div>
+              </div>
+              <div id="status-box">
+                <div id="status-left"> 
+                  <div id="status-top">
+                    <div class="status-title">課程建議</div>
+                  </div>
+                  <div id="status-bottom">
+                    <div class="status-title">學習趨勢</div>
+                    <div>學習面向(追蹤)(圓餅圖)</div>
+                    <div class="sambr-canvas">
+                      <div class="canvars-box1">
+                        <div class="canvars-title">學習指標</div>
+                        <canvas id="chartRadar" height="160"></canvas>
+                        <div class="radar-item ritem0">
+                          <div class="radar-now"></div>
+                          <div class="radar-step"></div>
+                        </div>
+                        <div class="radar-item ritem1"> 
+                          <div class="radar-now"></div>
+                          <div class="radar-step"></div>
+                        </div>
+                        <div class="radar-item ritem2"> 
+                          <div class="radar-now"></div>
+                          <div class="radar-step"></div>
+                        </div>
+                        <div class="radar-item ritem3"> 
+                          <div class="radar-now"></div>
+                          <div class="radar-step"></div>
+                        </div>
+                        <div class="radar-item ritem4"> 
+                          <div class="radar-now"></div>
+                          <div class="radar-step"></div>
+                        </div>
+                        <div class="radar-item ritem5">
+                          <div class="radar-now"></div>
+                          <div class="radar-step"></div>
+                        </div>
+                        <div class="radar-item ritem6"> 
+                          <div class="radar-now"></div>
+                          <div class="radar-step"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="status-right">
+                  <div class="status-title">養成目標</div>
+                  <iframe id="status-iframe"></iframe>
+                </div>
+              </div>
+            </div>
             <div id="above">
               <div id="facemap-open" style="display: none" title="觀看本月學習成效">
                 <svg viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -403,7 +469,7 @@ end if
 
   $.ajax({
     type:"POST",
-    url:"./2020/databar_110426.asp",
+    url:"./2020/databar_1100426.asp",
     dataType:"html",
     success:function(data){	
       $('#data').html(data);

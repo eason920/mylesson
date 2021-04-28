@@ -10,7 +10,7 @@ if session("indx")="" then
 end if  
 
 response.cookies("mylesson_id").Expires=now()
-url="./2020/intro_110426.asp"
+url="./2020/intro_1100426.asp"
 
 server.execute(url)
 %>

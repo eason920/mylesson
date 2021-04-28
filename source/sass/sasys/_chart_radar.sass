@@ -1,0 +1,183 @@
+%edge6
+	.ritem0
+		top: 13px
+		left: 88px
+		& > *
+			text-align: center
+	.ritem1
+		top: 86px
+		right: 0px
+	.ritem2
+		top: 155px
+		right: 0px
+	.ritem3
+		top: 184px
+		left: 88px
+		& > *
+			text-align: center
+	.ritem4
+		top: 155px
+		left: -2px
+		& > *
+			text-align: right
+	.ritem5
+		top: 86px
+		left: -2px
+		& > *
+			text-align: right
+	.ritem6
+		display: none
+	
+.canvars-box1
+	position: relative
+	height: 220px
+	padding:
+		top: 40px
+	margin:
+		top: -5px
+	&.A1
+		.ritem0
+			top: 12px
+			left: 88px
+			& > *
+				text-align: center
+		.ritem1
+			top: 100px
+			right: -14px
+		.ritem2
+			top: 184px
+			right: 18px
+
+		.ritem3
+			top: 184px
+			left: 16px
+			& > *
+				text-align: right
+
+		.ritem4
+			top: 100px
+			left: -15px
+			& > *
+				text-align: right
+		.ritem5, .ritem6
+			display: none
+	&.A2
+		@extend %edge6
+	&.B1
+		.ritem0
+			top: 13px
+			left: 88px
+			& > *
+				text-align: center
+		.ritem1
+			top: 78px
+			left: 220px
+		.ritem2
+			top: 140px
+			left: 230px
+		.ritem3
+			top: 184px
+			left: 186px
+		.ritem4
+			top: 184px
+			left: 30px
+			& > *
+				text-align: right
+		.ritem5
+			top: 140px
+			right: 230px
+			& > *
+				text-align: right
+		.ritem6
+			top: 78px
+			right: 220px
+			& > *
+				text-align: right
+	&.B2
+		@extend %edge6
+	&.C1
+		.ritem0
+			top: 13px
+			left: 88px
+			& > *
+				text-align: center
+		.ritem1
+			top: 120px
+			right: -10px
+		.ritem2
+			top: 184px
+			right: 88px
+			& > *
+				text-align: center
+		.ritem3
+			top: 120px
+			left: -10px
+			& > *
+				text-align: right
+		.ritem4,.ritem5,.ritem6
+			display: none
+	.is-top
+		.radar-step
+			display: none
+	.canvars-title
+		position: absolute
+		top: 0
+		padding:
+			left: 0
+
+//---------------------------
+.radar-item
+	position: absolute
+	z-index: 1
+	& > *
+		width: 83px
+		text:
+			align: left
+		text:
+			transform: uppercase
+
+.radar-now
+	color: $color01
+	line-height: 1
+	font:
+		size: 12px
+		family: arial
+	margin:
+		bottom: 2px
+
+.radar-step
+	position: relative
+	color: #898989
+	line-height: 1
+	font:
+		size: 12px
+		family: arial
+
+// -----------------------------------
+$cc: #ddd
+.canvas-date
+	position: absolute
+	top: 14px
+	left: 18px
+	color: $cc
+	line-height: 1.6
+	font-size: .875rem
+
+.canvas-date-name
+	@extend %row1
+	max-width: 180px
+	display: inline-block
+	vertical-align: top
+	margin-right: 3px
+
+.canvas-date-time
+	margin:
+		right: 8px
+
+.canvas-date-btn
+	color: $cc
+	border: none
+	background: transparent
+	text:
+		decoration: underline
+	cursor: pointer

@@ -5,8 +5,17 @@ html(lang="en")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		title My Lesson page1
 		link(href="./css/mylesson_1.css", rel="stylesheet")
-		link(href="./css/mylesson_1_1100426.css", rel="stylesheet")
+		link(href="./css/mylesson_1_status.css", rel="stylesheet")
+		link(href="./css/sasys_member.css" rel="stylesheet")
 		script(src='./assets/plugins/jquery/jquery.1.12.4.min.js')
+		//- canvas
+		script.
+			const time = '?' + new Date().getTime();
+			$.getJSON('./data/radar/c1.json' + time, function(data){
+				renderFn(data);
+			});
+		script(src='./assets/plugins/chart-js/Chart-2.7.2.min.js')
+		script(src='./js/mylesson_chart.js')
 		//- datapicker v
 		script(src='./assets/plugins/jquery-ui/1.12.1.js')
 		script(src='./assets/plugins/jquery-ui/i18n/datepicker-zh-TW.js')
@@ -63,9 +72,9 @@ html(lang="en")
 									#status-top
 										.status-title 課程建議
 									#status-bottom
-										.status-title 學習趨勢
-										div 學習指標(雷達)
-										div 學習面向(追蹤)(圓餅圖)
+										//- .status-title 學習趨勢
+										//- div 學習面向(追蹤)(圓餅圖)
+										include partials/sa_canvas
 								#status-right
 									.status-title 養成目標
 									iframe#status-iframe

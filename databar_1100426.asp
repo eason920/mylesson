@@ -81,7 +81,7 @@ monthAry=0
 %>
 
 
-<link href="./2020/css/databar_110426.css?dd=<%=Timer%>" rel="stylesheet">
+<link href="./2020/css/databar_status.css?dd=<%=Timer%>" rel="stylesheet">
 
 <div class="db-left-div">
 	<div class="db-Top-div">

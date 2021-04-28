@@ -1,0 +1,44 @@
+// BLOCK
+.sambr-canvas
+	display: flex
+	// height: 490px
+	// padding: 18px
+	position: absolute
+	right: 12px
+
+.canvas-linebox
+
+.canvas-loading
+	position: absolute
+	background:
+		color: #000
+		image: url(../images/sasys/loading.gif)
+		repeat: no-repeat
+		position: center center
+		size: 30px auto
+	top: 0
+	left: 0
+	bottom: 0
+	right: 0
+	margin: auto
+	color: #fff
+	z-index: 2
+	text:
+		align: center
+		indent: 15px
+	padding-top: 279px
+
+#Check_JSONfile
+	display: none
+
+.sambr-canvas
+	& > .canvas-date-job
+		position: absolute
+		width: 300px
+		height: 40px
+		color: #fff
+		font:
+			size: .875rem
+		bottom: 18px
+		@include row(2)
+		line-height: 1.5
