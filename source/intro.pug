@@ -14,8 +14,13 @@ html(lang="en")
 			$.getJSON('./data/radar/c1.json' + time, function(data){
 				renderFn(data);
 			});
+
+			$.getJSON('./data/pie.json', function(data) {
+				renderPie(data); // 此函式定義在「./js/crm_ac_chart.js」中
+			});
 		script(src='./assets/plugins/chart-js/Chart-2.7.2.min.js')
 		script(src='./js/mylesson_chart.js')
+		script(src='./js/crm_canvas.js')
 		//- datapicker v
 		script(src='./assets/plugins/jquery-ui/1.12.1.js')
 		script(src='./assets/plugins/jquery-ui/i18n/datepicker-zh-TW.js')
@@ -74,6 +79,7 @@ html(lang="en")
 									#status-bottom
 										//- .status-title 學習趨勢
 										//- div 學習面向(追蹤)(圓餅圖)
+										include partials/crm_canvas
 										include partials/sa_canvas
 								#status-right
 									.status-title 養成目標
