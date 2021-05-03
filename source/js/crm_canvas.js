@@ -1,5 +1,5 @@
 const defaultCanvasHtml = {
-	pie: '<div class="piebox-item"> <div class="canvars-title"></div><canvas id="pie0" width="120" height="120"></canvas> </div><div class="piebox-item"> <div class="canvars-title"></div><canvas id="pie1" width="120" height="120"></canvas> </div><div class="piebox-item"> <div class="canvars-title"></div><canvas id="pie2" width="120" height="120"></canvas> </div><div class="piebox-item"> <div class="canvars-title"></div><canvas id="pie3" width="120" height="120"></canvas> </div><div class="piebox-item"> <div class="canvars-title"></div><canvas id="pie4" width="120" height="120"></canvas> </div><div class="piebox-item"> <div class="canvars-title"></div><canvas id="pie5" width="120" height="120"></canvas> </div>',
+	pie: '<div class="piebox-item"><canvas id="pie0" width="120" height="120"></canvas></div>',
 };
 
 const renderPie = function(DATA){
@@ -24,11 +24,11 @@ const renderPie = function(DATA){
 	let valboxHtml = '';
 	for( key in DATA.pie_color ){
 		valboxHtml += '<div class="canvas-valbox-item">';
-			valboxHtml += '<div class="canvas-valbox-name">';
-			valboxHtml += key;
-			valboxHtml += ':</div>'
-			valboxHtml += '<div class="canvas-valbox-block" style="background-color:'+ DATA.pie_color[key] +'">';
-			valboxHtml += '</div>'
+		valboxHtml += '<div class="canvas-valbox-block" style="background-color:'+ DATA.pie_color[key] +'">';
+		valboxHtml += '</div>'
+		valboxHtml += '<div class="canvas-valbox-name">';
+		valboxHtml += key;
+		valboxHtml += '</div>'
 		valboxHtml += '</div>'
 	};
 	$('.canvas-valbox').html(valboxHtml);
@@ -60,7 +60,6 @@ const renderPie = function(DATA){
 
 			// 各階顯示 / 隱藏 v
 			$('.piebox-item:eq('+i+')').show();
-			$('.piebox-item:eq('+i+') .canvars-title').text( DATA.pie[i].level )
 			const data = {
 				labels: DATA.pie[i].labels,
 				datasets: [{

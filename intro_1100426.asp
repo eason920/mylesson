@@ -39,13 +39,10 @@ end if
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
     <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
     <script>
-      const time = '?' + new Date().getTime();
-      $.getJSON('./2020/data/radar/c1.json' + time, function(data){
-      	renderFn(data);
-      });
-      $.getJSON('./2020/data/pie.json', function(data) {
-				renderPie(data); // 此函式定義在「./js/crm_ac_chart.js」中
-			});
+      const url = {
+				'pie': './2020/data/pie.json',
+				'radar': './2020/data/radar/c1.json'
+			};
     </script>
     <script src="./2020/assets/plugins/chart-js/Chart-2.7.2.min.js"></script>
     <script src="./2020/js/mylesson_chart.js"></script>
@@ -201,25 +198,19 @@ end if
                   </div>
                   <div id="status-bottom">
                     <!-- PIE -->
-                    <div id="pieboxOuter">
-                      <div id="piebox">
-                        <!-- **應前往「js/crm_ac_list.js」中增的變數「defaultCanvasHtml.pie」中結構以下變化-->
-                      </div>
-                    </div>
-                    <div class="canvas-valbox">
-                      <div class="canvas-valbox-item"> 
-                        <!--.canvas-valbox-name 正規教室-->
-                        <!--.canvas-valbox-block(style='background-color: #aaa')-->
+                    <div id="pie">
+                      <div class="status-title">學習面向</div>
+                      <div id="piebox"></div>
+                      <div class="canvas-valbox">
+                        <div class="canvas-valbox-item"></div>
                       </div>
                     </div>
 
-                    <!-- RADAR -->  
-                    <div class="status-title">學習趨勢</div>
-                    <div>學習面向(追蹤)(圓餅圖)</div>
+                    <!-- RADAR -->
                     <div class="sambr-canvas">
                       <div class="canvars-box1">
                         <div class="canvars-title">學習指標</div>
-                        <canvas id="chartRadar" height="160"></canvas>
+                        <canvas id="chartRadar" height="140" width="260"></canvas>
                         <div class="radar-item ritem0">
                           <div class="radar-now"></div>
                           <div class="radar-step"></div>

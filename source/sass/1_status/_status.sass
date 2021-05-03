@@ -65,12 +65,16 @@
 	position: relative
 
 	.status-title
-		position: absolute
+		// position: absolute
 
 #status-top,
 #status-bottom
 	border: solid 1px #d7d7d7
 	border-radius: 8px
+
+#status-bottom
+	display: flex
+	justify-content: space-around
 
 #status-right
 	width: calc( 100% - #{$mr-status-left} - #{$h-status-left} )

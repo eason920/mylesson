@@ -10,14 +10,10 @@ html(lang="en")
 		script(src='./assets/plugins/jquery/jquery.1.12.4.min.js')
 		//- canvas
 		script.
-			const time = '?' + new Date().getTime();
-			$.getJSON('./data/radar/c1.json' + time, function(data){
-				renderFn(data);
-			});
-
-			$.getJSON('./data/pie.json', function(data) {
-				renderPie(data); // 此函式定義在「./js/crm_ac_chart.js」中
-			});
+			const url = {
+				'pie': './data/pie.json',
+				'radar': './data/radar/c1.json'
+			};
 		script(src='./assets/plugins/chart-js/Chart-2.7.2.min.js')
 		script(src='./js/mylesson_chart.js')
 		script(src='./js/crm_canvas.js')

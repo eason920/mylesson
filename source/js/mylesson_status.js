@@ -9,7 +9,17 @@ $(()=>{
 			$('#status').fadeOut();
 		}else{
 			$('#status').fadeIn();
-		}
+		};
+
+		// --------------------------------
+		const time = '?' + new Date().getTime();
+		$.getJSON(url.pie + time, function(data) {
+			renderPie(data); // 此函式定義在「./js/crm_ac_chart.js」中
+		});
+
+		$.getJSON(url.radar + time, function(data){
+			renderFn(data);
+		});
 	});
 
 	const label = document.querySelector('#label');
