@@ -1,0 +1,87 @@
+%flex
+	display: flex
+	align-items: center
+	justify-content: center
+
+$c: #d7d7d7
+$border: solid 1px $c
+
+#collbox
+	height: calc( 100% - 30px )
+	overflow:
+		x: hidden
+		y: auto
+
+.collbox-content
+
+.collbox-title
+	background-color: #F64768
+
+	.collbox-col
+		border-right: $border
+		color: #fff
+		&:nth-child(4)
+			@extend %flex
+			border: none
+			background-color: #9C102B
+
+
+.collbox-box
+	border-bottom: $border
+	margin-bottom: 25px
+	&:last-child
+		margin: 0
+		border: none
+
+	.collbox-row:nth-child(even)
+		background-color: #FFD4DD
+		.collbox-percent
+			background-color: #8f8f8f
+
+	.collbox-col
+		&:nth-child(4)
+			background-color: #fff
+			position: relative
+			&:before, &:after
+				position: absolute
+				content: ''
+				border:
+					left: $border
+					right: $border
+				width: 20%
+				height: 100%
+				top: 0
+			&:before
+				left: 20%
+			&:after
+				right: 20%
+
+.collbox-row
+	display: flex
+	height: 25px
+
+
+.collbox-col
+	font-size: 14px
+	&:nth-child(1), &:nth-child(2), &:nth-child(3)
+		@extend %flex
+	&:nth-child(1)
+		width: 30%
+	&:nth-child(2)
+		width: 15%
+	&:nth-child(3)
+		width: 15%
+	&:nth-child(4)
+		width: 40%
+
+.collbox-percent
+	background-color: #000
+	height: 100%
+	display: flex
+	align-items: center
+	justify-content: flex-end
+	padding-right: 5px
+	color: #fff
+	position: relative
+	z-index: 1
+		

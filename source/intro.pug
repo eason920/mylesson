@@ -6,7 +6,7 @@ html(lang="en")
 		title My Lesson page1
 		link(href="./css/mylesson_1.css", rel="stylesheet")
 		link(href="./css/mylesson_1_status.css", rel="stylesheet")
-		link(href="./css/sasys_member.css" rel="stylesheet")
+		//- link(href='https://funday.asia/TeachingCenter/css/style.css' rel='stylesheet')
 		script(src='./assets/plugins/jquery/jquery.1.12.4.min.js')
 		//- canvas
 		script.
@@ -72,14 +72,20 @@ html(lang="en")
 								#status-left 
 									#status-top
 										.status-title 課程建議
+										#collbox
+											//- for scroll v
+											.collbox-content
+												include partials/collect_item
+												include partials/collect_item
+												include partials/collect_item
+												include partials/collect_item
+												include partials/collect_item
 									#status-bottom
-										//- .status-title 學習趨勢
-										//- div 學習面向(追蹤)(圓餅圖)
 										include partials/crm_canvas
 										include partials/sa_canvas
 								#status-right
 									.status-title 養成目標
-									iframe#status-iframe
+									#status-iframe
 						#above
 							#facemap-open(style='display: none', title='觀看本月學習成效')
 								svg(viewBox='0 0 18 20' fill='none' xmlns='http://www.w3.org/2000/svg')

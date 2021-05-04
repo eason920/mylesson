@@ -33,7 +33,6 @@ end if
     <title>My Lesson page1 + status</title>
     <link href="./2020/css/mylesson_1.css?<%=Timer%>" rel="stylesheet"/>
     <link href="./2020/css/mylesson_1_status.css?<%=Timer%>" rel="stylesheet"/>
-    <link href="./2020/css/sasys_member.css?<%=Timer%>" rel="stylesheet"/>
     <!-- <script src="./2020/assets/plugins/jquery/jquery.1.12.4.min.js"></script> -->
     <!--JQ: ^ eason 1.12.4 v kai 3.5.1 -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
@@ -195,6 +194,180 @@ end if
                 <div id="status-left"> 
                   <div id="status-top">
                     <div class="status-title">課程建議</div>
+                    <div id="collbox">
+                      <div class="collbox-content">
+                        <div class="collbox-title">
+                          <div class="collbox-row">
+                            <div class="collbox-col">數位學堂</div>
+                            <div class="collbox-col">%</div>
+                            <div class="collbox-col">建議堂數</div>
+                            <div class="collbox-col">目前住度</div>
+                          </div>
+                        </div>
+                        <div class="collbox-box">
+                          <div class="collbox-row">
+                            <div class="collbox-col">老師請解1</div>
+                            <div class="collbox-col">13%</div>
+                            <div class="collbox-col">36</div>
+                            <div class="collbox-col">
+                              <div class="collbox-percent" style="width: 88%">88%</div>
+                            </div>
+                          </div>
+                          <div class="collbox-row">
+                            <div class="collbox-col">老師請解2</div>
+                            <div class="collbox-col">13%</div>
+                            <div class="collbox-col">36</div>
+                            <div class="collbox-col">
+                              <div class="collbox-percent" style="width: 15%">15%</div>
+                            </div>
+                          </div>
+                          <div class="collbox-row">
+                            <div class="collbox-col">老師請解2</div>
+                            <div class="collbox-col">13%</div>
+                            <div class="collbox-col">36</div>
+                            <div class="collbox-col">
+                              <div class="collbox-percent" style="width: 66%">66%</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="collbox-title">
+                          <div class="collbox-row">
+                            <div class="collbox-col">數位學堂</div>
+                            <div class="collbox-col">%</div>
+                            <div class="collbox-col">建議堂數</div>
+                            <div class="collbox-col">目前住度</div>
+                          </div>
+                        </div>
+                        <div class="collbox-box">
+                          <div class="collbox-row">
+                            <div class="collbox-col">老師請解1</div>
+                            <div class="collbox-col">13%</div>
+                            <div class="collbox-col">36</div>
+                            <div class="collbox-col">
+                              <div class="collbox-percent" style="width: 88%">88%</div>
+                            </div>
+                          </div>
+                          <div class="collbox-row">
+                            <div class="collbox-col">老師請解2</div>
+                            <div class="collbox-col">13%</div>
+                            <div class="collbox-col">36</div>
+                            <div class="collbox-col">
+                              <div class="collbox-percent" style="width: 15%">15%</div>
+                            </div>
+                          </div>
+                          <div class="collbox-row">
+                            <div class="collbox-col">老師請解2</div>
+                            <div class="collbox-col">13%</div>
+                            <div class="collbox-col">36</div>
+                            <div class="collbox-col">
+                              <div class="collbox-percent" style="width: 66%">66%</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="collbox-title">
+                          <div class="collbox-row">
+                            <div class="collbox-col">數位學堂</div>
+                            <div class="collbox-col">%</div>
+                            <div class="collbox-col">建議堂數</div>
+                            <div class="collbox-col">目前住度</div>
+                          </div>
+                        </div>
+                        <div class="collbox-box">
+                          <div class="collbox-row">
+                            <div class="collbox-col">老師請解1</div>
+                            <div class="collbox-col">13%</div>
+                            <div class="collbox-col">36</div>
+                            <div class="collbox-col">
+                              <div class="collbox-percent" style="width: 88%">88%</div>
+                            </div>
+                          </div>
+                          <div class="collbox-row">
+                            <div class="collbox-col">老師請解2</div>
+                            <div class="collbox-col">13%</div>
+                            <div class="collbox-col">36</div>
+                            <div class="collbox-col">
+                              <div class="collbox-percent" style="width: 15%">15%</div>
+                            </div>
+                          </div>
+                          <div class="collbox-row">
+                            <div class="collbox-col">老師請解2</div>
+                            <div class="collbox-col">13%</div>
+                            <div class="collbox-col">36</div>
+                            <div class="collbox-col">
+                              <div class="collbox-percent" style="width: 66%">66%</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="collbox-title">
+                          <div class="collbox-row">
+                            <div class="collbox-col">數位學堂</div>
+                            <div class="collbox-col">%</div>
+                            <div class="collbox-col">建議堂數</div>
+                            <div class="collbox-col">目前住度</div>
+                          </div>
+                        </div>
+                        <div class="collbox-box">
+                          <div class="collbox-row">
+                            <div class="collbox-col">老師請解1</div>
+                            <div class="collbox-col">13%</div>
+                            <div class="collbox-col">36</div>
+                            <div class="collbox-col">
+                              <div class="collbox-percent" style="width: 88%">88%</div>
+                            </div>
+                          </div>
+                          <div class="collbox-row">
+                            <div class="collbox-col">老師請解2</div>
+                            <div class="collbox-col">13%</div>
+                            <div class="collbox-col">36</div>
+                            <div class="collbox-col">
+                              <div class="collbox-percent" style="width: 15%">15%</div>
+                            </div>
+                          </div>
+                          <div class="collbox-row">
+                            <div class="collbox-col">老師請解2</div>
+                            <div class="collbox-col">13%</div>
+                            <div class="collbox-col">36</div>
+                            <div class="collbox-col">
+                              <div class="collbox-percent" style="width: 66%">66%</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="collbox-title">
+                          <div class="collbox-row">
+                            <div class="collbox-col">數位學堂</div>
+                            <div class="collbox-col">%</div>
+                            <div class="collbox-col">建議堂數</div>
+                            <div class="collbox-col">目前住度</div>
+                          </div>
+                        </div>
+                        <div class="collbox-box">
+                          <div class="collbox-row">
+                            <div class="collbox-col">老師請解1</div>
+                            <div class="collbox-col">13%</div>
+                            <div class="collbox-col">36</div>
+                            <div class="collbox-col">
+                              <div class="collbox-percent" style="width: 88%">88%</div>
+                            </div>
+                          </div>
+                          <div class="collbox-row">
+                            <div class="collbox-col">老師請解2</div>
+                            <div class="collbox-col">13%</div>
+                            <div class="collbox-col">36</div>
+                            <div class="collbox-col">
+                              <div class="collbox-percent" style="width: 15%">15%</div>
+                            </div>
+                          </div>
+                          <div class="collbox-row">
+                            <div class="collbox-col">老師請解2</div>
+                            <div class="collbox-col">13%</div>
+                            <div class="collbox-col">36</div>
+                            <div class="collbox-col">
+                              <div class="collbox-percent" style="width: 66%">66%</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div id="status-bottom">
                     <!-- PIE -->
@@ -245,7 +418,7 @@ end if
                 </div>
                 <div id="status-right">
                   <div class="status-title">養成目標</div>
-                  <iframe id="status-iframe"></iframe>
+                  <div id="status-iframe"></div>
                 </div>
               </div>
             </div>

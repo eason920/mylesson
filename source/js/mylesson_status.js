@@ -25,4 +25,6 @@ $(()=>{
 	const label = document.querySelector('#label');
 	// label.lastChild.click();
 	$('.label-item[data-status="1"]').click();
+
+	$('#status-iframe').load('./2020/concept4_part.html #b1 > *')
 });
