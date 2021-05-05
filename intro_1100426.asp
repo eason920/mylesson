@@ -38,14 +38,11 @@ end if
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
     <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
     <script>
-      const url = {
-				'pie': './2020/data/pie.json',
-				'radar': './2020/data/radar/c1.json'
-			};
+      const memberLevel = 'b2';
     </script>
     <script src="./2020/assets/plugins/chart-js/Chart-2.7.2.min.js"></script>
-    <script src="./2020/js/mylesson_chart.js"></script>
-    <script src="./2020/js/crm_canvas.js"></script>
+    <script src="./2020/js/mylesson_pie.js"></script>
+    <script src="./2020/js/mylesson_radar.js"></script>
     <script src="../../jquery.cookie.js"></script>    
     <script src="../../js/MessageVer2/alert.js" type="text/javascript"></script>        
     <!--script src="./2020/assets/plugins/jquery-ui/1.12.1.js"></script-->

@@ -1,5 +1,14 @@
 const defaultCanvasHtml = {
-	pie: '<div class="piebox-item"><canvas id="pie0" width="120" height="120"></canvas></div>',
+	pie: '<div class="piebox-item"><canvas id="canvasPie" width="120" height="120"></canvas></div>',
+};
+
+const pie_color = {
+	"基礎養成": "#f5355a",
+	"自我意識": "#a476c1",
+	"生活": "#fcbfe0",
+	"專業通則": "#ffa800",
+	"社交": "#7ddaeb",
+	"通識": "#69d685"
 };
 
 const renderPie = function(DATA){
@@ -22,9 +31,9 @@ const renderPie = function(DATA){
 	// main v
 	//- PIE VALUE BOX v
 	let valboxHtml = '';
-	for( key in DATA.pie_color ){
+	for( key in pie_color ){
 		valboxHtml += '<div class="canvas-valbox-item">';
-		valboxHtml += '<div class="canvas-valbox-block" style="background-color:'+ DATA.pie_color[key] +'">';
+		valboxHtml += '<div class="canvas-valbox-block" style="background-color:'+ pie_color[key] +'">';
 		valboxHtml += '</div>'
 		valboxHtml += '<div class="canvas-valbox-name">';
 		valboxHtml += key;
@@ -33,59 +42,41 @@ const renderPie = function(DATA){
 	};
 	$('.canvas-valbox').html(valboxHtml);
 
-	//- PIE v
-	// Chart.defaults.global.defaultFontFamily = "Arial";
-	// Chart.defaults.global.defaultFontSize = 12;
-	const pieLength = DATA.pie.length - 1;
+	// 配色 v
+	const backgroundColor = [];
+	DATA.labels.forEach(function(item){
+		for( key in pie_color ){
+			if( item == key ){
+				backgroundColor.push( pie_color[key] )
+			}
+		}
+	});
 
-	// if( pieLength+1 >= 5 ){
-	// 	$('#piebox').removeAttr('style').css('width', $('.piebox-item').width() * (pieLength+1) );
-	// }else{
-	// 	$('#piebox').css('justify-content', 'space-around')
-	// }
-
-	// for(i=0;i<=5;i++){
-	// for(i=0;i<=5;i++){
-	for(i=0;i<=pieLength;i++){
-		if( DATA.pie[i] != undefined ){
-			// 配色 v
-			const backgroundColor = [];
-			DATA.pie[i].labels.forEach(function(item){
-				for( key in DATA.pie_color ){
-					if( item == key ){
-						backgroundColor.push( DATA.pie_color[key] )
-					}
-				}
-			});
-
-			// 各階顯示 / 隱藏 v
-			$('.piebox-item:eq('+i+')').show();
-			const data = {
-				labels: DATA.pie[i].labels,
-				datasets: [{
-					data: DATA.pie[i].data,
-					backgroundColor
-				}]
-			};
-			
-			// 結構 cnavas v
-			const options = {
-				legend: { // AREA : 上方導引色塊
-					display: false
-				},
-				tooltips: { // AREA : 在點上 mouseover 出的報告小視窗
-					displayColors: false, // 小色塊顯示
-				}
-			};
-		
-			new Chart( document.getElementById("pie"+i), {
-				type: 'pie',
-				data,
-				options
-			});
-		};
+	// 各階顯示 / 隱藏 v
+	$('.piebox-item').show();
+	const data = {
+		labels: DATA.labels,
+		datasets: [{
+			data: DATA.data,
+			backgroundColor
+		}]
+	};
+	
+	// 結構 cnavas v
+	const options = {
+		legend: { // AREA : 上方導引色塊
+			display: false
+		},
+		tooltips: { // AREA : 在點上 mouseover 出的報告小視窗
+			displayColors: false, // 小色塊顯示
+		}
 	};
 
+	new Chart( document.getElementById("canvasPie"), {
+		type: 'pie',
+		data,
+		options
+	});
 };
 
 // --------------------------------

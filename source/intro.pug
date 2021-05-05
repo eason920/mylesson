@@ -10,13 +10,10 @@ html(lang="en")
 		script(src='./assets/plugins/jquery/jquery.1.12.4.min.js')
 		//- canvas
 		script.
-			const url = {
-				'pie': './data/pie.json',
-				'radar': './data/radar/c1.json'
-			};
+			const memberLevel = 'b2'
 		script(src='./assets/plugins/chart-js/Chart-2.7.2.min.js')
-		script(src='./js/mylesson_chart.js')
-		script(src='./js/crm_canvas.js')
+		script(src='./js/mylesson_pie.js')
+		script(src='./js/mylesson_radar.js')
 		//- datapicker v
 		script(src='./assets/plugins/jquery-ui/1.12.1.js')
 		script(src='./assets/plugins/jquery-ui/i18n/datepicker-zh-TW.js')
@@ -66,7 +63,7 @@ html(lang="en")
 								.level-item a1
 								.level-item a2
 								.level-item b1
-								.level-item.active b2
+								.level-item b2
 								.level-item c1
 							#status-box
 								#status-left 
@@ -75,11 +72,11 @@ html(lang="en")
 										#collbox
 											//- for scroll v
 											.collbox-content
-												include partials/collect_item
-												include partials/collect_item
-												include partials/collect_item
-												include partials/collect_item
-												include partials/collect_item
+												//- include partials/collect_item
+												//- include partials/collect_item
+												//- include partials/collect_item
+												//- include partials/collect_item
+												//- include partials/collect_item
 									#status-bottom
 										include partials/crm_canvas
 										include partials/sa_canvas
@@ -248,3 +245,10 @@ html(lang="en")
 //- ele.click()
 //- ele.textContent // no '()'
 //- father.lastchild // 選取父元素內的最後一個「子元素」，應將 html 一行化，去除換行符以避免 travel 抓錯子元素
+
+//- -----------------------------------
+//- const defLvIndex = lvAry.findIndex( (item) => item == memberLevel );
+//- 簡化 ^v 通常
+//- const defLvIndex = lvAry.findIndex(function(item){
+//- 	return item == memberLevel;
+//- });

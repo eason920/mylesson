@@ -5,6 +5,7 @@
 
 $c: #d7d7d7
 $border: solid 1px $c
+$h-row: 22px
 
 #collbox
 	height: calc( 100% - 30px )
@@ -28,7 +29,7 @@ $border: solid 1px $c
 
 .collbox-box
 	border-bottom: $border
-	margin-bottom: 25px
+	margin-bottom: $h-row
 	&:last-child
 		margin: 0
 		border: none
@@ -58,17 +59,17 @@ $border: solid 1px $c
 
 .collbox-row
 	display: flex
-	height: 25px
+	height: $h-row
 
 
 .collbox-col
-	font-size: 14px
+	font-size: 13px
 	&:nth-child(1), &:nth-child(2), &:nth-child(3)
 		@extend %flex
 	&:nth-child(1)
-		width: 30%
+		width: 29%
 	&:nth-child(2)
-		width: 15%
+		width: 17%
 	&:nth-child(3)
 		width: 15%
 	&:nth-child(4)
@@ -84,4 +85,19 @@ $border: solid 1px $c
 	color: #fff
 	position: relative
 	z-index: 1
+	&.is-less
+		span
+			position: absolute
+			color: #000
+			right: -38px
+		&:after
+			content: ''
+			position: absolute
+			width: 0
+			height: 0
+			border:
+				style: solid
+				width: 3px 6px 3px 0
+				color: transparent #000 transparent transparent
+			right: - 8px
 		
