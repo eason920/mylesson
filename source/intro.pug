@@ -6,14 +6,23 @@ html(lang="en")
 		title My Lesson page1
 		link(href="./css/mylesson_1.css", rel="stylesheet")
 		link(href="./css/mylesson_1_status.css", rel="stylesheet")
-		//- link(href='https://funday.asia/TeachingCenter/css/style.css' rel='stylesheet')
+		//-link(href='./assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css', rel='stylesheet')
+		//-style.
+			/* v scrollbar 是否永遠顥示的跟據，而且一定要放外面，不可寫到 .css 中 v */
+			.ps__rail-x, .ps__rail-y {
+				opacity: 0.6;
+			}
+			/* ^ scrollbar 是否永遠顥示的跟據，而且一定要放外面，不可寫到 .css 中 ^ */
 		script(src='./assets/plugins/jquery/jquery.1.12.4.min.js')
 		//- canvas
 		script.
 			const memberLevel = 'b2'
+		//- chart & setting
 		script(src='./assets/plugins/chart-js/Chart-2.7.2.min.js')
 		script(src='./js/mylesson_pie.js')
 		script(src='./js/mylesson_radar.js')
+		//- perfect scroll bar
+		//- script(src='./assets/plugins/perfect-scrollbar-master/perfect-scrollbar.min.js')
 		//- datapicker v
 		script(src='./assets/plugins/jquery-ui/1.12.1.js')
 		script(src='./assets/plugins/jquery-ui/i18n/datepicker-zh-TW.js')
@@ -83,6 +92,7 @@ html(lang="en")
 								#status-right
 									.status-title 養成目標
 									#status-iframe
+										#status-page
 						#above
 							#facemap-open(style='display: none', title='觀看本月學習成效')
 								svg(viewBox='0 0 18 20' fill='none' xmlns='http://www.w3.org/2000/svg')

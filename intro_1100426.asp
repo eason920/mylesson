@@ -33,8 +33,14 @@ end if
     <title>My Lesson page1 + status</title>
     <link href="./2020/css/mylesson_1.css?<%=Timer%>" rel="stylesheet"/>
     <link href="./2020/css/mylesson_1_status.css?<%=Timer%>" rel="stylesheet"/>
-    <!-- <script src="./2020/assets/plugins/jquery/jquery.1.12.4.min.js"></script> -->
-    <!--JQ: ^ eason 1.12.4 v kai 3.5.1 -->
+    <!--link href="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css" rel="stylesheet"/>
+    <style>
+      /* v scrollbar 是否永遠顥示的跟據，而且一定要放外面，不可寫到 .css 中 v */
+      .ps__rail-x, .ps__rail-y {
+      	opacity: 0.6;
+      }
+      /* ^ scrollbar 是否永遠顥示的跟據，而且一定要放外面，不可寫到 .css 中 ^ */
+    </style-->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
     <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
     <script>
@@ -43,6 +49,7 @@ end if
     <script src="./2020/assets/plugins/chart-js/Chart-2.7.2.min.js"></script>
     <script src="./2020/js/mylesson_pie.js"></script>
     <script src="./2020/js/mylesson_radar.js"></script>
+    <!--script src="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.min.js"></script-->
     <script src="../../jquery.cookie.js"></script>    
     <script src="../../js/MessageVer2/alert.js" type="text/javascript"></script>        
     <!--script src="./2020/assets/plugins/jquery-ui/1.12.1.js"></script-->
@@ -415,7 +422,9 @@ end if
                 </div>
                 <div id="status-right">
                   <div class="status-title">養成目標</div>
-                  <div id="status-iframe"></div>
+                  <div id="status-iframe">
+                    <div id="status-page"></div>
+                  </div>
                 </div>
               </div>
             </div>

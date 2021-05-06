@@ -76,7 +76,7 @@ const renderRadar = function(levelDATA, DATA){
 	const level = DATA.level.slice(0, cutEnd);
 
 	const stepMax = levelDATA.step;
-	$('.canvars-box1').addClass(level);
+	$('.canvars-box1').removeClass('A1 A2 B1 B2 C1').addClass(level);
 	let index = 0;
 	for( let a in levelDATA.group ){
 		const unit = levelDATA.group[a];

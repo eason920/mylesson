@@ -9,7 +9,7 @@ const renderSuggest = function(data){
 	let html = '';
 	data.forEach(function(item){
 		const title = item.title;
-		html += '<div class="collbox-title"> <div class="collbox-row"> <div class="collbox-col">' + title + '</div><div class="collbox-col">己上過堂數</div><div class="collbox-col">建議堂數</div><div class="collbox-col">目前進度</div></div></div>';
+		html += '<div class="collbox-title"> <div class="collbox-row"> <div class="collbox-col">' + title + '</div><div class="collbox-col">己上過數量</div><div class="collbox-col">建議數量</div><div class="collbox-col">目前進度</div></div></div>';
 		html += '<div class="collbox-box">';
 		item.item.forEach(function(obj){
 			const cursor = obj.cursor;
@@ -37,7 +37,7 @@ const renderAll = function(lv){
 	renderSuggest(bigData[lv].suggest);
 	renderPie(bigData[lv].pie);
 	renderRadar(bigData[lv].radar_basic, bigData[lv].radar);
-	$('#status-iframe').load('../TeachingCenter/concept4_part.html #' + lv + ' > *');
+	$('#status-page').load('../TeachingCenter/concept4_part.html #' + lv + ' > *');
 }
 
 
@@ -64,12 +64,15 @@ $(()=>{
 					success: function(data){
 						bigData = data;
 						renderAll(memberLevel);
+						//
+						// new PerfectScrollbar('#collbox');
+						// new PerfectScrollbar('#status-iframe');
 					}
 				});
 			}
 		};
 	});
-
+	// $('.label-item[data-status="1"]').click();
 	// --------------------------------
 	$('.level-item').click(function(){
 		const txt = $(this).text();
@@ -83,5 +86,5 @@ $(()=>{
 		}else{
 			console.log('the same ');
 		}
-	})
+	});
 });

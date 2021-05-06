@@ -35,6 +35,14 @@
 		top: 40px
 	margin:
 		top: -5px
+	&:before
+		content: ''
+		position: absolute
+		top: 0
+		right: 0
+		bottom: 0
+		left: 0
+		margin: auto
 	&.A1
 		.ritem0
 			top: 12px
@@ -50,7 +58,7 @@
 
 		.ritem3
 			top: 184px
-			left: 16px
+			left: 22px
 			& > *
 				text-align: right
 
@@ -71,13 +79,13 @@
 				text-align: center
 		.ritem1
 			top: 78px
-			left: 220px
+			right: -6px
 		.ritem2
 			top: 140px
-			left: 230px
+			right: -12px
 		.ritem3
 			top: 184px
-			left: 186px
+			left: 150px
 		.ritem4
 			top: 184px
 			left: 30px
@@ -85,12 +93,12 @@
 				text-align: right
 		.ritem5
 			top: 140px
-			right: 230px
+			left: -12px
 			& > *
 				text-align: right
 		.ritem6
 			top: 78px
-			right: 220px
+			left: -6px
 			& > *
 				text-align: right
 	&.B2
@@ -130,7 +138,7 @@
 //---------------------------
 .radar-item
 	position: absolute
-	z-index: 1
+	z-index: 5
 	& > *
 		width: 83px
 		text:
