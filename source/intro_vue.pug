@@ -1,0 +1,46 @@
+doctype html
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(http-equiv="X-UA-Compatible", content="IE=edge")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		title vue
+		link(href="./css/mylesson_vue.css", rel="stylesheet")
+		//-
+		script.
+			const memberLevel = 'b2'
+		script(src='./assets/plugins/jquery/jquery.1.12.4.min.js')
+		script(src='./assets/plugins/chart-js/Chart-2.7.2.min.js')
+		script(src='./js/mylesson_pie.js')
+		script(src='./js/mylesson_radar.js')
+		script(src="./js/mylesson_vue.js")
+	body 
+		#level
+			.level-item a1
+			.level-item a2
+			.level-item b1
+			.level-item b2
+			.level-item c1
+		#status-box
+			#status-left 
+				#status-top
+					.status-title 課程建議
+					#collbox
+						//- for scroll v
+						.collbox-content
+							//- include partials/collect_item
+							//- include partials/collect_item
+							//- include partials/collect_item
+							//- include partials/collect_item
+							//- include partials/collect_item
+				#status-bottom
+					include partials/crm_canvas
+					include partials/sa_canvas
+			#status-right
+				.status-title 養成目標
+				#status-iframe
+					#status-page
+
+//- --------------------------------
+//- NEW STUDY vvvv
+//- cpn 的行為事件要用 emmit & connect 來連結主 data

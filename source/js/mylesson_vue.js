@@ -37,54 +37,44 @@ const renderAll = function(lv){
 	renderSuggest(bigData[lv].suggest);
 	renderPie(bigData[lv].pie);
 	renderRadar(bigData[lv].radar_basic, bigData[lv].radar);
-	$('#status-page').load('../TeachingCenter/concept4_part.html #' + lv + ' > *');
+	// $('#status-page').load('../../TeachingCenter/concept4_part.html #' + lv + ' > *');
 }
 
 
 $(()=>{
-	$('.level-item:eq('+ defLvIndex +')').addClass('active');
+	// $('.level-item:eq('+ defLvIndex +')').addClass('active');
 
 	// --------------------------------
-	$('.label-item').click(function(){
-		const status = $(this).attr('data-status');
-		$('.label-item').removeClass('active');
-		$(this).addClass('active');
-		if( status == '0'){
-			$('#status').fadeOut();
-		}else{
-			$('#status').fadeIn();
-			if( firstLoad ){
-				firstLoad = false;
-				const time = '?' + new Date().getTime();
-				$.ajax({
-					type: 'GET',
-					url: './data/big_data.json' + time,
-					// url: './2020/data/big_data.json' + time,
-					dataType: 'json',
-					success: function(data){
-						bigData = data;
-						renderAll(memberLevel);
-						//
-						// new PerfectScrollbar('#collbox');
-						// new PerfectScrollbar('#status-iframe');
-					}
-				});
+	if( firstLoad ){
+		firstLoad = false;
+		const time = '?' + new Date().getTime();
+		$.ajax({
+			type: 'GET',
+			url: './data/big_data.json' + time,
+			// url: './2020/data/big_data.json' + time,
+			dataType: 'json',
+			success: function(data){
+				bigData = data;
+				renderAll(memberLevel);
+				//
+				// new PerfectScrollbar('#collbox');
+				// new PerfectScrollbar('#status-iframe');
 			}
-		};
-	});
-	// $('.label-item[data-status="1"]').click();
+		});
+	};
+	
 	// --------------------------------
-	$('.level-item').click(function(){
-		const txt = $(this).text();
-		if( txt !== nowLv ){
-			console.log('different');
-			$('.level-item').removeClass('active');
-			$(this).addClass('active');
-			nowLv = txt;
-			console.log('and change nowLv to > ', nowLv);
-			renderAll(txt);
-		}else{
-			console.log('the same ');
-		}
-	});
+	// $('.level-item').click(function(){
+	// 	const txt = $(this).text();
+	// 	if( txt !== nowLv ){
+	// 		console.log('different');
+	// 		$('.level-item').removeClass('active');
+	// 		$(this).addClass('active');
+	// 		nowLv = txt;
+	// 		console.log('and change nowLv to > ', nowLv);
+	// 		renderAll(txt);
+	// 	}else{
+	// 		console.log('the same ');
+	// 	}
+	// });
 });

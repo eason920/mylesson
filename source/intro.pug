@@ -16,7 +16,21 @@ html(lang="en")
 		script(src='./assets/plugins/jquery/jquery.1.12.4.min.js')
 		//- canvas
 		script.
-			const memberLevel = 'b2'
+			//- const memberLevel = 'b2'
+			$(()=>{
+				$('.label-item').click(function(){
+					const status = $(this).attr('data-status');
+					$('.label-item').removeClass('active');
+					$(this).addClass('active');
+					if( status == '0'){
+						$('#status-vue').fadeOut();
+					}else{
+						$('#status-vue').fadeIn();
+					};
+				});
+
+				$('.label-item[data-status="1"]').click();
+			});
 		//- chart & setting
 		script(src='./assets/plugins/chart-js/Chart-2.7.2.min.js')
 		script(src='./js/mylesson_pie.js')
@@ -33,7 +47,7 @@ html(lang="en")
 		//- for demo json v
 		script(src="./js/week_ary.js")
 		//- main v
-		script(src="./js/mylesson_status.js")
+		//- script(src="./js/mylesson_status.js")
 		script(src="./js/mylesson.js")
 		//- WEEK v
 		script(src="./js/week_map.js")
@@ -67,7 +81,8 @@ html(lang="en")
 						#label
 							.label-item.active(data-status='0') 每週課表
 							.label-item(data-status='1') 學習狀況
-						#status
+						iframe#status-vue(src='./intro_vue.html')
+						//-#status
 							#level
 								.level-item a1
 								.level-item a2

@@ -44,11 +44,24 @@ end if
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
     <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
     <script>
-      const memberLevel = 'b2';
+      $(()=>{
+      	$('.label-item').click(function(){
+      		const status = $(this).attr('data-status');
+      		$('.label-item').removeClass('active');
+      		$(this).addClass('active');
+      		if( status == '0'){
+      			$('#status-vue').fadeOut();
+      		}else{
+      			$('#status-vue').fadeIn();
+      		};
+      	});
+
+        $('.label-item[data-status="1"]').click();
+      });
     </script>
-    <script src="./2020/assets/plugins/chart-js/Chart-2.7.2.min.js"></script>
-    <script src="./2020/js/mylesson_pie.js"></script>
-    <script src="./2020/js/mylesson_radar.js"></script>
+    <!--script src="./2020/assets/plugins/chart-js/Chart-2.7.2.min.js"></script-->
+    <!--script src="./2020/js/mylesson_pie.js"></script-->
+    <!--script src="./2020/js/mylesson_radar.js"></script-->
     <!--script src="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.min.js"></script-->
     <script src="../../jquery.cookie.js"></script>    
     <script src="../../js/MessageVer2/alert.js" type="text/javascript"></script>        
@@ -56,7 +69,7 @@ end if
     <script src="./2020/assets/plugins/jquery-ui/i18n/datepicker-zh-TW.js"></script>
     <script src="./2020/assets/plugins/jquery-circle-progress/jquery-circle-progress.js"></script>
     <!-- <script src="./2020/js/week_ary.js"></script> -->
-    <script src="./2020/js/mylesson_status.js"></script>
+    <!--script src="./2020/js/mylesson_status.js"></script-->
     <script src="./2020/js/mylesson.js?<%=Timer%>"></script>
     <script src="./2020/js/week_map.js?<%=Timer%>"></script>
     <script src="./2020/js/lb.js?<%=Timer%>"></script>
@@ -186,248 +199,8 @@ end if
           <div id="member"></div>
           <div id="right">
             <div id="label"><div class="label-item active" data-status="0">每週課表</div><div class="label-item" data-status="1">學習狀況</div></div>
-            <div id="status">
-              <div id="level">
-                <div class="level-item">a1</div>
-                <div class="level-item">a2</div>
-                <div class="level-item">b1</div>
-                <div class="level-item active">b2</div>
-                <div class="level-item">c1</div>
-              </div>
-              <div id="status-box">
-                <div id="status-left"> 
-                  <div id="status-top">
-                    <div class="status-title">課程建議</div>
-                    <div id="collbox">
-                      <div class="collbox-content">
-                        <div class="collbox-title">
-                          <div class="collbox-row">
-                            <div class="collbox-col">數位學堂</div>
-                            <div class="collbox-col">%</div>
-                            <div class="collbox-col">建議堂數</div>
-                            <div class="collbox-col">目前住度</div>
-                          </div>
-                        </div>
-                        <div class="collbox-box">
-                          <div class="collbox-row">
-                            <div class="collbox-col">老師請解1</div>
-                            <div class="collbox-col">13%</div>
-                            <div class="collbox-col">36</div>
-                            <div class="collbox-col">
-                              <div class="collbox-percent" style="width: 88%">88%</div>
-                            </div>
-                          </div>
-                          <div class="collbox-row">
-                            <div class="collbox-col">老師請解2</div>
-                            <div class="collbox-col">13%</div>
-                            <div class="collbox-col">36</div>
-                            <div class="collbox-col">
-                              <div class="collbox-percent" style="width: 15%">15%</div>
-                            </div>
-                          </div>
-                          <div class="collbox-row">
-                            <div class="collbox-col">老師請解2</div>
-                            <div class="collbox-col">13%</div>
-                            <div class="collbox-col">36</div>
-                            <div class="collbox-col">
-                              <div class="collbox-percent" style="width: 66%">66%</div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="collbox-title">
-                          <div class="collbox-row">
-                            <div class="collbox-col">數位學堂</div>
-                            <div class="collbox-col">%</div>
-                            <div class="collbox-col">建議堂數</div>
-                            <div class="collbox-col">目前住度</div>
-                          </div>
-                        </div>
-                        <div class="collbox-box">
-                          <div class="collbox-row">
-                            <div class="collbox-col">老師請解1</div>
-                            <div class="collbox-col">13%</div>
-                            <div class="collbox-col">36</div>
-                            <div class="collbox-col">
-                              <div class="collbox-percent" style="width: 88%">88%</div>
-                            </div>
-                          </div>
-                          <div class="collbox-row">
-                            <div class="collbox-col">老師請解2</div>
-                            <div class="collbox-col">13%</div>
-                            <div class="collbox-col">36</div>
-                            <div class="collbox-col">
-                              <div class="collbox-percent" style="width: 15%">15%</div>
-                            </div>
-                          </div>
-                          <div class="collbox-row">
-                            <div class="collbox-col">老師請解2</div>
-                            <div class="collbox-col">13%</div>
-                            <div class="collbox-col">36</div>
-                            <div class="collbox-col">
-                              <div class="collbox-percent" style="width: 66%">66%</div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="collbox-title">
-                          <div class="collbox-row">
-                            <div class="collbox-col">數位學堂</div>
-                            <div class="collbox-col">%</div>
-                            <div class="collbox-col">建議堂數</div>
-                            <div class="collbox-col">目前住度</div>
-                          </div>
-                        </div>
-                        <div class="collbox-box">
-                          <div class="collbox-row">
-                            <div class="collbox-col">老師請解1</div>
-                            <div class="collbox-col">13%</div>
-                            <div class="collbox-col">36</div>
-                            <div class="collbox-col">
-                              <div class="collbox-percent" style="width: 88%">88%</div>
-                            </div>
-                          </div>
-                          <div class="collbox-row">
-                            <div class="collbox-col">老師請解2</div>
-                            <div class="collbox-col">13%</div>
-                            <div class="collbox-col">36</div>
-                            <div class="collbox-col">
-                              <div class="collbox-percent" style="width: 15%">15%</div>
-                            </div>
-                          </div>
-                          <div class="collbox-row">
-                            <div class="collbox-col">老師請解2</div>
-                            <div class="collbox-col">13%</div>
-                            <div class="collbox-col">36</div>
-                            <div class="collbox-col">
-                              <div class="collbox-percent" style="width: 66%">66%</div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="collbox-title">
-                          <div class="collbox-row">
-                            <div class="collbox-col">數位學堂</div>
-                            <div class="collbox-col">%</div>
-                            <div class="collbox-col">建議堂數</div>
-                            <div class="collbox-col">目前住度</div>
-                          </div>
-                        </div>
-                        <div class="collbox-box">
-                          <div class="collbox-row">
-                            <div class="collbox-col">老師請解1</div>
-                            <div class="collbox-col">13%</div>
-                            <div class="collbox-col">36</div>
-                            <div class="collbox-col">
-                              <div class="collbox-percent" style="width: 88%">88%</div>
-                            </div>
-                          </div>
-                          <div class="collbox-row">
-                            <div class="collbox-col">老師請解2</div>
-                            <div class="collbox-col">13%</div>
-                            <div class="collbox-col">36</div>
-                            <div class="collbox-col">
-                              <div class="collbox-percent" style="width: 15%">15%</div>
-                            </div>
-                          </div>
-                          <div class="collbox-row">
-                            <div class="collbox-col">老師請解2</div>
-                            <div class="collbox-col">13%</div>
-                            <div class="collbox-col">36</div>
-                            <div class="collbox-col">
-                              <div class="collbox-percent" style="width: 66%">66%</div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="collbox-title">
-                          <div class="collbox-row">
-                            <div class="collbox-col">數位學堂</div>
-                            <div class="collbox-col">%</div>
-                            <div class="collbox-col">建議堂數</div>
-                            <div class="collbox-col">目前住度</div>
-                          </div>
-                        </div>
-                        <div class="collbox-box">
-                          <div class="collbox-row">
-                            <div class="collbox-col">老師請解1</div>
-                            <div class="collbox-col">13%</div>
-                            <div class="collbox-col">36</div>
-                            <div class="collbox-col">
-                              <div class="collbox-percent" style="width: 88%">88%</div>
-                            </div>
-                          </div>
-                          <div class="collbox-row">
-                            <div class="collbox-col">老師請解2</div>
-                            <div class="collbox-col">13%</div>
-                            <div class="collbox-col">36</div>
-                            <div class="collbox-col">
-                              <div class="collbox-percent" style="width: 15%">15%</div>
-                            </div>
-                          </div>
-                          <div class="collbox-row">
-                            <div class="collbox-col">老師請解2</div>
-                            <div class="collbox-col">13%</div>
-                            <div class="collbox-col">36</div>
-                            <div class="collbox-col">
-                              <div class="collbox-percent" style="width: 66%">66%</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="status-bottom">
-                    <!-- PIE -->
-                    <div id="pie">
-                      <div class="status-title">學習面向</div>
-                      <div id="piebox"></div>
-                      <div class="canvas-valbox">
-                        <div class="canvas-valbox-item"></div>
-                      </div>
-                    </div>
-
-                    <!-- RADAR -->
-                    <div class="sambr-canvas">
-                      <div class="canvars-box1">
-                        <div class="canvars-title">學習指標</div>
-                        <canvas id="chartRadar" height="140" width="260"></canvas>
-                        <div class="radar-item ritem0">
-                          <div class="radar-now"></div>
-                          <div class="radar-step"></div>
-                        </div>
-                        <div class="radar-item ritem1"> 
-                          <div class="radar-now"></div>
-                          <div class="radar-step"></div>
-                        </div>
-                        <div class="radar-item ritem2"> 
-                          <div class="radar-now"></div>
-                          <div class="radar-step"></div>
-                        </div>
-                        <div class="radar-item ritem3"> 
-                          <div class="radar-now"></div>
-                          <div class="radar-step"></div>
-                        </div>
-                        <div class="radar-item ritem4"> 
-                          <div class="radar-now"></div>
-                          <div class="radar-step"></div>
-                        </div>
-                        <div class="radar-item ritem5">
-                          <div class="radar-now"></div>
-                          <div class="radar-step"></div>
-                        </div>
-                        <div class="radar-item ritem6"> 
-                          <div class="radar-now"></div>
-                          <div class="radar-step"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div id="status-right">
-                  <div class="status-title">養成目標</div>
-                  <div id="status-iframe">
-                    <div id="status-page"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <iframe id="status-vue" src="./2020/intro_status_vue.asp"></iframe>
+            <!--iframe id="status-vue" src="./2020/intro_vue.html"></iframe-->
             <div id="above">
               <div id="facemap-open" style="display: none" title="觀看本月學習成效">
                 <svg viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
