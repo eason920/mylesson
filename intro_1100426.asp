@@ -56,7 +56,7 @@ end if
       		};
       	});
 
-        $('.label-item[data-status="1"]').click();
+        //$('.label-item[data-status="1"]').click();
       });
     </script>
     <!--script src="./2020/assets/plugins/chart-js/Chart-2.7.2.min.js"></script-->

@@ -20,14 +20,11 @@
 		<title>vue</title>
 		<link href="./css/mylesson_vue.css" rel="stylesheet">
 		<script>
-			const memberLevel = 'c1';
+			const memberLevel = 'b2';
 		</script>
 		<script src="./assets/plugins/jquery/jquery.1.12.4.min.js"></script>
 		<script src="./assets/plugins/chart-js/Chart-2.7.2.min.js"></script>
 		<script src="./assets/plugins/vue/vue2.6.12.js"></script>
-		<!--script src="./js/mylesson_pie.js"></script-->
-		<!--script src="./js/mylesson_radar.js"></script-->
-		<script src="./js/mylesson_vue.js"></script>
 		<script src="./js/cpn_1.js"></script>
 	</head>
 	<body> 
@@ -47,13 +44,38 @@
 						<div class="status-title">課程建議</div>
 						<div id="collbox">
 							<div class="collbox-content">
-								<cpn_colbox_block
-									v-for='(item, i) in bigDataNow.suggest'
-									:prop='item'
+								<div class="collbox-block"
+									v-for='(block, i) in reactiveNowSuggest'
 									:key='i'
 								>
-								<!--v-for='(item, i) in reactiveNowSuggest'-->
-								<!--v-for='(item, i) in bigData.c1.suggest'-->
+								<!-- ^ reactive 4. 此另名 compouted 函式給 view 中的 cpn 使用 -->
+									<div class="collbox-title">
+										<div class="collbox-row">
+											<div class="collbox-col">{{block.title}}</div>
+											<div class="collbox-col">己上過數量</div>
+											<div class="collbox-col">建議數量</div>
+											<div class="collbox-col">目前進度</div>
+										</div>
+									</div>
+									<div class="collbox-box">
+										<div class="collbox-row"
+											v-for='(row, j) in block.item'
+											:key='j'
+										>
+											<div class="collbox-col">{{row.cursor}}</div>
+											<div class="collbox-col">{{row.already}}</div>
+											<div class="collbox-col">{{row.suggest}}</div>
+											<div class="collbox-col">
+												<div class="collbox-percent" 
+													:style="fnPercentStyle(fnPercent(row.already, row.suggest))"
+													:class='{"is-less": fnPercent(row.already, row.suggest) <= 20}'
+												>
+													<span>{{fnPercent(row.already, row.suggest)}}%</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -110,35 +132,55 @@
 				success: function(data){
 					vm.bigData = data;
 					vm.bigDataNow = vm.bigData[vm.selectedLevel];
-					vm.fnRenderPie(vm.bigData[vm.selectedLevel].pie);
-					vm.fnRenderRadar(vm.bigData[vm.selectedLevel].radar_basic, vm.bigData[vm.selectedLevel].radar);
+					vm.fnAll(vm.bigData, vm.selectedLevel);
 				}
 			});
 		},
 		computed: {
-			reactiveNowBigData(){
-				return this.bigData[this.selectedLevel];
-			},
 			reactiveNowSuggest(){
-				//- bigData.c1.suggest
-				return this.bigData[this.selectedLevel];
-			},
-			reactiveNowPie(){
-				return this.bigData[this.selectedLevel].pie;
+				return this.bigDataNow.suggest; //- reactive 3. 被變化的 data 另名設定入 computed 中
 			}
 		},
 		methods: {
+			fnPercent(already, suggest){
+				let percent = Math.round( already / suggest * 100 );
+				if( percent > 100 ){ percent = 100 };
+				return Number(percent);
+			},
+			fnPercentStyle(val){
+				return 'width:' + val + '%';
+			},
 			fnSelectLv(lv){
 				const vm = this;
 				if( vm.selectedLevel != lv ){
 					vm.selectedLevel = lv;
-					$('#status-page').load('../../TeachingCenter/concept4_part.html #' + lv + ' > *');
+					vm.bigDataNow = vm.bigData[vm.selectedLevel]; //- reactive 2. 主動行為觸發 methods 函式中的 data
+					vm.fnAll(vm.bigData, lv);
 				}else{
 					console.log('the same label');
 				}
 			},
+			fnAll(data, lv){
+				const vm = this;
+				vm.fnRenderPie(data[lv].pie);
+				vm.fnRenderRadar(data[lv].radar_basic, data[lv].radar);
+				$('#status-page').load('../../TeachingCenter/concept4_part.html #' + lv + ' > *');
+			},
 			fnRenderPie(DATA){
 				const vm = this;
+				// reset v (不是正確清除字體變粗方法，只會使 chart.js 沒有繪製 )
+				// Chart.plugins.register({
+				// 	afterDatasetsDraw: function(chartInstance, easing) {
+				// 		const ctx = chartInstance.chart.ctx;
+				// 		chartInstance.data.datasets.forEach(function(item, i) {
+				// 			const meta = chartInstance.getDatasetMeta(i);
+				// 			if (!meta.hidden && meta.type == 'pie' ) {
+				// 				ctx.clearRect(0,0,135,135)
+				// 			}
+				// 		});
+				// 	}
+				// });
+
 				// html v
 				$('#piebox').html(vm.defHtml.pie);
 
@@ -176,40 +218,44 @@
 					options
 				});
 
-				Chart.plugins.register({
-					afterDatasetsDraw: function(chartInstance, easing) {
-						// To only draw at the end of animation, check for easing === 1
-						const ctx = chartInstance.chart.ctx;
-						let total = 0;
-						chartInstance.data.datasets[0].data.forEach(function(item){
-							total += item;
-						});
-						chartInstance.data.datasets.forEach(function(dataset, i) {
-							const meta = chartInstance.getDatasetMeta(i);
-							if (!meta.hidden && meta.type == 'pie' ) {
-								meta.data.forEach(function(element, index) {
-									// if( element._chart.config.type == 'pie'){
-									// Draw the text in black, with the specified font
-									ctx.fillStyle = '#000';
-									const fontSize = 15;
-									const fontStyle = 'normal';
-									const fontFamily = 'Helvetica Neue';
-									ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
-									// Just naively convert to string for now
-									const dataString = dataset.data[index].toString();
-									// const percent = Math.round(dataString / total * 100 * 10)/10;
-									const percent = Math.round(dataString / total * 100 );
-									// Make sure alignment settings are correct
-									ctx.textAlign = 'center';
-									ctx.textBaseline = 'middle';
-									const position = element.tooltipPosition();
-									ctx.fillText( percent +'%' , position.x, position.y);
-									// }
-								});
-							}
-						});
-					}
-				});
+				// 文字繪製只執行一次(多次字會變粗)(只一次，但數值變化效果仍在) v
+				if( !vm.drawTxt ){
+					vm.drawTxt = true;
+					Chart.plugins.register({
+						afterDatasetsDraw: function(chartInstance, easing) {
+							// To only draw at the end of animation, check for easing === 1
+							const ctx = chartInstance.chart.ctx;
+							let total = 0;
+							chartInstance.data.datasets[0].data.forEach(function(item){
+								total += item;
+							});
+							chartInstance.data.datasets.forEach(function(dataset, i) {
+								const meta = chartInstance.getDatasetMeta(i);
+								if (!meta.hidden && meta.type == 'pie' ) {
+									meta.data.forEach(function(element, index) {
+										// if( element._chart.config.type == 'pie'){
+										// Draw the text in black, with the specified font
+										ctx.fillStyle = '#000';
+										const fontSize = 15;
+										const fontStyle = 'normal';
+										const fontFamily = 'Helvetica Neue';
+										ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+										// Just naively convert to string for now
+										const dataString = dataset.data[index].toString();
+										// const percent = Math.round(dataString / total * 100 * 10)/10;
+										const percent = Math.round(dataString / total * 100 );
+										// Make sure alignment settings are correct
+										ctx.textAlign = 'center';
+										ctx.textBaseline = 'middle';
+										const position = element.tooltipPosition();
+										ctx.fillText( percent +'%' , position.x, position.y);
+										// }
+									});
+								}
+							});
+						}
+					});
+				};
 			},
 			fnAfterRenderPie(){},
 			fnChartRadar(data, level, max) {
@@ -358,8 +404,9 @@
 			}
 		},
 		data: {
+			drawTxt: false,
 			bigData: new Object,
-			bigDataNow: new Object,
+			bigDataNow: new Object, //- reactive 1. 綁定 data
 			time: '?' + new Date().getTime(),
 			selectedLevel: memberLevel,
 			level: ['a1', 'a2', 'b1', 'b2', 'c1'],
@@ -385,8 +432,8 @@
 			cpn_level_item,
 			cpn_pie_val_box,
 			cpn_radar_item,
-			cpn_colbox_block,
-			cpn_colbox_row
+			// cpn_colbox_block,
+			// cpn_colbox_row
 		},
 		el: "#app"
 	})

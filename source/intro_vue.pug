@@ -71,3 +71,42 @@ html(lang="en")
 //- --------------------------------
 //- cpn_radar_item
 //- 	:class='{"active": item == 某數據 }'
+
+//- --------------------------------
+//- x
+//- <div class="collbox-block"
+//- 	v-for='(item, i) in reactiveNowSuggest'
+//- >
+//- reactiveNowSuggest(){
+//- 	return this.bigData[this.selectedLevel].suggest;
+//- };
+
+//- suggest 寫在 => cpn v^ reactive
+
+//- o
+//- <div class="collbox-block"
+//- 	v-for='(item, i) in reactiveNowSuggest.suggest'
+//- >
+//- reactiveNowSuggest(){
+//- 	return this.bigData[this.selectedLevel];
+//- };
+
+//- --------------------------------
+//- 避免 canvas 外掛(Chart.plugins.register函式)文字一再加粗的方法
+//- Chart.plugins.register({
+//- 	...
+//- 	ctx.fillText
+//- ^ 文字繪製只執行一次(多次字會變粗)(只一次，但數值變化效果仍在) v
+//- ^^^^ (O) 限制文字繪製一次、不再執行
+//- vvvv (X) clearRect此會使chart.js被刪去、不再出現
+//- v 不是正確清除字體變粗方法，只會使 chart.js 沒有繪製
+//- Chart.plugins.register({
+//- 	...
+//-		ctx.clearRect(0,0,135,135)	
+
+//- --------------------------------
+//- computed 之 reactive 使用指南 v
+//- 1. 綁定 data
+//- 2. 主動行為觸發 methods 函式中的 data
+//- 3. 被變化的 data 另名設定入 computed 中
+//- 4. 此另名 compouted 函式給 view 中的 cpn 使用
