@@ -24,7 +24,7 @@
 		</script>
 		<script src="./assets/plugins/jquery/jquery.1.12.4.min.js"></script>
 		<script src="./assets/plugins/chart-js/Chart-2.7.2.min.js"></script>
-		<script src="./assets/plugins/vue/vue2.6.12.js"></script>
+		<script src="./assets/plugins/vue/vue2.6.12.min.js"></script>
 		<script src="./js/cpn_1.js"></script>
 	</head>
 	<body> 
@@ -44,38 +44,12 @@
 						<div class="status-title">課程建議</div>
 						<div id="collbox">
 							<div class="collbox-content">
-								<div class="collbox-block"
-									v-for='(block, i) in reactiveNowSuggest'
-									:key='i'
+								<!-- v reactive 4. 此另名 compouted 函式(reactiveNowSuggest)給 view 中的 cpn 使用 -->
+								<cpn_colbox_block
+									v-for= '(block, i) in reactiveNowSuggest'
+									:prop = 'block'
+									:key = 'i'
 								>
-								<!-- ^ reactive 4. 此另名 compouted 函式給 view 中的 cpn 使用 -->
-									<div class="collbox-title">
-										<div class="collbox-row">
-											<div class="collbox-col">{{block.title}}</div>
-											<div class="collbox-col">己上過數量</div>
-											<div class="collbox-col">建議數量</div>
-											<div class="collbox-col">目前進度</div>
-										</div>
-									</div>
-									<div class="collbox-box">
-										<div class="collbox-row"
-											v-for='(row, j) in block.item'
-											:key='j'
-										>
-											<div class="collbox-col">{{row.cursor}}</div>
-											<div class="collbox-col">{{row.already}}</div>
-											<div class="collbox-col">{{row.suggest}}</div>
-											<div class="collbox-col">
-												<div class="collbox-percent" 
-													:style="fnPercentStyle(fnPercent(row.already, row.suggest))"
-													:class='{"is-less": fnPercent(row.already, row.suggest) <= 20}'
-												>
-													<span>{{fnPercent(row.already, row.suggest)}}%</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -83,11 +57,7 @@
 						<div id="pie">
 							<div class="status-title">學習面向</div>
 							<div id="piebox">
-								<!-- .status-title 學習面向-->
-								<!-- **應前往「js/crm_canvas.js」中增的變數「defaultCanvasHtml.pie」中結構以下變化-->
-								<!-- .piebox-item-->
-								<!-- 	.canvars-title-->
-								<!-- 	canvas#pie0(width='120' height='120')-->
+								<div class="piebox-item"><canvas id="canvasPie" width="120" height="120"></canvas></div>
 							</div>
 							<div class="canvas-valbox">
 								<cpn_pie_val_box
@@ -142,14 +112,6 @@
 			}
 		},
 		methods: {
-			fnPercent(already, suggest){
-				let percent = Math.round( already / suggest * 100 );
-				if( percent > 100 ){ percent = 100 };
-				return Number(percent);
-			},
-			fnPercentStyle(val){
-				return 'width:' + val + '%';
-			},
 			fnSelectLv(lv){
 				const vm = this;
 				if( vm.selectedLevel != lv ){
@@ -180,9 +142,6 @@
 				// 		});
 				// 	}
 				// });
-
-				// html v
-				$('#piebox').html(vm.defHtml.pie);
 
 				// 配色 v
 				const backgroundColor = [];
@@ -257,7 +216,6 @@
 					});
 				};
 			},
-			fnAfterRenderPie(){},
 			fnChartRadar(data, level, max) {
 				const vm = this;
 				new Chart($("#chartRadar"), {
@@ -410,9 +368,6 @@
 			time: '?' + new Date().getTime(),
 			selectedLevel: memberLevel,
 			level: ['a1', 'a2', 'b1', 'b2', 'c1'],
-			defHtml: {
-				pie: '<div class="piebox-item"><canvas id="canvasPie" width="120" height="120"></canvas></div>'
-			},
 			pieColor: {
 				基礎養成: "#f5355a",
 				自我意識: "#a476c1",
@@ -432,7 +387,7 @@
 			cpn_level_item,
 			cpn_pie_val_box,
 			cpn_radar_item,
-			// cpn_colbox_block,
+			cpn_colbox_block,
 			// cpn_colbox_row
 		},
 		el: "#app"

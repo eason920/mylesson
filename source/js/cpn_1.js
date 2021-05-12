@@ -4,7 +4,7 @@
 const prefix = 'https://funday.asia/';
 Vue.filter('filterBGC', (string) => { return 'background-color:' + string });
 Vue.filter('filterRadarItem', (number) => { return 'ritem' + ( Number(number) -1 ) });
-// Vue.filter('filterPercent', (percent) => { return 'width:'+ percent });
+Vue.filter('filterPercent', (percent) => { return 'width:'+ percent + '%' });
 
 // ==========================================
 // == COMPONENTS v
@@ -18,9 +18,63 @@ const cpn_level_item = {
 	`,
 	methods: {
 		emit_select_lv(){
-			console.log('test emit');
 			this.$emit('connect_select_lv');
 		}
+	}
+};
+
+const cpn_colbox_row = {
+	props: ['prop'],
+	template: `
+		<div class="collbox-row">
+			<div class="collbox-col">{{prop.cursor}}</div>
+			<div class="collbox-col">{{prop.already}}</div>
+			<div class="collbox-col">{{prop.suggest}}</div>
+			<div class="collbox-col">
+				<div class="collbox-percent"
+					:style="percent | filterPercent"
+					:class='{"is-less": percent <= 20}'
+				>
+					<span>{{percent}}%</span>
+				</div>
+			</div>
+		</div>
+	`,
+	created(){
+		const vm = this;
+		vm.percent = Math.floor( vm.prop.already / vm.prop.suggest * 100 );
+		if( vm.percent > 100 ){ vm.percent = 100 }
+	},
+	data(){
+		return {
+			percent: '',
+		}
+	}
+};
+
+const cpn_colbox_block = {
+	props: ['prop'],
+	template: `
+		<div class="collbox-block">
+			<div class="collbox-title">
+				<div class="collbox-row">
+					<div class="collbox-col">{{prop.title}}</div>
+					<div class="collbox-col">己上過數量</div>
+					<div class="collbox-col">建議數量</div>
+					<div class="collbox-col">目前進度</div>
+				</div>
+			</div>
+			<div class="collbox-box">
+				<cpn_colbox_row
+					v-for='(row, j) in prop.item'
+					:prop='row'
+					:key='j'
+				></cpn_colbox_row>
+			</div>
+		</div>
+	`,
+	components: {
+		cpn_colbox_row
 	}
 };
 
@@ -44,53 +98,3 @@ const cpn_radar_item = {
 		</div>
 	`
 };
-
-// --------------------------------
-// --------------------------------
-// const cpn_colbox_block = {
-// 	props: ['prop'],
-// 	template: `
-// 		<div class="collbox-block">
-// 			<div class="collbox-title">
-// 				<div class="collbox-row">
-// 					<div class="collbox-col">數位學堂</div>
-// 					<div class="collbox-col">己上過數量</div>
-// 					<div class="collbox-col">建議數量</div>
-// 					<div class="collbox-col">目前進度</div>
-// 				</div>
-// 			</div>
-// 			<div class="collbox-box">
-// 				<!--div class="collbox-row">
-// 					<div class="collbox-col">數位項目2</div>
-// 					<div class="collbox-col">45</div>
-// 					<div class="collbox-col">36</div>
-// 					<div class="collbox-col">
-// 						<div class="collbox-percent" style="width:100%"><span>100%</span></div>
-// 					</div>
-// 				</div>
-// 				<div class="collbox-row">
-// 					<div class="collbox-col">數位項目3</div>
-// 					<div class="collbox-col">10</div>
-// 					<div class="collbox-col">77</div>
-// 					<div class="collbox-col">
-// 						<div class="collbox-percent is-less" style="width:13%"><span>13%</span></div>
-// 					</div>
-// 				</div-->
-// 			</div>
-// 		</div>
-// 	`
-// };
-
-// const cpn_colbox_row = {
-// 	props: [],
-// 	template: `
-// 		<div class="collbox-row">
-// 			<div class="collbox-col">數位項目1</div>
-// 			<div class="collbox-col">13</div>
-// 			<div class="collbox-col">36</div>
-// 			<div class="collbox-col">
-// 				<div class="collbox-percent" style="width:36%"><span>36%</span></div>
-// 			</div>
-// 		</div>
-// 	`
-// };

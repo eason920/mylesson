@@ -105,8 +105,14 @@ html(lang="en")
 //-		ctx.clearRect(0,0,135,135)	
 
 //- --------------------------------
+//- chart.js 重繪不需重制 html 結構 (html('') + html(defHtml))
+
+//- --------------------------------
 //- computed 之 reactive 使用指南 v
 //- 1. 綁定 data
 //- 2. 主動行為觸發 methods 函式中的 data
 //- 3. 被變化的 data 另名設定入 computed 中
 //- 4. 此另名 compouted 函式給 view 中的 cpn 使用
+
+//- --------------------------------
+//- 雙層 components，在cpn中引用的cpn要做 end tag (</cpn>) 否則會噴錯
