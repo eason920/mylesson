@@ -41,7 +41,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		<meta property="og:image" content="https://funday.asia/images/Image02.jpg">
 		<meta property="og:description" content="FUNDAY台灣最大英語數位資料庫，超過1萬多篇主題時事/商用英語，每日更新，每天只要15分鐘，使用線上工具，透過老師講解與文章測驗，吸收最新生活用語和國際議題，跨平台學習不受限！國內50所大學語言中心培訓實績；上百間大型公民營企業培訓經驗；採用歐洲理事會CEFR語言學習架構；幫你建立個人專屬的學習計畫與追蹤功能，讓學習與生活結合，開拓更寬廣的國際視野，成為你的終身學習夥伴。" >
 		<meta property="og:keywords" content="看新聞學英文,英文閱讀,時事英文,線上英文,學習英文,看電影學英文,英語會話,雙語新聞,線上英文課程,英聽,聽力練習,線上英語,英文文法,聽音樂學英文,英文寫作,英語口說">    
-		<title>My Lesson page 3_2 with helf time</title>
+		<title>My Lesson page 3 helf time vision</title>
 		<link href="./2020/assets/plugins/bootstrap/bootstrap.4.0.css" rel="stylesheet"/>
 		<link href="./2020/css/mylesson_3.css?<%=Timer%>" rel="stylesheet"/>
 		<link href="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css?<%=Timer%>" rel="stylesheet"/>
@@ -111,7 +111,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		<script src="./2020/assets/plugins/jquery/jquery.1.12.4.min.js"></script>
 		<script src="./2020/assets/plugins/vue/vue2.6.12.js"></script>
 		<script src="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.min.js"></script>
-		<script src="./2020/js/cpn_3.js?<%=Timer%>"></script>
+		<script src="./2020/js/cpn_3_1100519.js?<%=Timer%>"></script>
 		<!---->
 		<script src="./2020/assets/plugins/jquery-ui/1.11.2.js"></script>
 		<script src="../jquery.cookie.js"></script>    
@@ -415,8 +415,9 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				url: './2020/json/classList-' + vm.memberLevel + '.json', // << .json 版本
 				// url: './2020/api/classList2.asp?levels=' + vm.memberLevel + '&date=2021/4/1',// ** 應改回 .json 版本，A1、A2課多者的效能致久會需六秒
 				success(res){
-					console.log('%call >>' + './2020/api/classList2.asp?levels=' + vm.memberLevel + '&date=2021/4/1', 'color: greenyellow');
-					console.log(res.data, res.data.length, res.data.length == 0);
+					// console.log('%call >>' + './2020/api/classList2.asp?levels=' + vm.memberLevel + '&date=2021/4/1', 'color: greenyellow');
+					// console.log(res.data, res.data.length, res.data.length == 0);
+					console.log('420 ', res);
 					if( res.data.length != 0 ){
 						// 全時段仍有課程 v
 						for( a in res.data ){
