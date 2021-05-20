@@ -410,10 +410,8 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			// 角本
 			$.ajax({
 				type: 'GET',
-				// url: './2020/api/classList.asp?levels=2',
-				// url: './2020/api/classList.asp?levels=' + vm.memberLevel,
-				url: './2020/json/classList-' + vm.memberLevel + '.json', // << .json 版本
-				// url: './2020/api/classList2.asp?levels=' + vm.memberLevel + '&date=2021/4/1',// ** 應改回 .json 版本，A1、A2課多者的效能致久會需六秒
+				// url: './2020/json/classList-' + vm.memberLevel + '.json', // << .json 版本 // json & api change
+				url: './2020/api/classList.asp?levels=' + vm.memberLevel + '&date=2021/5/28',// ** 應改回 .json 版本，A1、A2課多者的效能致久會需六秒
 				success(res){
 					// console.log('%call >>' + './2020/api/classList2.asp?levels=' + vm.memberLevel + '&date=2021/4/1', 'color: greenyellow');
 					// console.log(res.data, res.data.length, res.data.length == 0);
@@ -421,12 +419,34 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					if( res.data.length != 0 ){
 						// 全時段仍有課程 v
 						for( a in res.data ){
-							const resTime = res.data[a].class_btime.split(':')[0];
+							const resTime = res.data[a].class_btime;
 							for( b in vm.timeBlock ){
 								const vueTime = vm.timeBlock[b].time;
 								if( resTime == vueTime ){
-									if( resTime != '00' ){
-										vm.timeBlock[b].ary.push(res.data[a]);
+									if( resTime != '00:00' ){
+										// 1
+										// vm.timeBlock[b].ary.push(res.data[a]);
+
+										// 2
+										// if( /00/i.test(resTime) && !/30/i.test(vueTime) ){
+										// 	vm.timeBlock[b].ary.push(res.data[a]);
+										// };
+										// if( /30/i.test(resTime) && !/00/i.test(vueTime) ){
+										// 	vm.timeBlock[b].ary.push(res.data[a]);
+										// };
+
+										// 3
+										if( /00/i.test(resTime) ){
+											// res is :00
+											if( !/30/i.test(vueTime) ){
+												vm.timeBlock[b].ary.push(res.data[a]);
+											};
+										}else{
+											// res is :30
+											if( !/00/i.test(vueTime) ){
+												vm.timeBlock[b].ary.push(res.data[a]);
+											}
+										}
 									}else{
 										const dDate = res.data[a].classdate.split('/')[2];
 										const today = new Date().getDate();
@@ -498,7 +518,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				let minutes = new Date().getMinutes();
 				if( minutes <= 15 || minutes >= 25 && minutes <= 45 || minutes >= 55 ){
 					// ON-TIME v
-					vm.fnRefresh(minutes);
+					vm.fnRefresh(minutes, 'one only');
 				}else{
 					// OFF-TIME v
 					// 顯示 content v
@@ -511,28 +531,30 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				// 多次性判斷式( REFRESH-TIMTER ) v
 				vm.refreshControl =window.setInterval(()=>{
 					minutes = new Date().getMinutes();
+					console.log('%cinter runing, minute is '+ minutes,'color:greenyellow');
 					switch(true){
 						case minutes <= 15 || minutes >= 25 && minutes <= 45 || minutes >= 55 :
-							Cookies.set('fifteenRefresh', false);
-							console.log('%c====================', 'color:yellow');
+							console.log('%cInterval 15 25 45 55 ','color:greenyellow');
+							Cookies.set('refresh', false);
 							vm.fnGetTime();
-							vm.fnRefresh(minutes);
+							vm.fnRefresh(minutes,'interval');
 							break;
 						case minutes == 16 || minutes == 46:
-							// 時段尾段 15 分
-							if( Cookies.get('fifteenRefresh') == 'false' ){
-								Cookies.set('fifteenRefresh', true);
-								window.location.reload();
-								// window.clearinterval(vm.refreshControl);
-							}
+							console.log('%cInterval 16 or 46','color:greenyellow');
+							Cookies.set('refresh', true);
+							window.location.reload();
 							break;
 						default:
+							console.log();
+							if( Cookies.get('refresh') == 'false' ){
+								console.log('%cIntervalf cookie is false 17-24 & 47~54','color:greenyellow');
+								Cookies.set('refresh', true);
+								window.location.reload();
+								// window.clearinterval(vm.refreshControl);
+							}else{
+								console.log('%cIntervalf cookie is true 17-24 & 47~54','color:greenyellow');
+							}
 					};
-					// if( minutes >= 55 || minutes <= 14 ){
-						
-					// }else if( minutes == 15 ){
-						
-					// }
 				}, 1000 * 50);
 
 			},
@@ -546,32 +568,76 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				vm.nowTime = '以下結果取自 ' + hours + ' 點 ' + minutes +' 分 ' + seconds + ' 秒';
 			},
 
-			fnRefresh(minutes){
+			fnRefresh(minutes, from){
+				console.log('%cfnRefresh from '+ from,'color:greenyellow');
 				const vm = this;
 				// if( minutes != 15 ){
 					// 非時段尾段 15 分時 v
 					let hours = new Date().getHours();
-					if( minutes >= 55 ){
-						// 55 ~ 59 v
-						console.log('>=55');
-						hours = hours + 1;
-						// Number( new Date().gethours() ) + 1;
-					}else{
-						// 0 ~ 14, 15己在第一層篩除在外 v
-						console.log('<=14');
+					let hoursForGetIndex = '';
+					const delNow1 = '';
+					const delNow2 = '';
+					switch(true){
+						case minutes >= 25 && minutes <= 45:
+							console.log('%cfn 25~45','color:yellow');
+							hoursForGetIndex = hours + ':30';
+							break;
+						case minutes >= 46 && minutes <= 54:
+							console.log('%cfn 46~54','color:yellow');
+							hours = hours + 1;
+							hoursForGetIndex = hours + ':00';
+							//
+							// delNow1 = vm.timeBlock.findIndex( item => item.time.split(':')[0] == new Date().getHours() );
+							// console.log('delNow1 is ', delNow1);
+							// vm.timeBlock.splice(delNow1, 1);
+							// delNow2 = vm.timeBlock.findIndex( item => item.time.split(':')[0] == new Date().getHours() );
+							// console.log('delNow2 is ', delNow2);
+							// vm.timeBlock.splice(delNow2, 1);
+							break;
+						case minutes >= 55:
+							console.log('%cfn >=55','color:yellow');
+							hours = hours + 1;
+							hoursForGetIndex = hours + ':00';
+							//
+							// delNow1 = vm.timeBlock.findIndex( item => item.time.split(':')[0] == new Date().getHours() );
+							// console.log('delNow1 is ', delNow1);
+							// vm.timeBlock.splice(delNow1, 1);
+							// delNow2 = vm.timeBlock.findIndex( item => item.time.split(':')[0] == new Date().getHours() );
+							// console.log('delNow2 is ', delNow2);
+							// vm.timeBlock.splice(delNow2, 1);
+							break;
+						default:
+							console.log('%cfn off time','color:yellow');
+							hours = hours + 1;
+							hoursForGetIndex = hours + ':00';
 					};
+
+					// const delNow1 = vm.timeBlock.findIndex(function(item){
+						// 	console.log('delNow1 item -> ', item.time.split(':')[0], new Date().getHours());
+					// 	return item.time.split[':'] == new Date().getHours();
+					// }) 
+					
+
+					console.log('%chourse is '+hours,'color:pink');
+
+					console.log('566 > ', hoursForGetIndex);
 
 					// ON-TIME INDEX OF ARY v
-					let index;
-					for( a in vm.timeBlock ){
-						if( vm.timeBlock[a].time == hours ){ index = a };
-					};
+					// let index;
+					// for( a in vm.timeBlock ){
+					// 	if( vm.timeBlock[a].time == hoursForGetIndex ){ index = a };
+					// };
+					// let index = vm.timeBlock.findIndex(function(item, i){
+					// 	return item.time == hoursForGetIndex;
+					// });
+					const index = vm.timeBlock.findIndex( (item) => item.time == hoursForGetIndex );
+					console.log('573 > ', index);
 
 					// ON-TIME API v
-					const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + hours;
-					// const url ='./2020/api/classList2.asp?levels=' + vm.memberLevel + '&H=' + hours + '&date=2021/4/1';
+					// const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + hours; // json now date change
+					const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + hours + '&date=2021/5/28';
 					console.log('block', vm.timeBlock[index]);
-					console.log('minutes is >> ', minutes, ' / minutes >= 15 ? >> ' , (minutes >= 15), ' / hours is >>', hours, ' / index is >>', index, ' / time is >>',vm.timeBlock[index].time , ' / ajax url >>', url );
+					// console.log('minutes is >> ', minutes, ' / minutes >= 15 ? >> ' , (minutes >= 15), ' / hours is >>', hours, ' / index is >>', index, ' / time is >>',vm.timeBlock[index].time , ' / ajax url >>', url );
 					$.ajax({
 						type: 'GET',
 						url,
@@ -583,6 +649,9 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 							// 2
 							setTimeout(()=>{
 								vm.timeBlock[index].ary = res.data;
+								if( minutes >= 15 ){
+									// const del = vm.timeBlock[index].ary.
+								}
 
 								// 補齊未滿 3n / 4n v
 								const max = $(window).width() > 1366 ? 4 : 3;
@@ -591,7 +660,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 								if( l != 0 && l%max > 0 ){
 									const addNum = max - (l%max);
 									for( i=0;i<addNum;i++ ){
-										console.log('i is >>', i);
+										// console.log('i is >>', i);
 										vm.timeBlock[index].ary.push({empty: true});
 									};
 								}
@@ -732,13 +801,25 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			gutter: 5,
 			//
 			timeBlock: [
-				{time: '00', ary: [], isToday: true}, 
-				{time: '01', ary: []}, {time: '08', ary: []}, {time: '09', ary: []}, 
-				{time: '10', ary: []}, {time: '11', ary: []}, {time: '12', ary: []}, {time: '13', ary: []}, 
-				{time: '14', ary: []}, {time: '15', ary: []}, {time: '16', ary: []}, {time: '17', ary: []}, 
-				{time: '18', ary: []}, {time: '19', ary: []}, {time: '20', ary: []}, {time: '21', ary: []}, 
-				{time: '22', ary: []}, {time: '23', ary: []},
-				{time: '00', ary: [], isToday: false}
+				{time: '00:00', ary: [], isToday: true}, 
+				{time: '01:00', ary: []}, {time: '01:30', ary: []}, 
+				{time: '08:00', ary: []}, {time: '08:30', ary: []}, 
+				{time: '09:00', ary: []}, {time: '09:30', ary: []},
+				{time: '10:00', ary: []}, {time: '10:30', ary: []}, 
+				{time: '11:00', ary: []}, {time: '11:30', ary: []}, 
+				{time: '12:00', ary: []}, {time: '12:30', ary: []}, 
+				{time: '13:00', ary: []}, {time: '13:30', ary: []}, 
+				{time: '14:00', ary: []}, {time: '14:30', ary: []}, 
+				{time: '15:00', ary: []}, {time: '15:30', ary: []}, 
+				{time: '16:00', ary: []}, {time: '16:30', ary: []}, 
+				{time: '17:00', ary: []}, {time: '17:30', ary: []}, 
+				{time: '18:00', ary: []}, {time: '18:30', ary: []}, 
+				{time: '19:00', ary: []}, {time: '19:30', ary: []}, 
+				{time: '20:00', ary: []}, {time: '20:30', ary: []}, 
+				{time: '21:00', ary: []}, {time: '21:30', ary: []},
+				{time: '22:00', ary: []}, {time: '22:30', ary: []},
+				{time: '23:00', ary: []}, {time: '23:30', ary: []},
+				{time: '00:00', ary: [], isToday: false}
 			],
 			bus: {
 			}
