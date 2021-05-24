@@ -424,18 +424,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 								const vueTime = vm.timeBlock[b].time;
 								if( resTime == vueTime ){
 									if( resTime != '00:00' ){
-										// 1
-										// vm.timeBlock[b].ary.push(res.data[a]);
-
-										// 2
-										// if( /00/i.test(resTime) && !/30/i.test(vueTime) ){
-										// 	vm.timeBlock[b].ary.push(res.data[a]);
-										// };
-										// if( /30/i.test(resTime) && !/00/i.test(vueTime) ){
-										// 	vm.timeBlock[b].ary.push(res.data[a]);
-										// };
-
-										// 3
 										if( /00/i.test(resTime) ){
 											// res is :00
 											if( !/30/i.test(vueTime) ){
@@ -461,8 +449,43 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 										};
 									};
 								};
+
+								// ----------------------------
+								// ----------------------------
 								if( a == res.data.length - 1 && b == vm.timeBlock.length -1 ){
-									vm.fnAfterAry();
+									// 確保 a & b 來到最後即 timeBlock 結構好，即基本視覺己完成
+									// 1. 但應補齊未滿 3n / 4n
+									// 2. 但 >= 16 時應刪除「整」點時段要處理
+									// 3. 但 >= 46 時應刪除「半」點時段要處理
+									// 4. 完成基本視覺再往下做第二層角本 fnAfterAry()
+									// 5. 但仍未消loade、顯示主畫面#content (在 fnAfterAry 中)
+
+									console.log('timeBlock ', vm.timeBlock);
+									// 加載 scroll 套件 v
+									new PerfectScrollbar('#content .wrapper');
+									setTimeout(()=>{
+										$('#content .wrapper').scrollTop(1);
+									},0);
+													
+									// 1. 補齊未滿 3n / 4n v
+									const max = $(window).width() > 1366 ? 4 : 3;
+									for( a in vm.timeBlock ){
+										const l = vm.timeBlock[a].ary.length;
+										if( l != 0 && l%max > 0 ){
+											const addNum = max - (l%max);
+											for( i=0;i<addNum;i++ ){
+												vm.timeBlock[a].ary.push({empty: true});
+											};
+										}
+									};
+
+									// 2. >= 16 時應刪除「整」點時段 v
+									// 3. >= 46 時應刪除「半」點時段 v
+									vm.fnDeleteErrTimeBlock();
+									setTimeout(function(){
+										// 4. 前往第二層角本 v
+										vm.fnAfterAry();
+									},300);
 								}
 							};
 						};
@@ -489,38 +512,54 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		},
 
 		methods: {
+			fnDeleteErrTimeBlock(){
+				const vm = this;
+				const minutes = new Date().getMinutes();
+				// const minutes = vm.deBugTime.minutes;
+				console.log('delete time', minutes);
+				const hours = new Date().getHours();
+
+				// TOP HOURS v
+				if( minutes >= 16 ){
+					const time = hours + ':00';
+					const delNow = vm.timeBlock.findIndex(function(item){
+						return item.time == time;
+					});
+					console.log('delete time >=16 delete TOP house is ', time, ' index is ', delNow);
+					vm.timeBlock[delNow].ary=[];
+				};
+
+				// BOTTOM HOURS v
+				if( minutes >=46 ){
+					const time = hours + ':30';
+					const delNow = vm.timeBlock.findIndex(item => item.time == time);
+					console.log('delete time >=46 delete BOTTOM house is ', time, ' index is ', delNow);
+					vm.timeBlock[delNow].ary=[];
+				};
+			},
+
 			fnAfterAry(){
 				const vm = this;
-				console.log('timeBlock ', vm.timeBlock);
-				
-				// 加載 scroll 套件 v
-				new PerfectScrollbar('#content .wrapper');
-				setTimeout(()=>{
-					$('#content .wrapper').scrollTop(1);
-				},0);
-								
-				// 補齊未滿 3n / 4n v
-				const max = $(window).width() > 1366 ? 4 : 3;
-				for( a in vm.timeBlock ){
-					const l = vm.timeBlock[a].ary.length;
-					if( l != 0 && l%max > 0 ){
-						const addNum = max - (l%max);
-						for( i=0;i<addNum;i++ ){
-							vm.timeBlock[a].ary.push({empty: true});
-						};
-					}
-				}
-
 				//--------------------------------------
-				// 一次性判斷式 v
+				// ** 一次性判斷式 v
 				vm.fnGetTime();
 
 				let minutes = new Date().getMinutes();
-				if( minutes <= 15 || minutes >= 25 && minutes <= 45 || minutes >= 55 ){
-					// ON-TIME v
+				// let minutes = vm.deBugTime.minutes;
+				
+				if( minutes >= 55 || minutes <= 15 || minutes >= 25 && minutes <= 45 ){
+					// ON-TIME 立刻刷新最新一筆一次 v
+					console.log('ontime, minutes is ', minutes);
 					vm.fnRefresh(minutes, 'one only');
+
+					// ** for demo v
+					// if( $('#content').is(':hidden') ){
+					// 	$('#ms2-loading').hide(100);
+					// 	$('#content').show(100);
+					// };
 				}else{
-					// OFF-TIME v
+					// OFF-TIME 不用刷新最新一筆 v
+					console.log('off time, minutes is ', minutes);
 					// 顯示 content v
 					if( $('#content').is(':hidden') ){
 						$('#ms2-loading').hide(100);
@@ -528,35 +567,112 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					};
 				};
 
-				// 多次性判斷式( REFRESH-TIMTER ) v
+				// // ** 多次性判斷式( REFRESH-TIMTER ) v
+				// let count = 0;
 				vm.refreshControl =window.setInterval(()=>{
+					console.log('---------------------------------');
 					minutes = new Date().getMinutes();
-					console.log('%cinter runing, minute is '+ minutes,'color:greenyellow');
+					// minutes = vm.deBugTime.minutes;
+
+					console.log('%cInterval runing, minutes is '+ minutes,'color:greenyellow');
+
+					const fn = function(){
+						Cookies.set('reload', false);
+						vm.fnGetTime();
+						vm.fnRefresh(minutes,'interval');
+					};
+					
 					switch(true){
-						case minutes <= 15 || minutes >= 25 && minutes <= 45 || minutes >= 55 :
-							console.log('%cInterval 15 25 45 55 ','color:greenyellow');
-							Cookies.set('refresh', false);
-							vm.fnGetTime();
-							vm.fnRefresh(minutes,'interval');
+						case minutes >= 55 || minutes <= 15 :
+							// ontime top hour area
+							console.log('%cInterval 整點 55~15','color:greenyellow');
+							fn();
 							break;
-						case minutes == 16 || minutes == 46:
-							console.log('%cInterval 16 or 46','color:greenyellow');
-							Cookies.set('refresh', true);
-							window.location.reload();
+						case minutes >= 25 && minutes <= 45 :
+							// ontime bottom hour area
+							console.log('%cInterval 半點 25~45 ','color:greenyellow');
+							fn();
 							break;
+
+						// on time 不重整畫面(為重抓api) ^ ====================================
+						// off time 可能要重整畫面(為重抓api) v ===============================
+
 						default:
-							console.log();
-							if( Cookies.get('refresh') == 'false' ){
-								console.log('%cIntervalf cookie is false 17-24 & 47~54','color:greenyellow');
-								Cookies.set('refresh', true);
+							if( Cookies.get('reload') == 'false' ){
+								console.log('%cIntervalf 16-24 & 46~54 未重整畫面(為重抓api、要來重整','color:greenyellow');
+								Cookies.set('reload', true);
 								window.location.reload();
-								// window.clearinterval(vm.refreshControl);
 							}else{
-								console.log('%cIntervalf cookie is true 17-24 & 47~54','color:greenyellow');
+								console.log('%cIntervalf 16-24 & 46~54 己重整畫面(為重抓api、不重整','color:greenyellow');
 							}
 					};
-				}, 1000 * 50);
 
+					// ----------------------------
+					// count ++;
+					// if(count >= 3){window.clearinterval(vm.refreshControl);}
+				}, 1000 * vm.deBugTime.refreshTime);
+
+			},
+
+			fnRefresh(minutes, from){
+				const vm = this;
+				console.log('%cfrom '+from+' /minutes is '+ minutes,'color: yellow');
+				let updateHourse = new Date().getHours();
+				if( minutes >= 55 ){ updateHourse ++ };
+				let updateMinutes = minutes >= 16 && minutes <= 45 ? ':30' : ':00';
+				const updateTime = updateHourse + updateMinutes;
+
+				const index = vm.timeBlock.findIndex(item => item.time == updateTime );
+				console.log('%cupdateTime is '+updateTime+' / index is '+ index,'color:yellow');
+
+				// ON-TIME API v
+				// const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + hours; // json now date change
+				const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + updateHourse + '&date=2021/5/28';
+				console.log('block', vm.timeBlock[index]);
+				// console.log('minutes is >> ', minutes, ' / minutes >= 15 ? >> ' , (minutes >= 15), ' / hours is >>', hours, ' / index is >>', index, ' / time is >>',vm.timeBlock[index].time , ' / ajax url >>', url );
+				vm.timeBlock[index].ary=[];
+				// ----------------------------
+				// ----------------------------
+				// ----------------------------
+				// ----------------------------
+				// ----------------------------
+				// ----------------------------
+				// ----------------------------
+				// ----------------------------
+				// ----------------------------
+				$.ajax({
+					type: 'GET',
+					url,
+					success(res){
+						console.log('RES is ', res);
+						res.data.forEach(function(item, i){
+							console.log('log time', item.class_btime, item.class_btime == updateTime);
+							if(item.class_btime == updateTime){
+								vm.timeBlock[index].ary.push(item);
+							};
+						});
+
+						// 補齊未滿 3n / 4n v
+						const max = $(window).width() > 1366 ? 4 : 3;
+						const l = vm.timeBlock[index].ary.length;
+						// console.log('after 1000', l);
+						if( l != 0 && l%max > 0 ){
+							const addNum = max - (l%max);
+							for( i=0;i<addNum;i++ ){
+								// console.log('i is >>', i);
+								vm.timeBlock[index].ary.push({empty: true});
+							};
+						}
+
+						// 顯示 content v
+						if( $('#content').is(':hidden') ){
+							// 顯示 content v
+							$('#ms2-loading').hide(100);
+							$('#content').show(100);
+						}
+
+					}
+				});
 			},
 
 			fnGetTime(){
@@ -566,114 +682,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				const minutes = String(date.getMinutes()).length < 2 ? '0'+date.getMinutes() : date.getMinutes();
 				const seconds = String(date.getSeconds()).length < 2 ? '0'+date.getSeconds() : date.getSeconds();
 				vm.nowTime = '以下結果取自 ' + hours + ' 點 ' + minutes +' 分 ' + seconds + ' 秒';
-			},
-
-			fnRefresh(minutes, from){
-				console.log('%cfnRefresh from '+ from,'color:greenyellow');
-				const vm = this;
-				// if( minutes != 15 ){
-					// 非時段尾段 15 分時 v
-					let hours = new Date().getHours();
-					let hoursForGetIndex = '';
-					const delNow1 = '';
-					const delNow2 = '';
-					switch(true){
-						case minutes >= 25 && minutes <= 45:
-							console.log('%cfn 25~45','color:yellow');
-							hoursForGetIndex = hours + ':30';
-							break;
-						case minutes >= 46 && minutes <= 54:
-							console.log('%cfn 46~54','color:yellow');
-							hours = hours + 1;
-							hoursForGetIndex = hours + ':00';
-							//
-							// delNow1 = vm.timeBlock.findIndex( item => item.time.split(':')[0] == new Date().getHours() );
-							// console.log('delNow1 is ', delNow1);
-							// vm.timeBlock.splice(delNow1, 1);
-							// delNow2 = vm.timeBlock.findIndex( item => item.time.split(':')[0] == new Date().getHours() );
-							// console.log('delNow2 is ', delNow2);
-							// vm.timeBlock.splice(delNow2, 1);
-							break;
-						case minutes >= 55:
-							console.log('%cfn >=55','color:yellow');
-							hours = hours + 1;
-							hoursForGetIndex = hours + ':00';
-							//
-							// delNow1 = vm.timeBlock.findIndex( item => item.time.split(':')[0] == new Date().getHours() );
-							// console.log('delNow1 is ', delNow1);
-							// vm.timeBlock.splice(delNow1, 1);
-							// delNow2 = vm.timeBlock.findIndex( item => item.time.split(':')[0] == new Date().getHours() );
-							// console.log('delNow2 is ', delNow2);
-							// vm.timeBlock.splice(delNow2, 1);
-							break;
-						default:
-							console.log('%cfn off time','color:yellow');
-							hours = hours + 1;
-							hoursForGetIndex = hours + ':00';
-					};
-
-					// const delNow1 = vm.timeBlock.findIndex(function(item){
-						// 	console.log('delNow1 item -> ', item.time.split(':')[0], new Date().getHours());
-					// 	return item.time.split[':'] == new Date().getHours();
-					// }) 
-					
-
-					console.log('%chourse is '+hours,'color:pink');
-
-					console.log('566 > ', hoursForGetIndex);
-
-					// ON-TIME INDEX OF ARY v
-					// let index;
-					// for( a in vm.timeBlock ){
-					// 	if( vm.timeBlock[a].time == hoursForGetIndex ){ index = a };
-					// };
-					// let index = vm.timeBlock.findIndex(function(item, i){
-					// 	return item.time == hoursForGetIndex;
-					// });
-					const index = vm.timeBlock.findIndex( (item) => item.time == hoursForGetIndex );
-					console.log('573 > ', index);
-
-					// ON-TIME API v
-					// const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + hours; // json now date change
-					const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + hours + '&date=2021/5/28';
-					console.log('block', vm.timeBlock[index]);
-					// console.log('minutes is >> ', minutes, ' / minutes >= 15 ? >> ' , (minutes >= 15), ' / hours is >>', hours, ' / index is >>', index, ' / time is >>',vm.timeBlock[index].time , ' / ajax url >>', url );
-					$.ajax({
-						type: 'GET',
-						url,
-						success(res){
-							console.log('api >>',res.data);
-							// 1 
-							vm.timeBlock[index].ary = [];
-
-							// 2
-							setTimeout(()=>{
-								vm.timeBlock[index].ary = res.data;
-								if( minutes >= 15 ){
-									// const del = vm.timeBlock[index].ary.
-								}
-
-								// 補齊未滿 3n / 4n v
-								const max = $(window).width() > 1366 ? 4 : 3;
-								const l = vm.timeBlock[index].ary.length;
-								// console.log('after 1000', l);
-								if( l != 0 && l%max > 0 ){
-									const addNum = max - (l%max);
-									for( i=0;i<addNum;i++ ){
-										// console.log('i is >>', i);
-										vm.timeBlock[index].ary.push({empty: true});
-									};
-								}
-
-								// 顯示 content v
-								if( $('#content').is(':hidden') ){
-									// 顯示 content v
-									$('#ms2-loading').hide(100);
-									$('#content').show(100);
-								}
-							},200);
-						}
-					});
 			},
 
 			fnBulletinShow(){
@@ -781,6 +789,10 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		},
 		
 		data: {
+			deBugTime: {
+				minutes: location.href.split('?')[1].split(',')[0],
+				refreshTime: location.href.split('?')[1].split(',')[1]
+			},
 			copyright: '',
 			refreshControl: '',
 			nowTime: '',
