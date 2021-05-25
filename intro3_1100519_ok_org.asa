@@ -41,10 +41,10 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		<meta property="og:image" content="https://funday.asia/images/Image02.jpg">
 		<meta property="og:description" content="FUNDAY台灣最大英語數位資料庫，超過1萬多篇主題時事/商用英語，每日更新，每天只要15分鐘，使用線上工具，透過老師講解與文章測驗，吸收最新生活用語和國際議題，跨平台學習不受限！國內50所大學語言中心培訓實績；上百間大型公民營企業培訓經驗；採用歐洲理事會CEFR語言學習架構；幫你建立個人專屬的學習計畫與追蹤功能，讓學習與生活結合，開拓更寬廣的國際視野，成為你的終身學習夥伴。" >
 		<meta property="og:keywords" content="看新聞學英文,英文閱讀,時事英文,線上英文,學習英文,看電影學英文,英語會話,雙語新聞,線上英文課程,英聽,聽力練習,線上英語,英文文法,聽音樂學英文,英文寫作,英語口說">    
-		<title>My Lesson page 3</title>
+		<title>My Lesson page 3 helf time vision</title>
 		<link href="./2020/assets/plugins/bootstrap/bootstrap.4.0.css" rel="stylesheet"/>
-		<link href="./2020/css/mylesson_3.css?1100525" rel="stylesheet"/>
-		<link href="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css" rel="stylesheet"/>
+		<link href="./2020/css/mylesson_3.css?<%=Timer%>" rel="stylesheet"/>
+		<link href="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css?<%=Timer%>" rel="stylesheet"/>
 		<style>
 
 			.lightBoxAD #DVLight{
@@ -407,47 +407,42 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			const ww = $(window).width();
 			vm.sideBarWidth = $('#sidebar').width();
 
-			// ## 角本-1 取得整日課表毛胚 ##
+			// 角本
 			$.ajax({
 				type: 'GET',
-				url: './2020/json/classList-' + vm.memberLevel + '.json', // ## 角本 API 毛胚
-				// url: './2020/api/classList.asp?levels=' + vm.memberLevel + '&date=2021/5/28',
-				// ^ ** 應改回 .json 版本，A1、A2課多者的效能致久會需六秒
+				// url: './2020/json/classList-' + vm.memberLevel + '.json', // << .json 版本 // json & api change
+				url: './2020/api/classList.asp?levels=' + vm.memberLevel + '&date=2021/5/28',// ** 應改回 .json 版本，A1、A2課多者的效能致久會需六秒
 				success(res){
+					// console.log('%call >>' + './2020/api/classList2.asp?levels=' + vm.memberLevel + '&date=2021/4/1', 'color: greenyellow');
+					// console.log(res.data, res.data.length, res.data.length == 0);
+					console.log('420 ', res);
 					if( res.data.length != 0 ){
-						// ## 角本-1-1a 全時段仍有課程(取得整日課表毛胚) v
+						// 全時段仍有課程 v
 						for( a in res.data ){
 							const resTime = res.data[a].class_btime;
 							for( b in vm.timeBlock ){
 								const vueTime = vm.timeBlock[b].time;
 								if( resTime == vueTime ){
 									if( resTime != '00:00' ){
-										// ## 角本-1-2 不是 00:00 (取得整日課表毛胚)
-										// if( /00/i.test(resTime) ){
-										// 	// res is :00
-										// 	if( !/30/i.test(vueTime) ){
-										// 		vm.timeBlock[b].ary.push(res.data[a]);
-										// 	};
-										// }else{
-										// 	// res is :30
-										// 	if( !/00/i.test(vueTime) ){
-										// 		vm.timeBlock[b].ary.push(res.data[a]);
-										// 	}
-										// }
-										// ## 角本-1-3 ^ 確保整與半的 res 不誤植 timeBlock 的 push (取得整日課表毛胚)
-										// ## 角本-1-3 v 未確保的 push
-										vm.timeBlock[b].ary.push(res.data[a]);
+										if( /00/i.test(resTime) ){
+											// res is :00
+											if( !/30/i.test(vueTime) ){
+												vm.timeBlock[b].ary.push(res.data[a]);
+											};
+										}else{
+											// res is :30
+											if( !/00/i.test(vueTime) ){
+												vm.timeBlock[b].ary.push(res.data[a]);
+											}
+										}
 									}else{
-										// ## 角本-1-3 是 00:00 (取得整日課表毛胚)
 										const dDate = res.data[a].classdate.split('/')[2];
 										const today = new Date().getDate();
 										if( dDate == today){
-											// ## 角本-1-4 今天的 00:00 (取得整日課表毛胚)
 											if( vm.timeBlock[b].isToday ){
 												vm.timeBlock[b].ary.push(res.data[a]);
 											};
 										}else{
-											// ## 角本-1-5 明日的 00:00 (取得整日課表毛胚)
 											if( !vm.timeBlock[b].isToday ){
 												vm.timeBlock[b].ary.push(res.data[a]);
 											};
@@ -458,12 +453,13 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 								// ----------------------------
 								// ----------------------------
 								if( a == res.data.length - 1 && b == vm.timeBlock.length -1 ){
-									// 角本1 小結：
-									// 確保 a & b 來到最後即 timeBlock 結構好，即基本毛胚視覺己完成
-									// ** 但仍未消loade、顯示主畫面#content (在 ## 角本-3 fnFrequency 中)
+									// 確保 a & b 來到最後即 timeBlock 結構好，即基本視覺己完成
+									// 1. 但應補齊未滿 3n / 4n
+									// 2. 但 >= 16 時應刪除「整」點時段要處理
+									// 3. 但 >= 46 時應刪除「半」點時段要處理
+									// 4. 完成基本視覺再往下做第二層角本 fnAfterAry()
+									// 5. 但仍未消loade、顯示主畫面#content (在 fnAfterAry 中)
 
-									// ## 角本-2 進入點 <<
-									// ## 角本-2 整日課表加工 v ##
 									console.log('timeBlock ', vm.timeBlock);
 									// 加載 scroll 套件 v
 									new PerfectScrollbar('#content .wrapper');
@@ -471,7 +467,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 										$('#content .wrapper').scrollTop(1);
 									},0);
 													
-									// ## 角本-2-1 補齊未滿 3n / 4n (整日課表加工) v
+									// 1. 補齊未滿 3n / 4n v
 									const max = $(window).width() > 1366 ? 4 : 3;
 									for( a in vm.timeBlock ){
 										const l = vm.timeBlock[a].ary.length;
@@ -483,21 +479,18 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 										}
 									};
 
-									// ## 角本-2-2 分鐘 >= 16 時應刪除「整」點時段(整日課表加工) v
-									// ## 角本-2-3 分鐘 >= 46 時應刪除「半」點時段(整日課表加工) v
+									// 2. >= 16 時應刪除「整」點時段 v
+									// 3. >= 46 時應刪除「半」點時段 v
 									vm.fnDeleteErrTimeBlock();
-									
 									setTimeout(function(){
-										// ## 角本-2-4 前往角本 3(整日課表加工) v
-										// ## 角本-3 進入點 <<
-										vm.fnFrequency();
+										// 4. 前往第二層角本 v
+										vm.fnAfterAry();
 									},300);
 								}
 							};
 						};
 					}else{
-						// ## 角本-1-1b 全時段己無課程 (尤其高等級 22:00 後) (取得整日課表毛胚) v
-						// ## 角本-5 顯示 content v
+						// 全時段己無課程 (尤其高等級 22:00 後) v
 						$('#ms2-loading').fadeOut();
 						$('#content').fadeIn();
 						$('#app').css('overflow', 'hidden');
@@ -509,6 +502,10 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		},
 
 		computed: {
+			// 	reactiveRefreshTimer(){
+			// 		return this.refresh.timer;
+			// 	},
+
 			reactiveNowTime(){
 				return this.nowTime;
 			},
@@ -518,6 +515,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			fnDeleteErrTimeBlock(){
 				const vm = this;
 				const minutes = new Date().getMinutes();
+				// const minutes = vm.deBugTime.minutes;
 				console.log('delete time', minutes);
 				const hours = new Date().getHours();
 
@@ -540,30 +538,37 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				};
 			},
 
-			fnFrequency(){
-				// ## 角本-3 刷新頻率 v
+			fnAfterAry(){
 				const vm = this;
 				//--------------------------------------
-				// ## 角本-3-1 一次性執行 (刷新頻率) v
+				// ** 一次性判斷式 v
 				vm.fnGetTime();
 
 				let minutes = new Date().getMinutes();
+				// let minutes = vm.deBugTime.minutes;
 				
 				if( minutes >= 55 || minutes <= 15 || minutes >= 25 && minutes <= 45 ){
-					// ## 角本-3-1a on-time, 要刷一次性 (刷新頻率) v
+					// ON-TIME 立刻刷新最新一筆一次 v
 					console.log('ontime, minutes is ', minutes);
-					// ## 角本-4 進入點 a v
-					vm.fnUpdateOntime(minutes, 'one only');
+					vm.fnRefresh(minutes, 'one only');
+
+					// ** for demo v
+					// if( $('#content').is(':hidden') ){
+					// 	$('#ms2-loading').hide(100);
+					// 	$('#content').show(100);
+					// };
 				}else{
-					// ## 角本-3-1b off-time, 不刷一次性 (刷新頻率) v
+					// OFF-TIME 不用刷新最新一筆 v
 					console.log('off time, minutes is ', minutes);
-					
-					// ## 角本-5 顯示 content v
-					$('#ms2-loading').hide(100);
-					$('#content').show(100);
+					// 顯示 content v
+					if( $('#content').is(':hidden') ){
+						$('#ms2-loading').hide(100);
+						$('#content').show(100);
+					};
 				};
 
-				// ## 角本-3-2 多次性執行 (刷新頻率)
+				// // ** 多次性判斷式( REFRESH-TIMTER ) v
+				// let count = 0;
 				vm.refreshControl =window.setInterval(()=>{
 					console.log('---------------------------------');
 					minutes = new Date().getMinutes();
@@ -574,27 +579,25 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					const fn = function(){
 						Cookies.set('reload', false);
 						vm.fnGetTime();
-						// ## 角本-4 進入點 b v
-						vm.fnUpdateOntime(minutes,'interval');
+						vm.fnRefresh(minutes,'interval');
 					};
 					
 					switch(true){
 						case minutes >= 55 || minutes <= 15 :
-							// ## 角本-3-2a on-time, 要整點多次性執行 (刷新頻率)
+							// ontime top hour area
 							console.log('%cInterval 整點 55~15','color:greenyellow');
 							fn();
 							break;
 						case minutes >= 25 && minutes <= 45 :
-							// ## 角本-3-2b on-time, 要半點多次性執行 (刷新頻率)
+							// ontime bottom hour area
 							console.log('%cInterval 半點 25~45 ','color:greenyellow');
 							fn();
 							break;
 
-						// ^  on-time 不重整畫面(為重抓api) ===================================
-						// v off-time 可能要重整畫面(為重抓api) ===============================
+						// on time 不重整畫面(為重抓api) ^ ====================================
+						// off time 可能要重整畫面(為重抓api) v ===============================
 
 						default:
-							// ## 角本-3-2c off-time, 不多次性執行 (刷新頻率)
 							if( Cookies.get('reload') == 'false' ){
 								console.log('%cIntervalf 16-24 & 46~54 未重整畫面(為重抓api、要來重整','color:greenyellow');
 								Cookies.set('reload', true);
@@ -603,35 +606,40 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 								console.log('%cIntervalf 16-24 & 46~54 己重整畫面(為重抓api、不重整','color:greenyellow');
 							}
 					};
-				// }, 1000 * vm.deBugTime.refreshTime);
-				}, 1000 * 50 );
+
+					// ----------------------------
+					// count ++;
+					// if(count >= 3){window.clearinterval(vm.refreshControl);}
+				}, 1000 * vm.deBugTime.refreshTime);
 
 			},
 
-			fnUpdateOntime(minutes, from){
-				// ## 角本-4 刷新on-time
+			fnRefresh(minutes, from){
 				const vm = this;
 				console.log('%cfrom '+from+' /minutes is '+ minutes,'color: yellow');
-
-				// ## 角本-4-1 是否為刷跨小時時段 (刷新on-time)
 				let updateHourse = new Date().getHours();
 				if( minutes >= 55 ){ updateHourse ++ };
-
-				// ## 角本-4-2 整半分鐘判斷 (刷新on-time)
 				let updateMinutes = minutes >= 16 && minutes <= 45 ? ':30' : ':00';
-
-				// ## 角本-4-3 結構現在「小時:分鐘」 (刷新on-time)
 				const updateTime = updateHourse + updateMinutes;
 
-				// ## 角本-4-4 取出索引順位 (刷新on-time)
 				const index = vm.timeBlock.findIndex(item => item.time == updateTime );
 				console.log('%cupdateTime is '+updateTime+' / index is '+ index,'color:yellow');
 
-				// ## 角本-4-5 刷新on-time v
-				const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + updateHourse; // ## 角本 API static
-				// const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + updateHourse + '&date=2021/5/28';
+				// ON-TIME API v
+				// const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + hours; // json now date change
+				const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + updateHourse + '&date=2021/5/28';
 				console.log('block', vm.timeBlock[index]);
+				// console.log('minutes is >> ', minutes, ' / minutes >= 15 ? >> ' , (minutes >= 15), ' / hours is >>', hours, ' / index is >>', index, ' / time is >>',vm.timeBlock[index].time , ' / ajax url >>', url );
 				vm.timeBlock[index].ary=[];
+				// ----------------------------
+				// ----------------------------
+				// ----------------------------
+				// ----------------------------
+				// ----------------------------
+				// ----------------------------
+				// ----------------------------
+				// ----------------------------
+				// ----------------------------
 				$.ajax({
 					type: 'GET',
 					url,
@@ -647,19 +655,22 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						// 補齊未滿 3n / 4n v
 						const max = $(window).width() > 1366 ? 4 : 3;
 						const l = vm.timeBlock[index].ary.length;
+						// console.log('after 1000', l);
 						if( l != 0 && l%max > 0 ){
 							const addNum = max - (l%max);
 							for( i=0;i<addNum;i++ ){
+								// console.log('i is >>', i);
 								vm.timeBlock[index].ary.push({empty: true});
 							};
 						}
 
-						// ## 角本-5 顯示 content v
+						// 顯示 content v
 						if( $('#content').is(':hidden') ){
 							// 顯示 content v
 							$('#ms2-loading').hide(100);
 							$('#content').show(100);
 						}
+
 					}
 				});
 			},
@@ -779,12 +790,16 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		
 		data: {
 			deBugTime: {
-				// minutes: location.href.split('?')[1].split(',')[0],
-				// refreshTime: location.href.split('?')[1].split(',')[1]
+				minutes: location.href.split('?')[1].split(',')[0],
+				refreshTime: location.href.split('?')[1].split(',')[1]
 			},
 			copyright: '',
 			refreshControl: '',
 			nowTime: '',
+			refresh:{
+				setting: [55, 56, 57, 58, 59, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 , 14, 15],
+				timer: '',
+			},
 			//
 			bulletinWidth: 350,
 			bulletinTop: 70,// = .tgnav.padding-top + .tgnav-group.itemB.height
