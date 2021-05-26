@@ -199,7 +199,7 @@ end if
           <div id="member"></div>
           <div id="right">
             <div id="label"><div class="label-item active" data-status="0">每週課表</div><div class="label-item" data-status="1">學習狀況</div></div>
-            <iframe id="status-vue" src="./2020/intro_status_vue.asp"></iframe>
+            <iframe id="status-vue"></iframe>
             <!--iframe id="status-vue" src="./2020/intro_vue.html"></iframe-->
             <div id="above">
               <div id="facemap-open" style="display: none" title="觀看本月學習成效">
@@ -425,6 +425,10 @@ end if
       $('#member').html(data);
       const text = $('.Mnameb span').text();
       $('#runway-client .guest').attr('title', text);
+
+      const lv = $('.Mlv').text().split('-')[0];
+      $('#status-vue').attr('src', './2020/intro_status_vue.asp?' + lv );
+      // <iframe id="status-vue" src="./2020/intro_status_vue.asp"></iframe>
     }
   });
 

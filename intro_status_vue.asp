@@ -19,9 +19,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>vue</title>
 		<link href="./css/mylesson_vue.css" rel="stylesheet">
-		<script>
-			const memberLevel = 'b2';
-		</script>
 		<script src="./assets/plugins/jquery/jquery.1.12.4.min.js"></script>
 		<script src="./assets/plugins/chart-js/Chart-2.7.2.min.js"></script>
 		<script src="./assets/plugins/vue/vue2.6.12.min.js"></script>
@@ -57,7 +54,13 @@
 						<div id="pie">
 							<div class="status-title">學習面向</div>
 							<div id="piebox">
-								<div class="piebox-item"><canvas id="canvasPie" width="120" height="120"></canvas></div>
+								<div class="piebox-item">
+									<canvas class="pie" id="pieA1" width="120" height="120"></canvas>
+									<canvas class="pie" id="pieA2" width="120" height="120"></canvas>
+									<canvas class="pie" id="pieB1" width="120" height="120"></canvas>
+									<canvas class="pie" id="pieB2" width="120" height="120"></canvas>
+									<canvas class="pie" id="pieC1" width="120" height="120"></canvas>	
+								</div>
 							</div>
 							<div class="canvas-valbox">
 								<cpn_pie_val_box
@@ -97,10 +100,30 @@
 			const vm = this;
 			$.ajax({
 				type: 'GET',
-				url: './data/big_data.json' + vm.time,
+				// api 本機 v
+				// url: './data/big_data.json' + vm.time,
+				// api 測試 v (帶id可測試不同帳號結果)
+				// url: 'https://funday.asia/mylesson/2020/data/data.asp?member_id=303222&customer_id=411',
+				// 227332
+				// 303222
+				
+				// api 正式 v (參數全部不帶)
+				url: 'https://funday.asia/mylesson/2020/data/data.asp',
 				dataType: 'json',
 				success: function(data){
+					console.log('data is ', data);
 					vm.bigData = data;
+					for( lv in vm.bigData ){
+						for( idx in vm.bigData[lv].suggest ){
+							for( idx2 in vm.bigData[lv].suggest[idx].item ){
+								const already = vm.bigData[lv].suggest[idx].item[idx2].already;
+								const suggest = vm.bigData[lv].suggest[idx].item[idx2].suggest;
+								let percent = Math.floor( already / suggest * 100 );
+								if( percent > 100 ){ percent = 100 };
+								vm.bigData[lv].suggest[idx].item[idx2].percent = percent
+							}
+						}
+					}
 					vm.bigDataNow = vm.bigData[vm.selectedLevel];
 					vm.fnAll(vm.bigData, vm.selectedLevel);
 				}
@@ -124,12 +147,14 @@
 			},
 			fnAll(data, lv){
 				const vm = this;
-				vm.fnRenderPie(data[lv].pie);
+				vm.fnRenderPie(data[lv].pie, lv);
 				vm.fnRenderRadar(data[lv].radar_basic, data[lv].radar);
-				$('#status-page').load('../../TeachingCenter/concept4_part.html #' + lv + ' > *');
+				$('#status-page').load('../../TeachingCenter/concept4_part.html #' + lv.toLowerCase() + ' > *');
 			},
-			fnRenderPie(DATA){
+			fnRenderPie(DATA, lv){
 				const vm = this;
+				$('.pie').hide();
+				$('#pie'+lv).show();
 				// reset v (不是正確清除字體變粗方法，只會使 chart.js 沒有繪製 )
 				// Chart.plugins.register({
 				// 	afterDatasetsDraw: function(chartInstance, easing) {
@@ -171,7 +196,7 @@
 				};
 
 				// 結構 cnavas v
-				new Chart( document.getElementById("canvasPie"), {
+				new Chart( document.getElementById("pie"+lv), {
 					type: 'pie',
 					data,
 					options
@@ -366,8 +391,8 @@
 			bigData: new Object,
 			bigDataNow: new Object, //- reactive 1. 綁定 data
 			time: '?' + new Date().getTime(),
-			selectedLevel: memberLevel,
-			level: ['a1', 'a2', 'b1', 'b2', 'c1'],
+			selectedLevel: location.href.split('?')[1],
+			level: ['A1', 'A2', 'B1', 'B2', 'C1'],
 			pieColor: {
 				基礎養成: "#f5355a",
 				自我意識: "#a476c1",

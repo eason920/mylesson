@@ -32,24 +32,14 @@ const cpn_colbox_row = {
 			<div class="collbox-col">{{prop.suggest}}</div>
 			<div class="collbox-col">
 				<div class="collbox-percent"
-					:style="percent | filterPercent"
-					:class='{"is-less": percent <= 20}'
+					:style="prop.percent | filterPercent"
+					:class='{"is-less": prop.percent <= 20}'
 				>
-					<span>{{percent}}%</span>
+					<span>{{prop.percent}}%</span>
 				</div>
 			</div>
 		</div>
-	`,
-	created(){
-		const vm = this;
-		vm.percent = Math.floor( vm.prop.already / vm.prop.suggest * 100 );
-		if( vm.percent > 100 ){ vm.percent = 100 }
-	},
-	data(){
-		return {
-			percent: '',
-		}
-	}
+	`
 };
 
 const cpn_colbox_block = {
