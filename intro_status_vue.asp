@@ -65,6 +65,7 @@
 							<div class="canvas-valbox">
 								<cpn_pie_val_box
 									v-for='(value, key) in pieColor'
+									:class='{"is-hidden": /紀錄/.test(key) }'
 									:req_key='key'
 									:req_val='value | filterBGC'
 									:key='key'
@@ -116,11 +117,21 @@
 					for( lv in vm.bigData ){
 						for( idx in vm.bigData[lv].suggest ){
 							for( idx2 in vm.bigData[lv].suggest[idx].item ){
+								// basic count v
 								const already = vm.bigData[lv].suggest[idx].item[idx2].already;
 								const suggest = vm.bigData[lv].suggest[idx].item[idx2].suggest;
 								let percent = Math.floor( already / suggest * 100 );
-								if( percent > 100 ){ percent = 100 };
-								vm.bigData[lv].suggest[idx].item[idx2].percent = percent
+
+								// else 1 : less now level v
+								const idxThis = vm.level.findIndex(item => item == lv );
+								const idxMember = vm.level.findIndex(item => item == vm.selectedLevel);
+
+								// else 2 > 100 bug (& else 1) v
+								if( percent > 100 || idxThis < idxMember ){ percent = 100 };
+
+								// write v
+								vm.bigData[lv].suggest[idx].item[idx2].percent = percent;
+								//
 							}
 						}
 					}
@@ -148,7 +159,7 @@
 			fnAll(data, lv){
 				const vm = this;
 				vm.fnRenderPie(data[lv].pie, lv);
-				vm.fnRenderRadar(data[lv].radar_basic, data[lv].radar);
+				vm.fnRenderRadar(data[lv].radar_basic, data[lv].radar, lv);
 				$('#status-page').load('../../TeachingCenter/concept4_part.html #' + lv.toLowerCase() + ' > *');
 			},
 			fnRenderPie(DATA, lv){
@@ -241,12 +252,24 @@
 					});
 				};
 			},
-			fnChartRadar(data, level, max) {
+			fnChartRadar(data, labels, max, lv) {
 				const vm = this;
+
+				const idxThis = vm.level.findIndex(item => item == lv.split('-')[0] );
+				const idxMember = vm.level.findIndex(item => item == location.href.split('?')[1]);
+
+				// console.log('this', idxThis, '/mem', idxMember, 'm > this', idxMember > idxThis);
+				// if( idxMember > idxThis ){
+				// 	console.log('is -1 ?', data, '/', data[0], '/', data[0] == -1 );
+				// };
+				// console.log('>>>>lv', lv);
+				// console.log('>>>>>', labels);
+				// console.log('>>>>>', max);
+
 				new Chart($("#chartRadar"), {
 					type: 'radar',
 					data: {
-						labels: level.title,
+						labels,
 						datasets: [{
 							data,
 							backgroundColor: vm.radarColor.color2,
@@ -299,7 +322,7 @@
 					}
 				});
 			},
-			fnRenderRadar(levelDATA, DATA){
+			fnRenderRadar(radarBasic, radar, lv){
 				const vm = this;
 				// ------------------------------------
 				// -- RADAR : MSG WRITE
@@ -310,22 +333,33 @@
 				}
 
 				let memAry = [];
-				const cutEnd = DATA.level.indexOf('-');
-				const level = DATA.level.slice(0, cutEnd);
+				const cutEnd = radar.level.indexOf('-');
+				const level = radar.level.slice(0, cutEnd);
 
-				const stepMax = levelDATA.step;
+				const stepMax = radarBasic.step;
 				$('.canvars-box1').removeClass('A1 A2 B1 B2 C1').addClass(level);
+
+				const idxThis = vm.level.findIndex( item => item == lv );
+				const idxMem = vm.level.findIndex( item => item == location.href.split('?')[1] );
+				const isLessLv = idxThis < idxMem ? true : false;
+				console.log('fnRenderRadar less lv ?', isLessLv);
 				let index = 0;
-				for( let a in levelDATA.group ){
-					const unit = levelDATA.group[a];
+				
+				for( let a in radarBasic.group ){
+					// * a = radar_basic.group.w/d/c/v...
+					// * unit = radar_basic.group.w[unit,unit...]
+					// * memNum = member radar.data[memNum, memNum...]
+					// *                            ^ index, ^ index
+					const unit = radarBasic.group[a];
 
 					let ary;
 					
-					const memNum = DATA.data[index];
+					const memNum = radar.data[index];
 					
 					let now = '', miss = '', next = '';
 					switch(true){
 						case memNum < unit[0]:
+							// 不分等級、第一角
 							now = level + '-1';
 							miss = unit[0] - memNum;
 							next = level + '-1';
@@ -372,7 +406,7 @@
 							ary = stepMax;
 							$('.ritem' + index).addClass('is-top');
 					};
-					
+					console.log('ary is ', ary);
 					memAry.push(ary);
 
 					$('.ritem' + index + ' .radar-now').text(memNum + ' ( ' + now + ' )');
@@ -383,7 +417,7 @@
 				// ------------------------------------
 				// -- RADAR : MAIN ACTION
 				// ------------------------------------
-				vm.fnChartRadar(memAry, levelDATA, stepMax);
+				vm.fnChartRadar(memAry, radarBasic.title, stepMax, radar.level);
 			}
 		},
 		data: {
@@ -399,7 +433,9 @@
 				生活: "#fcbfe0",
 				專業通則: "#ffa800",
 				社交: "#7ddaeb",
-				通識: "#69d685"
+				通識: "#69d685",
+				紀錄不及備載: "#ebabb8",
+				尚無紀錄: "#F64768"
 			},
 			radarColor: {
 				color1: '#f74769',
