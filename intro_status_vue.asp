@@ -180,20 +180,44 @@
 				// });
 
 				// 配色 v
-				const backgroundColor = [];
+				let dataBackgroundColor = [];
 				DATA.labels.forEach(function(item){
 					for( key in vm.pieColor ){
 						if( item == key ){
-							backgroundColor.push( vm.pieColor[key] )
+							dataBackgroundColor.push( vm.pieColor[key] )
 						}
 					}
 				});
+				
+				// labels & data v
+				let dataLabels = DATA.labels;
+				let dataData = DATA.data;
 
-				const data = {
-					labels: DATA.labels,
+				if( DATA.data[0] == -1 && DATA.data[1] == -1 && DATA.data[2] == -1 ){
+					dataData = [-1];
+
+					const idxThis = vm.level.findIndex(item => item == lv );
+					const idxMember = vm.level.findIndex(item => item == location.href.split('?')[1]);
+					switch(true){
+						case idxThis < idxMember:
+							dataLabels = ['歷史紀錄不及備載'];
+							dataBackgroundColor = ["#fcb5c3"]
+							break;
+						case idxThis == idxMember:
+							dataLabels = ['尚無學習紀錄'];
+							dataBackgroundColor = ["#a7c6ff"]
+							break;
+						default:
+					};
+				};
+
+				// ----------------------------
+				// 結構 cnavas v
+				const	data ={
+					labels: dataLabels,
 					datasets: [{
-						data: DATA.data,
-						backgroundColor
+						data: dataData,
+						backgroundColor: dataBackgroundColor
 					}]
 				};
 				
@@ -206,7 +230,6 @@
 					}
 				};
 
-				// 結構 cnavas v
 				new Chart( document.getElementById("pie"+lv), {
 					type: 'pie',
 					data,
@@ -342,19 +365,38 @@
 				const idxThis = vm.level.findIndex( item => item == lv );
 				const idxMem = vm.level.findIndex( item => item == location.href.split('?')[1] );
 				const isLessLv = idxThis < idxMem ? true : false;
-				console.log('fnRenderRadar less lv ?', isLessLv);
 				let index = 0;
 				
 				for( let a in radarBasic.group ){
-					// * a = radar_basic.group.w/d/c/v...
-					// * unit = radar_basic.group.w[unit,unit...]
-					// * memNum = member radar.data[memNum, memNum...]
-					// *                            ^ index, ^ index
+					// 各值說明：
+					// A1: {
+					// 	"radar_basic": {
+					// 		"title": ["字彙","基礎文法","理解力","發音","簡易應答"],
+					// 		"step": 3,
+					// 		"group": {
+					// 			"vocabulary": [117,271,449],
+					//			^a(key本身文字) ^unit(值本身) <## A & UNIT ##
+					// 			"grammar": [96,211,342],
+					//			^a ...
+					// 		}
+					// 	},
+					// 	"radar":{ 
+					// 		"level":"A1-3",
+					// 		"title": ["字彙","基礎文法","理解力","發音","簡易應答"],
+					// 		"data":[0,0,0,0,0] <## MEM_NUM & INDEX ##
+					//            ^memNum(值本身)
+					//						^index(取值順序)
+					// 	}
+					// }
 					const unit = radarBasic.group[a];
 
-					let ary;
+					let ary_single;
 					
-					const memNum = radar.data[index];
+					let memNum = radar.data[index];
+					if( isLessLv ){
+						const max = radarBasic.group[a].length - 1;
+						memNum = radarBasic.group[a][max];
+					}
 					
 					let now = '', miss = '', next = '';
 					switch(true){
@@ -363,51 +405,50 @@
 							now = level + '-1';
 							miss = unit[0] - memNum;
 							next = level + '-1';
-							ary = math(memNum / (unit[0]), 1);
+							ary_single = math(memNum / (unit[0]), 1);
 							break;
 						case memNum >= unit[0] && memNum < unit[1] :
 							// console.log(a + ' is -1');
 							now = level + '-1';
 							miss = unit[1] - memNum;
 							next = level + '-2';
-							ary = math((memNum - unit[0]) / (unit[1] - unit[0]), 1) + 1;
+							ary_single = math((memNum - unit[0]) / (unit[1] - unit[0]), 1) + 1;
 							break;				
 						case memNum >= unit[1] && memNum < unit[2] :
 							// console.log(a + ' is -2');
 							now = level + '-2';
 							miss = unit[2] - memNum;
 							next = level + '-3';
-							ary = math((memNum - unit[1]) / (unit[2] - unit[1]), 1) + 2;
+							ary_single = math((memNum - unit[1]) / (unit[2] - unit[1]), 1) + 2;
 							break;						
 						case stepMax >= 4 &&memNum >= unit[2] && memNum < unit[3] :
 							// console.log(a + ' is -3');
 							now = level + '-3';
 							miss = unit[3] - memNum;
 							next = level + '-4';
-							ary = math((memNum - unit[2]) / (unit[3] - unit[2]), 1) + 3;
+							ary_single = math((memNum - unit[2]) / (unit[3] - unit[2]), 1) + 3;
 							break;				
 						case stepMax >= 5 && memNum >= unit[3] && memNum < unit[4] :
 							// console.log(a + ' is -4');
 							now = level + '-4';
 							miss = unit[4] - memNum;
 							next = level + '-5';
-							ary = math((memNum - unit[3]) / (unit[4] - unit[3]), 1) + 4;
+							ary_single = math((memNum - unit[3]) / (unit[4] - unit[3]), 1) + 4;
 							break;
 						case stepMax >= 6 && memNum >= unit[4] && memNum < unit[5] :
 							// console.log(a + ' is -5');
 							next = level + '-6';
 							now = level + '-5';
 							miss = unit[5] - memNum;
-							ary = math((memNum - unit[4]) / (unit[5] - unit[4]), 1) + 5;
+							ary_single = math((memNum - unit[4]) / (unit[5] - unit[4]), 1) + 5;
 							break;
 						default:
 							// console.log(a + 'is -' + stepMax);
 							now = level + '-' + stepMax;
-							ary = stepMax;
+							ary_single = stepMax;
 							$('.ritem' + index).addClass('is-top');
 					};
-					console.log('ary is ', ary);
-					memAry.push(ary);
+					memAry.push(ary_single);
 
 					$('.ritem' + index + ' .radar-now').text(memNum + ' ( ' + now + ' )');
 					$('.ritem' + index + ' .radar-step').text('+' + miss + ' ➜ ' + next);
@@ -433,9 +474,7 @@
 				生活: "#fcbfe0",
 				專業通則: "#ffa800",
 				社交: "#7ddaeb",
-				通識: "#69d685",
-				紀錄不及備載: "#ebabb8",
-				尚無紀錄: "#F64768"
+				通識: "#69d685"
 			},
 			radarColor: {
 				color1: '#f74769',
