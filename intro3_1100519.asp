@@ -43,8 +43,8 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		<meta property="og:keywords" content="看新聞學英文,英文閱讀,時事英文,線上英文,學習英文,看電影學英文,英語會話,雙語新聞,線上英文課程,英聽,聽力練習,線上英語,英文文法,聽音樂學英文,英文寫作,英語口說">    
 		<title>My Lesson page 3</title>
 		<link href="./2020/assets/plugins/bootstrap/bootstrap.4.0.css" rel="stylesheet"/>
-		<link href="./2020/css/mylesson_3.css?1100525" rel="stylesheet"/>
-		<link href="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css" rel="stylesheet"/>
+		<link href="./2020/css/mylesson_3.css?<%=Timer%>" rel="stylesheet"/>
+		<link href="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css?<%=Timer%>" rel="stylesheet"/>
 		<style>
 
 			.lightBoxAD #DVLight{
@@ -408,9 +408,10 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			vm.sideBarWidth = $('#sidebar').width();
 
 			// ## 角本-1 取得整日課表毛胚 ##
+			const TIME = new Date().getTime();
 			$.ajax({
 				type: 'GET',
-				url: './2020/json/classList-' + vm.memberLevel + '.json', // ## 角本 API 毛胚
+				url: './2020/json/classList-' + vm.memberLevel + '.json?' + TIME, // ## 角本 API 毛胚
 				// url: './2020/api/classList.asp?levels=' + vm.memberLevel + '&date=2021/5/28',
 				// ^ ** 應改回 .json 版本，A1、A2課多者的效能致久會需六秒
 				success(res){
