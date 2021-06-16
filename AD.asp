@@ -155,7 +155,7 @@ Dim RandomInt
           Randomize
           RandomInt = Int((2 - 1 + 1) * Rnd + 1)
           if RandomInt="1" then
-            Pic="../../subscription/AD/Certifications-MB.jpg"
+            Pic="../../subscription/AD/Certifications-MB.jpg?1100611"
             link="location.href='../NewMylessonmobile/?topic=extPractice'"
           else
             Pic="../../subscription/AD/popad_mobile_magazine_15.jpg"
@@ -214,7 +214,7 @@ Ta=Array("1292","2107","4094","4097","5752","5827","7028","7032","7086","7681","
     end if
   Next
 
-  Pic="../../subscription/AD/Certifications-MB.jpg"
+  Pic="../../subscription/AD/Certifications-MB.jpg?1100611"
   link="location.href='../NewMylessonmobile/?topic=extPractice'"
 
 session("ADcheck")="1"
