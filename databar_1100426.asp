@@ -105,7 +105,7 @@ monthAry=0
 			<div class="subUnit">堂</div>
 			<div class="db-subTitle" >互動課程</div> 
 		</div>
-		<div class="db-circle" onclick="DivBlock('onlineClass')">
+		<div class="db-circle" style='cursor: default'><!--  onclick="DivBlock('onlineClass')"-->
 			<div class="subCount" id="LearningPoint">168</div>
 			<div class="subUnit">點</div>
 			<div class="db-subTitle" >學習點數</div> 

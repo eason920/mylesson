@@ -30,7 +30,7 @@ end if
     <meta property="og:image" content="https://funday.asia/images/Image02.jpg">
     <meta property="og:description" content="FUNDAY台灣最大英語數位資料庫，超過1萬多篇主題時事/商用英語，每日更新，每天只要15分鐘，使用線上工具，透過老師講解與文章測驗，吸收最新生活用語和國際議題，跨平台學習不受限！國內50所大學語言中心培訓實績；上百間大型公民營企業培訓經驗；採用歐洲理事會CEFR語言學習架構；幫你建立個人專屬的學習計畫與追蹤功能，讓學習與生活結合，開拓更寬廣的國際視野，成為你的終身學習夥伴。" >
     <meta property="og:keywords" content="看新聞學英文,英文閱讀,時事英文,線上英文,學習英文,看電影學英文,英語會話,雙語新聞,線上英文課程,英聽,聽力練習,線上英語,英文文法,聽音樂學英文,英文寫作,英語口說">    
-    <title>My Lesson page1</title>
+    <title>My Lesson page1 debug in 1100615</title>
     <link href="./2020/css/mylesson_1.css?<%=Timer%>" rel="stylesheet"/>
     <link href="./2020/css/mylesson_1_status.css?<%=Timer%>" rel="stylesheet"/>
     <!--link href="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css" rel="stylesheet"/>
@@ -434,7 +434,8 @@ end if
 
   $.ajax({
     type:"POST",
-    url:"./2020/databar_1100426.asp",
+    // url:"./2020/databar_1100426.asp",
+    url:"./2020/databar.asp",
     dataType:"html",
     success:function(data){	
       $('#data').html(data);
