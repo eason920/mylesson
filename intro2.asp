@@ -129,7 +129,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				</div>
 				<div id="block1">
 					<div class="grid1">
-						<a class="grid-title" href="https://funday.asia/search/article/?category=1">國際 ‧ 時事</a>
+						<a class="grid-title" href="https://funday.asia/search/article/intro_awd.asp?category=1">國際 ‧ 時事</a>
 						<div class="grid1-box">
 							<cpn_tread
 								:prop='item'
@@ -186,7 +186,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 								allowfullscreen="allowfullscreen"></iframe-->
 						</div>
-						<a class="grid-title is-1" href="https://funday.asia/search/article/?category=2">生活 ‧ 新知</a>
+						<a class="grid-title is-1" href="https://funday.asia/search/article/intro_awd.asp?category=2">生活 ‧ 新知</a>
 						<div class="grid3-box">
 							<cpn_living
 								:prop='item'
@@ -214,7 +214,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						></a>
 					</div>
 					<div class="grid4">
-						<a class="grid-title is-1" href="https://funday.asia/search/article/?category=3">商務 ‧ 情境</a>
+						<a class="grid-title is-1" href="https://funday.asia/search/article/intro_awd.asp?category=3">商務 ‧ 情境</a>
 						<div class="grid4-box">
 							<cpn_office
 								:prop='item'
@@ -248,10 +248,10 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						<div class="grid-title" onclick="GoLink('SearchVideo')">看影片學英文</div>
 					</div>
 					<div class="grid3">
-						<a href="https://funday.asia/search/Program/?category=1" class="grid-title">賞電影 / 聊新知</a>
+						<a href="https://funday.asia/search/Program/intro_awd.asp?category=1" class="grid-title">賞電影 / 聊新知</a>
 					</div>
 					<div class="grid4">
-						<a href="https://funday.asia/search/Program/?category=2" class="grid-title">北捷微電影</a>
+						<a href="https://funday.asia/search/Program/intro_awd.asp?category=2" class="grid-title">北捷微電影</a>
 					</div>
 					<div class="title-group"></div>
 				</div>
@@ -348,7 +348,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						</li>
 						<li class="sidebar-under-hr"></li>
 						<li class="sidebar-under-item">
-							<a href="https://funday.asia/search/article/?collect" target='_blank' @click.prev ><img src="./2020/images/under3.svg" />文章</a>
+							<a href="https://funday.asia/search/article/intro_awd.asp?collect" target='_blank' @click.prev ><img src="./2020/images/under3.svg" />文章</a>
 						</li>
 					</ul>
 				</div>
@@ -680,7 +680,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			fnGoSearch(){
 				const vm = this;
 				console.log('fnGoSearch ', vm.search_text);
-				const href = 'https://funday.asia/search/article/?key=' + vm.search_text;
+				const href = 'https://funday.asia/search/article/intro_awd.asp?key=' + vm.search_text;
 				window.open(href, 'search')
 			},
 
