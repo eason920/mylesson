@@ -44,7 +44,8 @@ $w-course: 113px
 
   .course-all
     width: 100%
-    display: inline-block
+    display: inline-flex
+    flex-wrap: wrap
     flex-direction: unset
 
     .course
@@ -54,7 +55,7 @@ $w-course: 113px
       box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2)
       border-radius: 10px
       border: 1px solid #20A0A0
-      display: inline-block
+      // display: inline-block
       flex-direction: column
       justify-content: center
       align-items: center
@@ -69,7 +70,7 @@ $w-course: 113px
         background-color: #eee
         border: none
         position: relative
-        margin-bottom: -130px
+        // margin-bottom: -130px
         &:after
           content: 'No Schedule'
           position: absolute
