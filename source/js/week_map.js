@@ -10,7 +10,7 @@ let viewWeekAry = [];
 //
 let viewWeekIndex = 0;
 const veiwWeekMax = 1;// 僅可見未來一週
-let viewWeekMin = -16;// +1 -16 = -15 
+let viewWeekMin = -16;// +1 -12 - 4 = -15，多減四是確保收集「含本月及前推，總計滿三個月」(因月底可能推12會收集不到三個月)
 // ^ 往前三個月(12週)內 ( 12 = this x 1 + pre x 11 ) 
 // ^ 為取得 faceData 近三月完整 data, 需超出以逹目的，而在「face_map.js-fnRecordFaceData」函式完成後回歸 -11** 
 //
@@ -359,9 +359,9 @@ $(()=>{
 	// ==========================================
 	viewInit();
 
-	// 往下一週進一格 v
-	// 取得後一週的 viewWeekYear、viewWeek、viewWeekId v
-	// 取得後一週的 viewWeekMonth、viewWeekAry v
+	// 往未來一週進一格 v
+	// 取得未來一週的 viewWeekYear、viewWeek、viewWeekId v
+	// 取得未來一週的 viewWeekMonth、viewWeekAry v
 	fnGetNextViewWeekId();
 	fnGeViewWeekMonthAry_prev_next('next');
 	
@@ -374,7 +374,7 @@ $(()=>{
 		month == 13 ? nextMonth2 = 1 : nextMonth2 = month;
 	}else{ nextMonth2 = nextMonth1 };
 	
-	// 收集次週 weekData v
+	// 收集未來一週 weekData v
 	$.ajax({
 		type:"POST",
 		url:"./2020/api/Wschedule.asp",
@@ -383,15 +383,17 @@ $(()=>{
 		},
 		dataType:"json",
 		success:function(data){	
+			// 未來一週有資料(user有做計劃)
 			weekData[viewWeekId] = data;
 
-			//繼續收集 weekData (本週&往前) v
+			//繼續收集 weekData (本週&過去週) v
 			fnRecordWeekData();
 		},
 		error:function(){
+			// 未來一週沒資料(user沒做計劃)
 			weekData[viewWeekId] = fnCreateViewObj(viewWeekAry, viewYear, viewMonth, viewWeek);
 
-			// 繼續收集 weekData (本週&往前)v
+			// 繼續收集 weekData (本週&過去週)v
 			fnRecordWeekData();
 		}
 	});

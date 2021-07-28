@@ -247,7 +247,7 @@ $(()=>{
 	// ==========================================
 	// file:week_map.js get next viewWeekId v
 	// 同檔 api get next obj
-	// 同檔 fn-fnRecordweekData * 16
+	// 同檔 fn-fnRecordWeekData * 16
 	// 同檔 fn-fnRecordWeekData_finish
 	// file:face_map.js-fn:fnRecordFaceData v
 	// 同檔-fn:fnPrintFaceMap

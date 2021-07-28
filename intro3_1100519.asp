@@ -465,7 +465,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 
 									// ## 角本-2 進入點 <<
 									// ## 角本-2 整日課表加工 v ##
-									console.log('timeBlock ', vm.timeBlock);
+									// console.log('timeBlock ', vm.timeBlock);
 									// 加載 scroll 套件 v
 									new PerfectScrollbar('#content .wrapper');
 									setTimeout(()=>{
@@ -519,7 +519,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			fnDeleteErrTimeBlock(){
 				const vm = this;
 				const minutes = new Date().getMinutes();
-				console.log('delete time', minutes);
+				// console.log('delete time', minutes);
 				const hours = new Date().getHours();
 
 				// TOP HOURS v
@@ -528,7 +528,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					const delNow = vm.timeBlock.findIndex(function(item){
 						return item.time == time;
 					});
-					console.log('delete time >=16 delete TOP house is ', time, ' index is ', delNow);
+					// console.log('delete time >=16 delete TOP house is ', time, ' index is ', delNow);
 					vm.timeBlock[delNow].ary=[];
 				};
 
@@ -536,7 +536,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				if( minutes >=46 ){
 					const time = hours + ':30';
 					const delNow = vm.timeBlock.findIndex(item => item.time == time);
-					console.log('delete time >=46 delete BOTTOM house is ', time, ' index is ', delNow);
+					// console.log('delete time >=46 delete BOTTOM house is ', time, ' index is ', delNow);
 					vm.timeBlock[delNow].ary=[];
 				};
 			},
@@ -552,12 +552,12 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				
 				if( minutes >= 55 || minutes <= 15 || minutes >= 25 && minutes <= 45 ){
 					// ## 角本-3-1a on-time, 要刷一次性 (刷新頻率) v
-					console.log('ontime, minutes is ', minutes);
+					// console.log('ontime, minutes is ', minutes);
 					// ## 角本-4 進入點 a v
 					vm.fnUpdateOntime(minutes, 'one only');
 				}else{
 					// ## 角本-3-1b off-time, 不刷一次性 (刷新頻率) v
-					console.log('off time, minutes is ', minutes);
+					// console.log('off time, minutes is ', minutes);
 					
 					// ## 角本-5 顯示 content v
 					$('#ms2-loading').hide(100);
@@ -566,11 +566,11 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 
 				// ## 角本-3-2 多次性執行 (刷新頻率)
 				vm.refreshControl =window.setInterval(()=>{
-					console.log('---------------------------------');
+					// console.log('---------------------------------');
 					minutes = new Date().getMinutes();
 					// minutes = vm.deBugTime.minutes;
 
-					console.log('%cInterval runing, minutes is '+ minutes,'color:greenyellow');
+					// console.log('%cInterval runing, minutes is '+ minutes,'color:greenyellow');
 
 					const fn = function(){
 						Cookies.set('reload', false);
@@ -582,12 +582,12 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					switch(true){
 						case minutes >= 55 || minutes <= 15 :
 							// ## 角本-3-2a on-time, 要整點多次性執行 (刷新頻率)
-							console.log('%cInterval 整點 55~15','color:greenyellow');
+							// console.log('%cInterval 整點 55~15','color:greenyellow');
 							fn();
 							break;
 						case minutes >= 25 && minutes <= 45 :
 							// ## 角本-3-2b on-time, 要半點多次性執行 (刷新頻率)
-							console.log('%cInterval 半點 25~45 ','color:greenyellow');
+							// console.log('%cInterval 半點 25~45 ','color:greenyellow');
 							fn();
 							break;
 
@@ -597,11 +597,11 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						default:
 							// ## 角本-3-2c off-time, 不多次性執行 (刷新頻率)
 							if( Cookies.get('reload') == 'false' ){
-								console.log('%cIntervalf 16-24 & 46~54 未重整畫面(為重抓api、要來重整','color:greenyellow');
+								// console.log('%cIntervalf 16-24 & 46~54 未重整畫面(為重抓api、要來重整','color:greenyellow');
 								Cookies.set('reload', true);
 								window.location.reload();
 							}else{
-								console.log('%cIntervalf 16-24 & 46~54 己重整畫面(為重抓api、不重整','color:greenyellow');
+								// console.log('%cIntervalf 16-24 & 46~54 己重整畫面(為重抓api、不重整','color:greenyellow');
 							}
 					};
 				// }, 1000 * vm.deBugTime.refreshTime);
@@ -612,7 +612,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			fnUpdateOntime(minutes, from){
 				// ## 角本-4 刷新on-time
 				const vm = this;
-				console.log('%cfrom '+from+' /minutes is '+ minutes,'color: yellow');
+				// console.log('%cfrom '+from+' /minutes is '+ minutes,'color: yellow');
 
 				// ## 角本-4-1 是否為刷跨小時時段 (刷新on-time)
 				let updateHourse = new Date().getHours();
@@ -626,20 +626,20 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 
 				// ## 角本-4-4 取出索引順位 (刷新on-time)
 				const index = vm.timeBlock.findIndex(item => item.time == updateTime );
-				console.log('%cupdateTime is '+updateTime+' / index is '+ index,'color:yellow');
+				// console.log('%cupdateTime is '+updateTime+' / index is '+ index,'color:yellow');
 
 				// ## 角本-4-5 刷新on-time v
 				const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + updateHourse; // ## 角本 API static
 				// const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + updateHourse + '&date=2021/5/28';
-				console.log('block', vm.timeBlock[index]);
+				// console.log('block', vm.timeBlock[index]);
 				vm.timeBlock[index].ary=[];
 				$.ajax({
 					type: 'GET',
 					url,
 					success(res){
-						console.log('RES is ', res);
+						// console.log('RES is ', res);
 						res.data.forEach(function(item, i){
-							console.log('log time', item.class_btime, item.class_btime == updateTime);
+							// console.log('log time', item.class_btime, item.class_btime == updateTime);
 							if(item.class_btime == updateTime){
 								vm.timeBlock[index].ary.push(item);
 							};
@@ -706,7 +706,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					vm.fnScrollerHeight();
 
 					// API v
-					console.log('%c'+vueSideBar._data.getApi == 0,'color:yellow');
+					// console.log('%c'+vueSideBar._data.getApi == 0,'color:yellow');
 					if( vueSideBar._data.getApi == 0 ){
 						// HOME-WORK v
 						$.ajax({
@@ -714,9 +714,9 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 							// url: './2020/api/homework.asp?member_id=1179',
 							url: './2020/api/homework.asp',
 							success(res){
-								console.log('home work ', res);
-								console.log('writing', vueSideBar._data.writing);
-								console.log('speech', vueSideBar._data.speech);
+								// console.log('home work ', res);
+								// console.log('writing', vueSideBar._data.writing);
+								// console.log('speech', vueSideBar._data.speech);
 								// SH = speech, HW = writing
 								for( a in res.data ){
 									if( res.data[a].type != 'SH' ){
@@ -725,7 +725,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 										vueSideBar._data.speech.push( res.data[a] );
 									};
 									if( a == (res.data.length - 1) ){
-										console.log('is last');
+										// console.log('is last');
 									}
 								};
 

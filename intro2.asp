@@ -503,7 +503,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				type: 'GET',
 				url: './2020/api/Pg2Json.asp?levels=' + vm.memberLevel,
 				success: function(res){
-					console.log('success data is >', res);
+					// console.log('success data is >', res);
 					const idxArt = res.findIndex(item => item.classify.toLowerCase() == 'article');
 					const idxCol = res.findIndex(item => item.classify.toLowerCase() == 'columns');
 					const idxPro = res.findIndex(item => item.classify.toLowerCase() == 'program');

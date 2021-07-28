@@ -3,7 +3,11 @@
 // ==========================================
 const prefix = 'https://funday.asia/';
 Vue.filter('filterBG', (str) => { return 'background-image: url(' + str + ')' });
-Vue.filter('filterSrc', (str) => { return prefix + 'en/pic/'+str });
+Vue.filter('filterSrc', (str) => {
+	// if( str !== undefined){
+		return prefix + 'en/pic/'+str
+	// }
+});
 Vue.filter('filterMagazineSrc', (str) => { return prefix + 'funMz/'+str });
 Vue.filter('filterColumnSrc', (str) => { return prefix + 'column/pic/' + str });
 //
@@ -161,7 +165,7 @@ const cpn_office = {
 	`,
 	methods: {
 		fnFilterCategory(str){
-			console.log('cpn off ', str, str == '淺談職場');
+			// console.log('cpn off ', str, str == '淺談職場');
 			if( str == '淺談職場'){ return '公告'};
 			return str;
 		}
