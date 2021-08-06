@@ -41,7 +41,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		<meta property="og:image" content="https://funday.asia/images/Image02.jpg">
 		<meta property="og:description" content="FUNDAY台灣最大英語數位資料庫，超過1萬多篇主題時事/商用英語，每日更新，每天只要15分鐘，使用線上工具，透過老師講解與文章測驗，吸收最新生活用語和國際議題，跨平台學習不受限！國內50所大學語言中心培訓實績；上百間大型公民營企業培訓經驗；採用歐洲理事會CEFR語言學習架構；幫你建立個人專屬的學習計畫與追蹤功能，讓學習與生活結合，開拓更寬廣的國際視野，成為你的終身學習夥伴。" >
 		<meta property="og:keywords" content="看新聞學英文,英文閱讀,時事英文,線上英文,學習英文,看電影學英文,英語會話,雙語新聞,線上英文課程,英聽,聽力練習,線上英語,英文文法,聽音樂學英文,英文寫作,英語口說">    
-		<title>My Lesson page 3</title>
+		<title>p3 debug</title>
 		<link href="./2020/assets/plugins/bootstrap/bootstrap.4.0.css" rel="stylesheet"/>
 		<link href="./2020/css/mylesson_3.css?<%=Timer%>" rel="stylesheet"/>
 		<link href="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css?<%=Timer%>" rel="stylesheet"/>
@@ -411,10 +411,11 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			const TIME = new Date().getTime();
 			$.ajax({
 				type: 'GET',
-				url: './2020/json/classList-' + vm.memberLevel + '.json?' + TIME, // ## 角本 API 毛胚
+				url: './2020/json_0805_1101/classList-' + vm.memberLevel + '.json?' + TIME, // ## 角本 API 毛胚
 				// url: './2020/api/classList.asp?levels=' + vm.memberLevel + '&date=2021/5/28',
 				// ^ ** 應改回 .json 版本，A1、A2課多者的效能致久會需六秒
 				success(res){
+					console.log('res>',res);
 					if( res.data.length != 0 ){
 						// ## 角本-1-1a 全時段仍有課程(取得整日課表毛胚) v
 						for( a in res.data ){
@@ -802,21 +803,21 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			gutter: 5,
 			//
 			timeBlock: [
-				{time: '00:00', ary: []}, 
-				{time: '01:00', ary: []}, {time: '01:30', ary: []}, 
-				{time: '08:00', ary: []}, {time: '08:30', ary: []}, 
+				{time: '00:00', ary: []},
+				{time: '01:00', ary: []}, {time: '01:30', ary: []},
+				{time: '08:00', ary: []}, {time: '08:30', ary: []},
 				{time: '09:00', ary: []}, {time: '09:30', ary: []},
-				{time: '10:00', ary: []}, {time: '10:30', ary: []}, 
-				{time: '11:00', ary: []}, {time: '11:30', ary: []}, 
-				{time: '12:00', ary: []}, {time: '12:30', ary: []}, 
-				{time: '13:00', ary: []}, {time: '13:30', ary: []}, 
-				{time: '14:00', ary: []}, {time: '14:30', ary: []}, 
-				{time: '15:00', ary: []}, {time: '15:30', ary: []}, 
-				{time: '16:00', ary: []}, {time: '16:30', ary: []}, 
-				{time: '17:00', ary: []}, {time: '17:30', ary: []}, 
-				{time: '18:00', ary: []}, {time: '18:30', ary: []}, 
-				{time: '19:00', ary: []}, {time: '19:30', ary: []}, 
-				{time: '20:00', ary: []}, {time: '20:30', ary: []}, 
+				{time: '10:00', ary: []}, {time: '10:30', ary: []},
+				{time: '11:00', ary: []}, {time: '11:30', ary: []},
+				{time: '12:00', ary: []}, {time: '12:30', ary: []},
+				{time: '13:00', ary: []}, {time: '13:30', ary: []},
+				{time: '14:00', ary: []}, {time: '14:30', ary: []},
+				{time: '15:00', ary: []}, {time: '15:30', ary: []},
+				{time: '16:00', ary: []}, {time: '16:30', ary: []},
+				{time: '17:00', ary: []}, {time: '17:30', ary: []},
+				{time: '18:00', ary: []}, {time: '18:30', ary: []},
+				{time: '19:00', ary: []}, {time: '19:30', ary: []},
+				{time: '20:00', ary: []}, {time: '20:30', ary: []},
 				{time: '21:00', ary: []}, {time: '21:30', ary: []},
 				{time: '22:00', ary: []}, {time: '22:30', ary: []},
 				{time: '23:00', ary: []}, {time: '23:30', ary: []},

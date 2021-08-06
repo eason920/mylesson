@@ -41,7 +41,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		<meta property="og:image" content="https://funday.asia/images/Image02.jpg">
 		<meta property="og:description" content="FUNDAY台灣最大英語數位資料庫，超過1萬多篇主題時事/商用英語，每日更新，每天只要15分鐘，使用線上工具，透過老師講解與文章測驗，吸收最新生活用語和國際議題，跨平台學習不受限！國內50所大學語言中心培訓實績；上百間大型公民營企業培訓經驗；採用歐洲理事會CEFR語言學習架構；幫你建立個人專屬的學習計畫與追蹤功能，讓學習與生活結合，開拓更寬廣的國際視野，成為你的終身學習夥伴。" >
 		<meta property="og:keywords" content="看新聞學英文,英文閱讀,時事英文,線上英文,學習英文,看電影學英文,英語會話,雙語新聞,線上英文課程,英聽,聽力練習,線上英語,英文文法,聽音樂學英文,英文寫作,英語口說">    
-		<title>My Lesson page 3</title>
+		<title>My Lesson page 3 1100728</title>
 		<link href="./2020/assets/plugins/bootstrap/bootstrap.4.0.css" rel="stylesheet"/>
 		<link href="./2020/css/mylesson_3.css?<%=Timer%>" rel="stylesheet"/>
 		<link href="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css?<%=Timer%>" rel="stylesheet"/>
@@ -414,7 +414,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				// url: './2020/api/classList.asp?levels=' + vm.memberLevel,
 				url: './2020/json/classList-' + vm.memberLevel + '.json',
 				success(res){
-					console.log(res.data, res.data.length, res.data.length == 0);
+					// console.log(res.data, res.data.length, res.data.length == 0);
 					if( res.data.length != 0 ){
 						// 全時段仍有課程 v
 						for( a in res.data ){
@@ -468,7 +468,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		methods: {
 			fnAfterAry(){
 				const vm = this;
-				console.log('timeBlock ', vm.timeBlock);
+				// console.log('timeBlock ', vm.timeBlock);
 				
 				// 加載 scroll 套件 v
 				new PerfectScrollbar('#content .wrapper');
@@ -511,7 +511,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					switch(true){
 						case minutes >= 55 || minutes <= 14:
 							Cookies.set('fifteenRefresh', false);
-							console.log('%c====================', 'color:yellow');
+							// console.log('%c====================', 'color:yellow');
 							vm.fnGetTime();
 							vm.fnRefresh(minutes);
 							break;
@@ -550,13 +550,13 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					let hours;
 					if( minutes >= 55 ){
 						// 55 ~ 59 v
-						console.log('>=55');
+						// console.log('>=55');
 						hours = new Date().getHours();
 						hours = hours + 1;
 						// Number( new Date().gethours() ) + 1;
 					}else{
 						// 0 ~ 14, 15己在第一層篩除在外 v
-						console.log('<=14');
+						// console.log('<=14');
 						hours = new Date().getHours();
 					};
 
@@ -568,13 +568,13 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 
 					// ON-TIME API v
 					const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + hours;
-					console.log('block', vm.timeBlock[index]);
-					console.log('minutes is >> ', minutes, ' / minutes >= 15 ? >> ' , (minutes >= 15), ' / hours is >>', hours, ' / index is >>', index, ' / time is >>',vm.timeBlock[index].time , ' / ajax url >>', url );
+					// console.log('block', vm.timeBlock[index]);
+					// console.log('minutes is >> ', minutes, ' / minutes >= 15 ? >> ' , (minutes >= 15), ' / hours is >>', hours, ' / index is >>', index, ' / time is >>',vm.timeBlock[index].time , ' / ajax url >>', url );
 					$.ajax({
 						type: 'GET',
 						url,
 						success(res){
-							console.log('api >>',res.data);
+							// console.log('api >>',res.data);
 							// 1 
 							vm.timeBlock[index].ary = [];
 
@@ -589,7 +589,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 								if( l != 0 && l%max > 0 ){
 									const addNum = max - (l%max);
 									for( i=0;i<addNum;i++ ){
-										console.log('i is >>', i);
+										// console.log('i is >>', i);
 										vm.timeBlock[index].ary.push({empty: true});
 									};
 								}
@@ -637,7 +637,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					vm.fnScrollerHeight();
 
 					// API v
-					console.log('%c'+vueSideBar._data.getApi == 0,'color:yellow');
+					// console.log('%c'+vueSideBar._data.getApi == 0,'color:yellow');
 					if( vueSideBar._data.getApi == 0 ){
 						// HOME-WORK v
 						$.ajax({
@@ -645,9 +645,9 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 							// url: './2020/api/homework.asp?member_id=1179',
 							url: './2020/api/homework.asp',
 							success(res){
-								console.log('home work ', res);
-								console.log('writing', vueSideBar._data.writing);
-								console.log('speech', vueSideBar._data.speech);
+								// console.log('home work ', res);
+								// console.log('writing', vueSideBar._data.writing);
+								// console.log('speech', vueSideBar._data.speech);
 								// SH = speech, HW = writing
 								for( a in res.data ){
 									if( res.data[a].type != 'SH' ){
@@ -656,7 +656,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 										vueSideBar._data.speech.push( res.data[a] );
 									};
 									if( a == (res.data.length - 1) ){
-										console.log('is last');
+										// console.log('is last');
 									}
 								};
 
