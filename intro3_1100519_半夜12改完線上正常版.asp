@@ -420,8 +420,8 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			const TIME = new Date().getTime();
 			$.ajax({
 				type: 'GET',
-				// url: './2020/api/classList.asp?levels=' + vm.memberLevel,
-				url: './2020/json/classList-' + vm.memberLevel + '.json?' + TIME, // ## 角本 API 毛胚
+				url: './2020/api/classList.asp?levels=' + vm.memberLevel,
+				// url: './2020/json/classList-' + vm.memberLevel + '.json?' + TIME, // ## 角本 API 毛胚
 				// url: './2020/api/classList.asp?levels=' + vm.memberLevel + '&date=2021/5/28',
 				// ^ ** 應改回 .json 版本，A1、A2課多者的效能致久會需六秒
 				success(res){
@@ -501,10 +501,10 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 									setTimeout(function(){
 										// ## 角本-2-4 前往角本 3(整日課表加工) v
 										// ## 角本-3 進入點 <<
-										vm.fnFrequency();
-										// $('#ms2-loading').fadeOut();
-										// $('#content').fadeIn();
-										// $('#app').css('overflow', 'hidden');
+										// vm.fnFrequency();
+										$('#ms2-loading').fadeOut();
+										$('#content').fadeIn();
+										$('#app').css('overflow', 'hidden');
 									},300);
 								}
 							};
@@ -630,18 +630,15 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				// ## 角本-4-1 是否為刷跨小時時段 (刷新on-time)
 				let updateHourse = new Date().getHours();
 				if( minutes >= 55 ){ updateHourse ++ };
-				if( String(updateHourse).length == 1 ){ updateHourse = '0' + updateHourse }
 
 				// ## 角本-4-2 整半分鐘判斷 (刷新on-time)
 				let updateMinutes = minutes >= 16 && minutes <= 45 ? ':30' : ':00';
 
 				// ## 角本-4-3 結構現在「小時:分鐘」 (刷新on-time)
-				let updateTime = updateHourse + updateMinutes;
+				const updateTime = updateHourse + updateMinutes;
 
 				// ## 角本-4-4 取出索引順位 (刷新on-time)
 				const index = vm.timeBlock.findIndex(item => item.time == updateTime );
-				console.log('updateTime is ', updateTime);
-				console.log('index is ', index);
 				// console.log('%cupdateTime is '+updateTime+' / index is '+ index,'color:yellow');
 
 				// ## 角本-4-5 刷新on-time v
@@ -679,12 +676,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						}
 					}
 				});
-				// ## DEBUG角本-5 顯示 content v
-				// if( $('#content').is(':hidden') ){
-				// 	// 顯示 content v
-				// 	$('#ms2-loading').hide(100);
-				// 	$('#content').show(100);
-				// }
 			},
 
 			fnGetTime(){

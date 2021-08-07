@@ -501,10 +501,10 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 									setTimeout(function(){
 										// ## 角本-2-4 前往角本 3(整日課表加工) v
 										// ## 角本-3 進入點 <<
-										vm.fnFrequency();
-										// $('#ms2-loading').fadeOut();
-										// $('#content').fadeIn();
-										// $('#app').css('overflow', 'hidden');
+										// vm.fnFrequency();
+										$('#ms2-loading').fadeOut();
+										$('#content').fadeIn();
+										$('#app').css('overflow', 'hidden');
 									},300);
 								}
 							};
@@ -630,18 +630,15 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				// ## 角本-4-1 是否為刷跨小時時段 (刷新on-time)
 				let updateHourse = new Date().getHours();
 				if( minutes >= 55 ){ updateHourse ++ };
-				if( String(updateHourse).length == 1 ){ updateHourse = '0' + updateHourse }
 
 				// ## 角本-4-2 整半分鐘判斷 (刷新on-time)
 				let updateMinutes = minutes >= 16 && minutes <= 45 ? ':30' : ':00';
 
 				// ## 角本-4-3 結構現在「小時:分鐘」 (刷新on-time)
-				let updateTime = updateHourse + updateMinutes;
+				const updateTime = updateHourse + updateMinutes;
 
 				// ## 角本-4-4 取出索引順位 (刷新on-time)
 				const index = vm.timeBlock.findIndex(item => item.time == updateTime );
-				console.log('updateTime is ', updateTime);
-				console.log('index is ', index);
 				// console.log('%cupdateTime is '+updateTime+' / index is '+ index,'color:yellow');
 
 				// ## 角本-4-5 刷新on-time v
@@ -679,12 +676,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						}
 					}
 				});
-				// ## DEBUG角本-5 顯示 content v
-				// if( $('#content').is(':hidden') ){
-				// 	// 顯示 content v
-				// 	$('#ms2-loading').hide(100);
-				// 	$('#content').show(100);
-				// }
 			},
 
 			fnGetTime(){
@@ -822,23 +813,23 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			//
 			timeBlock: [
 				{time: '00:00', ary: [], isToday: true}, 
-				{time: '01:00', ary: []}, {time: '01:30', ary: []}, 
-				{time: '08:00', ary: []}, {time: '08:30', ary: []}, 
-				{time: '09:00', ary: []}, {time: '09:30', ary: []},
-				{time: '10:00', ary: []}, {time: '10:30', ary: []}, 
-				{time: '11:00', ary: []}, {time: '11:30', ary: []}, 
-				{time: '12:00', ary: []}, {time: '12:30', ary: []}, 
-				{time: '13:00', ary: []}, {time: '13:30', ary: []}, 
-				{time: '14:00', ary: []}, {time: '14:30', ary: []}, 
-				{time: '15:00', ary: []}, {time: '15:30', ary: []}, 
-				{time: '16:00', ary: []}, {time: '16:30', ary: []}, 
-				{time: '17:00', ary: []}, {time: '17:30', ary: []}, 
-				{time: '18:00', ary: []}, {time: '18:30', ary: []}, 
-				{time: '19:00', ary: []}, {time: '19:30', ary: []}, 
-				{time: '20:00', ary: []}, {time: '20:30', ary: []}, 
-				{time: '21:00', ary: []}, {time: '21:30', ary: []},
-				{time: '22:00', ary: []}, {time: '22:30', ary: []},
-				{time: '23:00', ary: []}, {time: '23:30', ary: []},
+				{time: '01:00', ary: []}, 
+				{time: '08:00', ary: []}, 
+				{time: '09:00', ary: []},
+				{time: '10:00', ary: []}, 
+				{time: '11:00', ary: []}, 
+				{time: '12:00', ary: []}, 
+				{time: '13:00', ary: []}, 
+				{time: '14:00', ary: []}, 
+				{time: '15:00', ary: []}, 
+				{time: '16:00', ary: []}, 
+				{time: '17:00', ary: []}, 
+				{time: '18:00', ary: []}, 
+				{time: '19:00', ary: []}, 
+				{time: '20:00', ary: []}, 
+				{time: '21:00', ary: []},
+				{time: '22:00', ary: []},
+				{time: '23:00', ary: []},
 				{time: '00:00', ary: [], isToday: false}
 			],
 			bus: {
