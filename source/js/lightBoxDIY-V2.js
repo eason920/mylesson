@@ -79,6 +79,7 @@
 	}
 
 	function DIYLightBoxAD(mode,boxWidth,boxHeight,ul,tamplet){
+		console.log('%chere','color:yellow');
 		$('.float-masker').remove();
 		if(tamplet=='b'){
 			DIYLightBoxL(mode,boxWidth,boxHeight,ul)
