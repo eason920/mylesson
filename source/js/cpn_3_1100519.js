@@ -105,7 +105,7 @@ const cpn_card = {
 		};
 
 		// LINK v
-		vm.link.href = "../teaching/?cls=" + vm.prop.Class_GroupE + "&index=" + vm.prop.id;
+		vm.link.href = "../teaching/?cls=" + vm.prop.Class_GroupE + "&index=" + vm.prop.id+'&class_id='+vm.prop.class_id;
 		//
 		switch( vm.prop.JoinCheck ){
 			case "7": vm.link.text = '可候位 ';break;
@@ -235,7 +235,7 @@ const cpn_side_item = {
 		}else{
 			vm.category='Formal'
 		}
-		vm.link = '../teaching/?cls=' + vm.category +'&index=' + vm.prop.id;
+		vm.link = '../teaching/?cls=' + vm.category +'&index=' + vm.prop.id+'&class_id='+vm.prop.class_id;
 		//==> 點了只會有「課程未開課」結果，故不放連結
 	},
 	data(){
