@@ -1,6 +1,15 @@
 <!--
 memo
+<54bk46
+// 避免介面刷新中的收闔、高度變化情形 XX => 會造成候位不正確
+55 ~ 15 整侯 (刷ing (20
+16 ~24 整休(15會刪整 (8
+25~45 半侯 ( 刷ing (20
+46~54 半休(46會刪整 (8
 
+學生版的「英語聊天室」:00 ~ :50
+只刷在 55~15 & 25~45 (一般排程中)不另在 16~24的空檔時加刷 
+=> 16~24 的聊天室滿客狀態不是即時的
 -->
 <%@LANGUAGE="VBSCRIPT" CODEPAGE="65001" %>   
 <!-- #include virtual="include/DBConnection.asp"--> 
@@ -115,7 +124,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		<script src="./2020/assets/plugins/jquery/jquery.1.12.4.min.js"></script>
 		<script src="./2020/assets/plugins/vue/vue2.6.12.js"></script>
 		<script src="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.min.js"></script>
-		<script src="./2020/js/cpn_3_1100519.js?<%=Timer%>"></script>
+		<script src="./2020/js/cpn_3_1100810.js?<%=Timer%>"></script>
 		<!---->
 		<script src="./2020/assets/plugins/jquery-ui/1.11.2.js"></script>
 		<script src="../jquery.cookie.js"></script>    
@@ -415,12 +424,11 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			const TIME = new Date().getTime();
 			$.ajax({
 				type: 'GET',
-				// url: './2020/api/classList.asp?levels=' + vm.memberLevel,
-				url: './2020/json/classList-' + vm.memberLevel + '.json?' + TIME, // ## 角本 API 毛胚
-				// url: './2020/api/classList.asp?levels=' + vm.memberLevel + '&date=2021/5/28',
+				url: './2020/json2/classList-' + vm.memberLevel + '.json?' + TIME,
+				// url: './2020/json/classList-' + vm.memberLevel + '.json?' + TIME, // ## 角本 API 毛胚
 				// ^ ** 應改回 .json 版本，A1、A2課多者的效能致久會需六秒
 				success(res){
-					console.log('static json is ', res);
+					// console.log('static json is ', res);
 					if( res.data.length != 0 ){
 						// ## 角本-1-1a 全時段仍有課程(取得整日課表毛胚) v
 						for( a in res.data ){
@@ -511,6 +519,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						//
 						$('#allEmpty').append( $('<div>', {'class':'all-empty'}).text('今日己無合適您等級 (' + vueSideBar._data.transEn + ') 的課程') )
 					};
+					// vm.fnDeleteErrTimeBlock();
 				}
 			});
 		},
@@ -527,23 +536,38 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				const minutes = new Date().getMinutes();
 				// console.log('delete time', minutes);
 				const hours = new Date().getHours();
+				const hoursBefore = hours - 1;
+
+				if( minutes <= 15 ){
+					const time = hoursBefore + ':00';
+					const time2 = hoursBefore + ':30';
+					const delNow = vm.timeBlock.findIndex(function(item){
+						return item.time == time;
+					});
+					const delNow2 = vm.timeBlock.findIndex(item => item.time == time2);
+					vm.timeBlock[delNow].ary=[];
+					vm.timeBlock[delNow2].ary=[];
+				};
 
 				// TOP HOURS v
-				if( minutes >= 16 ){
+				if( minutes >= 16 && minutes <= 45 ){
 					const time = hours + ':00';
 					const delNow = vm.timeBlock.findIndex(function(item){
 						return item.time == time;
 					});
 					// console.log('delete time >=16 delete TOP house is ', time, ' index is ', delNow);
-					vm.timeBlock[delNow].ary=[];
+					// vm.timeBlock[delNow].ary=[];
 				};
 
 				// BOTTOM HOURS v
 				if( minutes >=46 ){
-					const time = hours + ':30';
+					const time = hours + ':00';
+					const time2 = hours + ':30';
 					const delNow = vm.timeBlock.findIndex(item => item.time == time);
+					const delNow2 = vm.timeBlock.findIndex(item => item.time == time2);
 					// console.log('delete time >=46 delete BOTTOM house is ', time, ' index is ', delNow);
 					vm.timeBlock[delNow].ary=[];
+					vm.timeBlock[delNow2].ary=[];
 				};
 			},
 
@@ -591,7 +615,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 							// console.log('%cInterval 整點 55~15','color:greenyellow');
 							fn();
 							break;
-						case minutes >= 25 && minutes <= 45 :
+						case minutes >= 25 && minutes <= 46 : // <54bk46
 							// ## 角本-3-2b on-time, 要半點多次性執行 (刷新頻率)
 							// console.log('%cInterval 半點 25~45 ','color:greenyellow');
 							fn();
@@ -616,8 +640,9 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			},
 
 			fnUpdateOntime(minutes, from){
-				// ## 角本-4 刷新on-time
 				const vm = this;
+				vm.fnDeleteErrTimeBlock();
+				// ## 角本-4 刷新on-time
 				// console.log('%cfrom '+from+' /minutes is '+ minutes,'color: yellow');
 
 				// ## 角本-4-1 是否為刷跨小時時段 (刷新on-time)
@@ -626,33 +651,65 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				if( String(updateHourse).length == 1 ){ updateHourse = '0' + updateHourse }
 
 				// ## 角本-4-2 整半分鐘判斷 (刷新on-time)
-				let updateMinutes = minutes >= 16 && minutes <= 45 ? ':30' : ':00';
+				let updateMinutes = minutes >= 16 && minutes <= 46 ? ':30' : ':00'; // <54bk46
 
 				// ## 角本-4-3 結構現在「小時:分鐘」 (刷新on-time)
 				let updateTime = updateHourse + updateMinutes;
 
 				// ## 角本-4-4 取出索引順位 (刷新on-time)
 				const index = vm.timeBlock.findIndex(item => item.time == updateTime );
-				console.log('updateTime is ', updateTime);
-				console.log('index is ', index);
+				// console.log('updateTime is ', updateTime);
+				// console.log('index is ', index);
 				// console.log('%cupdateTime is '+updateTime+' / index is '+ index,'color:yellow');
 
 				// ## 角本-4-5 刷新on-time v
-				const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + updateHourse; // ## 角本 API static
+				// https://funday.asia/mylesson/2020/api/classListN2.asp?levels=4&H=10
+				let url ='./2020/api/classListN2.asp?levels=' + vm.memberLevel + '&H=' + updateHourse; // ## 角本 API static
+				if( minutes >= 55 ){ url = url + '&mn=00'	}
 				// const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + updateHourse + '&date=2021/5/28';
 				// console.log('block', vm.timeBlock[index]);
-				vm.timeBlock[index].ary=[];
+
+				vm.timeBlock[index].ary=[]; // 避免介面刷新中的收闔、高度變化情形 off
+				
+				// helf only v
+				console.log('updateMinutes',updateMinutes);
+				let updateTimeZero = '';
+				let indexZero = 0;
+				if( updateMinutes == ':30' ){
+					updateTimeZero = updateHourse + ':00';
+					indexZero = index-1;
+					// console.log('is 30 >', indexZero, '/ ', updateTimeZero);
+					vm.timeBlock[indexZero].ary=[]; // 避免介面刷新中的收闔、高度變化情形 off
+				}else{
+					console.log('%cnot helf','color:yellow');
+				}
+				// helf only ^
+
 				$.ajax({
 					type: 'GET',
 					url,
 					success(res){
 						// console.log('RES is ', res);
+						// const aryZero = [];// // 避免介面刷新中的收闔、高度變化情形 on
+						// const aryHelf = [] // 避免介面刷新中的收闔、高度變化情形 on
 						res.data.forEach(function(item, i){
 							// console.log('log time', item.class_btime, item.class_btime == updateTime);
 							if(item.class_btime == updateTime){
-								vm.timeBlock[index].ary.push(item);
+								vm.timeBlock[index].ary.push(item); // 避免介面刷新中的收闔、高度變化情形 off
+								// aryHelf.push(item); // 避免介面刷新中的收闔、高度變化情形 on
 							};
+
+							// helf only v
+							if( updateMinutes == ':30' ){
+								if(item.class_btime == updateTimeZero){
+									vm.timeBlock[indexZero].ary.push(item); // 避免介面刷新中的收闔、高度變化情形 off
+									// aryZero.push(item); // 避免介面刷新中的收闔、高度變化情形 on
+								};
+							}
+							// helf only ^
 						});
+						// vm.timeBlock[index].ary = aryHelf; // 避免介面刷新中的收闔、高度變化情形 on
+						// vm.$set(vm.timeBlock[index].ary , aryHelf); // 避免介面刷新中的收闔、高度變化情形 onfix
 
 						// 補齊未滿 3n / 4n v
 						const max = $(window).width() > 1366 ? 4 : 3;
@@ -660,9 +717,23 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						if( l != 0 && l%max > 0 ){
 							const addNum = max - (l%max);
 							for( i=0;i<addNum;i++ ){
-								vm.timeBlock[index].ary.push({empty: true});
+								vm.timeBlock[index].ary.push({empty: true}); 
 							};
 						}
+
+						// helf only v
+						if( updateMinutes == ':30' ){
+							// vm.timeBlock[indexZero].ary=aryZero; // 避免介面刷新中的收闔、高度變化情形 on
+							// vm.$set(vm.timeBlock[indexZero].ary, aryZero); // 避免介面刷新中的收闔、高度變化情形 onfix
+							const l2 = vm.timeBlock[indexZero].ary.length;
+							if( l2 != 0 && l%max > 0 ){
+								const addNum = max - (l%max);
+								for( i=0;i<addNum;i++ ){
+									vm.timeBlock[indexZero].ary.push({empty: true});
+								};
+							}
+						};
+						// helf only ^
 
 						// ## 角本-5 顯示 content v
 						if( $('#content').is(':hidden') ){
