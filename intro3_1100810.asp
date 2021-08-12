@@ -1,7 +1,8 @@
 <!--
 memo
-<54bk46
 // 避免介面刷新中的收闔、高度變化情形 XX => 會造成候位不正確
+HELF ONLY
+
 55 ~ 15 整侯 (刷ing (20
 16 ~24 整休(15會刪整 (8
 25~45 半侯 ( 刷ing (20
@@ -534,9 +535,10 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 			fnDeleteErrTimeBlock(){
 				const vm = this;
 				const minutes = new Date().getMinutes();
-				// console.log('delete time', minutes);
-				const hours = new Date().getHours();
-				const hoursBefore = hours - 1;
+				let hours = new Date().getHours();
+				let hoursBefore = hours - 1;
+				if( String(hours).length == 1 ){ hours = '0' + hours }
+				if( String(hoursBefore).length == 1 ){ hoursBefore = '0' + hoursBefore }
 
 				if( minutes <= 15 ){
 					const time = hoursBefore + ':00';
@@ -549,23 +551,19 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					vm.timeBlock[delNow2].ary=[];
 				};
 
-				// TOP HOURS v
-				if( minutes >= 16 && minutes <= 45 ){
-					const time = hours + ':00';
-					const delNow = vm.timeBlock.findIndex(function(item){
-						return item.time == time;
-					});
-					// console.log('delete time >=16 delete TOP house is ', time, ' index is ', delNow);
-					// vm.timeBlock[delNow].ary=[];
-				};
+				// if( minutes >= 16 && minutes <= 45 ){
+				// 	const time = hours + ':00';
+				// 	const delNow = vm.timeBlock.findIndex(function(item){
+				// 		return item.time == time;
+				// 	});
+				// 	// vm.timeBlock[delNow].ary=[];
+				// };
 
-				// BOTTOM HOURS v
 				if( minutes >=46 ){
 					const time = hours + ':00';
 					const time2 = hours + ':30';
 					const delNow = vm.timeBlock.findIndex(item => item.time == time);
 					const delNow2 = vm.timeBlock.findIndex(item => item.time == time2);
-					// console.log('delete time >=46 delete BOTTOM house is ', time, ' index is ', delNow);
 					vm.timeBlock[delNow].ary=[];
 					vm.timeBlock[delNow2].ary=[];
 				};
@@ -582,13 +580,10 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				
 				if( minutes >= 55 || minutes <= 15 || minutes >= 25 && minutes <= 45 ){
 					// ## 角本-3-1a on-time, 要刷一次性 (刷新頻率) v
-					// console.log('ontime, minutes is ', minutes);
 					// ## 角本-4 進入點 a v
 					vm.fnUpdateOntime(minutes, 'one only');
 				}else{
 					// ## 角本-3-1b off-time, 不刷一次性 (刷新頻率) v
-					// console.log('off time, minutes is ', minutes);
-					
 					// ## 角本-5 顯示 content v
 					$('#ms2-loading').hide(100);
 					$('#content').show(100);
@@ -596,12 +591,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 
 				// ## 角本-3-2 多次性執行 (刷新頻率)
 				vm.refreshControl =window.setInterval(()=>{
-					// console.log('---------------------------------');
 					minutes = new Date().getMinutes();
-					// minutes = vm.deBugTime.minutes;
-
-					// console.log('%cInterval runing, minutes is '+ minutes,'color:greenyellow');
-
 					const fn = function(){
 						Cookies.set('reload', false);
 						vm.fnGetTime();
@@ -612,12 +602,10 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					switch(true){
 						case minutes >= 55 || minutes <= 15 :
 							// ## 角本-3-2a on-time, 要整點多次性執行 (刷新頻率)
-							// console.log('%cInterval 整點 55~15','color:greenyellow');
 							fn();
 							break;
-						case minutes >= 25 && minutes <= 46 : // <54bk46
+						case minutes >= 25 && minutes <= 46 :
 							// ## 角本-3-2b on-time, 要半點多次性執行 (刷新頻率)
-							// console.log('%cInterval 半點 25~45 ','color:greenyellow');
 							fn();
 							break;
 
@@ -634,7 +622,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 								// console.log('%cIntervalf 16-24 & 46~54 己重整畫面(為重抓api、不重整','color:greenyellow');
 							}
 					};
-				// }, 1000 * vm.deBugTime.refreshTime);
 				}, 1000 * 50 );
 
 			},
@@ -643,7 +630,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				const vm = this;
 				vm.fnDeleteErrTimeBlock();
 				// ## 角本-4 刷新on-time
-				// console.log('%cfrom '+from+' /minutes is '+ minutes,'color: yellow');
 
 				// ## 角本-4-1 是否為刷跨小時時段 (刷新on-time)
 				let updateHourse = new Date().getHours();
@@ -651,80 +637,61 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				if( String(updateHourse).length == 1 ){ updateHourse = '0' + updateHourse }
 
 				// ## 角本-4-2 整半分鐘判斷 (刷新on-time)
-				let updateMinutes = minutes >= 16 && minutes <= 46 ? ':30' : ':00'; // <54bk46
+				let updateMinutes = minutes >= 16 && minutes <= 46 ? ':30' : ':00';
 
 				// ## 角本-4-3 結構現在「小時:分鐘」 (刷新on-time)
 				let updateTime = updateHourse + updateMinutes;
 
 				// ## 角本-4-4 取出索引順位 (刷新on-time)
-				const index = vm.timeBlock.findIndex(item => item.time == updateTime );
-				// console.log('updateTime is ', updateTime);
-				// console.log('index is ', index);
-				// console.log('%cupdateTime is '+updateTime+' / index is '+ index,'color:yellow');
+				const indexHelf = vm.timeBlock.findIndex(item => item.time == updateTime );
 
 				// ## 角本-4-5 刷新on-time v
-				// https://funday.asia/mylesson/2020/api/classListN2.asp?levels=4&H=10
 				let url ='./2020/api/classListN2.asp?levels=' + vm.memberLevel + '&H=' + updateHourse; // ## 角本 API static
-				if( minutes >= 55 ){ url = url + '&mn=00'	}
 				// const url ='./2020/api/classList.asp?levels=' + vm.memberLevel + '&H=' + updateHourse + '&date=2021/5/28';
-				// console.log('block', vm.timeBlock[index]);
+				if( minutes >= 55 ){ url = url + '&mn=00'	}
 
-				vm.timeBlock[index].ary=[]; // 避免介面刷新中的收闔、高度變化情形 off
+				vm.timeBlock[indexHelf].ary=[];
 				
-				// helf only v
-				console.log('updateMinutes',updateMinutes);
+				// HELF ONLY v
 				let updateTimeZero = '';
 				let indexZero = 0;
 				if( updateMinutes == ':30' ){
 					updateTimeZero = updateHourse + ':00';
-					indexZero = index-1;
-					// console.log('is 30 >', indexZero, '/ ', updateTimeZero);
-					vm.timeBlock[indexZero].ary=[]; // 避免介面刷新中的收闔、高度變化情形 off
-				}else{
-					console.log('%cnot helf','color:yellow');
-				}
-				// helf only ^
+					indexZero = indexHelf-1;
+					vm.timeBlock[indexZero].ary=[];
+				};
+				// HELF ONLY ^
 
 				$.ajax({
 					type: 'GET',
 					url,
 					success(res){
-						// console.log('RES is ', res);
-						// const aryZero = [];// // 避免介面刷新中的收闔、高度變化情形 on
-						// const aryHelf = [] // 避免介面刷新中的收闔、高度變化情形 on
 						res.data.forEach(function(item, i){
-							// console.log('log time', item.class_btime, item.class_btime == updateTime);
 							if(item.class_btime == updateTime){
-								vm.timeBlock[index].ary.push(item); // 避免介面刷新中的收闔、高度變化情形 off
-								// aryHelf.push(item); // 避免介面刷新中的收闔、高度變化情形 on
+								vm.timeBlock[indexHelf].ary.push(item);
 							};
 
-							// helf only v
+							// HELF ONLY v
 							if( updateMinutes == ':30' ){
 								if(item.class_btime == updateTimeZero){
-									vm.timeBlock[indexZero].ary.push(item); // 避免介面刷新中的收闔、高度變化情形 off
-									// aryZero.push(item); // 避免介面刷新中的收闔、高度變化情形 on
+									vm.timeBlock[indexZero].ary.push(item);
 								};
 							}
-							// helf only ^
+							// HELF ONLY ^
 						});
-						// vm.timeBlock[index].ary = aryHelf; // 避免介面刷新中的收闔、高度變化情形 on
-						// vm.$set(vm.timeBlock[index].ary , aryHelf); // 避免介面刷新中的收闔、高度變化情形 onfix
 
 						// 補齊未滿 3n / 4n v
 						const max = $(window).width() > 1366 ? 4 : 3;
-						const l = vm.timeBlock[index].ary.length;
+						const l = vm.timeBlock[indexHelf].ary.length;
 						if( l != 0 && l%max > 0 ){
 							const addNum = max - (l%max);
 							for( i=0;i<addNum;i++ ){
-								vm.timeBlock[index].ary.push({empty: true}); 
+								vm.timeBlock[indexHelf].ary.push({empty: true}); 
 							};
 						}
 
-						// helf only v
+						// HELF ONLY v
 						if( updateMinutes == ':30' ){
-							// vm.timeBlock[indexZero].ary=aryZero; // 避免介面刷新中的收闔、高度變化情形 on
-							// vm.$set(vm.timeBlock[indexZero].ary, aryZero); // 避免介面刷新中的收闔、高度變化情形 onfix
 							const l2 = vm.timeBlock[indexZero].ary.length;
 							if( l2 != 0 && l%max > 0 ){
 								const addNum = max - (l%max);
@@ -733,7 +700,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 								};
 							}
 						};
-						// helf only ^
+						// HELF ONLY ^
 
 						// ## 角本-5 顯示 content v
 						if( $('#content').is(':hidden') ){
@@ -743,12 +710,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 						}
 					}
 				});
-				// ## DEBUG角本-5 顯示 content v
-				// if( $('#content').is(':hidden') ){
-				// 	// 顯示 content v
-				// 	$('#ms2-loading').hide(100);
-				// 	$('#content').show(100);
-				// }
 			},
 
 			fnGetTime(){
@@ -765,7 +726,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				//
 				const buttonLeft = $('.nav-group-link').offset().left;
 				const left = buttonLeft - vm.bulletinWidth / 2 + 25 - 4;// 25 = :before 50 / 2 , 4 = fix
-				// $('.tgnav-group-dropdown').css({'left': left});
 				vm.bulletinLeft = left;
 				//
 				vueBulletin._data.show = 1;
@@ -792,18 +752,12 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 					vm.fnScrollerHeight();
 
 					// API v
-					// console.log('%c'+vueSideBar._data.getApi == 0,'color:yellow');
 					if( vueSideBar._data.getApi == 0 ){
 						// HOME-WORK v
 						$.ajax({
 							type: 'GET',
-							// url: './2020/api/homework.asp?member_id=1179',
 							url: './2020/api/homework.asp',
 							success(res){
-								// console.log('home work ', res);
-								// console.log('writing', vueSideBar._data.writing);
-								// console.log('speech', vueSideBar._data.speech);
-								// SH = speech, HW = writing
 								for( a in res.data ){
 									if( res.data[a].type != 'SH' ){
 										vueSideBar._data.writing.push( res.data[a] );
@@ -824,8 +778,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 								// HISTORY PREV 20 v
 								$.ajax({
 									type: 'GET',
-									// url: './2020/api/reviewbar.asp?PG=' + vueSideBar._data.getApi,
-									// url: './2020/api/reviewClassbar.asp?member_id=141091',
 									url: './2020/api/reviewClassbar.asp',
 									success(res){
 										vueSideBar._data.review = JSON.parse(res);
@@ -839,12 +791,8 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 										},0);
 									}
 								});
-
-
 							}
 						});
-
-						
 					};
 				};
 			},
@@ -865,10 +813,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		},
 		
 		data: {
-			deBugTime: {
-				// minutes: location.href.split('?')[1].split(',')[0],
-				// refreshTime: location.href.split('?')[1].split(',')[1]
-			},
 			copyright: '',
 			refreshControl: '',
 			nowTime: '',
@@ -905,8 +849,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				{time: '23:00', ary: []}, {time: '23:30', ary: []},
 				{time: '00:00', ary: [], isToday: false}
 			],
-			bus: {
-			}
 		},
 		el: '#app',
 		components: {
