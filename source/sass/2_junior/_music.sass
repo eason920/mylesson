@@ -1,0 +1,81 @@
+$w-btn: 33px
+$w-music: 230px
+#block2
+	.grid5-item
+		position: relative
+		width: calc( (100% - 22px * 4 ) / 5  )
+		// background: #fff
+		cursor: pointer
+		padding-bottom: 1px
+		margin-right: 22px
+		&:last-child
+			margin: 0
+		&:hover
+			// .grid5-img
+			// 	background:
+			// 		size: 110%
+			.grid5-btn:before
+				opacity: 1
+		
+	.grid5-img
+		width: 100%
+		height: 100px
+		transition: .5s
+		background:
+			size: cover
+			position: center
+		border-radius: 3px
+		overflow: hidden
+		box-shadow: 0px 3px 13px 4px rgba(147, 83, 92, 0.3)
+		// margin-bottom: 6px
+
+	.grid5-btn
+		width: 32px
+		height: 32px
+		background:
+			image: linear-gradient(135deg, #dcdcdc 18%, #fff 100%)
+		box-shadow: -3px -3px 5px #fff, 2px 2px 5px rgba(0, 0, 0, 0.11)
+		border-radius: 50%
+		position: absolute
+		right: 0
+		bottom: 6px
+		z-index: 1
+
+		&:before
+			content: ''
+			display: block
+			width: 100%
+			height: 100%
+			position: absolute
+			bottom: -1px
+			background-image: linear-gradient(135deg, #c8c8c8 12%, #fff 100%)
+			opacity: 0
+			transition: .5s
+			border-radius: 50%
+			width: $w-btn
+			height: $w-btn
+		
+		&:after
+			content: ''
+			display: block
+			width: 0
+			height: 0
+			border:
+				style: solid
+				width: 7px 0 7px 10px
+				color: transparent transparent transparent #FC9798
+			position: absolute
+			top: 10px
+			right: 9px
+
+	// --------------------------------
+	.grid5-under
+		padding-top: 6px
+		height: 46px
+
+	.grid5-actor
+		color: #000
+		
+	.grid5-actor, .grid5-subtitle
+		@extend %row1
+		width: calc( 100% - #{$w-btn} - 10px)

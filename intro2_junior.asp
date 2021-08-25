@@ -45,7 +45,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 		<meta property="og:description" content="FUNDAY台灣最大英語數位資料庫，超過1萬多篇主題時事/商用英語，每日更新，每天只要15分鐘，使用線上工具，透過老師講解與文章測驗，吸收最新生活用語和國際議題，跨平台學習不受限！國內50所大學語言中心培訓實績；上百間大型公民營企業培訓經驗；採用歐洲理事會CEFR語言學習架構；幫你建立個人專屬的學習計畫與追蹤功能，讓學習與生活結合，開拓更寬廣的國際視野，成為你的終身學習夥伴。" >
 		<meta property="og:keywords" content="看新聞學英文,英文閱讀,時事英文,線上英文,學習英文,看電影學英文,英語會話,雙語新聞,線上英文課程,英聽,聽力練習,線上英語,英文文法,聽音樂學英文,英文寫作,英語口說">    
 		<title>My Lesson page 2 junior</title>
-		<link href="./2020/css/mylesson_2.css?<%=Timer%>" rel="stylesheet"/>
+		<link href="./2020/css/mylesson_2_junior.css?<%=Timer%>" rel="stylesheet"/>
 		<link href="./2020/assets/plugins/perfect-scrollbar-master/perfect-scrollbar.css?<%=Timer%>" rel="stylesheet"/>
 		<!--link href="./2020/css/memberbar.css?<%=Timer%>" rel="stylesheet"/-->
 		<link href="./2020/css/lightbox_ad.css?<%=Timer%>" rel="stylesheet"/>
@@ -188,14 +188,11 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 						</div>
 					</div>
 					<div class="grid3">
-						<div class="grid3-video"
+						<!--div class="grid3-video"
 							:style='program.above.pic | filterBG'
 							:onclick='fnGoLink("FunProgram", program.above.indx)'
 						>
-							<!--iframe src="https://www.youtube.com/embed/Nw7wwHm4GxU?controls=0" frameborder="0"
-								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-								allowfullscreen="allowfullscreen"></iframe-->
-						</div>
+						</div-->
 						<a class="grid-title is-1" href="https://funday.asia/search/article/intro_awd.asp?category=2">生活 ‧ 新知</a>
 						<div class="grid3-box">
 							<cpn_living
@@ -223,7 +220,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 							:style='magazine.pic | filterBG '
 						></a>
 					</div>
-					<div class="grid4">
+					<!--div class="grid4">
 						<a class="grid-title is-1" href="https://funday.asia/search/article/intro_awd.asp?category=3">商務 ‧ 情境</a>
 						<div class="grid4-box">
 							<cpn_office
@@ -248,7 +245,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 								:key='i'
 							></cpn_tales>
 						</div>
-					</div>
+					</div-->
 				</div>
 				<div id="block-title">
 					<div class="grid1">
@@ -947,7 +944,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 			cpn_mixin,
 			cpn_living,
 			cpn_columns,
-			cpn_office,
+			// cpn_office,
 			cpn_tales,
 			// 2 v
 			cpn_blog,
@@ -960,7 +957,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 		el: '#app',
 	});
 
-	Vue.config.devtools = false;
+	Vue.config.devtools = false; // tools data 隱藏
 	
 	// ==========================================
 	// == SYSTEN (BACK-END) v

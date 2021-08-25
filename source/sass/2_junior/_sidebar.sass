@@ -1,0 +1,223 @@
+$h-st: 68px
+$h-su: 100px
+$p-s: 20px
+$w-l: 250px
+
+%s-t
+	font-size: 1rem
+	color: #fff
+	position: relative
+	margin:
+		bottom: 20px
+	letter-spacing: 1px
+	&:after
+		content: ''
+		position: absolute
+		height: 1px
+		background-color: rgba(255,255,255,.2)
+		right: 0
+		top: 7px
+
+// -----------------------------------
+#sidebar
+	bottom: 0
+	right: -330px
+	width: 330px
+	background:
+		color: $c-blue
+	z-index: 10
+	transition: right .3s
+	&.is-open
+		right: 0
+
+// -----------------------------------
+#sidebar-title
+	height: $h-st
+	color: #fff
+	display: flex
+	align-items: center
+	justify-content: space-between
+	padding: 0 $p-s
+
+#sidebar-icon
+	display: flex
+	align-items: center
+	font:
+		size: 1rem
+
+#sidebar-level
+	font:
+		size: 1.5rem
+		family: arial
+	letter-spacing: 1px
+
+// -----------------------------------
+#sidebar-scroller
+	background-color: $c-blue-dark
+	position: relative
+	padding: $p-s
+	height: calc( 100% - #{$h-st} - #{$h-su} )
+	overflow: auto
+
+#sidebar-scroller-title
+	@extend %s-t
+	margin-bottom: 20px
+	&:after
+		left: 142px
+
+#sidebar-list
+	list-style-type: none
+
+.sidebar-item
+	color: #fff
+	display: flex
+	width: 100%
+	text-decoration: none
+	// margin v
+	margin-bottom: 25px
+	cursor: pointer
+	&:last-child
+		margin: 0
+
+	// bg-color v
+	&[data-sort='1']
+		.sidebar-time span
+			color: $c-o1
+		.sidebar-dot
+			background-color: $c-o1
+	&[data-sort='12']
+		.sidebar-time span
+			color: $c-o12
+		.sidebar-dot
+			background-color: $c-o12
+	&[data-sort='3']
+		.sidebar-time span
+			color: $c-o3
+		.sidebar-dot
+			background-color: $c-o3
+	&[data-sort='4']
+		.sidebar-time span
+			color: $c-o4
+		.sidebar-dot
+			background-color: $c-o4
+	&[data-sort='5']
+		.sidebar-time span
+			color: $c-o5
+		.sidebar-dot
+			background-color: $c-o5
+	&[data-sort='6']
+		.sidebar-time span
+			color: $c-o6
+		.sidebar-dot
+			background-color: $c-o6
+	&[data-sort='7']
+		.sidebar-time span
+			color: $c-o7
+		.sidebar-dot
+			background-color: $c-o7
+	&[data-sort='8']
+		.sidebar-time span
+			color: $c-o8
+		.sidebar-dot
+			background-color: $c-o8
+	&[data-sort='9']
+		.sidebar-time span
+			color: $c-o9
+		.sidebar-dot
+			background-color: $c-o9
+	&[data-sort='10']
+		.sidebar-time span
+			color: $c-o10
+		.sidebar-dot
+			background-color: $c-o10
+	&[data-sort='11']
+		.sidebar-time span
+			color: $c-o11
+		.sidebar-dot
+			background-color: $c-o11
+
+	// column v
+	&.is-no-level
+		.sidebar-left
+			width: 100%
+		.sidebar-right
+			display: none
+
+.sidebar-time span
+	margin:
+		right: 5px
+
+.sidebar-left
+	width: $w-l
+	display: flex
+	overflow: hidden
+
+$w-sd1: 5px
+$w-sd2: 12px
+.sidebar-dot
+	width: $w-sd1
+	height: 100%
+	background-color: #aaa
+	margin-right: $w-sd2
+	border-radius: 3px
+
+.sidebar-info
+	width: calc( 100% - #{$w-sd1} - #{$w-sd2} )
+
+.sidebar-time
+	font-size: .75rem
+	margin-bottom: 8px
+
+.sidebar-title
+	@extend %row1
+	font-size: .75rem
+
+.sidebar-right
+	width: calc( 100% - #{$w-l})
+	display: flex
+	align-items: center
+	justify-content: flex-end
+	font-size: .75rem
+
+		
+	
+
+// -----------------------------------
+#sidebar-under
+	padding: $p-s
+	height: $h-su
+	background-color: rgba(28,28,28, .55)
+
+#sidebar-under-title
+	@extend %s-t
+	&:after
+		left: 72px
+
+#sidebar-under-list
+	display: flex
+	align-items: center
+	justify-content: space-between
+	list-style-type: none
+
+.sidebar-under-hr
+	width: 1px
+	height: 18px
+	background-color: #fff
+
+.sidebar-under-item a
+	font-size: .875rem
+	color: #fff
+	display: flex
+	align-items: center
+	text-decoration: none
+	img
+		margin-right: 8px
+
+@media screen and (max-width: 1199px)
+	#sidebar
+		position: absolute
+		top: 0
+@media screen and (min-width: 1200px)
+	#sidebar
+		position: fixed
+		top: 96px

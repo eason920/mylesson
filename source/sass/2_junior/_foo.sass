@@ -1,0 +1,65 @@
+$w: 40px
+#foo
+	padding-top: 28px
+	position: relative
+	#foo-left, #foo-right
+		height: 100%
+		position: absolute
+		top: 0
+		background:
+			color: #333
+		width: $w
+
+	#foo-left
+		left: -1 * $w
+		
+	#foo-right
+		right: -1 * $w
+
+.f1
+	position: relative
+	margin:
+		// right: 20px
+		bottom: 10px
+		// left: 20px
+	font:
+		size: 16px
+		weight: bold
+	letter-spacing: 0.3px
+	text-align: left
+	color: #f4f4f4
+	display: flex
+	align-items: center
+
+.msg-board
+	display: inline-block
+	background:
+		image: image-url('email.png')
+		repeat: no-repeat
+		size: 20px auto
+	margin-left: 15px
+	cursor: pointer
+	width: 20px
+	height: 20px
+
+.f2
+	position: relative
+	margin: 10px 0 20px
+	width: calc(100% - 40px)
+	font-size: 16px
+	font-weight: normal
+	font-style: normal
+	font-stretch: normal
+	letter-spacing: normal
+	text-align: left
+	color: #7e7e7e
+
+.f2-1
+	float: left
+	left: 0px
+
+.f2-2
+	float: right
+	right: 20px
+	padding-top: 7px
+	font-size: 12px
