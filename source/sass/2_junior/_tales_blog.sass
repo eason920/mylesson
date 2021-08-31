@@ -1,0 +1,59 @@
+$w: 50%
+$g: 3%
+#block-tb
+	display: flex
+	margin:
+		bottom: 40px
+
+.tb-item
+	width: calc( #{$w} - #{$g}/2 )
+	&:nth-child(1)
+		margin-right: $g
+
+.tb-item-box
+	display: flex
+	flex-wrap: wrap
+	margin-top: 25px
+
+// --------------------------------
+$gs: 15px
+.tales-item
+	width: 50%
+	display: flex
+	margin-bottom: 20px
+	&:nth-child(odd)
+		padding-right: $gs
+		border-right: solid 1px #333
+		flex-direction: column
+		justify-content: space-between
+	&:nth-child(even)
+		padding-left: $gs
+		flex-direction: column-reverse
+		justify-content: flex-end
+		.tales-item-titlebox
+			padding-bottom: 5px
+
+.tales-item-img
+	// height: 150px
+	background:
+		size: cover
+		position: center 0
+.tales-item-titlebox
+	height: 50px
+	display: flex
+	flex-direction: column
+	justify-content: center
+.tales-item-title
+	@extend %row1
+	font:
+		size: 20px
+		weight: bold
+	line-height: 1.5
+
+.tales-item-title-en
+	@extend %row1
+	font:
+		size: 15px
+		family: Times New Roman
+	letter-spacing: 1px
+	

@@ -1,0 +1,5 @@
+entrance = 升學考試
+living = 通識文章
+trend = 國際時事
+
+fnGiveHeight

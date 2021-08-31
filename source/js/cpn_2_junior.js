@@ -106,31 +106,38 @@ const cpn_mixin = {
 		<div class="grid22-item add-hr"
 			:onclick='req_fn'
 		>
-			<div class="grid22-img" :style="req_pic"></div>
-			<div class="grid22-right">
-				<div class="grid22-above">
-					<div class="grid22-ch">{{prop.ch_subject}}</div>
-					<div class="grid22-en">{{prop.en_subject}}</div>
-					<div class="grid-content">{{prop.ch_article}}</div>
+			<div class="grid22-title">
+			<div class="grid-view">{{prop.ndate}}</div>
+			<div class="grid22-ch">
+					<img src="./2020/images/2jr/icon_apple.png"/>
+					{{prop.ch_subject}}
 				</div>
-				<div class="grid-view">...｜ {{prop.ndate}}</div>
+				<div class="grid22-en">{{prop.en_subject}}</div>
+			</div>
+			<div class="grid22-info">
+				<div class="grid22-left" :style="req_pic"></div>
+				<div class="grid22-right">
+					<div class="grid22-above">
+						<div class="grid-content">{{prop.ch_article}}</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	`
 };
 
-const cpn_living = {
-	props: ['prop', 'req_fn'],
-	template: `
-		<div class="grid3-item add-hr"
-			:onclick='req_fn'
-		>
-			<div class="grid-subtitle">{{prop.ch_subject}}</div>
-			<div class="grid-content">{{prop.ch_article}}</div>
-			<div class="grid-view">...｜ {{prop.ndate}}</div>
-		</div>
-	`
-};
+// const cpn_living = {
+// 	props: ['prop', 'req_fn'],
+// 	template: `
+// 		<div class="grid3-item add-hr"
+// 			:onclick='req_fn'
+// 		>
+// 			<div class="grid-subtitle">{{prop.ch_subject}}</div>
+// 			<div class="grid-content">{{prop.ch_article}}</div>
+// 			<div class="grid-view">...｜ {{prop.ndate}}</div>
+// 		</div>
+// 	`
+// };
 
 const cpn_columns = {
 	props: ['prop', 'req_fn', 'req_pic', 'req_repeat'],
@@ -149,37 +156,40 @@ const cpn_columns = {
 	`
 }
 
-const cpn_office = {
-	props: ['prop', 'req_fn', 'req_category'],
-	template: `
-		<div class="grid4-item add-hr" 
-			:onclick='req_fn' 
-			:data-category="req_category"
-		>
-			<div class="grid4-sort" v-text='fnFilterCategory(prop.ch_class)'></div>
-			<div class="grid4-right">
-				<div class="grid-subtitle">{{prop.ch_subject}}</div>
-				<div class="grid4-en">{{prop.en_subject}}</div>
-			</div>
-		</div>
-	`,
-	methods: {
-		fnFilterCategory(str){
-			// console.log('cpn off ', str, str == '淺談職場');
-			if( str == '淺談職場'){ return '公告'};
-			return str;
-		}
-	}
-}
+// const cpn_office = {
+// 	props: ['prop', 'req_fn', 'req_category'],
+// 	template: `
+// 		<div class="grid4-item add-hr" 
+// 			:onclick='req_fn' 
+// 			:data-category="req_category"
+// 		>
+// 			<div class="grid4-sort" v-text='fnFilterCategory(prop.ch_class)'></div>
+// 			<div class="grid4-right">
+// 				<div class="grid-subtitle">{{prop.ch_subject}}</div>
+// 				<div class="grid4-en">{{prop.en_subject}}</div>
+// 			</div>
+// 		</div>
+// 	`,
+// 	methods: {
+// 		fnFilterCategory(str){
+// 			// console.log('cpn off ', str, str == '淺談職場');
+// 			if( str == '淺談職場'){ return '公告'};
+// 			return str;
+// 		}
+// 	}
+// }
 
 const cpn_tales = {
 	props: ['prop', 'req_fn', 'req_pic'],
 	template: `
-		<div class="grid42-item add-hr" 
+		<div class="tales-item"
 			:onclick='req_fn'
 		>
-			<div class="grid42-img" :style="req_pic"></div>
-			<div class="grid-subtitle">{{prop.subject}}</div>
+			<div class="tales-item-img" :style="req_pic"></div>
+			<div class="tales-item-titlebox">
+				<div class="tales-item-title">{{prop.subject}}</div>
+				<div class="tales-item-title-en">{{prop.subject_en}}</div>
+			</div>
 		</div>
 	`
 };

@@ -71,10 +71,12 @@ body
 // ====================================
 .grid1, .grid3
 	width: calc( #{$w-g13} - #{$g} )
+
+.grid1
 	margin-right: $g
 
 .grid2
-	width: calc( #{$w-g2} - #{$g} )
+	width: calc( 100% - #{$w-g13} * 2 )
 	margin-right: $g
 
 .grid4
@@ -113,10 +115,10 @@ body
 .grid-view
 	font-size: .75rem
 	color: $c-t2
-	background-color: $c-main
-	padding-left: 5px
-	display: flex
-	position: absolute
+	// background-color: $c-main
+	// padding-left: 5px
+	// display: flex
+	// position: absolute
 	right: 0
 	bottom: 3px
 	letter-spacing: 1px

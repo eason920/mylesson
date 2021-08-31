@@ -115,43 +115,42 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 				</svg>
 			</a>
 			<div class="wrapper" id="app">
-				<div id="block0">
+				<!--div id="block0">
 					<div class="grid1">
 						<div id="block0-title">閱讀與聽力課程</div>
 					</div>
 					<div class="grid2"></div>
 					<div class="grid3"></div>
-					<div class="grid4">
-						<div id="searchart">
-							<input type="text" 
-								id="searchart-input" 
-								placeholder="輸入文章編號或標題..." 
-								v-model='search_text' 
-								@keyup.enter='fnGoSearch'/>
-							<div id="searchart-send" title="文章搜尋" @click="fnGoSearch"></div>
-						</div>
-						<div id="circle-box">
-							<!-- <div class="circle-item" data-type="cursor"><img src="./2020/images/cursor.svg" /></div> -->
-							<!-- <div class="circle-item" data-type="noti"><img src="./2020/images/noti.svg" /></div> -->
-							<div class="circle-item" @click='fnOpenSideBar' data-type="side"><img src="./2020/images/sidebar_open.svg" /></div>
-						</div>
-					</div>
-				</div>
+					<div class="grid4"></div>
+				</div-->
 				<div id="block1">
 					<div class="grid1">
-						<a class="grid-title" href="https://funday.asia/search/article/intro_awd.asp?category=1">國際 ‧ 時事</a>
+						<a class="title-entrance" 
+							href="https://funday.asia/search/article/intro_awd.asp?category=1">
+							<img src="./2020/images/2jr/title_entrance.png"/>	
+						</a>
 						<div class="grid1-box">
-							<cpn_tread
+							<!--cpn_tread
 								:prop='item'
 								v-for='(item, i) in trend'
 								:req_fn='fnGoLink("News", item.xml)'
 								:req_pic='item.pic | filterSrc'
 								:req_style='textWrap'
 								:key='i'
-							></cpn_tread>
+							></cpn_tread-->
+							<cpn_mixin
+								:prop='item'
+								v-for='(item, i) in entrance' 
+								:req_fn='fnGoLink("News", item.xml)' 
+								:req_pic='item.pic | filterSrc | filterBG'
+								:key='i'
+							></cpn_mixin>
 						</div>
 					</div>
 					<div class="grid2">
+						<div class="title-main">
+							<img src="./2020/images/2jr/title_main.png"/>
+						</div>
 						<div id="fade">
 							<img src="./2020/images/empty.png">
 							<div class="fade-main">
@@ -178,31 +177,70 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 							</div>
 						</div>
 						<div class="grid22-box">
-							<cpn_mixin
+							<!--cpn_mixin
 								:prop='item'
 								v-for='(item, i) in mixin' 
 								:req_fn='fnGoLink("News", item.xml)' 
 								:req_pic='item.pic | filterSrc | filterBG'
 								:key='i'
-							></cpn_mixin>
+							></cpn_mixin-->
 						</div>
 					</div>
 					<div class="grid3">
+						<div id="funbox">
+							<div id="searchart">
+								<input type="text" 
+									id="searchart-input" 
+									placeholder="輸入文章編號或標題..." 
+									v-model='search_text' 
+									@keyup.enter='fnGoSearch'/>
+								<div id="searchart-send" title="文章搜尋" @click="fnGoSearch"></div>
+							</div>
+							<div id="circle-box">
+								<!-- <div class="circle-item" data-type="cursor"><img src="./2020/images/cursor.svg" /></div> -->
+								<!-- <div class="circle-item" data-type="noti"><img src="./2020/images/noti.svg" /></div> -->
+								<div class="circle-item" @click='fnOpenSideBar' data-type="side"><img src="./2020/images/sidebar_open.svg" /></div>
+							</div>
+						</div>
 						<!--div class="grid3-video"
 							:style='program.above.pic | filterBG'
 							:onclick='fnGoLink("FunProgram", program.above.indx)'
 						>
 						</div-->
-						<a class="grid-title is-1" href="https://funday.asia/search/article/intro_awd.asp?category=2">生活 ‧ 新知</a>
+						<a class="title-general" 
+							href="https://funday.asia/search/article/intro_awd.asp?category=2">
+							<img src="./2020/images/2jr/title_general.png"/>
+						</a>
 						<div class="grid3-box">
-							<cpn_living
+							<!--cpn_living
 								:prop='item'
 								v-for='(item, i) in living' 
 								:req_fn='fnGoLink("News", item.xml)'
 								:key='i'
-								></cpn_living>
+							></cpn_living-->
+							<cpn_mixin
+								:prop='item'
+								v-for='(item, i) in living' 
+								:req_fn='fnGoLink("News", item.xml)' 
+								:req_pic='item.pic | filterSrc | filterBG'
+								:key='i'
+							></cpn_mixin>
 						</div>
-						<a href='https://funday.asia/self-study/column/' class="grid-title is-3">專欄</a>
+						<!--a class="grid-title is-1" href="https://funday.asia/search/article/intro_awd.asp?category=2">生活 ‧ 新知</a-->
+						<a class="title-news" 
+							href="https://funday.asia/search/article/intro_awd.asp?category=2">
+							<img src="./2020/images/2jr/title_news.png"/>
+						</a>
+						<div class="grid3-box">
+							<cpn_mixin
+								:prop='item'
+								v-for='(item, i) in trend' 
+								:req_fn='fnGoLink("News", item.xml)' 
+								:req_pic='item.pic | filterSrc | filterBG'
+								:key='i'
+							></cpn_mixin>
+						</div>
+						<!--a href='https://funday.asia/self-study/column/' class="grid-title is-3">專欄</a>
 						<div class="grid32-box">
 							<cpn_columns
 								:prop='item'
@@ -218,7 +256,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 							href='#'
 							:onclick='fnGoLink("MZ", magazine.SN)'
 							:style='magazine.pic | filterBG '
-						></a>
+						></a-->
 					</div>
 					<!--div class="grid4">
 						<a class="grid-title is-1" href="https://funday.asia/search/article/intro_awd.asp?category=3">商務 ‧ 情境</a>
@@ -248,9 +286,9 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 					</div-->
 				</div>
 				<div id="block-title">
-					<div class="grid1">
+					<!--div class="grid1">
 						<a href="https://funday.asia/blogDesktop/" class="grid-title">部落格</a>
-					</div>
+					</div-->
 					<div class="grid2">
 						<div class="grid-title" onclick="GoLink('SearchVideo')">看影片學英文</div>
 					</div>
@@ -263,7 +301,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 					<div class="title-group"></div>
 				</div>
 				<div id="block2">
-					<div class="grid1">
+					<!--div class="grid1">
 						<div class="grid1-box">
 							<cpn_blog
 								:prop='item'
@@ -273,7 +311,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 								:key='i'
 							></cpn_blog>
 						</div>
-					</div>
+					</div-->
 					<div class="grid2">
 						<div class="grid2-video"
 							:style='program.under.pic | filterBG'
@@ -302,17 +340,59 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 							:key='i'
 						></cpn_program>
 					</div>
-					<div class="grid5">
-						<div class="grid5-title" onclick="GoLink('SearchMusicbox')">唱歌學英文</div>
+					<!--div class="grid5">
 						<div class="grid5-box">
-							<cpn_musicbox
+							
+						</div>
+					</div-->
+				</div>
+				<div id="block-tb">
+					<div class="tb-item">
+						<!--div class="grid-title is-2" onclick="GoLink('SearchStory')">童話故事</div-->
+						<div class="title-tales"
+							onclick="GoLink('SearchStory')">
+							<img src="./2020/images/2jr/title_tale.png"/>
+						</div>
+						<div class="tb-item-box">
+							<cpn_tales 
 								:prop='item'
-								v-for='(item, i) in musicbox'
-								:req_fn='fnGoLink("MusicBoxPlay", item.indx)'
+								v-for='(item, i) in tales' 
+								:req_fn='fnGoLink("FairyTales", item.indx)'
 								:req_pic='item.pic | filterBG'
 								:key='i'
-							></cpn_musicbox>
+							></cpn_tales>
 						</div>
+					</div>
+					<div class="tb-item">
+						<!--a href="https://funday.asia/blogDesktop/" class="grid-title">部落格</a-->
+						<a class="title-blog"
+							href="https://funday.asia/blogDesktop/">
+							<img src="./2020/images/2jr/title_blog.png"/>
+						</a>
+						<div class="tb-item-box">
+							<cpn_tales
+								:prop='item'
+								v-for='(item, i) in blog'
+								:req_fn='fnGoLink("Blog", item.indx)'
+								:req_pic='item.pic | filterBG'
+								:key='i'
+							></cpn_tales>
+						</div>
+					</div>
+				</div>
+				<div class="grid5">
+					<a class="title-music" 
+						href="../search/musicbox/intro_awd.asp">
+						<img src="./2020/images/2jr/title_music.png"/>	
+					</a>
+					<div class="grid5-box">
+						<cpn_musicbox
+							:prop='item'
+							v-for='(item, i) in musicbox'
+							:req_fn='fnGoLink("MusicBoxPlay", item.indx)'
+							:req_pic='item.pic | filterBG'
+							:key='i'
+						></cpn_musicbox>
 					</div>
 				</div>
 				<div id="foo">
@@ -500,7 +580,8 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 
 			$.ajax({
 				type: 'GET',
-				url: './2020/api/Pg2Json.asp?levels=' + vm.memberLevel,
+				// url: './2020/api/Pg2Json.asp?levels=' + vm.memberLevel,
+				url: './2020/junior.json',
 				success: function(res){
 					// console.log('success data is >', res);
 					const idxArt = res.findIndex(item => item.classify.toLowerCase() == 'article');
@@ -531,6 +612,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 					let artTrend = [];
 					let artLiving = [];
 					let artOffice = [];
+					let artEntrance = [];
 					//
 					res[idxArt].data.forEach(function(item, i){
 						const type = item.articletype.toLowerCase();
@@ -538,6 +620,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 							case 'trend': artTrend.push(item);break;
 							case 'living': artLiving.push(item);break;
 							case 'office': artOffice.push(item);break;
+							case 'entrance': artEntrance.push(item);break;
 							default:
 						}
 					});
@@ -553,10 +636,20 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 					artOffice.sort(function(n, c){
 						if( n.news_id > c.news_id ){ return -1 }else{ return 1 };
 					});
+
+					artEntrance.sort(function(n, c){
+						if( n.news_id > c.news_id ){ return -1 }else{ return 1 };
+					});
+					//
+					console.log('art living is ',artLiving);
+					console.log('slice living is ', artLiving.slice(0,4));
+					// artLiving.slice(0,4);
 					//
 					vm.trend = artTrend;
-					vm.living = artLiving;
+					// vm.living = artLiving;
+					vm.living = artLiving.slice(0,11); // =  fade 2  middle 5  main 4
 					vm.office = artOffice;
+					vm.entrance = artEntrance;
 
 					// console.log('trend ', vm.trend);
 					// console.log('living ', vm.living);	
@@ -675,7 +768,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 			// ==========================================
 			// == EVENT v
 			// ==========================================
-			$(window).resize(()=>{ vm.fnGiveHeight() });
+			// $(window).resize(()=>{ vm.fnGiveHeight() });
 		},
 		computed: {
 			reactiveFade(){
@@ -781,6 +874,27 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 				const rate8 = 0.566;
 
 				// --------------------------------
+				const htales = $('.tales-item-img').width() * rate1
+				$('.tales-item-img').css('height', htales);
+				
+				// ================================
+				// ================================
+				// SIDE v	
+				const vm = this;
+				const ww = $(window).width();
+				if( ww >= 1200 ){
+					vm.uiGutter = ( ww - $('#app').outerWidth() ) / 2;
+					vm.transX = vm.uiGutter - vm.sideBarWidth - vm.gutter;
+				}else{
+					vm.transX = vm.transX1199;
+				};
+				if( $('#sidebar').hasClass('is-open') ){
+					$('#app').css('transform', 'translateX(' + vm.transX + 'px)');
+				};
+			},
+
+			fnGiveHeightUn(){
+				// --------------------------------
 				// FADE SHOW v
 				// const hFade = $('#fade').width() * rate6;
 				// $('#fade').css('height', hFade);
@@ -829,8 +943,8 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 				$('#block2 .grid2, #block2 .grid3, #block2 .grid4').css('height', hb2g2v);
 
 				// BLOCK2 GRID5 MUSIC v
-				const hb2g5img = $('#block2 .grid5-img').width() * rate1;
-				$('#block2 .grid5-img').css('height', hb2g5img);
+				const hb2g5img = $('.grid5-img').width() * rate1;
+				$('.grid5-img').css('height', hb2g5img);
 
 				// BLOCK2
 				const hb2gutter = 13;
@@ -839,21 +953,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 				const h2 = hb2g2v + hb2g5 + hb2gutter;
 
 				$('#block2 .grid1').css('height', h2);
-				
-				// ================================
-				// ================================
-				// SIDE v	
-				const vm = this;
-				const ww = $(window).width();
-				if( ww >= 1200 ){
-					vm.uiGutter = ( ww - $('#app').outerWidth() ) / 2;
-					vm.transX = vm.uiGutter - vm.sideBarWidth - vm.gutter;
-				}else{
-					vm.transX = vm.transX1199;
-				};
-				if( $('#sidebar').hasClass('is-open') ){
-					$('#app').css('transform', 'translateX(' + vm.transX + 'px)');
-				};
 			},
 			
 			fnOpenSideBar(){
@@ -915,6 +1014,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 				subject:''
 			},
 			// BLOCK 1 v
+			entrance: [],
 			trend: [],
 			fade: [],
 			mixin: [{},{},{},{},{},{},{},{},{},{}],
@@ -942,7 +1042,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 			cpn_fade,
 			cpn_fade_dot,
 			cpn_mixin,
-			cpn_living,
+			// cpn_living,
 			cpn_columns,
 			// cpn_office,
 			cpn_tales,
@@ -957,7 +1057,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 		el: '#app',
 	});
 
-	Vue.config.devtools = false; // tools data 隱藏
+	// Vue.config.devtools = false; // tools data 隱藏
 	
 	// ==========================================
 	// == SYSTEN (BACK-END) v
