@@ -4,7 +4,7 @@ const cpn_card = {
 	props: ['prop', 'req_pic'],
 	template: `
 		<div class="course" 
-			:class='{"is-camp": camp, "is-talk": talk, "is-empty": empty}'
+			:class='{"is-camp": camp, "is-empty": empty}'
 		>
 			<div :class="category.skin">
 				<div class="top-div">
@@ -64,7 +64,8 @@ const cpn_card = {
 		if (c == '研習營'){vm.camp = true}
 
 		// TALK
-		if( c == '脫口說英文' ){vm.talk = true}
+		// 脫口改需要顯示候位資訊 1100831
+		// if( c == '脫口說英文' ){vm.talk = true}
 
 		// CATEGORY v	
 		if( c == '生活會話教室' || c == '咖啡廳' || c == '脫口說英文' || c == '語感教室' || c == '研習營' ){
