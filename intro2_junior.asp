@@ -346,37 +346,62 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 						</div>
 					</div-->
 				</div>
+				<div id="block-mv1">
+					<cpn_program
+						:prop='item'
+						v-for='(item, i) in program2'
+						:req_fn='fnGoLink("FunProgram", item.indx)'
+						:req_pic='item.pic | filterBG'
+						:key='i'
+					></cpn_program>
+				</div>
+				<div id="block-program2">
+					<a class="title-program2"
+						href="https://funday.asia/search/Program/intro_awd.asp?category=1"
+					>
+						<img src="./2020/images/2jr/title_program2.png"/>
+					</a>
+					<div class="program2">
+						<cpn_program2
+							:prop='item'
+							v-for='(item, i) in program1'
+							:req_fn='fnGoLink("FunProgram", item.indx)'
+							:req_pic='item.pic | filterBG'
+							:key='i'
+						></cpn_program2>
+					</div>
+				</div>
 				<div id="block-tb">
-					<div class="tb-item">
+					<div class="tb-item-big">
 						<!--div class="grid-title is-2" onclick="GoLink('SearchStory')">童話故事</div-->
 						<div class="title-tales"
 							onclick="GoLink('SearchStory')">
 							<img src="./2020/images/2jr/title_tale.png"/>
 						</div>
 						<div class="tb-item-box">
-							<cpn_tales 
+							<cpn_tales_blog 
 								:prop='item'
 								v-for='(item, i) in tales' 
 								:req_fn='fnGoLink("FairyTales", item.indx)'
 								:req_pic='item.pic | filterBG'
 								:key='i'
-							></cpn_tales>
+							></cpn_tales_blog>
 						</div>
 					</div>
-					<div class="tb-item">
+					<div class="tb-item-big">
 						<!--a href="https://funday.asia/blogDesktop/" class="grid-title">部落格</a-->
 						<a class="title-blog"
 							href="https://funday.asia/blogDesktop/">
 							<img src="./2020/images/2jr/title_blog.png"/>
 						</a>
 						<div class="tb-item-box">
-							<cpn_tales
+							<cpn_tales_blog
 								:prop='item'
 								v-for='(item, i) in blog'
 								:req_fn='fnGoLink("Blog", item.indx)'
 								:req_pic='item.pic | filterBG'
 								:key='i'
-							></cpn_tales>
+							></cpn_tales_blog>
 						</div>
 					</div>
 				</div>
@@ -768,7 +793,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 			// ==========================================
 			// == EVENT v
 			// ==========================================
-			// $(window).resize(()=>{ vm.fnGiveHeight() });
+			$(window).resize(()=>{ vm.fnGiveHeight() });
 		},
 		computed: {
 			reactiveFade(){
@@ -873,9 +898,18 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 				const rate7 = 1.2;
 				const rate8 = 0.566;
 
+				// ================================
+				// ================================
+				// BLOCK2 GRID3 v
+				const hb2g3 = $('#block-mv1 .grid3-img, #block-mv2 .grid3-img').width() * rate1;
+				$('#block-mv1 .grid3-img, #block-mv2 .grid3-img').css('height', hb2g3);
+
+				const hprogram2 = $('.program2-img').width() * rate1;
+				$('.program2-img').css('height', hprogram2);
+
 				// --------------------------------
-				const htales = $('.tales-item-img').width() * rate1
-				$('.tales-item-img').css('height', htales);
+				const htales = $('.tb-item-img').width() * rate1
+				$('.tb-item-img').css('height', htales);
 				
 				// ================================
 				// ================================
@@ -934,9 +968,6 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 				
 				// ================================
 				// ================================
-				// BLOCK2 GRID3 v
-				const hb2g3 = $('#block2 .grid3-img').width() * rate1;
-				$('#block2 .grid3-img').css('height', hb2g3);
 
 				// BLOCK2 GRID2&3 v
 				const hb2g2v = $('#block2 .grid2-video').width() * rate8;
@@ -1045,10 +1076,11 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 			// cpn_living,
 			cpn_columns,
 			// cpn_office,
-			cpn_tales,
+			cpn_tales_blog,
 			// 2 v
 			cpn_blog,
 			cpn_program,
+			cpn_program2,
 			cpn_musicbox,
 			// side v
 			cpn_side_item,

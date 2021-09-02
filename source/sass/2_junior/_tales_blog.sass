@@ -5,7 +5,7 @@ $g: 3%
 	margin:
 		bottom: 40px
 
-.tb-item
+.tb-item-big
 	width: calc( #{$w} - #{$g}/2 )
 	&:nth-child(1)
 		margin-right: $g
@@ -17,7 +17,7 @@ $g: 3%
 
 // --------------------------------
 $gs: 15px
-.tales-item
+.tb-item
 	width: 50%
 	display: flex
 	margin-bottom: 20px
@@ -30,27 +30,27 @@ $gs: 15px
 		padding-left: $gs
 		flex-direction: column-reverse
 		justify-content: flex-end
-		.tales-item-titlebox
+		.tb-item-titlebox
 			padding-bottom: 5px
 
-.tales-item-img
+.tb-item-img
 	// height: 150px
 	background:
 		size: cover
 		position: center 0
-.tales-item-titlebox
+.tb-item-titlebox
 	height: 50px
 	display: flex
 	flex-direction: column
 	justify-content: center
-.tales-item-title
+.tb-item-title
 	@extend %row1
 	font:
 		size: 20px
 		weight: bold
 	line-height: 1.5
 
-.tales-item-title-en
+.tb-item-title-en
 	@extend %row1
 	font:
 		size: 15px

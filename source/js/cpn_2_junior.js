@@ -179,16 +179,16 @@ const cpn_columns = {
 // 	}
 // }
 
-const cpn_tales = {
+const cpn_tales_blog = {
 	props: ['prop', 'req_fn', 'req_pic'],
 	template: `
-		<div class="tales-item"
+		<div class="tb-item"
 			:onclick='req_fn'
 		>
-			<div class="tales-item-img" :style="req_pic"></div>
-			<div class="tales-item-titlebox">
-				<div class="tales-item-title">{{prop.subject}}</div>
-				<div class="tales-item-title-en">{{prop.subject_en}}</div>
+			<div class="tb-item-img" :style="req_pic"></div>
+			<div class="tb-item-titlebox">
+				<div class="tb-item-title">{{prop.subject}}</div>
+				<div class="tb-item-title-en">{{prop.subject_en}}</div>
 			</div>
 		</div>
 	`
@@ -217,6 +217,19 @@ const cpn_program = {
 		<div class="grid3-box">
 			<div class="grid3-sort">{{prop.classify}}</div>
 			<div class="grid3-ch">{{prop.subject}}</div>
+		</div>
+	</div>
+	`
+};
+
+const cpn_program2 = {
+	props: ['prop', 'req_fn', 'req_pic'],
+	template: `
+	<div class="program2-item" :onclick="req_fn">
+		<div class="program2-img" :style="req_pic"></div>
+		<div class="program2-box">
+			<div class="program2-sort">{{prop.classify}}</div>
+			<div class="program2-ch">{{prop.subject}}</div>
 		</div>
 	</div>
 	`
