@@ -415,6 +415,12 @@ end if
   </body>
 </html>
 <script>
+  if( /chart/.test(location.href) ){
+    setTimeout(()=>{
+      $('.label-item[data-status="1"]').click();
+    },1000);
+  };
+
   $(".f2-2").text('© ' + new Date().getFullYear() + ' Brainstorm Digital Communications Corp. All rights reserved. Privacy Policy');
 
   $.ajax({
