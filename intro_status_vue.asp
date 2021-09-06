@@ -109,7 +109,7 @@
 				// 303222
 				
 				// api 正式 v (參數全部不帶)
-				url: 'https://funday.asia/mylesson/2020/data/data.asp',
+				url: 'https://funday.asia/mylesson/2020/data/data2.asp',
 				dataType: 'json',
 				success: function(data){
 					console.log('data is ', data);
@@ -211,8 +211,6 @@
 					};
 				};
 
-				// ----------------------------
-				// 結構 cnavas v
 				const	data ={
 					labels: dataLabels,
 					datasets: [{
@@ -230,6 +228,7 @@
 					}
 				};
 
+				// 結構 cnavas v
 				new Chart( document.getElementById("pie"+lv), {
 					type: 'pie',
 					data,
