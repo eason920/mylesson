@@ -1,0 +1,90 @@
+$w1: 55%
+$w3: 20%
+$w2: calc( 100% - #{$w1} - #{$w3})
+$g: 30px
+
+// --------------------------------
+#block-program1
+	display: flex
+	align-items: stretch
+
+// --------------------------------
+.block-program1-item1
+	width: $w1
+	padding-right: $g
+	display: flex
+	justify-content: space-between
+	flex-direction: column
+
+.program1-video
+	background-size: cover
+
+// --------------------------------
+.block-program1-item2
+	width: $w2
+	padding-right: $g
+
+.block-program1-videobox
+	display: flex
+	justify-content: space-between
+	flex-direction: column
+
+	.program-item
+		display: flex
+		flex-direction: column
+		color: $c-t1
+		text-decoration: none
+		cursor: pointer
+
+	.program-img
+		min-height: 55px
+		background:
+			size: cover
+			position: center
+		text-decoration: none
+
+	.program-box
+		display: flex
+		flex-direction: column
+		text-align: left
+
+	.program-sort
+		color: $c-t2
+		font-size: .75rem
+		padding:
+			top: 8px
+		@extend %row1
+
+	.program-ch
+		font:
+			size: .875rem
+			weight: bold
+		padding: 
+			top: 6px
+		color: #000
+		line-height: 1.4
+		@extend %row1
+		// @include row(2)
+
+// --------------------------------
+.block-program1-item3
+	width: $w3
+	display: flex
+	justify-content: space-between
+	flex-direction: column
+	a
+		width: 100%
+		img
+			width: 100%
+
+
+@media screen and (max-width: 1440px)
+	.block-program1-videobox
+		.program-item
+			padding-top: 20px
+
+@media screen and (min-width: 1441px)
+	.block-program1-videobox
+		.program-item
+			padding-top: 15px
+			

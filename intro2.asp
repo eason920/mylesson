@@ -64,7 +64,8 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 				z-index: 6;
 			}
 			/* 藏廣告用，應刪除 */
-			/* #lightBoxDIY{display: none} */
+			/* #lightBoxDIY{display: none}*/ /* x < 會連影音一起藏*/
+			/* .lightBoxAD{display: none}*/  /* o < 僅廣告*/
 
       /* v scrollbar 是否永遠顥示的跟據 v */
       .ps__rail-x{

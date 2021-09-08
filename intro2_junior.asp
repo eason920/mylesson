@@ -347,13 +347,44 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 					</div-->
 				</div>
 				<div id="block-mv1">
-					<cpn_program
-						:prop='item'
-						v-for='(item, i) in program2'
-						:req_fn='fnGoLink("FunProgram", item.indx)'
-						:req_pic='item.pic | filterBG'
-						:key='i'
-					></cpn_program>
+				</div>
+				<div id="block-program1">
+					<div class="block-program1-item1">
+						<div class="title-program1-1-1">
+							<img src="./2020/images/2jr/title_program1-1.png"/>
+						</div>
+						<div class="title-program1-1-2"
+							onclick="GoLink('SearchVideo')">
+							<img src="./2020/images/2jr/title_program1-2.png"/>
+						</div>
+						<div class="program1-video"
+							:style='program.under.pic | filterBG'
+							:onclick='fnGoLink("FunProgram", program.under.indx)'
+						></div>
+					</div>
+					<div class="block-program1-item2">
+						<div class="title-program1-2"
+							onclick="GoLink('SearchVideo')">
+							微電影
+						</div>
+						<div class="block-program1-videobox">
+							<cpn_program2
+								:prop='item'
+								v-for='(item, i) in program2'
+								:req_fn='fnGoLink("FunProgram", item.indx)'
+								:req_pic='item.pic | filterBG'
+								:key='i'
+							></cpn_program2>
+						</div>
+					</div>
+					<div class="block-program1-item3">
+						<a href="#" target="_blank">
+							<img src="https://picsum.photos/300/360">
+						</a>
+						<a href="#" target="_blank">
+							<img src="https://picsum.photos/300/360">
+						</a>
+					</div>
 				</div>
 				<div id="block-program2">
 					<a class="title-program2"
@@ -361,7 +392,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 					>
 						<img src="./2020/images/2jr/title_program2.png"/>
 					</a>
-					<div class="program2">
+					<div class="block-program2-videobox">
 						<cpn_program2
 							:prop='item'
 							v-for='(item, i) in program1'
@@ -898,21 +929,21 @@ response.cookies("Backurl")="../../../../mylesson/intro2_junior.asp"
 				const rate7 = 1.2;
 				const rate8 = 0.566;
 
-				// ================================
-				// ================================
-				// BLOCK2 GRID3 v
-				const hb2g3 = $('#block-mv1 .grid3-img, #block-mv2 .grid3-img').width() * rate1;
-				$('#block-mv1 .grid3-img, #block-mv2 .grid3-img').css('height', hb2g3);
+				// BLOCK-PROGRAM 1
+				const hbp1_v1 = $('#block-program1 .program1-video').width() * rate8;
+				$('#block-program1 .program1-video').css('height', hbp1_v1);
 
-				const hprogram2 = $('.program2-img').width() * rate1;
-				$('.program2-img').css('height', hprogram2);
+				const hbp1_v2 = $('.block-program1-videobox .program-img').width() * rate8;
+				$('.block-program1-videobox .program-img').css('height', hbp1_v2);
 
-				// --------------------------------
+				// BLOCK-PROGRAM 2
+				const hbp2v = $('.block-program2-videobox .program-img').width() * rate1;
+				$('.block-program2-videobox .program-img').css('height', hbp2v);
+
+				// BLOCK TALES & BLOG
 				const htales = $('.tb-item-img').width() * rate1
 				$('.tb-item-img').css('height', htales);
 				
-				// ================================
-				// ================================
 				// SIDE v	
 				const vm = this;
 				const ww = $(window).width();

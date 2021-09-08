@@ -73,9 +73,49 @@ $h2: 66px
 		height: 50%
 
 .title-program2
-	height: 80px
+	height: 95px
 	display: flex
 	justify-content: center
 	margin-bottom: 18px
 	img
 		height: 100%
+
+// --------------------------------
+// -- PROGRAM 1
+// --------------------------------
+.title-program1-1-1
+	@extend %share
+	cursor: default
+	img
+		width: 100%
+
+.title-program1-1-2
+	@extend %share
+	height: 88px
+	border: solid 5px $c-t1
+	img
+		// width: 90%
+
+.title-program1-2
+	@extend %share
+	border-style: solid
+	border-width: 0 5px
+	border-color: $c-t1
+	position: relative
+	height: 60px
+	font:
+		size: 3rem
+		weight: bold
+	color: $c-t1
+	&:after
+		content: ''
+		position: absolute
+		top: 0
+		bottom: 0
+		left: 2px
+		right: 2px
+		border-style: solid
+		border-width: 0 2px
+		border-color: $c-t1
+	img
+		width: 80%

@@ -225,11 +225,11 @@ const cpn_program = {
 const cpn_program2 = {
 	props: ['prop', 'req_fn', 'req_pic'],
 	template: `
-	<div class="program2-item" :onclick="req_fn">
-		<div class="program2-img" :style="req_pic"></div>
-		<div class="program2-box">
-			<div class="program2-sort">{{prop.classify}}</div>
-			<div class="program2-ch">{{prop.subject}}</div>
+	<div class="program-item" :onclick="req_fn">
+		<div class="program-img" :style="req_pic"></div>
+		<div class="program-box">
+			<div class="program-sort">{{prop.classify}}</div>
+			<div class="program-ch">{{prop.subject}}</div>
 		</div>
 	</div>
 	`

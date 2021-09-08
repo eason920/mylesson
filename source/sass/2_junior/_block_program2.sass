@@ -4,65 +4,65 @@
 	margin:
 		bottom: 50px
 
-.program2
+.block-program2-videobox
 	display: flex
 	justify-content: space-between
 
-.program2-item
-	display: flex
-	width: calc( 100% / 6 - 16px )
-	flex-direction: column
-	color: $c-t1
-	text-decoration: none
-	// border-top: solid 1px $c-t1
-	// padding-top: 4%
-	cursor: pointer
-	&:first-child
-		border: none
-		padding: 0
+	.program-item
+		display: flex
+		width: calc( 100% / 6 - 16px )
+		flex-direction: column
+		color: $c-t1
+		text-decoration: none
+		// border-top: solid 1px $c-t1
+		// padding-top: 4%
+		cursor: pointer
+		&:first-child
+			border: none
+			padding: 0
 
-// .program2-hr
-// 	height: 1px
-// 	background-color: #000
-// 	&:last-child
-// 		display: none
+	// .program-hr
+	// 	height: 1px
+	// 	background-color: #000
+	// 	&:last-child
+	// 		display: none
 
-.program2-img
-	// width: 45%
-	min-height: 55px
-	// height: 78px
-	background:
-		size: cover
-		position: center
-	// margin-right: 12px
-	text-decoration: none
+	.program-img
+		// width: 45%
+		min-height: 55px
+		// height: 78px
+		background:
+			size: cover
+			position: center
+		// margin-right: 12px
+		text-decoration: none
 
-.program2-box
-	// width: calc( 55% - 12px )
-	display: flex
-	flex-direction: column
-	// justify-content: center
-	text-align: left
-	& > *
-		
-		@include row(2)
+	.program-box
+		// width: calc( 55% - 12px )
+		display: flex
+		flex-direction: column
+		// justify-content: center
+		text-align: left
+		& > *
+			
+			@include row(2)
 
-.program2-ch
-	font:
-		size: .875rem
-		weight: bold
-	padding: 
-		top: 6px
-	color: #000
-	line-height: 1.4
+	.program-ch
+		font:
+			size: .875rem
+			weight: bold
+		padding: 
+			top: 6px
+		color: #000
+		line-height: 1.4
 
-.program2-sort
-	color: $c-t2
-	font-size: .75rem
-	padding:
-		top: 8px
-	@extend %row1
+	.program-sort
+		color: $c-t2
+		font-size: .75rem
+		padding:
+			top: 8px
+		@extend %row1
 
-.program2-en
-	font-size: .8125rem
-	color: #000
+	.program-en
+		font-size: .8125rem
+		color: #000
