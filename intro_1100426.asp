@@ -80,7 +80,7 @@ end if
     <script src="./2020/js/lightBoxDIY-V2.js?<%=Timer%>"></script>    
     <script src="./2020/js/tool.js?dd=<%=now%>"></script>    
   <style>
-    .nav-float-item.is-announce{display: none}
+    /* .nav-float-item.is-announce{display: none} */
     .wd2{
       position:fixed;
       width:100%;

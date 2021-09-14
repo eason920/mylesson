@@ -52,7 +52,7 @@ response.cookies("Backurl")="../../../../mylesson/intro2.asp"
 		<style>
 			
 			/**/
-			.nav-float-item.is-announce{display: none}
+			/* .nav-float-item.is-announce{display: none} */
 			/**/
 			.wd {
 				position: fixed;
