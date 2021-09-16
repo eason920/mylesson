@@ -68,6 +68,10 @@ body
 // 		overflow:
 // 			y: auto
 
-@media screen and( max-height: 899px )
+@media screen and( max-height: 899px ) and (min-width: 800px)
 	body
 		height: calc( 100vh + #{$h-foo} + #{$h-runway} )
+
+@media screen and( max-height: 799px )
+	body
+		height: calc( 100vh + #{$h-foo} * 2 + #{$h-runway} * 2 )
